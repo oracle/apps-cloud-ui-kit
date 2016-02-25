@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:acdc="/appsCloudUIKitDCs"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <c:set var="demohcmBundle"
+         value="#{adfBundle['oracle.apps.uikit.hcm.DemoHCMBundle']}"/>
+  <acdc:InfoletDC hasBack="NO" hasExpanded="NO" hasFront="YES"
+                  title="#{demohcmBundle.WELLNESS}" id="idc1"
+                  frontSize="INFOLET1X3">
+    <f:facet name="front">
+      <af:panelGridLayout id="pgl1">
+        <af:gridRow id="gr1" marginTop="5px">
+          <af:gridCell id="gc1" width="27%" marginStart="5px">
+            <af:panelGroupLayout id="pgl2" halign="center" valign="top"
+                                 layout="vertical">
+              <af:outputText value="My Wellness Goals" id="ot1"
+                             styleClass="trial-text"/>
+              <af:spacer height="10" id="s3"/>
+              <af:panelGroupLayout id="pgl6" layout="horizontal" valign="top">
+                <af:panelGroupLayout id="pgl7" layout="vertical" valign="top">
+                  <af:panelGroupLayout id="pgl10" layout="vertical"
+                                       styleClass="background-gray">
+                    <af:spacer width="13" height="28" id="s6"/>
+                  </af:panelGroupLayout>
+                  <af:panelGroupLayout id="pgl11" layout="vertical"
+                                       styleClass="background-orange">
+                    <af:spacer width="13" height="37" id="s7"/>
+                  </af:panelGroupLayout>
+                </af:panelGroupLayout>
+                <af:spacer width="10" height="10" id="s4"/>
+                <af:panelGroupLayout id="pgl8" layout="vertical"
+                                     styleClass="background-lGreen">
+                  <af:spacer width="13" height="70" id="s8"/>
+                </af:panelGroupLayout>
+                <af:spacer width="10" height="10" id="s5"/>
+                <af:panelGroupLayout id="pgl9" layout="vertical">
+                  <af:panelGroupLayout id="pgl13" styleClass="background-gray"
+                                       layout="vertical">
+                    <af:spacer width="13" height="10" id="s9"/>
+                  </af:panelGroupLayout>
+                  <af:panelGroupLayout id="pgl12"
+                                       styleClass="background-orange"
+                                       layout="vertical">
+                    <af:spacer width="13" height="55" id="s10"/>
+                  </af:panelGroupLayout>
+                </af:panelGroupLayout>
+              </af:panelGroupLayout>
+            </af:panelGroupLayout>
+          </af:gridCell>
+          <af:gridCell id="gc2" width="23%" marginStart="5px">
+            <af:panelGroupLayout id="pgl3" halign="center" valign="top"
+                                 layout="vertical">
+              <af:outputText value="My Activities" id="ot2"
+                             styleClass="trial-text"/>
+              <af:spacer height="15" id="s11"/>
+              <af:image source="/images/qual_personstretch_48.png" id="i2"/>
+              <af:outputText value="4.0 - Active" id="ot8"
+                             styleClass="trial-cyan"
+                             inlineStyle="font-size:140.0%;"/>
+            </af:panelGroupLayout>
+          </af:gridCell>
+          <af:gridCell id="gc3" width="25%" marginStart="5px">
+            <af:panelGroupLayout id="pgl4" halign="center" valign="top"
+                                 layout="vertical">
+              <af:outputText value="My Competitions" id="ot3"
+                             styleClass="trial-text"/>
+              <af:spacer height="10" id="s2"/>
+              <af:outputText value="4" id="ot7" styleClass="trial-cyan bold"
+                             inlineStyle="font-size:425.0%;"/>
+              <af:outputText value="Active" id="ot9"
+                             styleClass="trial-cyan"
+                             inlineStyle="font-size:140.0%;"/>
+            </af:panelGroupLayout>
+          </af:gridCell>
+          <af:gridCell id="gc4" width="25%" marginStart="5px" marginEnd="5px">
+            <af:panelGroupLayout id="pgl5" halign="center" valign="top"
+                                 layout="vertical">
+              <af:outputText value="Calories Burned" id="ot4"
+                             styleClass="trial-text"/>
+              <af:spacer height="5" id="s1"/>
+              <af:outputText value="Daily Average" id="ot5"
+                             styleClass="trial-cyan"/>
+              <af:image source="/images/qual_fire_48.png" id="i1"/>
+              <af:outputText value="2110" id="ot6"
+                             styleClass="trial-cyan bold"
+                             inlineStyle="font-size:140.0%;"/>
+            </af:panelGroupLayout>
+          </af:gridCell>
+        </af:gridRow>
+      </af:panelGridLayout>
+    </f:facet>
+  </acdc:InfoletDC>
+</jsp:root>

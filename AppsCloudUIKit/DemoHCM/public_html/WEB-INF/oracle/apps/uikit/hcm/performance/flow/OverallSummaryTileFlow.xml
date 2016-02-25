@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="OverallSummaryTileFlow">
+    <default-activity id="__1">OverallSummaryTile</default-activity>
+    <view id="OverallSummaryTile">
+      <page>/oracle/apps/uikit/hcm/performance/page/OverallSummaryTile.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

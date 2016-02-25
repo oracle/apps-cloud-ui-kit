@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:acdc="/appsCloudUIKitDCs"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <c:set var="democrmBundle"
+         value="#{adfBundle['oracle.apps.uikit.crm.DemoCRMBundle']}"/>
+  <acdc:InfoletDC hasBack="NO" hasExpanded="NO" hasFront="YES"
+                  title="#{democrmBundle.MAINTENANCE_SRS}" id="idc1">
+    <f:facet name="front">
+      <af:panelGroupLayout id="pgl1" halign="end" layout="vertical">
+        <af:spacer height="10" id="s1"/>
+        <af:outputText value="126,397,045" id="ot1" styleClass="bold"
+                       inlineStyle="font-size:130%; color:gray;"/>
+        <af:panelGroupLayout id="pgl2" layout="horizontal">
+          <af:separator id="s2" inlineStyle="width:88.0px;"/>
+          <af:spacer width="10" id="s3"/>
+          <af:outputText value="CLOSED" id="ot2" inlineStyle="color:gray;"/>
+        </af:panelGroupLayout>
+        <af:spacer height="10" id="s4"/>
+        <af:outputText value="789,321" id="ot3"
+                       inlineStyle="font-size:130%; color:gray;"
+                       styleClass="bold"/>
+        <af:panelGroupLayout id="pgl3" layout="horizontal">
+          <af:separator id="s5" inlineStyle="width:105.0px;"/>
+          <af:spacer width="10" id="s6"/>
+          <af:outputText value="OPEN" id="ot4" inlineStyle="color:gray;"/>
+        </af:panelGroupLayout>
+        <af:spacer height="10" id="s7"/>
+        <af:outputText value="4,567" id="ot5" styleClass="bold"
+                       inlineStyle="font-size:130%; color:red;"/>
+        <af:panelGroupLayout id="pgl4" layout="horizontal">
+          <af:separator id="s8" inlineStyle="width:82.0px;"/>
+          <af:spacer width="10" id="s9"/>
+          <af:outputText value="CRITICAL" id="ot6" inlineStyle="color:gray;"/>
+        </af:panelGroupLayout>
+      </af:panelGroupLayout>
+    </f:facet>
+  </acdc:InfoletDC>
+</jsp:root>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="YTDEarningsFlow">
+    <default-activity id="__1">YTDEarnings</default-activity>
+    <managed-bean id="__4">
+      <managed-bean-name id="__2">CrmInfoletsBean</managed-bean-name>
+      <managed-bean-class id="__5">oracle.apps.uikit.crm.infolets.bean.CrmInfoletsBean</managed-bean-class>
+      <managed-bean-scope id="__3">backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="YTDEarnings">
+      <page>/oracle/apps/uikit/crm/infolets/page/YTDEarnings.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

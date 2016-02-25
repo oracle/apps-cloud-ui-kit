@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+  <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1 Tiny//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-tiny.dtd">
+<svg id="Layer_1" version="1.1" baseProfile="tiny" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  x="0px" y="0px" width="60px" height="25px" viewBox="0 0 60 25" xml:space="preserve">
+  <g>
+  <rect x="0" y="0" width="17" height="2" fill="#FFFFFF" opacity="0.01"></rect>
+  <rect x="17" y="0" width="43" height="25" fill="#53616F"></rect>
+  <rect x="19" y="2" width="22" height="21" fill="#D8E4F2"></rect>
+  <rect y="11" height="3" fill="#FFFFFF" width="13" x="44"></rect>
+  <rect x="49" fill="#FFFFFF" height="13" width="3" y="6"></rect>
+  </g>
+</svg>
+  
+   

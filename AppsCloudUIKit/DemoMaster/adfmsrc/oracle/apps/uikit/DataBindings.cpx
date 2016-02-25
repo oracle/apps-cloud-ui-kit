@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<Application xmlns="http://xmlns.oracle.com/adfm/application"
+             version="11.1.1.66.73" id="DataBindings" SeparateXMLFiles="false"
+             Package="oracle.apps.uikit" ClientType="Generic">
+  <definitionFactories>
+    <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding"
+             className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+    <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
+  </definitionFactories>
+  <pageMap>
+    <page path="/Welcome.jspx" usageId="oracle_apps_uikit_WelcomePageDef"/>
+    <page path="/oracle/apps/uikit/page/Springboard.jsff"
+          usageId="oracle_apps_uikit_SpringboardPageDef"/>
+    <page path="/FilmStrip.jspx" usageId="oracle_apps_uikit_FilmStripPageDef"/>
+    <page path="/oracle/apps/uikit/page/Announcements.jsff"
+          usageId="oracle_apps_uikit_AnnouncementsPageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="oracle_apps_uikit_WelcomePageDef"
+          path="oracle.apps.uikit.pageDefs.WelcomePageDef"/>
+    <page id="oracle_apps_uikit_SpringboardPageDef"
+          path="oracle.apps.uikit.page.SpringboardPageDef"/>
+    <page id="oracle_apps_uikit_FilmStripPageDef"
+          path="oracle.apps.uikit.pageDefs.FilmStripPageDef"/>
+    <page id="oracle_apps_uikit_AnnouncementsPageDef"
+          path="oracle.apps.uikit.page.AnnouncementsPageDef"/>
+  </pageDefinitionUsages>
+</Application>

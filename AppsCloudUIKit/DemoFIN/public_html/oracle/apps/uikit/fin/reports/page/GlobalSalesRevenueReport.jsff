@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:acdc="/appsCloudUIKitDCs"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces">
+  <c:set var="demofinBundle"
+         value="#{adfBundle['oracle.apps.uikit.fin.DemoFINBundle']}"/>
+  <af:pageTemplate viewId="/oracle/apps/uikit/common/pageTemplates/MainPageTemplate.jspx"
+                   id="pt1">
+    <f:facet name="pageContents">
+      <af:panelGroupLayout id="pgl1" layout="vertical" valign="top">
+        <acdc:PageHeaderDC id="phdc1"
+                           pageTitle="#{demofinBundle.GLOBAL_SALES_REVENUE_REPORT}"/>
+        <af:spacer height="10" id="s1"/>
+        <af:panelGridLayout id="pgl2">
+          <af:gridRow id="gr1">
+            <af:gridCell id="gc1" width="100%" halign="center" valign="middle">
+              <dvt:sunburst id="s2"
+                            value="#{pageFlowScope.GlobalSalesRevenueReportBean.revenueData}"
+                            var="row" displayLevelsChildren="2"
+                            animationDuration="750"
+                            animationOnDataChange="auto"
+                            animationOnDisplay="fan"
+                            inlineStyle="width:600px; height:625.0px;"
+                            partialTriggers="::sbc1 ::sbc2 ::sbc4 ::sbc5 ::sbc3">
+                <dvt:sunburstNode id="sn1" value="#{row.amount}"
+                                  rendered="#{row.displayed}"
+                                  fillColor="#{row.color}" label="#{row.name}"
+                                  shortDesc="#{demofinBundle.REVENUE_AMOUNT}#{': $'}#{row.amount}#{' '}#{demofinBundle.MILLION}"
+                                  drilling="insertAndReplace"/>
+              </dvt:sunburst>
+            </af:gridCell>
+            <af:gridCell id="gc2" width="200px" valign="middle">
+              <af:panelHeader text="World Regions" id="ph1" size="2">
+                <af:panelGroupLayout id="pgl4" layout="vertical">
+                  <af:selectBooleanCheckbox text="Asia Pacific" id="sbc1"
+                                            selected="true" autoSubmit="true"
+                                            valueChangeListener="#{pageFlowScope.GlobalSalesRevenueReportBean.handleWorldRegionChange}"/>
+                  <af:selectBooleanCheckbox text="Europe" id="sbc2"
+                                            selected="true" autoSubmit="true"
+                                            valueChangeListener="#{pageFlowScope.GlobalSalesRevenueReportBean.handleWorldRegionChange}"/>
+                  <af:selectBooleanCheckbox text="Middle East" id="sbc4"
+                                            selected="true" autoSubmit="true"
+                                            valueChangeListener="#{pageFlowScope.GlobalSalesRevenueReportBean.handleWorldRegionChange}"/>
+                  <af:selectBooleanCheckbox text="North America" id="sbc5"
+                                            selected="true" autoSubmit="true"
+                                            valueChangeListener="#{pageFlowScope.GlobalSalesRevenueReportBean.handleWorldRegionChange}"/>
+                  <af:selectBooleanCheckbox text="Latin America" id="sbc3"
+                                            selected="true" autoSubmit="true"
+                                            valueChangeListener="#{pageFlowScope.GlobalSalesRevenueReportBean.handleWorldRegionChange}"/>
+                </af:panelGroupLayout>
+              </af:panelHeader>
+            </af:gridCell>
+          </af:gridRow>
+        </af:panelGridLayout>
+      </af:panelGroupLayout>
+    </f:facet>
+  </af:pageTemplate>
+</jsp:root>

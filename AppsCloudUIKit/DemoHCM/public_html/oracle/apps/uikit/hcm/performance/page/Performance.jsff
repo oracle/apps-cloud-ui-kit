@@ -1,0 +1,303 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:acdc="/appsCloudUIKitDCs"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces">
+  <c:set var="demohcmBundle"
+         value="#{adfBundle['oracle.apps.uikit.hcm.DemoHCMBundle']}"/>
+  <af:pageTemplate viewId="/oracle/apps/uikit/common/pageTemplates/MainPageTemplate.jspx"
+                   id="pt1">
+    <f:facet name="pageContents">
+      <af:panelGroupLayout id="pgl1" layout="vertical">
+        <acdc:PageHeaderDC id="phdc1"
+                           pageTitle="#{demohcmBundle.MY_TEAMS_PERFORMANCE_EVALUATIO}"/>
+        <af:panelGroupLayout id="pgl2" layout="horizontal"
+                             styleClass="AFStretchWidth" valign="top">
+          <af:spacer width="20" id="s1"/>
+          <af:panelGroupLayout id="pgl3" layout="vertical" valign="top">
+            <af:spacer width="10" height="10" id="s3"/>
+            <af:panelGroupLayout id="pgl4" layout="horizontal"
+                                 styleClass="AFStretchWidth" halign="center">
+              <af:spacer width="10" id="s9"/>
+              <af:panelGroupLayout id="pgl5" layout="horizontal">
+                <dvt:statusMeterGauge id="smg1" orientation="circular"
+                                      inlineStyle="width:70px;height:70px;"
+                                      value="#{pageFlowScope.PerformanceBean.totalClosedEvaluations}"
+                                      borderColor="#D6DFE6" color="#4B7D06"
+                                      plotArea="on" thresholdDisplay="all"
+                                      shortDesc="#{pageFlowScope.PerformanceBean.totalClosedEvaluations}#{' of '}#{pageFlowScope.PerformanceBean.totalEvaluations}"
+                                      maximum="#{pageFlowScope.PerformanceBean.totalEvaluations}"
+                                      minimum="0">
+                  <dvt:gaugeThreshold id="thr1" color="#ADADAD"/>
+                  <dvt:gaugeMetricLabel id="gml1">
+                    <af:convertNumber integerOnly="true"/>
+                  </dvt:gaugeMetricLabel>
+                </dvt:statusMeterGauge>
+                <af:spacer width="5" id="s5"/>
+                <af:outputText value="#{' of '}#{pageFlowScope.PerformanceBean.totalEvaluations}#{' Evaluations Complete in Total'}"
+                               id="ot2"
+                               inlineStyle="color:#ADADAD; font-size:16px;"/>
+              </af:panelGroupLayout>
+              <af:panelGroupLayout id="pgl6" layout="horizontal">
+                <dvt:statusMeterGauge id="smg2" orientation="circular"
+                                      inlineStyle="width:70px;height:70px;"
+                                      value="#{pageFlowScope.PerformanceBean.annualClosedEvaluations}"
+                                      borderColor="#D6DFE6" color="#4B7D06"
+                                      minimum="0"
+                                      maximum="#{pageFlowScope.PerformanceBean.annualEvaluations}"
+                                      plotArea="on" thresholdDisplay="all"
+                                      shortDesc="#{pageFlowScope.PerformanceBean.annualClosedEvaluations}#{' of '}#{pageFlowScope.PerformanceBean.annualEvaluations}">
+                  <dvt:gaugeThreshold id="thr2" color="#ADADAD"/>
+                  <dvt:gaugeMetricLabel id="gml2">
+                    <af:convertNumber integerOnly="true"/>
+                  </dvt:gaugeMetricLabel>
+                </dvt:statusMeterGauge>
+                <af:spacer width="5" id="s6"/>
+                <af:outputText value="#{' of '}#{pageFlowScope.PerformanceBean.annualEvaluations}#{' Annual Reviews Complete'}"
+                               id="ot3"
+                               inlineStyle="color:#ADADAD; font-size:16px;"/>
+              </af:panelGroupLayout>
+              <af:panelGroupLayout id="pgl7" layout="horizontal">
+                <dvt:statusMeterGauge id="smg3" orientation="circular"
+                                      inlineStyle="width:70px;height:70px;"
+                                      value="#{pageFlowScope.PerformanceBean.midyearClosedEvaluations}"
+                                      borderColor="#D6DFE6" color="#4B7D06"
+                                      minimum="0"
+                                      maximum="#{pageFlowScope.PerformanceBean.midyearEvaluations}"
+                                      plotArea="on" thresholdDisplay="all"
+                                      shortDesc="#{pageFlowScope.PerformanceBean.midyearClosedEvaluations}#{' of '}#{pageFlowScope.PerformanceBean.midyearEvaluations}">
+                  <dvt:gaugeThreshold id="thr3" color="#ADADAD"/>
+                  <dvt:gaugeMetricLabel id="gml3">
+                    <af:convertNumber integerOnly="true"/>
+                  </dvt:gaugeMetricLabel>
+                </dvt:statusMeterGauge>
+                <af:spacer width="5" id="s7"/>
+                <af:outputText value="#{' of '}#{pageFlowScope.PerformanceBean.midyearEvaluations}#{' Mid-Year Reviews Complete'}"
+                               id="ot4"
+                               inlineStyle="color:#ADADAD; font-size:16px;"/>
+              </af:panelGroupLayout>
+              <af:panelGroupLayout id="pgl8" layout="horizontal">
+                <dvt:statusMeterGauge id="smg4"
+                                      orientation="circular"
+                                      inlineStyle="width:70px;height:70px;"
+                                      value="#{pageFlowScope.PerformanceBean.projectClosedEvaluations}"
+                                      borderColor="#D6DFE6" color="#4B7D06"
+                                      minimum="0"
+                                      maximum="#{pageFlowScope.PerformanceBean.projectEvaluations}"
+                                      plotArea="on" thresholdDisplay="all"
+                                      shortDesc="#{pageFlowScope.PerformanceBean.midyearClosedEvaluations}#{' of '}#{pageFlowScope.PerformanceBean.midyearEvaluations}">
+                  <dvt:gaugeThreshold id="thr4" color="#ADADAD"/>
+                  <dvt:gaugeMetricLabel id="gml4">
+                    <af:convertNumber integerOnly="true"/>
+                  </dvt:gaugeMetricLabel>
+                </dvt:statusMeterGauge>
+                <af:spacer width="5" id="s8"/>
+                <af:outputText value="#{' of '}#{pageFlowScope.PerformanceBean.projectEvaluations}#{' Project Reviews Complete'}"
+                               id="ot5"
+                               inlineStyle="color:#ADADAD; font-size:16px;"/>
+              </af:panelGroupLayout>
+              <af:spacer width="10" id="s10"/>
+            </af:panelGroupLayout>
+            <af:spacer width="10" height="10" id="s4"/>
+            <af:listView id="lv1" value="#{SessionState.myTeamList}"
+                         var="person" varStatus="personStatus" fetchSize="3"
+                         rows="3">
+              <af:listItem id="li1"
+                           inlineStyle="padding:0.0px;">
+                <af:panelGridLayout id="pgl9" dimensionsFrom="children">
+                  <af:gridRow id="gr1">
+                    <af:gridCell id="gc1" width="200px">
+                      <af:panelGroupLayout id="pgl10" valign="top"
+                                           layout="vertical">
+                        <af:spacer height="5" id="s11"/>
+                        <af:image source="#{person.photo}" id="i1"
+                                  styleClass="photo-round"
+                                  inlineStyle="width:50px; height:50px;"
+                                  shortDesc="#{person.displayName}"/>
+                        <af:outputText value="#{person.fullName}" id="ot1"
+                                       inlineStyle="font-size:130%;"
+                                       styleClass="text-lightblue"/>
+                        <af:outputText value="#{person.job}" id="ot7"
+                                       inlineStyle="font-size:115.0%;"/>
+                        <af:spacer height="5" id="s12"/>
+                      </af:panelGroupLayout>
+                    </af:gridCell>
+                    <af:gridCell id="gc2" width="100%" halign="stretch">
+                      <af:iterator id="i2" value="#{person.evaluationsList}"
+                                   var="evaluation"
+                                   varStatus="evaluationStatus">
+                        <af:showDetail id="sd1"
+                                       styleClass="background-LightBlue">
+                          <f:facet name="prompt">
+                            <af:panelGridLayout id="pgl11"
+                                                dimensionsFrom="children"
+                                                styleClass="background-LightBlue">
+                              <af:gridRow id="gr2" marginBottom="10px">
+                                <af:gridCell id="gc3" width="20%"
+                                             marginStart="10px">
+                                  <af:panelGroupLayout id="pgl14"
+                                                       layout="vertical">
+                                    <af:spacer height="10" id="s14"/>
+                                    <af:commandLink id="cl1"
+                                                    partialSubmit="true"
+                                                    action="showDetail"
+                                                    actionListener="#{pageFlowScope.PerformanceBean.handleReviewClick}">
+                                      <af:outputText value="#{evaluation.name} - #{evaluation.type}"
+                                                     id="ot6"
+                                                     styleClass="major-text nowrap"/>
+                                      <af:clientAttribute name="PERSONID"
+                                                          value="#{person.id}"/>
+                                      <af:clientAttribute name="EVALUATIONID"
+                                                          value="#{evaluation.id}"/>
+                                    </af:commandLink>
+                                  </af:panelGroupLayout>
+                                </af:gridCell>
+                                <af:gridCell id="gc4" width="60%" marginStart="10px"
+                                             halign="center">
+                                  <af:panelFormLayout id="pfl2" maxColumns="1"
+                                                      fieldWidth="50%"
+                                                      labelWidth="50%">
+                                    <af:panelLabelAndMessage label="#{demohcmBundle.REVIEW_STATUS}"
+                                                             id="plam8">
+                                      <af:outputText value="#{evaluation.status}"
+                                                     id="ot14"/>
+                                    </af:panelLabelAndMessage>
+                                    <af:panelLabelAndMessage label="#{demohcmBundle.NEXT_TASK}"
+                                                             id="plam5"
+                                                             rendered="#{evaluation.status == 'Open'}">
+                                      <af:outputText value="#{evaluation.nextOpenTaskName}"
+                                                     id="ot8"/>
+                                    </af:panelLabelAndMessage>
+                                    <af:panelLabelAndMessage label="#{demohcmBundle.FINAL_RATING}"
+                                                             id="plam4"
+                                                             rendered="#{evaluation.status == 'Open'}">
+                                      <af:outputText value="#{demohcmBundle.NOT_YET_RATED}"
+                                                     id="ot11"/>
+                                    </af:panelLabelAndMessage>
+                                    <af:panelLabelAndMessage label="#{demohcmBundle.COMPLETION_DATE}"
+                                                             id="plam6"
+                                                             rendered="#{evaluation.status ne 'Open'}">
+                                      <af:outputText value="#{evaluation.completionDate}"
+                                                     id="ot12">
+                                        <af:convertDateTime pattern="dd/MMM/yyyy"/>
+                                      </af:outputText>
+                                    </af:panelLabelAndMessage>
+                                    <af:panelLabelAndMessage label="#{demohcmBundle.FINAL_RATING}"
+                                                             id="plam7"
+                                                             rendered="#{evaluation.status ne 'Open'}">
+                                      <af:outputText value="#{evaluation.finalRating}"
+                                                     id="ot13"/>
+                                    </af:panelLabelAndMessage>
+                                  </af:panelFormLayout>
+                                </af:gridCell>
+                                <af:gridCell id="gc5" width="20%"
+                                             marginStart="10px"
+                                             marginEnd="10px">
+                                  <af:panelFormLayout id="pfl1" maxColumns="1">
+                                    <af:panelLabelAndMessage label="#{demohcmBundle.TASKS_LEFT}"
+                                                             id="plam1">
+                                      <af:outputText value="#{evaluation.remainingTasksNumber}"
+                                                     id="ot9"/>
+                                    </af:panelLabelAndMessage>
+                                    <af:panelLabelAndMessage label="#{demohcmBundle.REMAINING_DAYS}"
+                                                             id="plam2">
+                                      <af:outputText value="#{evaluation.remainingDays}"
+                                                     id="ot10"/>
+                                    </af:panelLabelAndMessage>
+                                    <af:panelLabelAndMessage
+                                                             id="plam3">
+                                      <af:commandImageLink id="cil2"
+                                                           partialSubmit="true"
+                                                           shortDesc="#{demohcmBundle.PRINT}"
+                                                           icon="/images/func_print_16_ena.png"
+                                                           disabledIcon="/images/func_print_16_dis.png"
+                                                           hoverIcon="/images/func_print_16_hov.png"
+                                                           depressedIcon="/images/func_print_16_act.png"/>
+                                    </af:panelLabelAndMessage>
+                                  </af:panelFormLayout>
+                                </af:gridCell>
+                              </af:gridRow>
+                            </af:panelGridLayout>
+                          </f:facet>
+                          <af:listView id="lv2"
+                                       value="#{evaluation.evaluationTaskList}"
+                                       var="task" varStatus="taskStatus"
+                                       inlineStyle="border-color:#DAE9F5; border-style:solid; border-width:20.0px;">
+                            <af:listItem id="li2">
+                              <af:panelGridLayout id="pgl12"
+                                                  dimensionsFrom="children">
+                                <af:gridRow id="gr3">
+                                  <af:gridCell id="gc7" width="100px" valign="middle"
+                                               marginStart="30px">
+                                    <af:panelGroupLayout id="pgl13"
+                                                         layout="vertical">
+                                      <af:image source="/images/checkmark_24_qualifier.png"
+                                                id="i3"
+                                                rendered="#{task.status eq 'Closed'}"/>
+                                      <af:image source="/images/clock_24_qualifier.png"
+                                                id="i4"
+                                                rendered="#{task.status eq 'Open'}"/>
+                                    </af:panelGroupLayout>
+                                  </af:gridCell>
+                                  <af:gridCell id="gc8" width="50%"
+                                               valign="top">
+                                    <af:panelGroupLayout id="pgl16"
+                                                         layout="vertical">
+                                      <af:outputText value="#{task.name}" id="ot15"/>
+                                      <af:spacer height="5"
+                                                 id="s15"/>
+                                      <af:inputText label="#{demohcmBundle.REMAINING_DAYS}" id="it1"
+                                                    rendered="#{task.status ne 'Closed'}"
+                                                    value="#{task.remainingDays}"
+                                                    readOnly="true"/>
+                                      <af:inputText label="#{demohcmBundle.COMPLETION_DATE}" id="it2"
+                                                    rendered="#{task.status eq 'Closed'}"
+                                                    value="#{task.completionDate}"
+                                                    readOnly="true">
+                                        <af:convertDateTime pattern="dd/MMM/yyyy"/>
+                                      </af:inputText>
+                                    </af:panelGroupLayout>
+                                  </af:gridCell>
+                                  <af:gridCell id="gc6" width="50%"
+                                               valign="middle">
+                                    <af:panelGroupLayout id="pgl15"
+                                                         layout="vertical">
+                                      <af:commandButton id="cb1"
+                                                        partialSubmit="true"
+                                                        text="#{demohcmBundle.VIEW}"
+                                                        rendered="#{task.status eq 'Closed'}"/>
+                                      <af:commandButton text="#{demohcmBundle.CONTINUE}"
+                                                        id="cb3"
+                                                        partialSubmit="true"
+                                                        rendered="#{task.status eq 'Open'}"/>
+                                      <af:commandButton text="#{demohcmBundle.BEGIN}"
+                                                        id="cb2"
+                                                        partialSubmit="true"
+                                                        disabled="true"
+                                                        rendered="#{task.status eq 'Hold'}"/>
+                                    </af:panelGroupLayout>
+                                  </af:gridCell>
+                                </af:gridRow>
+                              </af:panelGridLayout>
+                            </af:listItem>
+                          </af:listView>
+                        </af:showDetail>
+                        <af:spacer height="5" id="s13"/>
+                      </af:iterator>
+                    </af:gridCell>
+                  </af:gridRow>
+                </af:panelGridLayout>
+              </af:listItem>
+            </af:listView>
+          </af:panelGroupLayout>
+          <af:spacer width="20" id="s2"/>
+        </af:panelGroupLayout>
+      </af:panelGroupLayout>
+    </f:facet>
+  </af:pageTemplate>
+</jsp:root>

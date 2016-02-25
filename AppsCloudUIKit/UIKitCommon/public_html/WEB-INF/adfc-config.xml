@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <managed-bean id="__2">
+    <managed-bean-name id="__1">GlobalTemplatesBean</managed-bean-name>
+    <managed-bean-class id="__4">oracle.apps.uikit.common.bean.GlobalTemplatesBean</managed-bean-class>
+    <managed-bean-scope id="__3">backingBean</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__8">
+    <managed-bean-name id="__5">UtilsBean</managed-bean-name>
+    <managed-bean-class id="__7">oracle.apps.uikit.common.bean.UtilsBean</managed-bean-class>
+    <managed-bean-scope id="__6">backingBean</managed-bean-scope>
+  </managed-bean>
+</adfc-config>

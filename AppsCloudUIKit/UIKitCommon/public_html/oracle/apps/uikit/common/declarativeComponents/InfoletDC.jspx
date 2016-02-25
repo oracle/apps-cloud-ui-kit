@@ -1,0 +1,299 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="uikitcommonBundle"
+         value="#{adfBundle['oracle.apps.uikit.common.UIKitCommonBundle']}"/>
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <af:componentDef var="attrs" componentVar="comp">
+    <af:xmlContent>
+      <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+        <display-name>InfoletDC</display-name>
+        <component-class>oracle.apps.uikit.common.declarativeComponents.InfoletDC</component-class>
+        <facet>
+          <description>
+            Front facet
+          </description>
+          <facet-name>
+            front
+          </facet-name>
+        </facet>
+        <facet>
+          <description>
+            Back facet
+          </description>
+          <facet-name>
+            back
+          </facet-name>
+        </facet>
+        <facet>
+          <description>
+            Expanded detail facet
+          </description>
+          <facet-name>
+            expanded
+          </facet-name>
+        </facet>
+        <attribute>
+          <attribute-name>
+            title
+          </attribute-name>
+          <attribute-class>
+            java.lang.String
+          </attribute-class>
+          <default-value>
+            Infolet Title
+          </default-value>
+          <required>
+            true
+          </required>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            hasFront
+          </attribute-name>
+          <attribute-class>
+            java.lang.String
+          </attribute-class>
+          <default-value>
+            YES
+          </default-value>
+          <required>
+            true
+          </required>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            hasBack
+          </attribute-name>
+          <attribute-class>
+            java.lang.String
+          </attribute-class>
+          <default-value>
+            NO
+          </default-value>
+          <required>
+            true
+          </required>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            hasExpanded
+          </attribute-name>
+          <attribute-class>
+            java.lang.String
+          </attribute-class>
+          <default-value>
+            NO
+          </default-value>
+          <required>
+            true
+          </required>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            frontSize
+          </attribute-name>
+          <attribute-class>
+            java.lang.String
+          </attribute-class>
+          <default-value>
+            INFOLET1X1
+          </default-value>
+          <required>
+            false
+          </required>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            backSize
+          </attribute-name>
+          <attribute-class>
+            java.lang.String
+          </attribute-class>
+          <default-value>
+            INFOLET1X1
+          </default-value>
+          <required>
+            false
+          </required>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            expandedSize
+          </attribute-name>
+          <attribute-class>
+            java.lang.String
+          </attribute-class>
+          <default-value>
+            INFOLET1X1
+          </default-value>
+          <required>
+            false
+          </required>
+        </attribute>
+        <component-extension>
+          <component-tag-namespace>oracle.apps.uikit.common.declarativeComponents</component-tag-namespace>
+          <component-taglib-uri>/appsCloudUIKitDCs</component-taglib-uri>
+        </component-extension>
+      </component>
+    </af:xmlContent>
+    <af:deck id="dc_smallBigDeck"
+             displayedChild="#{comp.viewMode == 'dc_expandedFace' ? comp.viewMode : 'dc_frontBackDeck'}"
+             partialTriggers="dc_cl1 dc_cl4 dc_cl5">
+      <af:transition transition="fade" triggerType="backNavigate"/>
+      <af:transition transition="fade" triggerType="forwardNavigate"/>
+      <af:deck id="dc_frontBackDeck"
+               displayedChild="#{comp.viewMode}"
+               partialTriggers="dc_cl2 dc_cl3">
+        <af:transition transition="flipEnd" triggerType="backNavigate"/>
+        <af:transition transition="flipStart" triggerType="forwardNavigate"/>
+        <af:panelBox id="dc_frontFace" type="stretch"
+                     showDisclosure="false" showHeader="never"
+                     styleClass="infolet #{attrs['frontSize']}">
+          <af:panelGroupLayout id="dc_pgl1" layout="vertical">
+            <af:panelHeader text="#{attrs['title']}" id="dc_ph1"
+                            styleClass="infolet-header"/>
+            <af:panelGroupLayout id="dc_pgl4" layout="vertical"
+                                 styleClass="infolet-content infolet-padding">
+              <af:facetRef facetName="front"/>
+            </af:panelGroupLayout>
+            <af:panelGroupLayout id="dc_pgl5" styleClass="infolet-control"
+                                 layout="horizontal">
+              <af:commandButton id="dc_cb1"
+                                icon="/images/fuse-icon-drop-menu-arrow.png"
+                                shortDesc="#{uikitcommonBundle.ACTIONS}"
+                                styleClass="infolet-menu" partialSubmit="true">
+                <af:showPopupBehavior popupId="dc_frontMenuPopup"
+                                      triggerType="action" align="afterEnd"
+                                      alignId="dc_cb1"/>
+              </af:commandButton>
+              <af:commandLink id="dc_cl1"
+                              rendered="#{attrs['hasExpanded'] == 'YES' &amp;&amp; attrs['hasBack'] == 'NO'}"
+                              shortDesc="#{uikitcommonBundle.EXPAND}"
+                              styleClass="align-right" partialSubmit="true">
+                <af:panelGroupLayout id="dc_pgl6" layout="vertical"
+                                     styleClass="infolet-expand"/>
+                <af:setActionListener from="#{'dc_expandedFace'}"
+                                      to="#{comp.viewMode}"/>
+              </af:commandLink>
+              <af:commandLink id="dc_cl2"
+                              rendered="#{attrs['hasBack'] == 'YES'}"
+                              partialSubmit="true"
+                              shortDesc="#{uikitcommonBundle.FLIP}"
+                              styleClass="align-right">
+                <af:panelGroupLayout id="dc_pgl7" layout="vertical"
+                                     styleClass="infolet-flip"/>
+                <af:setActionListener from="#{'dc_backFace'}"
+                                      to="#{comp.viewMode}"/>
+              </af:commandLink>
+              <af:popup id="dc_frontMenuPopup">
+                <af:menu id="dc_m1">
+                  <af:commandMenuItem id="dc_cmi1"
+                                      text="#{uikitcommonBundle.HIDE_THIS_INFOLET}"/>
+                  <af:commandMenuItem text="#{uikitcommonBundle.MORE_DETAILS}" id="dc_cmi2"/>
+                </af:menu>
+              </af:popup>
+            </af:panelGroupLayout>
+          </af:panelGroupLayout>
+        </af:panelBox>
+        <af:panelBox id="dc_backFace" rendered="#{attrs['hasBack'] == 'YES'}" type="stretch"
+                     showHeader="never" showDisclosure="false"
+                     styleClass="infolet #{attrs['backSize']}">
+          <af:panelGroupLayout id="dc_pgl2" layout="vertical">
+            <af:panelHeader text="#{attrs['title']}" id="dc_ph2"
+                            styleClass="infolet-header"/>
+            <af:panelGroupLayout id="dc_pgl8"
+                                 styleClass="infolet-content infolet-padding"
+                                 layout="vertical">
+              <af:facetRef facetName="back"/>
+            </af:panelGroupLayout>
+            <af:panelGroupLayout id="dc_pgl10" styleClass="infolet-control"
+                                 layout="horizontal">
+              <af:commandButton id="dc_cb2"
+                                icon="/images/fuse-icon-drop-menu-arrow.png"
+                                shortDesc="#{uikitcommonBundle.ACTIONS}"
+                                styleClass="infolet-menu" partialSubmit="true">
+                <af:showPopupBehavior popupId="dc_backMenuPopup"
+                                      triggerType="action" align="afterEnd"
+                                      alignId="dc_cb2"/>
+              </af:commandButton>
+              <af:commandLink id="dc_cl3"
+                              rendered="#{attrs['hasFront'] == 'YES'}"
+                              shortDesc="#{uikitcommonBundle.FLIP_BACK}"
+                              styleClass="align-left" partialSubmit="true">
+                <af:panelGroupLayout id="dc_pgl12"
+                                     styleClass="infolet-flipBack"
+                                     layout="vertical"/>
+                <af:setActionListener from="#{'dc_frontFace'}"
+                                      to="#{comp.viewMode}"/>
+              </af:commandLink>
+              <af:commandLink id="dc_cl4"
+                              rendered="#{attrs['hasExpanded'] == 'YES'}"
+                              shortDesc="#{uikitcommonBundle.EXPAND}"
+                              styleClass="align-left-right"
+                              partialSubmit="true">
+                <af:panelGroupLayout id="dc_pgl13" layout="vertical"
+                                     styleClass="infolet-expand"/>
+                <af:setActionListener from="#{'dc_expandedFace'}"
+                                      to="#{comp.viewMode}"/>
+              </af:commandLink>
+              <af:popup id="dc_backMenuPopup">
+                <af:menu id="dc_m2">
+                  <af:commandMenuItem id="dc_cmi3"
+                                      text="#{uikitcommonBundle.HIDE_THIS_INFOLET}"/>
+                  <af:commandMenuItem id="dc_cmi4"
+                                      text="#{uikitcommonBundle.MORE_DETAILS}"/>
+                </af:menu>
+              </af:popup>
+            </af:panelGroupLayout>
+          </af:panelGroupLayout>
+        </af:panelBox>
+      </af:deck>
+      <af:panelBox id="dc_expandedFace"
+                   rendered="#{attrs['hasExpanded'] == 'YES'}" type="stretch" showHeader="never"
+                   showDisclosure="false"
+                   styleClass="infolet #{attrs['expandedSize']}">
+        <af:panelGroupLayout id="dc_pgl3" layout="vertical">
+          <af:panelHeader text="#{attrs['title']}" id="dc_ph3"
+                          styleClass="infolet-header"/>
+          <af:panelGroupLayout id="dc_pgl9" layout="vertical"
+                               styleClass="infolet-content infolet-padding">
+            <af:facetRef facetName="expanded"/>
+          </af:panelGroupLayout>
+          <af:panelGroupLayout id="dc_pgl11" layout="horizontal"
+                               styleClass="infolet-control">
+            <af:commandButton id="dc_cb3"
+                              icon="/images/fuse-icon-drop-menu-arrow.png"
+                              shortDesc="#{uikitcommonBundle.ACTIONS}"
+                              styleClass="infolet-menu" partialSubmit="true">
+              <af:showPopupBehavior popupId="dc_expandedMenuPopup"
+                                    triggerType="action" align="afterEnd"
+                                    alignId="dc_cb3"/>
+            </af:commandButton>
+            <af:commandLink id="dc_cl5"
+                            rendered="#{attrs['hasBack'] == 'YES' || attrs['hasFront'] == 'YES'}"
+                            shortDesc="#{uikitcommonBundle.SHRINK}"
+                            styleClass="align-right" partialSubmit="true">
+              <af:panelGroupLayout id="dc_pgl14" layout="vertical"
+                                   styleClass="infolet-shrink"/>
+              <af:setActionListener from="#{attrs['hasBack'] == 'YES' ? 'dc_backFace' : 'dc_frontFace'}"
+                                    to="#{comp.viewMode}"/>
+            </af:commandLink>
+            <af:popup id="dc_expandedMenuPopup">
+              <af:menu id="dc_m3">
+                <af:commandMenuItem text="#{uikitcommonBundle.HIDE_THIS_INFOLET}" id="dc_cmi5"/>
+                <af:commandMenuItem text="#{uikitcommonBundle.MORE_DETAILS}" id="dc_cmi6"/>
+              </af:menu>
+            </af:popup>
+          </af:panelGroupLayout>
+        </af:panelGroupLayout>
+      </af:panelBox>
+    </af:deck>
+  </af:componentDef>
+</jsp:root>

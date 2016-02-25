@@ -1,0 +1,64 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <View
+      id="View2">
+      <property
+         name="activityId">Performance</property>
+      <property
+         name="page">/oracle/apps/uikit/hcm/performance/page/Performance.jsff</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>Performance&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">259.3672</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">356.51562</property>
+   </View>
+   <View
+      id="View3">
+      <property
+         name="activityId">EvaluationDetail</property>
+      <property
+         name="page">/oracle/apps/uikit/hcm/performance/page/EvaluationDetail.jsff</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>EvaluationDetail&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">259.96875</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">622.69336</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase4"
+      from="View2"
+      to="View3">
+      <property
+         name="fromOutcome">showDetail</property>
+      <property
+         name="sdm:polyPoints">R46,397.52707,255.80078,581.69336,256.40234,L46</property>
+   </ControlFlowCase>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase5"
+      from="View3"
+      to="View2">
+      <property
+         name="fromOutcome">done</property>
+      <property
+         name="sdm:polyPoints">L54,581.68195,263.40234,397.51562,262.80078,R54</property>
+   </ControlFlowCase>
+</SDM>

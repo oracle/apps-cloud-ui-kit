@@ -1,0 +1,217 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="uikitcommonBundle"
+         value="#{adfBundle['oracle.apps.uikit.common.UIKitCommonBundle']}"/>
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <af:componentDef var="attrs" componentVar="comp">
+    <af:xmlContent>
+      <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+        <display-name>PageHeaderDC</display-name>
+        <facet>
+          <facet-name>
+            customToolbar
+          </facet-name>
+        </facet>
+        <facet>
+          <facet-name>
+            pageContext
+          </facet-name>
+        </facet>
+        <attribute>
+          <attribute-name>
+            pageTitle
+          </attribute-name>
+          <attribute-class>
+            java.lang.String
+          </attribute-class>
+          <default-value>
+            [Action] [Object Type]: [Object Name]
+          </default-value>
+          <required>
+            false
+          </required>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            saveButtonVisible
+          </attribute-name>
+          <attribute-class>
+            java.lang.Boolean
+          </attribute-class>
+          <default-value>
+            false
+          </default-value>
+          <required>
+            false
+          </required>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            saveAndCloseButtonVisible
+          </attribute-name>
+          <attribute-class>
+            java.lang.Boolean
+          </attribute-class>
+          <default-value>
+            false
+          </default-value>
+          <required>
+            false
+          </required>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            cancelButtonVisible
+          </attribute-name>
+          <attribute-class>
+            java.lang.Boolean
+          </attribute-class>
+          <default-value>
+            false
+          </default-value>
+          <required>
+            false
+          </required>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            doneButtonVisible
+          </attribute-name>
+          <attribute-class>
+            java.lang.Boolean
+          </attribute-class>
+          <default-value>
+            false
+          </default-value>
+        </attribute>
+        <component-extension>
+          <component-tag-namespace>oracle.apps.uikit.common.declarativeComponents</component-tag-namespace>
+          <component-taglib-uri>/appsCloudUIKitDCs</component-taglib-uri>
+          <method-attribute>
+            <attribute-name>
+              saveAction
+            </attribute-name>
+            <method-signature>
+              java.lang.String method()
+            </method-signature>
+            <required>
+              false
+            </required>
+          </method-attribute>
+          <method-attribute>
+            <attribute-name>
+              saveAndCloseAction
+            </attribute-name>
+            <method-signature>
+              java.lang.String method()
+            </method-signature>
+            <required>
+              false
+            </required>
+          </method-attribute>
+          <method-attribute>
+            <attribute-name>
+              cancelAction
+            </attribute-name>
+            <method-signature>
+              java.lang.String method()
+            </method-signature>
+            <required>
+              false
+            </required>
+          </method-attribute>
+          <method-attribute>
+            <attribute-name>
+              doneAction
+            </attribute-name>
+            <method-signature>
+              java.lang.String method()
+            </method-signature>
+            <required>
+              false
+            </required>
+          </method-attribute>
+          <method-attribute>
+            <attribute-name>
+              saveActionListener
+            </attribute-name>
+            <method-signature>
+              void method(javax.faces.event.ActionEvent)
+            </method-signature>
+            <required>
+              false
+            </required>
+          </method-attribute>
+          <method-attribute>
+            <attribute-name>
+              saveAndCloseActionListener
+            </attribute-name>
+            <method-signature>
+              void method(javax.faces.event.ActionEvent)
+            </method-signature>
+            <required>
+              false
+            </required>
+          </method-attribute>
+          <method-attribute>
+            <attribute-name>
+              cancelActionListener
+            </attribute-name>
+            <method-signature>
+              void method(javax.faces.event.ActionEvent)
+            </method-signature>
+            <required>
+              false
+            </required>
+          </method-attribute>
+          <method-attribute>
+            <attribute-name>
+              doneActionListener
+            </attribute-name>
+            <method-signature>
+              void method(javax.faces.event.ActionEvent)
+            </method-signature>
+          </method-attribute>
+        </component-extension>
+      </component>
+    </af:xmlContent>
+    <af:panelHeader text="#{attrs.pageTitle}" id="dc_ph1"
+                    styleClass="themeButtonBar">
+      <f:facet name="context">
+        <af:facetRef facetName="pageContext"/>
+      </f:facet>
+      <f:facet name="toolbar">
+        <af:toolbar id="dc_t1">
+          <af:facetRef facetName="customToolbar"/>
+          <af:commandButton text="#{uikitcommonBundle.SAVE}" id="dc_cb2"
+                            partialSubmit="true"
+                            rendered="#{attrs.saveButtonVisible}"
+                            action="#{comp.handleSaveAction}"
+                            actionListener="#{comp.handleSaveActionListener}"/>
+          <af:commandButton text="#{uikitcommonBundle.SAVE_AND_CLOSE}" id="dc_cb3"
+                            partialSubmit="true"
+                            rendered="#{attrs.saveAndCloseButtonVisible}"
+                            action="#{comp.handleSaveAndCloseAction}"
+                            actionListener="#{comp.handleSaveAndCloseActionListener}"/>
+          <af:commandButton text="#{uikitcommonBundle.CANCEL}" id="dc_cb4"
+                            partialSubmit="true"
+                            rendered="#{attrs.cancelButtonVisible}"
+                            action="#{comp.handleCancelAction}"
+                            actionListener="#{comp.handleCancelActionListener}"/>
+          <af:commandButton text="#{uikitcommonBundle.DONE}" id="dc_cb1"
+                            partialSubmit="true"
+                            rendered="#{attrs.doneButtonVisible}"
+                            action="#{comp.handleDoneAction}"
+                            actionListener="#{comp.handleDoneActionListener}"/>
+        </af:toolbar>
+      </f:facet>
+    </af:panelHeader>
+  </af:componentDef>
+</jsp:root>

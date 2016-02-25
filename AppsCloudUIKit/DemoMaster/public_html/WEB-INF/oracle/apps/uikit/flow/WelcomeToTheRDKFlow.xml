@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="WelcomeToTheRDKFlow">
+    <default-activity id="__1">WelcomeToTheRDK</default-activity>
+    <view id="WelcomeToTheRDK">
+      <page>/oracle/apps/uikit/page/WelcomeToTheRDK.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

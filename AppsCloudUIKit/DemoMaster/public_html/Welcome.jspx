@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="demomasterBundle"
+         value="#{adfBundle['oracle.apps.uikit.DemoMasterBundle']}"/>
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1" title="#{demomasterBundle.APPS_CLOUD_UI_KIT_WELCOME}">
+      <af:form id="f1" usesUpload="true">
+        <af:pageTemplate viewId="/oracle/apps/uikit/common/pageTemplates/SimpleUIShell.jspx"
+                         id="pt1">
+          <f:facet name="pageContents">
+            <af:panelGroupLayout id="pgl1" layout="vertical" valign="top">
+              <af:spacer width="10" height="10" id="s1"/>
+              <af:panelStretchLayout id="psl1" dimensionsFrom="children"
+                                     styleClass="application-container-size"
+                                     startWidth="50%" endWidth="50%"
+                                     bottomHeight="0px" topHeight="auto">
+                <f:facet name="top">
+                  <af:panelGridLayout id="pgl2">
+                    <af:gridRow id="gr1">
+                      <af:gridCell id="gc1" halign="center"
+                                   valign="stretch" width="100%">
+                        <af:panelGroupLayout id="pgl3" layout="horizontal"
+                                             partialTriggers="cil1 cil2">
+                          <f:facet name="separator">
+                            <af:spacer width="3" id="s3"/>
+                          </f:facet>
+                          <af:commandImageLink
+                                               id="cil1" partialSubmit="true"
+                                               shortDesc="#{demomasterBundle.WELCOME_SPRINGBOARD}"
+                                               icon="/images/func_pagination_28_ena.png"
+                                               disabledIcon="/images/func_pagination_28_act.png"
+                                               hoverIcon="/images/func_pagination_28_hov.png"
+                                               depressedIcon="/images/func_pagination_28_act.png"
+                                               text="#{demomasterBundle.WELCOME_SPRINGBOARD}"
+                                               styleClass="text-hidden"
+                                               disabled="#{SessionState.welcomeMode == 'springboard'}">
+                            <af:setPropertyListener from="#{'springboard'}"
+                                                    to="#{SessionState.welcomeMode}"
+                                                    type="action"/>
+                          </af:commandImageLink>
+                          <af:commandImageLink
+                                               id="cil2" partialSubmit="true"
+                                               shortDesc="#{demomasterBundle.INFOLETS}"
+                                               icon="/images/func_pagination_28_ena.png"
+                                               disabledIcon="/images/func_pagination_28_act.png"
+                                               hoverIcon="/images/func_pagination_28_hov.png"
+                                               depressedIcon="/images/func_pagination_28_act.png"
+                                               text="#{demomasterBundle.INFOLETS}"
+                                               styleClass="text-hidden"
+                                               disabled="#{SessionState.welcomeMode == 'infolets'}">
+                            <af:setPropertyListener from="#{'infolets'}"
+                                                    to="#{SessionState.welcomeMode}"
+                                                    type="action"/>
+                          </af:commandImageLink>
+                        </af:panelGroupLayout>
+                      </af:gridCell>
+                    </af:gridRow>
+                    <af:gridRow id="gr2">
+                      <af:gridCell id="gc2" halign="end">
+                        <af:panelGroupLayout id="pgl4" layout="horizontal"
+                                             partialTriggers="cil1 cil2">
+                          <af:spacer height="29" id="s4"/>
+                          <af:commandImageLink id="cil3" partialSubmit="true"
+                                               shortDesc="#{demomasterBundle.INFOLET_REPOSITORY}"
+                                               icon="/images/func_repository_29_ena.png"
+                                               disabledIcon="/images/func_repository_29_dis.png"
+                                               hoverIcon="/images/func_repository_29_hov.png"
+                                               depressedIcon="/images/func_repository_29_act.png"
+                                               rendered="#{SessionState.welcomeMode == 'infolets'}">
+                            <af:showPopupBehavior popupId="infoletLibraryPopup"
+                                                  triggerType="click"
+                                                  alignId="cil3"
+                                                  align="afterStart"/>
+                          </af:commandImageLink>
+                          <af:popup id="infoletLibraryPopup"
+                                    contentDelivery="lazyUncached">
+                            <af:panelHeader text="#{demomasterBundle.AVAILABLE_INFOLETS}" id="ph1">
+                              <af:outputText id="ot1"
+                                             value="#{demomasterBundle.ALL_INFOLETS_DISPLAYED}"/>
+                            </af:panelHeader>
+                          </af:popup>
+                        </af:panelGroupLayout>
+                      </af:gridCell>
+                    </af:gridRow>
+                  </af:panelGridLayout>
+                </f:facet>
+                <f:facet name="center">
+                  <af:deck id="homeDeck"
+                           displayedChild="#{SessionState.welcomeMode}"
+                           partialTriggers="cil1 cil2">
+                    <af:transition transition="slideStart"
+                                   triggerType="forwardNavigate"/>
+                    <af:transition triggerType="backNavigate"
+                                   transition="slideEnd"/>
+                    <af:panelGroupLayout id="springboard" layout="vertical"
+                                         valign="top" halign="center">
+                      <af:region value="#{bindings.SpringboardFlow1.regionModel}"
+                                 id="r4"/>
+                    </af:panelGroupLayout>
+                    <af:panelGroupLayout id="infolets" layout="vertical">
+                      <af:panelGroupLayout id="pgl5">
+                        <af:forEach var="row" varStatus="rowStatus"
+                                    items="#{bindings.InfoletsMultiTaskFlow1.taskFlowBindingList}">
+                          <af:panelGroupLayout id="pgl6" layout="horizontal"
+                                               styleClass="infolet-container">
+                            <af:region value="#{row.regionModel}" id="r1"/>
+                          </af:panelGroupLayout>
+                        </af:forEach>
+                      </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                  </af:deck>
+                </f:facet>
+              </af:panelStretchLayout>
+              <af:spacer width="10" height="10" id="s2"/>
+              <af:popup id="welcomePopup"
+                        popupFetchListener="#{backingBeanScope.WelcomeBean.welcomePopupFetchListener}">
+                <af:dialog id="d2"
+                           type="ok"
+                           contentWidth="500" styleClass="welcome-dialog"
+                           title="#{demomasterBundle.WELCOME_TO_THE_ORACLE_APPLICAT}">
+                  <af:panelGroupLayout id="pgl7" layout="vertical">
+                    <af:commandLink id="stealFocus" partialSubmit="true"/>
+                    <af:image source="/images/RDK_Banner.png" id="i2"
+                              inlineStyle="width:500px; height:92.0px;"/>
+                    <af:region value="#{bindings.WelcomeToTheRDK1.regionModel}"
+                               id="r5"/>
+                  </af:panelGroupLayout>
+                </af:dialog>
+              </af:popup>
+            </af:panelGroupLayout>
+          </f:facet>
+          <f:facet name="globalNavigator">
+            <af:region value="#{bindings.NavigatorFlow1.regionModel}" id="r3"/>
+          </f:facet>
+          <f:facet name="experimental">
+            <af:region value="#{bindings.ExperimentalFlow1.regionModel}"
+                       id="r2"/>
+          </f:facet>
+        </af:pageTemplate>
+      </af:form>
+      <af:showPopupBehavior popupId="pt1:welcomePopup" triggerType="load"/>
+    </af:document>
+  </f:view>
+</jsp:root>

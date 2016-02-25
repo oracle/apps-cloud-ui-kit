@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <af:componentDef var="attrs" componentVar="comp">
+    <af:xmlContent>
+      <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+        <display-name>InfotilesDC</display-name>
+        <facet>
+          <description>
+            Facet holding detailed content for the currently selected tile
+          </description>
+          <facet-name>
+            tileDetail
+          </facet-name>
+        </facet>
+        <attribute>
+          <attribute-name>
+            tileHeight
+          </attribute-name>
+          <attribute-class>
+            java.lang.Integer
+          </attribute-class>
+          <default-value>
+            200
+          </default-value>
+          <required>
+            false
+          </required>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            tileWidth
+          </attribute-name>
+          <attribute-class>
+            java.lang.Integer
+          </attribute-class>
+          <default-value>
+            200
+          </default-value>
+          <required>
+            false
+          </required>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            infotilesLayout
+          </attribute-name>
+          <attribute-class>
+            java.lang.String
+          </attribute-class>
+          <default-value>
+            horizontal
+          </default-value>
+        </attribute>
+        <component-extension>
+          <component-tag-namespace>oracle.apps.uikit.common.declarativeComponents</component-tag-namespace>
+          <component-taglib-uri>/appsCloudUIKitDCs</component-taglib-uri>
+          <method-attribute>
+            <attribute-name>
+              tileSelectionActionListener
+            </attribute-name>
+            <method-signature>
+              void method(javax.faces.event.ActionEvent)
+            </method-signature>
+          </method-attribute>
+        </component-extension>
+      </component>
+    </af:xmlContent>
+    <af:panelGroupLayout id="dc_pgl1" layout="vertical">
+      <af:panelGroupLayout id="dc_pgl2" valign="top"
+                           layout="#{attrs.infotilesLayout eq 'horizontal' ? 'vertical' : 'horizontal'}"
+                           styleClass="AFStretchWidth">
+        <f:facet name="separator">
+          <af:spacer width="25" height="25" id="dc_s1"/>
+        </f:facet>
+        <af:panelGroupLayout id="dc_pgl4" layout="#{attrs.infotilesLayout}"
+                             partialTriggers="dc_cil2 dc_cil1">
+          <f:facet name="separator">
+            <af:spacer width="10" height="10" id="dc_s2"/>
+          </f:facet>
+          <af:forEach var="row" varStatus="rowVar"
+                      items="#{bindings.infotilesMTFB.taskFlowBindingList}">
+            <af:panelGroupLayout id="dc_pgl5"
+                                 layout="#{attrs.infotilesLayout eq 'horizontal' ? 'vertical' : 'horizontal'}"
+                                 inlineStyle="width:#{attrs.tileWidth}px; height:#{attrs.tileHeight}px;"
+                                 styleClass="#{attrs.infotilesLayout eq 'vertical' ? 'InfoTileV' : 'InfoTileV'} #{(pageFlowScope.selectedTileIdx == null &amp;&amp; rowVar.index == 0) || (pageFlowScope.selectedTileIdx != null &amp;&amp; pageFlowScope.selectedTileIdx == rowVar.index) ? 'Selected' : ''}">
+              <af:region id="dc_r1" value="#{row.regionModel}"/>
+              <af:panelGroupLayout id="dc_pgl6" layout="vertical"
+                                   styleClass="#{attrs.infotilesLayout eq 'vertical' ? 'InfoTileSelectorV': 'InfoTileSelectorH'} #{(pageFlowScope.selectedTileIdx == null &amp;&amp; rowVar.index == 0) || (pageFlowScope.selectedTileIdx != null &amp;&amp; pageFlowScope.selectedTileIdx == rowVar.index) ? 'Selected' : ''}">
+                <af:commandImageLink id="dc_cil2"
+                                     actionListener="#{comp.handleTileSelectionActionListener}"
+                                     styleClass="InfoTileSelectionIcon"
+                                     rendered="#{attrs.infotilesLayout eq 'vertical'}"
+                                     icon="#{(pageFlowScope.selectedTileIdx == null &amp;&amp; rowVar.index == 0) || (pageFlowScope.selectedTileIdx != null &amp;&amp; pageFlowScope.selectedTileIdx == rowVar.index) ? '/images/func_arrowheadright_16_onb.png' :'/images/func_arrowheadright_16_ena.png'}"
+                                     partialSubmit="true">
+                  <af:setActionListener from="#{rowVar.index}"
+                                        to="#{pageFlowScope.selectedTileIdx}"/>
+                </af:commandImageLink>
+                <af:commandImageLink id="dc_cil1"
+                                     actionListener="#{comp.handleTileSelectionActionListener}"
+                                     styleClass="InfoTileSelectionIcon"
+                                     rendered="#{attrs.infotilesLayout eq 'horizontal'}"
+                                     icon="#{(pageFlowScope.selectedTileIdx == null &amp;&amp; rowVar.index == 0) || (pageFlowScope.selectedTileIdx != null &amp;&amp; pageFlowScope.selectedTileIdx == rowVar.index) ? '/images/func_arrowheaddown_16_onb.png' :'/images/func_arrowheaddown_16_ena.png'}"
+                                     partialSubmit="true">
+                  <af:setActionListener from="#{rowVar.index}"
+                                        to="#{pageFlowScope.selectedTileIdx}"/>
+                </af:commandImageLink>
+              </af:panelGroupLayout>
+            </af:panelGroupLayout>
+          </af:forEach>
+        </af:panelGroupLayout>
+        <af:panelGroupLayout id="dc_pgl3" layout="vertical">
+          <af:facetRef facetName="tileDetail"/>
+        </af:panelGroupLayout>
+      </af:panelGroupLayout>
+    </af:panelGroupLayout>
+  </af:componentDef>
+</jsp:root>

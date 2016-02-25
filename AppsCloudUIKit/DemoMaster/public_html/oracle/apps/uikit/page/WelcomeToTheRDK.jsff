@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <af:panelGroupLayout id="pgl24" layout="vertical"
+                       styleClass="announcements-content-size">
+    <af:spacer height="15" id="s28"/>
+    <af:outputText value="The Rapid Development Kit" id="ot23"
+                   styleClass="nowrap text-normal-1 feeds-title"/>
+    <af:outputText id="ot34" styleClass="announcements-medium-text"
+                   value="#{backingBeanScope.UtilsBean.currentFormattedDate}"/>
+    <af:spacer height="15" id="s29"/>
+    <af:outputText value="Use the RDK to design and build must-have simplified UIs for the cloud. Accelerate your delivery of great user experiences for SaaS integrations and custom PaaS apps that win customers and delight users."
+                   id="ot24" styleClass="feeds-medium-text-normal"/>
+    <af:spacer height="15" id="s30"/>
+    <af:outputText value="The RDK is based on Oracle ADF and proven UX design patterns. It contains:"
+                   id="ot25" styleClass="feeds-medium-text-normal"/>
+    <af:panelList id="pl1">
+      <af:outputText value="Simplified UI ADF page templates, fragments, and declarative components for the most frequent uses"
+                     id="ot26" styleClass="feeds-medium-text-normal"/>
+      <af:outputText value="Oracle Alta UI icons and CSS" id="ot30"
+                     styleClass="feeds-medium-text-normal"/>
+      <af:outputText value="Sample ERP, HCM and Sales SaaS flows and typical web services"
+                     id="ot31" styleClass="feeds-medium-text-normal"/>
+      <af:outputText value="Sketching tools and examples" id="ot32"
+                     styleClass="feeds-medium-text-normal"/>
+      <af:outputText value="Design patterns and development-to-deployment eBooks"
+                     id="ot33" styleClass="feeds-medium-text-normal"/>
+      <af:outputText value="Guidance for choosing a customer use case and then building it"
+                     id="ot29" styleClass="feeds-medium-text-normal"/>
+    </af:panelList>
+    <af:spacer height="15" id="s31"/>
+    <af:outputText value="The RDK lets you innovate quickly and and take your business to new levels. We made it simple to use applications for work, and now we make it simple to build them, too."
+                   id="ot27" styleClass="feeds-medium-text-normal"/>
+    <af:spacer height="15" id="s32"/>
+    <af:outputText value="More:"
+                   id="outputText1" styleClass="feeds-medium-text-normal"/>
+    <af:panelList id="pl2">
+      <af:goLink text="RDK Partner Success Stories" id="gl2"
+                 destination="https://storify.com/usableapps/the-oracle-applications-cloud-paas4saas-story-simp"
+                 targetFrame="_blank"/>
+      <af:goLink text="Usable Apps Blog" id="gl1" targetFrame="_blank"
+                 destination="https://blogs.oracle.com/usableapps/"/>
+      <af:goLink text="Latest RDK news on Twitter @usableapps" id="gl3"
+                 destination="https://twitter.com/usableapps"
+                 targetFrame="_blank"/>
+    </af:panelList>
+  </af:panelGroupLayout>
+</jsp:root>

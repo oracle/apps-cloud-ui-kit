@@ -1,0 +1,256 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:acdc="/appsCloudUIKitDCs"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="democrmBundle"
+         value="#{adfBundle['oracle.apps.uikit.crm.DemoCRMBundle']}"/>
+  <af:pageTemplate viewId="/oracle/apps/uikit/common/pageTemplates/MainPageTemplate.jspx"
+                   id="pt1">
+    <f:facet name="pageContents">
+      <af:panelGroupLayout id="pgl1" layout="vertical">
+        <acdc:PageHeaderDC id="phdc1" pageTitle="#{democrmBundle.CONTACTS}"/>
+        <af:panelGroupLayout id="pgl2" layout="horizontal"
+                             styleClass="AFStretchWidth">
+          <af:spacer width="100" id="s2"/>
+          <af:panelGroupLayout id="pgl3" layout="vertical"
+                               partialTriggers="cb3 cb4 cmi1"
+                               binding="#{pageFlowScope.ContactsBean.cardViewListViewContainer}">
+            <af:toolbar id="t1" flex="1" stretchId="toolbarExpander">
+              <af:inputText label="#{democrmBundle.FIND}" id="it1" columns="25"
+                            placeholder="Name contains ..." usage="search"
+                            binding="#{pageFlowScope.ContactsBean.nameSearchField}"/>
+              <af:commandButton id="cb1" icon="/images/func_search_16_ena.png"
+                                partialSubmit="true"
+                                actionListener="#{pageFlowScope.ContactsBean.handleNameSearch}"/>
+              <af:spacer width="15" id="s3"/>
+              <af:selectOneChoice label="#{democrmBundle.LIST}" value="ALL" id="soc1"
+                                  autoSubmit="true"
+                                  valueChangeListener="#{pageFlowScope.ContactsBean.handleListFilter}">
+                <af:selectItem label="All Contacts" value="ALL" id="si2"/>
+                <af:selectItem label="Favourite Contacts" value="FAV"
+                               id="si1"/>
+              </af:selectOneChoice>
+              <af:spacer id="toolbarExpander" clientComponent="true"/>
+              <af:commandButton id="cb3"
+                                partialSubmit="true"
+                                text="#{democrmBundle.EXPORT} #{' ('} #{pageFlowScope.ContactsBean.selectedContactsCount} #{') '} #{democrmBundle.SELECTED}"
+                                rendered="#{pageFlowScope.ContactsBean.pageMode == 'selectToExport'}"
+                                actionListener="#{pageFlowScope.ContactsBean.exportContacts}">
+                <af:setActionListener to="#{pageFlowScope.ContactsBean.pageMode}"
+                                      from="#{'normal'}"/>
+              </af:commandButton>
+              <af:commandButton id="cb4"
+                                partialSubmit="true"
+                                text="#{democrmBundle.CANCEL}"
+                                rendered="#{pageFlowScope.ContactsBean.pageMode == 'selectToExport'}"
+                                actionListener="#{pageFlowScope.ContactsBean.cancelSelectionMode}">
+                <af:setActionListener to="#{pageFlowScope.ContactsBean.pageMode}"
+                                      from="#{'normal'}"/>
+              </af:commandButton>
+              <af:commandButton id="cb5"
+                                partialSubmit="true"
+                                text="#{democrmBundle.ACTIONS}"
+                                iconPosition="trailing"
+                                icon="/images/func_dropdown_14_ena.png"
+                                rendered="#{pageFlowScope.ContactsBean.pageMode == 'normal'}">
+                <af:showPopupBehavior popupId="actionsMenuPopup"
+                                      triggerType="click"
+                                      alignId="cb5" align="afterEnd"/>
+              </af:commandButton>
+              <af:commandButton id="cb2"
+                                partialSubmit="true"
+                                text="#{democrmBundle.CREATE_CONTACT}"
+                                rendered="#{pageFlowScope.ContactsBean.pageMode == 'normal'}"
+                                actionListener="#{pageFlowScope.ContactsBean.handleCreateContact}"
+                                action="create"/>
+              <af:popup id="actionsMenuPopup" contentDelivery="lazyUncached">
+                <af:menu id="m1">
+                  <af:commandMenuItem id="cmi1"
+                                      text="#{democrmBundle.SELECT_CONTACTS_TO_EXPORT}">
+                    <af:setActionListener to="#{pageFlowScope.ContactsBean.pageMode}"
+                                          from="#{'selectToExport'}"/>
+                  </af:commandMenuItem>
+                </af:menu>
+              </af:popup>
+            </af:toolbar>
+            <acdc:CardViewListViewDC id="cvlvdc1">
+              <f:facet name="cardView">
+                <af:iterator id="i2" var="row"
+                             value="#{SessionState.filteredContactsList}">
+                  <af:panelGroupLayout id="pgl4"
+                                       styleClass="fuse-card-display">
+                    <acdc:CardDC id="cdc1" title="#{row.fullName}" height="140"
+                                 selectionMode="#{pageFlowScope.ContactsBean.pageMode == 'selectToExport'}"
+                                 selected="#{row.selected}"
+                                 titleClickable="#{pageFlowScope.ContactsBean.pageMode == 'normal'}"
+                                 cardSelectActionListener="#{pageFlowScope.ContactsBean.handleContactCardSelection}"
+                                 titleActionListener="#{pageFlowScope.ContactsBean.handleEditContact}"
+                                 titleAction="#{pageFlowScope.ContactsBean.customTitleAction}">
+                      <f:facet name="frontContents">
+                        <af:panelStretchLayout id="psl1"
+                                               dimensionsFrom="children"
+                                               startWidth="auto" endWidth="auto"
+                                               topHeight="5px"
+                                               bottomHeight="0px">
+                          <f:facet name="center">
+                            <af:panelGroupLayout id="pgl6" layout="vertical">
+                              <af:outputText value="#{row.job}" id="ot3"
+                                             shortDesc="#{row.job}"/>
+                              <af:outputText value="#{row.company}" id="ot4"
+                                             shortDesc="#{row.company}"/>
+                              <af:outputText value="#{row.phone}" id="ot5"
+                                             shortDesc="#{row.phone}"/>
+                              <af:outputText value="#{row.email}" id="ot1"
+                                             shortDesc="#{row.email}"/>
+                              <f:facet name="separator">
+                                <af:spacer height="3" id="s7"/>
+                              </f:facet>
+                            </af:panelGroupLayout>
+                          </f:facet>
+                          <f:facet name="start">
+                            <af:panelGroupLayout id="pgl5" layout="horizontal"
+                                                 halign="center"
+                                                 shortDesc="#{democrmBundle.PROFILE_PHOTO}"
+                                                 styleClass="AFStretchWidth">
+                              <af:image source="#{row.photo}"
+                                        shortDesc="#{row.displayName}" id="i3"
+                                        styleClass="photo-round"
+                                        inlineStyle="width:50px; height:50px;"/>
+                              <af:spacer width="10" id="s8"/>
+                            </af:panelGroupLayout>
+                          </f:facet>
+                          <f:facet name="end">
+                            <af:panelGroupLayout id="pgl7" layout="vertical">
+                              <af:spacer height="55" id="s9"/>
+                              <af:panelGroupLayout id="pgl8" layout="horizontal"
+                                                   valign="bottom"
+                                                   rendered="#{pageFlowScope.ContactsBean.pageMode ne 'normal'}"
+                                                   styleClass="AFStretchWidth #{row.selected eq true ? 'enrich-selected-background' : 'enrich-background'}">
+                                <af:spacer width="50" height="50" id="s10"/>
+                              </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                          </f:facet>
+                          <f:facet name="top">
+                            <af:spacer height="5" id="s11"/>
+                          </f:facet>
+                        </af:panelStretchLayout>
+                      </f:facet>
+                      <f:facet name="frontToolbar">
+                        <af:commandImageLink id="cil1"
+                                             icon="#{row.favourite ? '/images/func_stargold_16_ena.png' : '/images/func_stargold_16_dis.png'}"
+                                             hoverIcon="/images/func_stargold_16_hov.png"
+                                             depressedIcon="/images/func_stargold_16_act.png"
+                                             partialSubmit="true"
+                                             actionListener="#{pageFlowScope.ContactsBean.handleToggleFavourite}"
+                                             immediate="true"
+                                             shortDesc="#{row.favourite ? democrmBundle.UNMARK_FAVOURITE : democrmBundle.MARK_AS_FAVOURITE}">
+                          <af:clientAttribute name="ID" value="#{row.id}"/>
+                        </af:commandImageLink>
+                      </f:facet>
+                    </acdc:CardDC>
+                  </af:panelGroupLayout>
+                </af:iterator>
+              </f:facet>
+              <f:facet name="listView">
+                <af:listView id="lv1"
+                             value="#{SessionState.filteredContactsList}"
+                             var="row"
+                             emptyText="#{democrmBundle.NO_CONTACTS_FOUND}"
+                             fetchSize="15" rows="15"
+                             selection="#{pageFlowScope.ContactsBean.pageMode == 'normal' ? 'none' : 'multiple'}"
+                             binding="#{pageFlowScope.ContactsBean.contactsListView}"
+                             selectionListener="#{pageFlowScope.ContactsBean.handleContactRowSelection}">
+                  <af:listItem id="li1"
+                               styleClass="#{row.selected == true ? 'listSelection' : ''}">
+                    <af:panelGridLayout id="pgl9">
+                      <af:gridRow id="gr1">
+                        <af:gridCell id="gc1" marginStart="15px" width="50px">
+                          <af:commandImageLink id="cil2"
+                                               icon="#{row.favourite ? '/images/func_stargold_16_ena.png' : '/images/func_stargold_16_dis.png'}"
+                                               hoverIcon="/images/func_stargold_16_hov.png"
+                                               depressedIcon="/images/func_stargold_16_act.png"
+                                               partialSubmit="true"
+                                               actionListener="#{pageFlowScope.ContactsBean.handleToggleFavourite}"
+                                               immediate="true"
+                                               shortDesc="#{row.favourite ? democrmBundle.UNMARK_FAVOURITE : democrmBundle.MARK_AS_FAVOURITE}">
+                            <af:clientAttribute name="ID" value="#{row.id}"/>
+                          </af:commandImageLink>
+                        </af:gridCell>
+                        <af:gridCell id="gc2" marginStart="10px" width="30%">
+                          <af:panelGroupLayout id="pgl10" layout="vertical">
+                            <af:commandLink id="cl5" partialSubmit="true"
+                                            rendered="#{pageFlowScope.ContactsBean.pageMode eq 'normal'}"
+                                            action="edit"
+                                            actionListener="#{pageFlowScope.ContactsBean.handleEditContact}">
+                              <af:outputText value="#{row.fullName}" id="ot6"
+                                             styleClass="major-text nowrap"/>
+                              <af:clientAttribute name="ID" value="#{row.id}"/>
+                            </af:commandLink>
+                            <af:outputText value="#{row.fullName}" id="ot2"
+                                           rendered="#{pageFlowScope.ContactsBean.pageMode ne 'normal'}"
+                                           styleClass="major-text nowrap"/>
+                          </af:panelGroupLayout>
+                        </af:gridCell>
+                        <af:gridCell id="gc3" marginStart="10px" width="20%">
+                          <af:outputText value="#{row.job}" id="ot7"/>
+                        </af:gridCell>
+                        <af:gridCell id="gc4" marginStart="10px" width="20%">
+                          <af:outputText value="#{row.company}" id="ot8"/>
+                        </af:gridCell>
+                        <af:gridCell id="gc5" marginStart="10px" width="15%">
+                          <af:outputText value="#{row.phone}" id="ot9"/>
+                        </af:gridCell>
+                        <af:gridCell id="gc6" marginStart="10px"
+                                     marginEnd="10px" width="15%">
+                          <af:outputText value="#{row.email}" id="ot10"/>
+                        </af:gridCell>
+                      </af:gridRow>
+                    </af:panelGridLayout>
+                  </af:listItem>
+                </af:listView>
+              </f:facet>
+              <f:facet name="filterPanel">
+                <af:toolbar id="t2">
+                  <af:group id="g1">
+                    <af:commandLink id="cl1" text="#{democrmBundle.ALL}"
+                                    partialSubmit="true"
+                                    actionListener="#{pageFlowScope.ContactsBean.removeAlphaFilter}"/>
+                  </af:group>
+                  <af:iterator id="i1" rows="26" var="var"
+                               value="#{pageFlowScope.ContactsBean.alphaFilters}">
+                    <af:commandLink text="#{var}" id="cl2"
+                                    partialSubmit="true"
+                                    actionListener="#{pageFlowScope.ContactsBean.handleAlphaFilter}"/>
+                    <af:spacer width="10" height="10" id="s4"/>
+                  </af:iterator>
+                </af:toolbar>
+              </f:facet>
+              <f:facet name="toolbarPanel">
+                <af:toolbar id="t3">
+                  <af:commandLink id="cl3" text="#{democrmBundle.SELECT_ALL}"
+                                  partialSubmit="true"
+                                  rendered="#{pageFlowScope.ContactsBean.pageMode == 'selectToExport'}"
+                                  styleClass="nowrap"
+                                  actionListener="#{pageFlowScope.ContactsBean.handleSelectAll}"/>
+                  <af:spacer width="10" height="10" id="s5"/>
+                  <af:commandLink id="cl4" partialSubmit="true"
+                                  text="#{democrmBundle.DESELECT_ALL}"
+                                  rendered="#{pageFlowScope.ContactsBean.pageMode == 'selectToExport'}"
+                                  styleClass="nowrap"
+                                  actionListener="#{pageFlowScope.ContactsBean.handleDeselectAll}"/>
+                  <af:spacer width="10" height="10" id="s6"/>
+                </af:toolbar>
+              </f:facet>
+            </acdc:CardViewListViewDC>
+          </af:panelGroupLayout>
+          <af:spacer width="50" id="s1"/>
+        </af:panelGroupLayout>
+      </af:panelGroupLayout>
+    </f:facet>
+  </af:pageTemplate>
+</jsp:root>

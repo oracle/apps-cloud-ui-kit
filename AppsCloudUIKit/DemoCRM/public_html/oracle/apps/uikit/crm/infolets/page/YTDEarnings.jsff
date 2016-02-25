@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:acdc="/appsCloudUIKitDCs"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <c:set var="democrmBundle"
+         value="#{adfBundle['oracle.apps.uikit.crm.DemoCRMBundle']}"/>
+  <acdc:InfoletDC hasBack="NO" hasExpanded="NO" hasFront="YES"
+                  title="#{democrmBundle.YTD_EARNINGS}" id="idc1">
+    <f:facet name="front">
+      <af:panelGroupLayout id="pgl2" layout="horizontal">
+        <af:spacer width="5" id="s3"/>
+        <af:panelGroupLayout id="pgl1" layout="vertical">
+          <af:outputText value="This Month" id="ot2" inlineStyle="color:gray;"/>
+          <af:spacer height="10" id="s2"/>
+          <af:outputText value="$631.00K" id="ot3"
+                         inlineStyle="font-size:220.0%;"
+                         styleClass="trial-cyan"/>
+          <af:outputText value="Starting Balance" id="ot4"/>
+          <af:spacer height="10" id="s1"/>
+          <af:outputText value="$808.00K" id="ot5"
+                         inlineStyle="font-size:220.0%;"
+                         styleClass="trial-cyan"/>
+          <af:outputText value="Ending Balance" id="ot1"/>
+        </af:panelGroupLayout>
+      </af:panelGroupLayout>
+    </f:facet>
+  </acdc:InfoletDC>
+</jsp:root>

@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="uikitcommonBundle"
+         value="#{adfBundle['oracle.apps.uikit.common.UIKitCommonBundle']}"/>
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <af:componentDef var="attrs" componentVar="comp">
+    <af:xmlContent>
+      <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+        <display-name>CardViewListViewDC</display-name>
+        <component-class>oracle.apps.uikit.common.declarativeComponents.CardViewListViewDC</component-class>
+        <facet>
+          <description>
+            To hold card format content
+          </description>
+          <facet-name>
+            cardView
+          </facet-name>
+        </facet>
+        <facet>
+          <description>
+            To hold list format content
+          </description>
+          <facet-name>
+            listView
+          </facet-name>
+        </facet>
+        <facet>
+          <description>
+            Left top filter panel
+          </description>
+          <facet-name>
+            filterPanel
+          </facet-name>
+        </facet>
+        <facet>
+          <description>
+            Right top filter panel
+          </description>
+          <facet-name>
+            toolbarPanel
+          </facet-name>
+        </facet>
+        <attribute>
+          <attribute-name>
+            defaultView
+          </attribute-name>
+          <attribute-class>
+            java.lang.String
+          </attribute-class>
+          <default-value>
+            cardView
+          </default-value>
+        </attribute>
+        <component-extension>
+          <component-tag-namespace>oracle.apps.uikit.common.declarativeComponents</component-tag-namespace>
+          <component-taglib-uri>/appsCloudUIKitDCs</component-taglib-uri>
+        </component-extension>
+      </component>
+    </af:xmlContent>
+    <af:panelGroupLayout id="dc_pgl1" layout="vertical"
+                         partialTriggers="dc_ctb2 dc_ctb1">
+      <af:toolbar id="dc_t1" flex="1" stretchId="dc_toolbarExpander">
+        <af:facetRef facetName="filterPanel"/>
+        <af:spacer id="dc_toolbarExpander" clientComponent="true"/>
+        <af:facetRef facetName="toolbarPanel"/>
+        <af:commandToolbarButton id="dc_ctb2" type="radio"
+                                 selected="#{comp.viewMode eq 'cardView'}"
+                                 shortDesc="#{uikitcommonBundle.CARD_VIEW}"
+                                 icon="/images/func_card_16_ena.png"
+                                 hoverIcon="/images/func_card_16_hov.png"
+                                 depressedIcon="/images/func_card_16_onb.png"
+                                 disabledIcon="/images/func_card_16_dis.png"
+                                 actionListener="#{comp.showCardView}"/>
+        <af:commandToolbarButton id="dc_ctb1" type="radio"
+                                 selected="#{comp.viewMode eq 'listView'}"
+                                 shortDesc="#{uikitcommonBundle.LIST_VIEW}"
+                                 icon="/images/func_list_16_ena.png"
+                                 hoverIcon="/images/func_list_16_hov.png"
+                                 depressedIcon="/images/func_list_16_onb.png"
+                                 disabledIcon="/images/func_list_16_dis.png"
+                                 actionListener="#{comp.showListView}"/>
+      </af:toolbar>
+      <af:spacer height="5" id="dc_s4"
+                 rendered="#{comp.viewMode == 'cardView'}"/>
+      <af:separator id="dc_s3" rendered="#{comp.viewMode == 'cardView'}"/>
+      <af:spacer height="10" id="dc_s1"/>
+      <af:switcher id="dc_s2" defaultFacet="cardView"
+                   facetName="#{comp.viewMode}">
+        <f:facet name="cardView">
+          <af:panelGroupLayout id="dc_pgl2" styleClass="fuse-card-display">
+            <af:facetRef facetName="cardView"/>
+          </af:panelGroupLayout>
+        </f:facet>
+        <f:facet name="listView">
+          <af:facetRef facetName="listView"/>
+        </f:facet>
+      </af:switcher>
+    </af:panelGroupLayout>
+  </af:componentDef>
+</jsp:root>

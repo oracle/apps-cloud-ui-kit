@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.67.30" id="EvaluationDetailPageDef"
+                Package="oracle.apps.uikit.hcm.performance.page">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <taskFlow id="CompetenciesFlow1"
+              taskFlowId="/WEB-INF/oracle/apps/uikit/hcm/performance/flow/CompetenciesFlow.xml#CompetenciesFlow"
+              activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="GoalsFlow1"
+              taskFlowId="/WEB-INF/oracle/apps/uikit/hcm/performance/flow/GoalsFlow.xml#GoalsFlow"
+              activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="QuestionnairesFlow1"
+              taskFlowId="/WEB-INF/oracle/apps/uikit/hcm/performance/flow/QuestionnairesFlow.xml#QuestionnairesFlow"
+              activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="OverallSummaryFlow1"
+              taskFlowId="/WEB-INF/oracle/apps/uikit/hcm/performance/flow/OverallSummaryFlow.xml#OverallSummaryFlow"
+              activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <multiTaskFlow id="infotilesMTFB"
+                   taskFlowList="#{pageFlowScope.PerformanceBean.infoTilesList}"
+                   xmlns="http://xmlns.oracle.com/adf/controller/binding"
+                   activation="deferred" Refresh="ifNeeded"/>
+  </executables>
+  <bindings/>
+</pageDefinition>

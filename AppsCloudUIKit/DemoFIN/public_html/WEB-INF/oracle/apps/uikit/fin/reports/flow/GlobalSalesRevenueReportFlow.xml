@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="GlobalSalesRevenueReportFlow">
+    <default-activity id="__1">GlobalSalesRevenueReport</default-activity>
+    <managed-bean id="__3">
+      <managed-bean-name id="__4">GlobalSalesRevenueReportBean</managed-bean-name>
+      <managed-bean-class id="__5">oracle.apps.uikit.fin.reports.bean.GlobalSalesRevenueReportBean</managed-bean-class>
+      <managed-bean-scope id="__2">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="GlobalSalesRevenueReport">
+      <page>/oracle/apps/uikit/fin/reports/page/GlobalSalesRevenueReport.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

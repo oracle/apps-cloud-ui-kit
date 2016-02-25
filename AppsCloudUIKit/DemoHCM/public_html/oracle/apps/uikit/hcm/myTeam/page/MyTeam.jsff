@@ -1,0 +1,473 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:acdc="/appsCloudUIKitDCs"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="demohcmBundle"
+         value="#{adfBundle['oracle.apps.uikit.hcm.DemoHCMBundle']}"/>
+  <af:pageTemplate viewId="/oracle/apps/uikit/common/pageTemplates/MainPageTemplate.jspx"
+                   id="pt1">
+    <f:facet name="pageContents">
+      <af:panelGroupLayout id="pgl1" layout="vertical">
+        <acdc:PageHeaderDC id="phdc1" pageTitle="#{demohcmBundle.MY_TEAM}"/>
+        <af:spacer height="20" id="s6"/>
+        <af:panelGroupLayout id="pgl2" layout="horizontal"
+                             styleClass="AFStretchWidth" valign="top">
+          <af:spacer width="35" id="s4"/>
+          <acdc:CardViewListViewDC id="cvlvdc1">
+            <f:facet name="cardView">
+              <af:iterator id="i1" value="#{SessionState.myTeamList}" var="row">
+                <af:panelGroupLayout id="pgl7"
+                                     inlineStyle="height:225px; width:320px !important;"
+                                     styleClass="fuse-card-display"
+                                     layout="vertical">
+                  <af:panelGroupLayout id="pgl8" layout="vertical"
+                                       styleClass="flip-card-header">
+                    <af:commandLink text="#{row.fullName}" id="cl8"
+                                    styleClass="nowrap bold"
+                                    inlineStyle="font-size:130.0%;"/>
+                    <af:outputText value="#{row.job}" id="ot1"
+                                   inlineStyle="color:gray; font-size:110.0%;"
+                                   truncateAt="40" styleClass="nowrap"/>
+                  </af:panelGroupLayout>
+                  <af:spacer height="3" id="s12"/>
+                  <af:deck id="d2"
+                           displayedChild="#{row.selected ? 'cardBack' : 'cardFront'}"
+                           partialTriggers="cil5 cil3">
+                    <af:transition transition="flipEnd"
+                                   triggerType="backNavigate"/>
+                    <af:transition transition="flipEnd"
+                                   triggerType="forwardNavigate"/>
+                    <af:panelGroupLayout id="cardFront" valign="top"
+                                         layout="horizontal">
+                      <af:panelGroupLayout id="pgl9" layout="vertical"
+                                           valign="top">
+                        <af:image source="#{row.photoLarge}"
+                                  shortDesc="#{row.fullName}" id="i2"
+                                  styleClass="flip-card-photo"/>
+                      </af:panelGroupLayout>
+                      <af:panelStretchLayout id="psl1" startWidth="0px"
+                                             endWidth="0px" topHeight="15px"
+                                             bottomHeight="30px"
+                                             styleClass="flip-card-front-details">
+                        <f:facet name="bottom">
+                          <af:panelGroupLayout id="pgl12" layout="vertical">
+                            <af:panelGroupLayout id="pgl13" layout="horizontal"
+                                                 styleClass="AFStretchWidth">
+                              <af:panelGroupLayout id="pgl15" layout="vertical"
+                                                   styleClass="flip-card-margins-front">
+                                <af:commandImageLink text=" #{row.directReports} #{demohcmBundle.DIRECTS}"
+                                                     id="cil2"
+                                                     icon="/images/func_group_16_ena.png"
+                                                     disabledIcon="/images/func_group_16_dis.png"
+                                                     hoverIcon="/images/func_group_16_hov.png"
+                                                     depressedIcon="/images/func_group_16_act.png"
+                                                     shortDesc="#{demohcmBundle.TOTAL}: #{row.totalReports}"
+                                                     rendered="#{row.directReports > 0}"
+                                                     styleClass="flip-card-data"/>
+                              </af:panelGroupLayout>
+                              <af:panelGroupLayout id="pgl14" layout="vertical"
+                                                   halign="end" valign="bottom">
+                                <af:commandImageLink id="cil3"
+                                                     icon="/images/fuseplus_spacer.png"
+                                                     actionListener="#{pageFlowScope.MyTeamBean.handleFlipTeamCard}"
+                                                     shortDesc="#{demohcmBundle.MORE_INFORMATION}"
+                                                     partialSubmit="true">
+                                  <af:clientAttribute name="ID"
+                                                      value="#{row.id}"/>
+                                </af:commandImageLink>
+                              </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                          </af:panelGroupLayout>
+                        </f:facet>
+                        <f:facet name="center">
+                          <af:panelGroupLayout id="pgl11" layout="vertical"
+                                               styleClass="flip-card-margins-front">
+                            <af:outputText id="ot4" styleClass="flip-card-label"
+                                           noWrap="true" truncateAt="20"
+                                           value="#{demohcmBundle.CONTACT}"/>
+                            <af:commandLink text="#{row.email}" id="cl10"
+                                            styleClass="flip-card-data"
+                                            partialSubmit="true"/>
+                            <af:commandLink text="#{row.phone}" id="cl9"
+                                            styleClass="flip-card-data"
+                                            partialSubmit="true"/>
+                            <af:separator id="s13"/>
+                            <af:outputText value="#{demohcmBundle.LOCATION_AND_TIME}"
+                                           id="ot5" styleClass="flip-card-label"
+                                           noWrap="true" truncateAt="20"/>
+                            <af:outputText value="#{row.location}" id="ot7"
+                                           styleClass="flip-card-data"/>
+                            <af:outputText value="#{pageFlowScope.MyTeamBean.now}"
+                                           id="ot6" styleClass="flip-card-data">
+                              <af:convertDateTime timeStyle="full"
+                                                  dateStyle="full"/>
+                            </af:outputText>
+                          </af:panelGroupLayout>
+                        </f:facet>
+                        <f:facet name="top">
+                          <af:panelGroupLayout id="pgl10" layout="vertical"
+                                               halign="end" valign="top">
+                            <af:commandButton id="cb2"
+                                              icon="/images/fuse-icon-drop-menu-arrow.png"
+                                              shortDesc="#{demohcmBundle.ACTIONS}"
+                                              styleClass="flip-card-actions-menu"
+                                              partialSubmit="true">
+                              <af:showPopupBehavior popupId=":::p2"
+                                                    triggerType="action"
+                                                    alignId="cb2"/>
+                            </af:commandButton>
+                          </af:panelGroupLayout>
+                        </f:facet>
+                      </af:panelStretchLayout>
+                    </af:panelGroupLayout>
+                    <af:panelStretchLayout id="cardBack" startWidth="0px"
+                                           endWidth="0px" topHeight="15px"
+                                           bottomHeight="30px"
+                                           styleClass="flip-card-back-view">
+                      <f:facet name="bottom">
+                        <af:panelGroupLayout id="pgl17" layout="vertical">
+                          <af:panelGroupLayout id="pgl18" layout="horizontal"
+                                               styleClass="AFStretchWidth">
+                            <af:spacer width="10" height="10" id="s5"/>
+                            <af:panelGroupLayout id="pgl19" layout="vertical">
+                              <af:commandImageLink id="cil4"
+                                                   icon="/images/func_group_16_ena.png"
+                                                   text=" #{row.directReports} #{demohcmBundle.DIRECTS}, #{row.totalReports} #{demohcmBundle.TOTAL}"
+                                                   shortDesc="#{demohcmBundle.HEADCOUNT}"
+                                                   disabledIcon="/images/func_group_16_dis.png"
+                                                   hoverIcon="/images/func_group_16_hov.png"
+                                                   depressedIcon="/images/func_group_16_act.png"
+                                                   styleClass="flip-card-link-back bold"
+                                                   partialSubmit="true"
+                                                   rendered="#{row.directReports > 0}"/>
+                            </af:panelGroupLayout>
+                            <af:panelGroupLayout id="pgl20" layout="vertical"
+                                                 halign="end" valign="bottom">
+                              <af:commandImageLink id="cil5"
+                                                   icon="/images/fuseplus_spacer.png"
+                                                   actionListener="#{pageFlowScope.MyTeamBean.handleFlipTeamCard}"
+                                                   shortDesc="#{demohcmBundle.MORE_INFORMATION}"
+                                                   partialSubmit="true">
+                                <af:clientAttribute name="ID"
+                                                    value="#{row.id}"/>
+                              </af:commandImageLink>
+                            </af:panelGroupLayout>
+                          </af:panelGroupLayout>
+                        </af:panelGroupLayout>
+                      </f:facet>
+                      <f:facet name="center">
+                        <af:panelFormLayout id="pfl2" styleClass="compact">
+                          <af:panelLabelAndMessage label="#{demohcmBundle.ASSIGNMENT}"
+                                                   id="plam1">
+                            <af:outputText value="#{demohcmBundle.FULL_TIME}"
+                                           id="ot8"
+                                           styleClass="flip-card-form-data"
+                                           truncateAt="30"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{demohcmBundle.WORKER_TYPE}"
+                                                   id="plam2">
+                            <af:outputText value="#{demohcmBundle.EMPLOYEE}"
+                                           id="ot9"
+                                           styleClass="flip-card-form-data"
+                                           truncateAt="30"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{demohcmBundle.DEPARTMENT}"
+                                                   id="plam3">
+                            <af:outputText value="#{demohcmBundle.SALES_AND_MARKETING}"
+                                           id="ot10"
+                                           styleClass="flip-card-form-data"
+                                           truncateAt="30"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{demohcmBundle.GRADE}"
+                                                   id="plam4">
+                            <af:outputText value="#{row.grade}" id="ot11"
+                                           styleClass="flip-card-form-data"
+                                           truncateAt="30"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{demohcmBundle.SERVICE}"
+                                                   id="plam5">
+                            <af:outputText value="#{row.serviceYears} #{demohcmBundle.YEARS}"
+                                           id="ot12"
+                                           styleClass="flip-card-form-data"
+                                           truncateAt="30"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{demohcmBundle.POSITION}"
+                                                   id="plam6">
+                            <af:outputText value="#{row.job}" id="ot13"
+                                           styleClass="flip-card-form-data"
+                                           truncateAt="30"/>
+                          </af:panelLabelAndMessage>
+                        </af:panelFormLayout>
+                      </f:facet>
+                      <f:facet name="top">
+                        <af:panelGroupLayout id="pgl16" halign="end"
+                                             valign="top" layout="vertical">
+                          <af:commandButton id="cb3"
+                                            icon="/images/fuse-icon-drop-menu-arrow.png"
+                                            shortDesc="#{demohcmBundle.ACTIONS}"
+                                            styleClass="flip-card-actions-menu"
+                                            partialSubmit="true">
+                            <af:showPopupBehavior popupId=":::p2"
+                                                  triggerType="action"
+                                                  alignId="cb3"/>
+                          </af:commandButton>
+                        </af:panelGroupLayout>
+                      </f:facet>
+                    </af:panelStretchLayout>
+                  </af:deck>
+                </af:panelGroupLayout>
+              </af:iterator>
+            </f:facet>
+            <f:facet name="listView">
+              <af:listView id="lv1" value="#{SessionState.myTeamList}"
+                           var="row" styleClass="border-top-grey">
+                <af:listItem id="li1">
+                  <af:panelGridLayout id="pgl21">
+                    <af:gridRow id="gr1">
+                      <af:gridCell id="gc1" width="10%" marginStart="10px"
+                                   valign="middle" halign="center">
+                        <af:image source="#{row.photo}" id="i3"
+                                  styleClass="photo-round"
+                                  inlineStyle="width:50px; height:50px;"/>
+                      </af:gridCell>
+                      <af:gridCell id="gc2" width="30%" marginStart="10px"
+                                   valign="middle">
+                        <af:panelGroupLayout id="pgl22" layout="vertical">
+                          <af:commandLink text="#{row.fullName}"
+                                          id="commandLink1"
+                                          styleClass="nowrap bold"
+                                          inlineStyle="font-size:130.0%;"/>
+                          <af:outputText value="#{row.job}" id="outputText1"
+                                         inlineStyle="color:gray; font-size:110.0%;"
+                                         truncateAt="40" styleClass="nowrap"/>
+                          <af:commandImageLink id="commandImageLink1"
+                                               icon="/images/func_group_16_ena.png"
+                                               text=" #{row.directReports} #{demohcmBundle.DIRECTS}, #{row.totalReports} #{demohcmBundle.TOTAL}"
+                                               shortDesc="#{demohcmBundle.HEADCOUNT}"
+                                               disabledIcon="/images/func_group_16_dis.png"
+                                               hoverIcon="/images/func_group_16_hov.png"
+                                               depressedIcon="/images/func_group_16_act.png"
+                                               styleClass="flip-card-link-back bold"
+                                               partialSubmit="true"
+                                               rendered="#{row.directReports > 0}"/>
+                        </af:panelGroupLayout>
+                      </af:gridCell>
+                      <af:gridCell id="gc3" width="20%" marginStart="10px">
+                        <af:panelFormLayout id="pfl3" styleClass="compact">
+                          <af:panelLabelAndMessage label="#{demohcmBundle.ASSIGNMENT}"
+                                                   id="panelLabelAndMessage1">
+                            <af:outputText value="#{demohcmBundle.FULL_TIME}"
+                                           id="outputText2"
+                                           truncateAt="30"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{demohcmBundle.WORKER_TYPE}"
+                                                   id="panelLabelAndMessage2">
+                            <af:outputText value="#{demohcmBundle.EMPLOYEE}"
+                                           id="outputText3"
+                                           truncateAt="30"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{demohcmBundle.SERVICE}"
+                                                   id="panelLabelAndMessage3">
+                            <af:outputText value="#{row.serviceYears} #{demohcmBundle.YEARS}"
+                                           id="outputText4"
+                                           truncateAt="30"/>
+                          </af:panelLabelAndMessage>
+                        </af:panelFormLayout>
+                      </af:gridCell>
+                      <af:gridCell id="gc4" width="20%" marginStart="10px">
+                        <af:panelFormLayout id="pfl4" styleClass="compact">
+                          <af:panelLabelAndMessage label="#{demohcmBundle.DEPARTMENT}"
+                                                   id="panelLabelAndMessage4">
+                            <af:outputText value="#{demohcmBundle.SALES_AND_MARKETING}"
+                                           id="outputText5"
+                                           truncateAt="30"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{demohcmBundle.GRADE}"
+                                                   id="panelLabelAndMessage5">
+                            <af:outputText value="#{row.grade}" id="outputText6"
+                                           truncateAt="30"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{demohcmBundle.LOCATION}"
+                                                   id="panelLabelAndMessage6">
+                            <af:outputText value="#{row.location}" id="outputText7"
+                                           truncateAt="30"/>
+                          </af:panelLabelAndMessage>
+                        </af:panelFormLayout>
+                      </af:gridCell>
+                      <af:gridCell id="gc5" width="20%" marginStart="10px"
+                                   marginEnd="10px" valign="middle"
+                                   halign="center">
+                        <af:commandButton id="cb4"
+                                          icon="/images/fuse-icon-drop-menu-arrow.png"
+                                          partialSubmit="true"
+                                          shortDesc="#{demohcmBundle.ACTIONS}"
+                                          styleClass="actions-menu">
+                          <af:showPopupBehavior popupId=":::p2"
+                                                triggerType="action"
+                                                alignId="cb4"/>
+                        </af:commandButton>
+                      </af:gridCell>
+                    </af:gridRow>
+                  </af:panelGridLayout>
+                </af:listItem>
+              </af:listView>
+            </f:facet>
+            <f:facet name="filterPanel">
+              <af:toolbar id="t2">
+                <af:commandImageLink id="cil1"
+                                     icon="/images/func_filter_16_ena.png"
+                                     disabledIcon="/images/func_filter_16_dis.png"
+                                     hoverIcon="/images/func_filter_16_hov.png"
+                                     depressedIcon="/images/func_filter_16_act.png"
+                                     partialSubmit="true">
+                  <af:showPopupBehavior popupId="p1" triggerType="action"/>
+                </af:commandImageLink>
+                <af:commandLink text="#{demohcmBundle.FILTER_}" id="cl1"
+                                styleClass="major-link" partialSubmit="true">
+                  <af:showPopupBehavior popupId="p1" triggerType="action"/>
+                </af:commandLink>
+                <af:spacer width="5" id="s3"/>
+                <af:outputText value="#{demohcmBundle.ENTIRE_TEAM}"
+                               id="ot3" styleClass="major-text nowrap"/>
+                <af:popup id="p1">
+                  <af:dialog id="d1"
+                             title="#{demohcmBundle.FILTER}" type="none">
+                    <af:panelGroupLayout id="pgl3" layout="vertical">
+                      <af:panelFormLayout id="pfl1" maxColumns="2" rows="2"
+                                          labelAlignment="top">
+                        <af:selectOneRadio value="Entire Team"
+                                           label="#{demohcmBundle.MY_TEAM}"
+                                           id="sor1">
+                          <af:selectItem label="Direct Reports only"
+                                         value="Direct Reports" id="si5"/>
+                          <af:selectItem label="Entire Team" value="Entire Team"
+                                         id="si4"/>
+                        </af:selectOneRadio>
+                        <af:selectManyCheckbox label="#{demohcmBundle.WORKER_TYPE}"
+                                               id="smc1">
+                          <af:selectItem label="Contingent" id="si7"
+                                         value="Contingent"/>
+                          <af:selectItem label="Employee" value="Employee"
+                                         id="si6"/>
+                        </af:selectManyCheckbox>
+                        <af:selectManyCheckbox label="#{demohcmBundle.GRADE}"
+                                               id="smc2">
+                          <af:selectItem label="Individual Contributor 1"
+                                         value="IC1" id="si8"/>
+                          <af:selectItem label="Individual Contributor 2"
+                                         value="IC2" id="si13"/>
+                          <af:selectItem label="Individual Contributor 3"
+                                         value="IC3" id="si12"/>
+                          <af:selectItem label="Manager Level 1" value="M1"
+                                         id="si10"/>
+                          <af:selectItem label="Manager Level 2" value="M2"
+                                         id="si11"/>
+                          <af:selectItem label="Manager Level 3" value="M3"
+                                         id="si9"/>
+                        </af:selectManyCheckbox>
+                      </af:panelFormLayout>
+                      <af:spacer height="10" id="s7"/>
+                      <af:panelGroupLayout id="pgl4" layout="horizontal"
+                                           styleClass="AFStretchWidth"
+                                           halign="end">
+                        <af:commandButton id="cb1"
+                                          text="#{demohcmBundle.APPLY}"
+                                          disabled="true"/>
+                      </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                  </af:dialog>
+                </af:popup>
+              </af:toolbar>
+            </f:facet>
+            <f:facet name="toolbarPanel">
+              <af:toolbar id="t3">
+                <af:group id="g1">
+                  <af:selectOneChoice label="#{demohcmBundle.SORT_BY}" id="soc1"
+                                      styleClass="nowrap" autoSubmit="true"
+                                      value="#{pageFlowScope.MyTeamBean.sortBy}"
+                                      valueChangeListener="#{pageFlowScope.MyTeamBean.handleSortBy}"
+                                      disabled="true">
+                    <af:selectItem label="Person Name" value="Name" id="si3"/>
+                    <af:selectItem label="Job Title" value="Job" id="si2"/>
+                    <af:selectItem label="Location" value="Location" id="si1"/>
+                  </af:selectOneChoice>
+                  <af:spacer width="10" id="s1"/>
+                </af:group>
+                <af:spacer width="10" id="s2"/>
+              </af:toolbar>
+            </f:facet>
+          </acdc:CardViewListViewDC>
+          <af:popup id="p2">
+            <af:menu id="m1">
+              <af:menu text="Absence" id="m2">
+                <af:commandMenuItem text="Manage Absence Cases" id="cmi1"/>
+                <af:commandMenuItem text="Manage Absence Records" id="cmi2"/>
+                <af:commandMenuItem text="Manage Work Schedules" id="cmi3"/>
+              </af:menu>
+              <af:menu text="Compensation" id="m4">
+                <af:commandMenuItem text="Manage Compensation" id="cmi7"/>
+                <af:commandMenuItem text="View Total Compensation Statement"
+                                    id="cmi6"/>
+              </af:menu>
+              <af:menu text="Employment" id="m6">
+                <af:commandMenuItem text="Change Location" id="cmi9"/>
+                <af:commandMenuItem text="Change Manager" id="cmi10"/>
+                <af:commandMenuItem text="Change Working Hours" id="cmi11"/>
+                <af:commandMenuItem text="Manage Allocated Checklists" id="cmi12"/>
+                <af:commandMenuItem text="Manage Document Records" id="cmi13"/>
+                <af:commandMenuItem text="Manage Person" id="cmi14"/>
+                <af:commandMenuItem text="Manage User Account" id="cmi15"/>
+                <af:commandMenuItem text="Promote" id="cmi16"/>
+                <af:commandMenuItem text="Terminate" id="cmi17"/>
+                <af:commandMenuItem text="Transfer" id="cmi18"/>
+                <af:commandMenuItem text="Wellness Report" id="cmi8"/>
+              </af:menu>
+              <af:menu text="Timecard" id="m3">
+                <af:commandMenuItem text="Manage Timecard" id="cmi5"/>
+                <af:commandMenuItem text="Timecard Reports" id="cmi4"/>
+              </af:menu>
+            </af:menu>
+          </af:popup>
+        </af:panelGroupLayout>
+      </af:panelGroupLayout>
+    </f:facet>
+    <f:facet name="endPanel">
+      <af:panelDrawer position="end" id="pd1" height="100%">
+        <af:showDetailItem id="dr1"
+                           icon="/images/func_panellist_32_ena.png"
+                           text="#{demohcmBundle.RELATED_LINKS}"
+                           shortDesc="#{demohcmBundle.RELATED_LINKS}">
+          <af:panelGroupLayout id="pgl6" layout="vertical">
+            <af:spacer height="15" id="s10"/>
+            <af:panelHeader text="#{demohcmBundle.RELATED_LINKS}" id="ph1">
+              <af:panelGroupLayout id="pgl5" layout="vertical" valign="top">
+                <f:facet name="separator">
+                  <af:spacer height="20" id="s8"/>
+                </f:facet>
+                <af:spacer height="10" id="s9"/>
+                <af:commandLink text="#{demohcmBundle.COMPANY_POLICY_DOCUMENTS}"
+                                id="cl2" styleClass="major-link"/>
+                <af:commandLink text="#{demohcmBundle.COMPARE}" id="cl3"
+                                styleClass="major-link"/>
+                <af:commandLink text="#{demohcmBundle.EMPLOYEE_RESOURCES}"
+                                id="cl4" styleClass="major-link"/>
+                <af:commandLink text="#{demohcmBundle.MANAGER_RESOURCES}"
+                                id="cl5" styleClass="major-link"/>
+                <af:commandLink text="#{demohcmBundle.PERFORMANCE_APPRAISAL_TRAINING}"
+                                id="cl6" styleClass="major-link"/>
+                <af:commandLink text="#{demohcmBundle.WORKFORCE_REPORTS_AND_ANALYTIC}"
+                                id="cl7" styleClass="major-link"/>
+              </af:panelGroupLayout>
+            </af:panelHeader>
+          </af:panelGroupLayout>
+        </af:showDetailItem>
+      </af:panelDrawer>
+    </f:facet>
+    <f:attribute name="End-Side-Panel-Width" value="35px"/>
+  </af:pageTemplate>
+</jsp:root>

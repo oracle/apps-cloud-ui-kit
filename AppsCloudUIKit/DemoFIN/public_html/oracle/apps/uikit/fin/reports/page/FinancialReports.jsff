@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:acdc="/appsCloudUIKitDCs"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="demofinBundle"
+         value="#{adfBundle['oracle.apps.uikit.fin.DemoFINBundle']}"/>
+  <af:pageTemplate viewId="/oracle/apps/uikit/common/pageTemplates/MainPageTemplate.jspx"
+                   id="pt1">
+    <f:facet name="pageContents">
+      <af:panelGroupLayout id="pgl1" layout="vertical">
+        <acdc:PageHeaderDC id="phdc1"
+                           pageTitle="#{demofinBundle.FINANCIAL_REPORTS}"/>
+        <af:panelGroupLayout id="pgl2" layout="horizontal"
+                             styleClass="AFStretchWidth">
+          <af:spacer width="100" id="s1"/>
+          <af:panelGroupLayout id="pgl3" layout="vertical">
+            <af:toolbar id="t1" stretchId="toolbarExpander" flex="1">
+              <af:inputText id="it1" label="#{demofinBundle.FIND}"
+                            columns="25" placeholder="Name contains ..."
+                            usage="search"
+                            binding="#{pageFlowScope.FinancialReportsBean.nameSearchField}"/>
+              <af:commandButton id="cb1" icon="/images/func_search_16_ena.png"
+                                actionListener="#{pageFlowScope.FinancialReportsBean.handleNameSearch}"
+                                partialSubmit="true"/>
+              <af:spacer width="15" id="s3"/>
+              <af:selectOneChoice label="#{demofinBundle.LIST}" value="ALL"
+                                  id="soc1" autoSubmit="true"
+                                  valueChangeListener="#{pageFlowScope.FinancialReportsBean.handleListFilter}">
+                <af:selectItem label="All Reports" value="ALL" id="si2"/>
+                <af:selectItem label="Favourite Reports" value="FAV" id="si1"/>
+              </af:selectOneChoice>
+              <af:spacer id="toolbarExpander" clientComponent="true"/>
+            </af:toolbar>
+            <af:spacer height="10" id="s4"/>
+            <af:listView id="lv1"
+                         value="#{SessionState.filteredFinancialReportsList}"
+                         var="row"
+                         emptyText="#{demofinBundle.NO_FINANCIAL_REPORTS_FOUND}"
+                         fetchSize="15" rows="15"
+                         partialTriggers="::cb1 ::soc1 cil1">
+              <af:listItem id="li1">
+                <af:panelGridLayout id="pgl4">
+                  <af:gridRow id="gr1">
+                    <af:gridCell id="gc1" width="50px" marginStart="15px"
+                                 valign="middle">
+                      <af:commandImageLink id="cil1"
+                                           icon="#{row.favourite ? '/images/func_stargold_16_ena.png' : '/images/func_stargold_16_dis.png'}"
+                                           actionListener="#{pageFlowScope.FinancialReportsBean.handleToggleFavourite}"
+                                           shortDesc="#{row.favourite ? demofinBundle.UNMARK_FAVOURITE : demofinBundle.MARK_AS_FAVOURITE}"
+                                           hoverIcon="/images/func_stargold_16_hov.png"
+                                           depressedIcon="/images/func_stargold_16_act.png"
+                                           partialSubmit="true"
+                                           immediate="true">
+                        <af:clientAttribute name="ID" value="#{row.id}"/>
+                      </af:commandImageLink>
+                    </af:gridCell>
+                    <af:gridCell id="gc2" width="60px" marginStart="10px"
+                                 valign="middle">
+                      <af:commandImageLink id="cil2"
+                                           icon="/images/fuse-icon-toggle-report-ena.png"
+                                           disabledIcon="/images/fuse-icon-toggle-report-dis.png"
+                                           hoverIcon="/images/fuse-icon-report.png"
+                                           shortDesc="#{demofinBundle.VIEW_REPORT}"
+                                           partialSubmit="true"
+                                           disabled="#{not row.enabled}">
+                        <af:setActionListener from="#{row.id}"
+                                              to="#{pageFlowScope.FinancialReportsBean.selectedReportId}"/>
+                        <af:showPopupBehavior popupId="reportPopup"
+                                              triggerType="click"/>
+                      </af:commandImageLink>
+                    </af:gridCell>
+                    <af:gridCell id="gc3" width="70%" marginStart="10px"
+                                 valign="middle">
+                      <af:panelGroupLayout id="pgl5" layout="vertical"
+                                           valign="top">
+                        <af:commandLink id="cl1" partialSubmit="true"
+                                        disabled="#{not row.enabled}">
+                          <af:outputText value="#{row.name}" id="ot1"
+                                         styleClass="major-text nowrap"/>
+                          <af:setActionListener from="#{row.id}"
+                                                to="#{pageFlowScope.FinancialReportsBean.selectedReportId}"/>
+                          <af:showPopupBehavior popupId="reportPopup"
+                                                triggerType="click"/>
+                        </af:commandLink>
+                        <af:spacer height="5" id="s5"/>
+                        <af:outputText value="#{row.description}" id="ot2"/>
+                        <af:popup id="reportPopup"
+                                  contentDelivery="lazyUncached">
+                          <af:dialog id="d1" type="none"
+                                     stretchChildren="first" contentWidth="900"
+                                     contentHeight="700">
+                            <af:region value="#{bindings.dynamicRegion1.regionModel}"
+                                       id="r1"/>
+                          </af:dialog>
+                        </af:popup>
+                      </af:panelGroupLayout>
+                    </af:gridCell>
+                    <af:gridCell id="gc4" marginStart="10px" width="20%" marginEnd="10px"
+                                 valign="middle">
+                      <af:panelLabelAndMessage label="#{demofinBundle.CATEGORY_}"
+                                               id="plam1">
+                        <af:outputText value="#{row.category}" id="ot3"/>
+                      </af:panelLabelAndMessage>
+                    </af:gridCell>
+                    <af:gridCell id="gc5" marginEnd="10px" width="20%"
+                                 marginStart="10px" valign="middle">
+                      <af:panelLabelAndMessage label="#{demofinBundle.STATUS_}"
+                                               id="plam2">
+                        <af:outputText value="#{row.status}" id="ot4"/>
+                      </af:panelLabelAndMessage>
+                    </af:gridCell>
+                  </af:gridRow>
+                </af:panelGridLayout>
+              </af:listItem>
+            </af:listView>
+          </af:panelGroupLayout>
+          <af:spacer width="50" id="s2"/>
+        </af:panelGroupLayout>
+      </af:panelGroupLayout>
+    </f:facet>
+  </af:pageTemplate>
+</jsp:root>

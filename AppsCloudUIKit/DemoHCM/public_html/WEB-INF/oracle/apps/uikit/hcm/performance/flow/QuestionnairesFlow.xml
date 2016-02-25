@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="QuestionnairesFlow">
+    <default-activity id="__1">Questionnaires</default-activity>
+    <managed-bean id="__3">
+      <managed-bean-name id="__2">PerformanceBean</managed-bean-name>
+      <managed-bean-class id="__4">oracle.apps.uikit.hcm.performance.bean.PerformanceBean</managed-bean-class>
+      <managed-bean-scope id="__5">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="Questionnaires">
+      <page>/oracle/apps/uikit/hcm/performance/page/Questionnaires.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

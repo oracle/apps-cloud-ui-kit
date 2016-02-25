@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:acdc="/appsCloudUIKitDCs"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces">
+  <c:set var="demohcmBundle"
+         value="#{adfBundle['oracle.apps.uikit.hcm.DemoHCMBundle']}"/>
+  <af:panelGroupLayout id="pgl1" layout="vertical">
+    <acdc:PageHeaderDC id="phdc1" pageTitle="#{demohcmBundle.OVERALL_SUMMARY}"/>
+    <af:spacer height="10" id="s1"/>
+    <af:panelGroupLayout id="pgl6" layout="horizontal" valign="top">
+      <af:commandImageLink id="cil1" partialSubmit="true"
+                           icon="/images/func_information_16_ena.png"
+                           disabledIcon="/images/func_information_16_dis.png"
+                           hoverIcon="/images/func_information_16_hov.png"
+                           depressedIcon="/images/func_information_16_act.png"/>
+      <af:outputText value="#{demohcmBundle.OVERALL_RATING_AND_COMMENTS}"
+                     id="ot1" styleClass="AppsLargeFontSize bold"
+                     inlineStyle="color:#0572CE;"/>
+    </af:panelGroupLayout>
+    <af:spacer height="10" id="spacer1"/>
+    <af:panelFormLayout id="pfl1" rows="5" labelAlignment="start">
+      <af:panelLabelAndMessage label="#{demohcmBundle.EMPLOYEE_RATING}" id="plam2">
+        <af:panelGroupLayout id="pgl2" layout="horizontal">
+          <dvt:ratingGauge id="rg1" value="4" maximum="5" minimum="1"
+                           inlineStyle="height:18px;"/>
+        </af:panelGroupLayout>
+      </af:panelLabelAndMessage>
+      <af:panelLabelAndMessage label="#{demohcmBundle.MANAGER_RATING}" id="plam3">
+        <af:panelGroupLayout id="pgl3" layout="horizontal">
+          <dvt:ratingGauge id="rg2" value="3" maximum="5" minimum="1"
+                           inlineStyle="height:18px;" readOnly="false"
+                           changed="true"/>
+          <af:commandImageLink id="commandImageLink1"
+                               icon="/images/func_eraser_16_ena.png"
+                               disabledIcon="/images/func_eraser_16_dis.png"
+                               hoverIcon="/images/func_eraser_16_hov.png"
+                               depressedIcon="/images/func_eraser_16_act.png"
+                               partialSubmit="true"/>
+        </af:panelGroupLayout>
+      </af:panelLabelAndMessage>
+      <af:panelLabelAndMessage label="#{demohcmBundle.PARTICIPANT_RATING}" id="plam4">
+        <af:panelGroupLayout id="pgl4" layout="horizontal">
+          <dvt:ratingGauge id="rg3" value="3" maximum="5" minimum="1"
+                           inlineStyle="height:18px;"/>
+          <af:outputText value="(3)" id="ot3"/>
+        </af:panelGroupLayout>
+      </af:panelLabelAndMessage>
+      <af:panelLabelAndMessage label="#{demohcmBundle.EMPLOYEE_COMMENT}" id="plam5">
+        <af:panelGroupLayout id="pgl5" layout="horizontal">
+          <af:spacer width="25" id="s2"/>
+          <af:outputText value="I have done a great job overall achieving my Goals and Competencies, I am happy with the opportunities given to me and am looking forward to new challenges."
+                         id="ot2"/>
+        </af:panelGroupLayout>
+      </af:panelLabelAndMessage>
+      <af:panelLabelAndMessage label="#{demohcmBundle.MANAGER_COMMENT}" id="plam1"
+                               labelStyle="vertical-align:top">
+        <af:panelGroupLayout id="pgl7" layout="horizontal">
+          <af:spacer width="10" height="10" id="s3"/>
+          <af:inputText id="it1" columns="100" rows="5"/>
+        </af:panelGroupLayout>
+      </af:panelLabelAndMessage>
+    </af:panelFormLayout>
+  </af:panelGroupLayout>
+</jsp:root>

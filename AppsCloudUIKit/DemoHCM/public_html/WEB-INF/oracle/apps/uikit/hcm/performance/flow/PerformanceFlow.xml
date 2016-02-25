@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="PerformanceFlow">
+    <default-activity id="__5">Performance</default-activity>
+    <managed-bean id="__4">
+      <managed-bean-name id="__2">PerformanceBean</managed-bean-name>
+      <managed-bean-class id="__1">oracle.apps.uikit.hcm.performance.bean.PerformanceBean</managed-bean-class>
+      <managed-bean-scope id="__3">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="Performance">
+      <page>/oracle/apps/uikit/hcm/performance/page/Performance.jsff</page>
+    </view>
+    <view id="EvaluationDetail">
+      <page>/oracle/apps/uikit/hcm/performance/page/EvaluationDetail.jsff</page>
+    </view>
+    <control-flow-rule id="__6">
+      <from-activity-id id="__7">Performance</from-activity-id>
+      <control-flow-case id="__8">
+        <from-outcome id="__10">showDetail</from-outcome>
+        <to-activity-id id="__9">EvaluationDetail</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__11">
+      <from-activity-id id="__12">EvaluationDetail</from-activity-id>
+      <control-flow-case id="__14">
+        <from-outcome id="__15">done</from-outcome>
+        <to-activity-id id="__13">Performance</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

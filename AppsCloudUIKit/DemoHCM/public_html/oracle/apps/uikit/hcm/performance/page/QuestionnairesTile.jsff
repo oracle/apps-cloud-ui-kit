@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="demohcmBundle"
+         value="#{adfBundle['oracle.apps.uikit.hcm.DemoHCMBundle']}"/>
+  <af:panelGroupLayout id="pgl1" valign="top" layout="vertical">
+    <af:outputText value="#{demohcmBundle.QUESTIONNAIRES}" id="ot1"
+                   styleClass="bold AppsXLargeFontSize"/>
+    <af:spacer height="10" id="s1"/>
+    <af:panelGroupLayout id="pgl2" layout="horizontal">
+      <af:image source="/images/checkmark_qualifier.png" id="i1"/>
+      <af:spacer width="5" id="s2"/>
+      <af:outputText value="#{demohcmBundle.EMPLOYEE_COMPLETE}" id="ot2"/>
+    </af:panelGroupLayout>
+    <af:spacer height="10" id="s3"/>
+    <af:panelGroupLayout id="pgl3" layout="horizontal">
+      <af:image source="/images/checkmark_qualifier.png" id="i2"/>
+      <af:spacer width="5" id="s5"/>
+      <af:outputText value="#{demohcmBundle.MANAGER_COMPLETE}" id="ot3"/>
+    </af:panelGroupLayout>
+    <af:spacer height="10" id="s4"/>
+    <af:panelGroupLayout id="pgl4" layout="horizontal">
+      <af:image source="/images/processing_qualifier.png" id="i3"/>
+      <af:spacer width="5" id="s6"/>
+      <af:outputText value="#{demohcmBundle.PARTICIPANTS_COMPLETE}" id="ot4"/>
+    </af:panelGroupLayout>
+  </af:panelGroupLayout>
+</jsp:root>

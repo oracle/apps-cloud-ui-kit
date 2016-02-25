@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:acdc="/appsCloudUIKitDCs"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <c:set var="demohcmBundle"
+         value="#{adfBundle['oracle.apps.uikit.hcm.DemoHCMBundle']}"/>
+  <acdc:InfoletDC hasBack="YES" hasExpanded="NO" hasFront="YES"
+                  title="#{demohcmBundle.MY_TEAMS_GOALS}" id="idc1"
+                  frontSize="INFOLET2X2" backSize="INFOLET2X2">
+    <f:facet name="front">
+      <af:panelGroupLayout id="pgl1" layout="vertical">
+        <af:panelGroupLayout id="pgl2">
+          <af:forEach var="row"
+                      items="#{backingBeanScope.HcmInfoletsBean.teamPersonList}">
+            <af:panelGridLayout id="pgl6" inlineStyle="display:inline-block;">
+              <af:gridRow id="gr1" marginTop="15px">
+                <af:gridCell id="gc1" rowSpan="2" width="50px"
+                             marginStart="10px">
+                  <af:image source="#{row.photo}" id="i1"/>
+                </af:gridCell>
+                <af:gridCell id="gc2" columnSpan="2" width="100px">
+                  <af:outputText value="#{row.name}" id="ot1"
+                                 styleClass="bold nowrap trial-blue"/>
+                </af:gridCell>
+              </af:gridRow>
+              <af:gridRow id="gr2">
+                <af:gridCell id="gc3" width="50px">
+                  <af:panelGroupLayout id="pgl4" layout="vertical"
+                                       halign="center" valign="top">
+                    <af:outputText value="#{row.definedCount}" id="ot2"
+                                   styleClass="trial-cyan"
+                                   inlineStyle="font-size:200.0%;"/>
+                    <af:outputText value="Defined" id="ot3"
+                                   inlineStyle="font-size:75.0%;"/>
+                  </af:panelGroupLayout>
+                </af:gridCell>
+                <af:gridCell id="gc4" width="50px">
+                  <af:panelGroupLayout id="pgl5" layout="vertical"
+                                       halign="center" valign="top">
+                    <af:outputText value="#{row.alignedCount}" id="ot5"
+                                   styleClass="trial-cyan"
+                                   inlineStyle="font-size:200.0%;"/>
+                    <af:outputText value="Aligned" id="ot4"
+                                   inlineStyle="font-size:75.0%;"/>
+                  </af:panelGroupLayout>
+                </af:gridCell>
+              </af:gridRow>
+            </af:panelGridLayout>
+          </af:forEach>
+        </af:panelGroupLayout>
+      </af:panelGroupLayout>
+    </f:facet>
+    <f:facet name="back">
+      <af:panelGroupLayout id="panelGroupLayout1" layout="vertical">
+        <af:spacer height="5" id="s7"/>
+        <af:panelGroupLayout id="pgl3" layout="horizontal">
+          <af:spacer width="20" id="s1"/>
+          <af:panelGroupLayout id="pgl7" layout="vertical"
+                               styleClass="background-red">
+            <af:spacer width="10" height="5" id="s2"/>
+          </af:panelGroupLayout>
+          <af:spacer width="5" id="s4"/>
+          <af:outputText value="Not Started" id="ot6"/>
+          <af:spacer width="25" id="s3"/>
+          <af:panelGroupLayout id="panelGroupLayout5" layout="vertical"
+                               styleClass="background-blue">
+            <af:spacer width="10" height="5" id="spacer1"/>
+          </af:panelGroupLayout>
+          <af:spacer width="5" id="s5"/>
+          <af:outputText value="In Progress" id="outputText6"/>
+          <af:spacer width="25" id="spacer2"/>
+          <af:panelGroupLayout id="panelGroupLayout6" layout="vertical"
+                               styleClass="background-green">
+            <af:spacer width="10" height="5" id="spacer3"/>
+          </af:panelGroupLayout>
+          <af:spacer width="5" id="s6"/>
+          <af:outputText value="Complete" id="outputText7"/>
+        </af:panelGroupLayout>
+        <af:panelGroupLayout id="panelGroupLayout2">
+          <af:forEach var="row"
+                      items="#{backingBeanScope.HcmInfoletsBean.teamPersonList}">
+            <af:panelGridLayout id="panelGridLayout1"
+                                inlineStyle="display:inline-block;">
+              <af:gridRow id="gridRow1" marginTop="10px">
+                <af:gridCell id="gridCell1" rowSpan="2" width="50px"
+                             marginStart="10px">
+                  <af:image source="#{row.photo}" id="image1"/>
+                </af:gridCell>
+                <af:gridCell id="gridCell2" width="100px">
+                  <af:outputText value="#{row.name}" id="outputText1"
+                                 styleClass="bold nowrap trial-blue"/>
+                </af:gridCell>
+              </af:gridRow>
+              <af:gridRow id="gridRow2">
+                <af:gridCell id="gridCell3" width="100px">
+                  <af:panelGroupLayout id="pgl8" layout="vertical">
+                    <af:spacer height="5" id="s8"/>
+                    <af:panelGroupLayout id="pgl9" layout="horizontal">
+                      <af:panelGroupLayout id="pgl12" layout="vertical"
+                                           styleClass="background-red">
+                        <af:spacer width="#{row.notStartedWidth}" id="s10"/>
+                      </af:panelGroupLayout>
+                      <af:panelGroupLayout id="pgl13" layout="vertical"
+                                           styleClass="background-blue">
+                        <af:spacer width="#{row.inProgressWidth}" id="s11"/>
+                      </af:panelGroupLayout>
+                      <af:panelGroupLayout id="pgl11" layout="vertical"
+                                           styleClass="background-green">
+                        <af:spacer width="#{row.completeWidth}" id="s12"/>
+                      </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                    <af:spacer height="5" id="s9"/>
+                    <af:panelGroupLayout id="pgl10" layout="horizontal">
+                      <af:outputText value="#{row.notStartedCount}" id="ot8"
+                                     inlineStyle="font-size:130%; color:red;"/>
+                      <af:spacer width="30" height="10" id="s14"/>
+                      <af:outputText value="#{row.inProgressCount}" id="ot9"
+                                     inlineStyle="font-size:130.0%;"
+                                     styleClass="trial-cyan"/>
+                      <af:spacer width="30" height="10" id="s13"/>
+                      <af:outputText value="#{row.completeCount}" id="ot7"
+                                     inlineStyle="font-size:130%; color:green;"/>
+                    </af:panelGroupLayout>
+                  </af:panelGroupLayout>
+                </af:gridCell>
+              </af:gridRow>
+            </af:panelGridLayout>
+          </af:forEach>
+        </af:panelGroupLayout>
+      </af:panelGroupLayout>
+    </f:facet>
+  </acdc:InfoletDC>
+</jsp:root>

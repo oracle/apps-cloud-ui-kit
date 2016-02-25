@@ -1,0 +1,304 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <af:componentDef var="attrs" componentVar="comp">
+    <af:xmlContent>
+      <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+        <display-name>CardDC</display-name>
+        <facet>
+          <facet-name>
+            frontContents
+          </facet-name>
+        </facet>
+        <facet>
+          <facet-name>
+            backContents
+          </facet-name>
+        </facet>
+        <facet>
+          <facet-name>
+            frontToolbar
+          </facet-name>
+        </facet>
+        <facet>
+          <facet-name>
+            backToolbar
+          </facet-name>
+        </facet>
+        <attribute>
+          <attribute-name>
+            height
+          </attribute-name>
+          <attribute-class>
+            java.lang.Integer
+          </attribute-class>
+          <default-value>
+            195
+          </default-value>
+          <required>
+            false
+          </required>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            width
+          </attribute-name>
+          <attribute-class>
+            java.lang.Integer
+          </attribute-class>
+          <default-value>
+            275
+          </default-value>
+          <required>
+            false
+          </required>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            showFlip
+          </attribute-name>
+          <attribute-class>
+            java.lang.Boolean
+          </attribute-class>
+          <default-value>
+            false
+          </default-value>
+          <required>
+            false
+          </required>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            title
+          </attribute-name>
+          <attribute-class>
+            java.lang.String
+          </attribute-class>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            subTitle
+          </attribute-name>
+          <attribute-class>
+            java.lang.String
+          </attribute-class>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            titleClickable
+          </attribute-name>
+          <attribute-class>
+            java.lang.Boolean
+          </attribute-class>
+          <default-value>
+            false
+          </default-value>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            selectionMode
+          </attribute-name>
+          <attribute-class>
+            java.lang.Boolean
+          </attribute-class>
+          <default-value>
+            false
+          </default-value>
+          <required>
+            false
+          </required>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            selected
+          </attribute-name>
+          <attribute-class>
+            java.lang.Boolean
+          </attribute-class>
+          <default-value>
+            false
+          </default-value>
+        </attribute>
+        <component-extension>
+          <component-tag-namespace>oracle.apps.uikit.common.declarativeComponents</component-tag-namespace>
+          <component-taglib-uri>/appsCloudUIKitDCs</component-taglib-uri>
+          <method-attribute>
+            <attribute-name>
+              titleAction
+            </attribute-name>
+            <method-signature>
+              java.lang.String method()
+            </method-signature>
+            <required>
+              false
+            </required>
+          </method-attribute>
+          <method-attribute>
+            <attribute-name>
+              titleActionListener
+            </attribute-name>
+            <method-signature>
+              void method(javax.faces.event.ActionEvent)
+            </method-signature>
+          </method-attribute>
+          <method-attribute>
+            <attribute-name>
+              cardSelectActionListener
+            </attribute-name>
+            <method-signature>
+              void method(javax.faces.event.ActionEvent)
+            </method-signature>
+          </method-attribute>
+        </component-extension>
+      </component>
+    </af:xmlContent>
+    <af:panelGroupLayout id="dc_pgl1" halign="center"
+                         styleClass="fuse-card-display">
+      <af:deck id="dc_d1"
+               displayedChild="#{pageFlowScope.cardFace == null ? 'front' : pageFlowScope.cardFace}"
+               inlineStyle="width:#{attrs.width+25}px;margin-bottom:24px;"
+               partialTriggers="dc_cil1 dc_cil2">
+        <af:transition transition="flipEnd" triggerType="backNavigate"/>
+        <af:transition triggerType="forwardNavigate" transition="flipStart"/>
+        <af:commandLink id="front" partialSubmit="true"
+                        disabled="#{not attrs.selectionMode}"
+                        actionListener="#{comp.handleCardSelectActionListener}">
+          <af:panelBox id="dc_front" type="stretch" showHeader="never"
+                       showDisclosure="false" contentStyle="padding:0px;"
+                       styleClass="box-lightgrey round-radius #{attrs.selectionMode eq false ? 'border-grey' : ( attrs.selected eq true ? 'cardSelected' : 'cardSelect')}"
+                       inlineStyle="width:#{attrs.width}px;height:#{attrs.height}px;padding:0px;">
+            <af:panelGroupLayout id="dc_pgl12" layout="vertical">
+              <af:panelGroupLayout id="dc_pgl13" layout="vertical"
+                                   inlineStyle="padding-left:10px;">
+                <af:panelStretchLayout id="dc_psl1" startWidth="0px"
+                                       endWidth="auto" topHeight="0px"
+                                       bottomHeight="0px"
+                                       dimensionsFrom="children">
+                  <f:facet name="center">
+                    <af:panelGroupLayout id="dc_pgl2" layout="vertical"
+                                         styleClass="truncate-contents">
+                      <af:spacer height="8" id="dc_s1"/>
+                      <af:commandLink id="dc_cl1"
+                                      rendered="#{attrs.titleClickable}"
+                                      partialSubmit="true"
+                                      action="#{comp.handleTitleAction}"
+                                      actionListener="#{comp.handleTitleActionListener}">
+                        <af:outputText id="dc_ot2" value="#{attrs.title}"
+                                       shortDesc="#{attrs.title}"
+                                       styleClass="major-text nowrap"/>
+                        <af:clientAttribute name="ID" value="#{row.id}"/>
+                      </af:commandLink>
+                      <af:outputText id="dc_ot1" value="#{attrs.title}"
+                                     rendered="#{not attrs.titleClickable}"
+                                     styleClass="major-text nowrap"
+                                     shortDesc="#{attrs.title}"/>
+                    </af:panelGroupLayout>
+                  </f:facet>
+                  <f:facet name="end">
+                    <af:panelGroupLayout id="panelGroupLayout1"
+                                         layout="horizontal">
+                      <af:facetRef facetName="frontToolbar"/>
+                    </af:panelGroupLayout>
+                  </f:facet>
+                </af:panelStretchLayout>
+                <af:spacer height="8" id="dc_s2"/>
+                <af:panelGroupLayout id="dc_pgl4" layout="vertical">
+                  <af:outputText id="dc_ot3" styleClass="AppsSmallFontSize"
+                                 value="#{attrs.subTitle}"/>
+                </af:panelGroupLayout>
+                <af:panelGroupLayout id="dc_pgl6" layout="scroll"
+                                     styleClass="hidden-scrollbar"
+                                     inlineStyle="height:#{attrs.showFlip ? (attrs.subTitle != null ? (attrs.height-70) : (attrs.height-56)) : (attrs.subTitle != null ? (attrs.height-47) : (attrs.height-33))}; padding-left:5px;">
+                  <af:facetRef facetName="frontContents"/>
+                </af:panelGroupLayout>
+              </af:panelGroupLayout>
+              <af:panelGroupLayout id="dc_pgl3" layout="vertical" halign="end"
+                                   rendered="#{attrs.showFlip}">
+                <af:commandImageLink id="dc_cil1"
+                                     icon="/images/func_cardflip_23_ena.png"
+                                     hoverIcon="/images/func_cardflip_23_hov.png"
+                                     depressedIcon="/images/func_cardflip_23_act.png"
+                                     partialSubmit="true"
+                                     styleClass="infolet-rdk-control">
+                  <af:setActionListener from="#{'back'}"
+                                        to="#{pageFlowScope.cardFace}"/>
+                </af:commandImageLink>
+              </af:panelGroupLayout>
+            </af:panelGroupLayout>
+          </af:panelBox>
+          <af:clientAttribute name="ID" value="#{row.id}"/>
+        </af:commandLink>
+        <af:commandLink id="bacl" partialSubmit="true"
+                        disabled="#{not attrs.selectionMode}"
+                        actionListener="#{comp.handleCardSelectActionListener}">
+          <af:panelBox id="dc_back" type="stretch" showHeader="never"
+                       showDisclosure="false" contentStyle="padding:0px;"
+                       styleClass="box-lightgrey round-radius #{attrs.selectionMode eq false ? 'border-grey' : ( attrs.selected eq true ? 'cardSelected' : 'cardSelect')}"
+                       inlineStyle="width:#{attrs.width}px;height:#{attrs.height}px;padding:0px;">
+            <af:panelGroupLayout id="dc_pgl14" layout="vertical">
+              <af:panelGroupLayout id="dc_pgl15" layout="vertical"
+                                   inlineStyle="padding-left:10px;">
+                <af:panelStretchLayout id="dc_psl2" dimensionsFrom="children"
+                                       startWidth="0px" endWidth="auto"
+                                       topHeight="0px" bottomHeight="0px">
+                  <f:facet name="center">
+                    <af:panelGroupLayout id="dc_pgl10" layout="vertical"
+                                         styleClass="truncate-contents">
+                      <af:spacer height="8" id="dc_s4"/>
+                      <af:commandLink id="dc_cl2"
+                                      rendered="#{attrs.titleClickable}"
+                                      action="#{comp.handleTitleAction}"
+                                      actionListener="#{comp.handleTitleActionListener}"
+                                      partialSubmit="true" immediate="true">
+                        <af:outputText value="#{attrs.title}" id="dc_ot5"
+                                       styleClass="major-text nowrap"
+                                       shortDesc="#{attrs.title}"/>
+                        <af:clientAttribute name="ID" value="#{row.id}"/>
+                      </af:commandLink>
+                      <af:outputText value="#{attrs.title}" id="dc_ot4"
+                                     rendered="#{not attrs.titleClickable}"
+                                     shortDesc="#{attrs.title}"
+                                     styleClass="major-text nowrap"/>
+                    </af:panelGroupLayout>
+                  </f:facet>
+                  <f:facet name="end">
+                    <af:panelGroupLayout id="dc_pgl11" layout="horizontal">
+                      <af:facetRef facetName="backToolbar"/>
+                    </af:panelGroupLayout>
+                  </f:facet>
+                </af:panelStretchLayout>
+                <af:spacer height="8" id="dc_s3"/>
+                <af:panelGroupLayout id="dc_pgl8" layout="vertical">
+                  <af:outputText value="#{attrs.subTitle}" id="dc_ot6"
+                                 styleClass="AppsSmallFontSize"/>
+                </af:panelGroupLayout>
+                <af:panelGroupLayout id="dc_pgl9" layout="scroll"
+                                     styleClass="hidden-scrollbar"
+                                     inlineStyle="height:#{attrs.showFlip ? (attrs.subTitle != null ? (attrs.height-70) : (attrs.height-56)) : (attrs.subTitle != null ? (attrs.height-47) : (attrs.height-33))}px; width:#{attrs.width-25}px; padding-left:5px;">
+                  <af:facetRef facetName="backContents"/>
+                </af:panelGroupLayout>
+              </af:panelGroupLayout>
+              <af:panelGroupLayout id="dc_pgl7" layout="vertical">
+                <af:commandImageLink id="dc_cil2"
+                                     icon="/images/func_cardflipback_23_ena.png"
+                                     hoverIcon="/images/func_cardflipback_23_hov.png"
+                                     depressedIcon="/images/func_cardflipback_23_act.png"
+                                     partialSubmit="true">
+                  <af:setActionListener from="#{'front'}"
+                                        to="#{pageFlowScope.cardFace}"/>
+                </af:commandImageLink>
+              </af:panelGroupLayout>
+            </af:panelGroupLayout>
+          </af:panelBox>
+          <af:clientAttribute name="ID" value="#{row.id}"/>
+        </af:commandLink>
+      </af:deck>
+    </af:panelGroupLayout>
+  </af:componentDef>
+</jsp:root>

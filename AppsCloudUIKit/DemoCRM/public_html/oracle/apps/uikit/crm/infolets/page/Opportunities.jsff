@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:acdc="/appsCloudUIKitDCs"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces">
+  <c:set var="democrmBundle"
+         value="#{adfBundle['oracle.apps.uikit.crm.DemoCRMBundle']}"/>
+  <acdc:InfoletDC hasBack="YES" hasExpanded="NO" hasFront="YES"
+                  title="#{democrmBundle.OPPORTUNITIES}" id="idc1"
+                  frontSize="INFOLET1X2" backSize="INFOLET1X2">
+    <f:facet name="front">
+      <af:panelGroupLayout id="pgl1" layout="vertical">
+        <af:panelGroupLayout id="pgl6" layout="horizontal">
+          <af:spacer width="5" id="s4"/>
+          <af:outputText value="Conversion Rate by Quarter" id="ot1"
+                         inlineStyle="color:gray;"/>
+        </af:panelGroupLayout>
+        <af:panelGridLayout id="pgl2">
+          <af:gridRow id="gr1" marginTop="10px">
+            <af:gridCell id="gc1" width="33%" halign="center">
+              <af:panelGroupLayout id="pgl3" layout="vertical">
+                <dvt:statusMeterGauge id="smg1" orientation="circular"
+                                      inlineStyle="width:80px;height:80px;"
+                                      value="55" borderColor="#D6DFE6"
+                                      color="#FAD55C" plotArea="on"
+                                      thresholdDisplay="all" minimum="0"
+                                      maximum="100">
+                  <dvt:gaugeThreshold id="thr1" color="#ADADAD"/>
+                  <dvt:gaugeMetricLabel id="gml1" textType="percent">
+                    <af:convertNumber integerOnly="true"/>
+                  </dvt:gaugeMetricLabel>
+                </dvt:statusMeterGauge>
+                <af:spacer height="5" id="s1"/>
+                <af:outputText value="Q1: $1,390,678" id="ot2"
+                               styleClass="trial-cyan"
+                               inlineStyle="font-size:110.0%;"/>
+              </af:panelGroupLayout>
+            </af:gridCell>
+            <af:gridCell id="gc2" width="33%" halign="center">
+              <af:panelGroupLayout id="pgl4" layout="vertical">
+                <dvt:statusMeterGauge id="smg2" orientation="circular"
+                                      inlineStyle="width:80px;height:80px;"
+                                      value="70" borderColor="#D6DFE6"
+                                      color="#267DB3" plotArea="on"
+                                      thresholdDisplay="all" minimum="0"
+                                      maximum="100">
+                  <dvt:gaugeThreshold id="gaugeThreshold1" color="#ADADAD"/>
+                  <dvt:gaugeMetricLabel id="gaugeMetricLabel1"
+                                        textType="percent">
+                    <af:convertNumber integerOnly="true"/>
+                  </dvt:gaugeMetricLabel>
+                </dvt:statusMeterGauge>
+                <af:spacer height="5" id="s2"/>
+                <af:outputText value="Q2: $1,789,432" id="ot3"
+                               styleClass="trial-cyan"
+                               inlineStyle="font-size:110.0%;"/>
+              </af:panelGroupLayout>
+            </af:gridCell>
+            <af:gridCell id="gc3" width="34%" halign="center">
+              <af:panelGroupLayout id="pgl5" layout="vertical">
+                <dvt:statusMeterGauge id="smg3" orientation="circular"
+                                      inlineStyle="width:80px;height:80px;"
+                                      value="45" borderColor="#D6DFE6"
+                                      color="#ED6647" plotArea="on"
+                                      thresholdDisplay="all" minimum="0"
+                                      maximum="100">
+                  <dvt:gaugeThreshold id="gaugeThreshold2" color="#ADADAD"/>
+                  <dvt:gaugeMetricLabel id="gaugeMetricLabel2"
+                                        textType="percent">
+                    <af:convertNumber integerOnly="true"/>
+                  </dvt:gaugeMetricLabel>
+                </dvt:statusMeterGauge>
+                <af:spacer height="5" id="s3"/>
+                <af:outputText value="Q3: $967,362" id="ot4"
+                               styleClass="trial-cyan"
+                               inlineStyle="font-size:110.0%;"/>
+              </af:panelGroupLayout>
+            </af:gridCell>
+          </af:gridRow>
+        </af:panelGridLayout>
+      </af:panelGroupLayout>
+    </f:facet>
+    <f:facet name="back">
+      <af:panelGridLayout id="pgl7">
+        <af:gridRow id="gr2" marginTop="5px">
+          <af:gridCell id="gc4" width="50%" halign="center" marginStart="15px">
+            <af:panelGroupLayout id="pgl8" layout="vertical">
+              <af:outputText value="Opportunities by Stage" id="ot5"/>
+              <af:outputText value="487 in period" id="ot6" styleClass="bold"/>
+        <dvt:horizontalBarGraph id="chart1" subType="BAR_HORIZ_STACK"
+                                shortDesc="Leads Status Totals"
+                                markerTooltipTemplate="SERIES_LABEL: Y_VALUE"
+                                inlineStyle="height:100px;width:175px"
+                                tabularData="#{backingBeanScope.CrmInfoletsBean.optyByStageData}"
+                                animationOnDisplay="none">
+          <dvt:markerText markerTextPlace="MTP_INSIDE_MIN" rendered="true">
+            <dvt:graphFont id="gf4" color="#FFFFFF"/>
+            <dvt:y1Format>
+              <dvt:numberFormat decimalDigit="0" numberType="NUMTYPE_GENERAL"/>
+            </dvt:y1Format>
+          </dvt:markerText>
+          <dvt:seriesSet>
+            <dvt:series color="#267DB3"/>
+            <dvt:series color="#FAD55C"/>
+            <dvt:series color="#68C182"/>
+            <dvt:series color="#ED6647"/>
+          </dvt:seriesSet>
+          <dvt:legendArea automaticPlacement="AP_NEVER" rendered="false"/>
+          <dvt:y1Axis rendered="false"/>
+          <dvt:y1MajorTick id="y1MajorTick1" tickStyle="GS_NONE"/>
+        </dvt:horizontalBarGraph>
+            </af:panelGroupLayout>
+          </af:gridCell>
+          <af:gridCell id="gc5" width="50%" halign="center" marginStart="10px"
+                       marginEnd="10px">
+            <af:panelGroupLayout id="pgl9" layout="vertical">
+              <af:outputText value="Revenue by Stage" id="ot7"/>
+              <af:outputText value="$1,545,000" id="ot8" styleClass="bold"/>
+        <dvt:horizontalBarGraph id="chart2" subType="BAR_HORIZ_STACK"
+                                shortDesc="Leads Status Totals"
+                                markerTooltipTemplate="SERIES_LABEL: Y_VALUE"
+                                inlineStyle="height:100px;width:175px"
+                                tabularData="#{backingBeanScope.CrmInfoletsBean.revenueByStageData}"
+                                animationOnDisplay="none">
+          <dvt:markerText markerTextPlace="MTP_INSIDE_MIN" rendered="true">
+            <dvt:graphFont id="gf6" color="#FFFFFF"/>
+            <dvt:y1Format>
+              <dvt:numberFormat decimalDigit="0" numberType="NUMTYPE_GENERAL"/>
+            </dvt:y1Format>
+          </dvt:markerText>
+          <dvt:seriesSet>
+            <dvt:series color="#267DB3"/>
+            <dvt:series color="#FAD55C"/>
+            <dvt:series color="#68C182"/>
+            <dvt:series color="#ED6647"/>
+          </dvt:seriesSet>
+          <dvt:legendArea automaticPlacement="AP_NEVER" rendered="false"/>
+          <dvt:y1Axis rendered="false"/>
+          <dvt:y1MajorTick id="y1MajorTick2" tickStyle="GS_NONE"/>
+        </dvt:horizontalBarGraph>
+            </af:panelGroupLayout>
+          </af:gridCell>
+        </af:gridRow>
+      </af:panelGridLayout>
+    </f:facet>
+  </acdc:InfoletDC>
+</jsp:root>

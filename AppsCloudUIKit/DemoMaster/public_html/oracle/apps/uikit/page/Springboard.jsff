@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <af:panelGroupLayout id="pgl1" layout="vertical">
+    <af:panelGroupLayout id="pgl2" layout="horizontal" valign="top">
+      <af:panelGroupLayout id="pgl3" layout="vertical">
+        <af:region value="#{bindings.AnnouncementsFlow1.regionModel}" id="r1"/>
+      </af:panelGroupLayout>
+      <af:spacer width="30" height="30" id="s2"/>
+      <af:panelGroupLayout id="pgl4" layout="vertical" valign="top"
+                           binding="#{backingBeanScope.SpringboardBean.featureGridCanvas}">
+        <af:spacer width="10" height="10" id="s4"/>
+        <af:forEach items="#{SessionState.nodeList}" var="nodeRowVar"
+                    varStatus="nodeRowVarStatus" step="4">
+          <af:spacer width="30" height="30" id="s1"/>
+          <af:panelGroupLayout id="pgl6" layout="horizontal" valign="top">
+            <af:spacer width="25" height="25" id="s3"/>
+            <af:forEach items="#{SessionState.nodeList}" var="nodeColVar"
+                        varStatus="nodeColVarStatus"
+                        begin="#{nodeRowVarStatus.index}"
+                        end="#{nodeRowVarStatus.index+3}" step="1">
+              <af:panelGroupLayout id="pgl7" halign="center" valign="top"
+                                   layout="vertical"
+                                   styleClass="grid-label-width">
+                <f:facet name="separator">
+                  <af:spacer width="5" height="5" id="s5"/>
+                </f:facet>
+                <af:commandImageLink id="cil1"
+                                     actionListener="#{backingBeanScope.SpringboardBean.handleNodeSelection}"
+                                     partialSubmit="true"
+                                     icon="#{nodeColVar.icon}"
+                                     shortDesc="#{nodeColVar.name}">
+                  <af:setActionListener from="#{nodeColVar.id}"
+                                        to="#{SessionState.accessedNodeId}"/>
+                  <af:setActionListener from="#{nodeColVar.children}"
+                                        to="#{SessionState.childNodeList}"/>
+                  <af:setActionListener from="#{nodeRowVarStatus.index}"
+                                        to="#{viewScope.nodeRowVarStatusIndex}"/>
+                </af:commandImageLink>
+                <af:commandLink text="#{nodeColVar.name}" id="cl1"
+                                actionListener="#{backingBeanScope.SpringboardBean.handleNodeSelection}"
+                                shortDesc="#{nodeColVar.name}"
+                                styleClass="cluster-text" partialSubmit="true">
+                  <af:setActionListener from="#{nodeColVar.id}"
+                                        to="#{SessionState.accessedNodeId}"/>
+                  <af:setActionListener from="#{nodeColVar.children}"
+                                        to="#{SessionState.childNodeList}"/>
+                  <af:setActionListener from="#{nodeRowVarStatus.index}"
+                                        to="#{viewScope.nodeRowVarStatusIndex}"/>
+                </af:commandLink>
+                <af:image source="/images/qual_panelpointerwhite_76.png"
+                          id="i1" styleClass="cluster-pointer"
+                          rendered="#{nodeColVar.group and nodeColVar.showChildren}"/>
+              </af:panelGroupLayout>
+              <af:spacer width="25" height="25" id="s6"
+                         rendered="#{(nodeColVarStatus.index mod 4) ne 3}"/>
+            </af:forEach>
+          </af:panelGroupLayout>
+          <af:panelGroupLayout id="pgl5" layout="horizontal">
+            <af:spacer width="25" height="25" id="s7"/>
+            <af:panelGroupLayout id="pgl8" layout="vertical" valign="top"
+                                 rendered="#{SessionState.showChildren and viewScope.nodeRowVarStatusIndex == nodeRowVarStatus.index}"
+                                 styleClass="cluster radius5">
+              <af:forEach items="#{SessionState.childNodeList}" var="childRowVar"
+                          varStatus="childRowVarStatus" step="4">
+                <af:spacer width="25" height="25" id="s9"/>
+                <af:panelGroupLayout id="pgl9" valign="top"
+                                     layout="horizontal">
+                  <af:forEach items="#{SessionState.childNodeList}"
+                              var="childColVar" varStatus="childColVarStatus"
+                              step="1" begin="#{childRowVarStatus.index}"
+                              end="#{childRowVarStatus.index+3}">
+                    <af:panelGroupLayout id="pgl11"
+                                         halign="center" valign="top"
+                                         layout="vertical"
+                                         styleClass="grid-label-width">
+                      <f:facet name="separator">
+                        <af:spacer width="5" height="5" id="s11"/>
+                      </f:facet>
+                      <af:commandImageLink id="cil2"
+                                           icon="#{childColVar.icon}"
+                                           partialSubmit="true"
+                                           actionListener="#{backingBeanScope.SpringboardBean.handleNodeSelection}"
+                                           shortDesc="#{childColVar.name}">
+                        <af:setActionListener from="#{childColVar.id}"
+                                              to="#{SessionState.accessedNodeId}"/>
+                      </af:commandImageLink>
+                      <af:commandLink text="#{childColVar.name}" id="cl2"
+                                      actionListener="#{backingBeanScope.SpringboardBean.handleNodeSelection}"
+                                      shortDesc="#{childColVar.name}">
+                        <af:setActionListener from="#{childColVar.id}"
+                                              to="#{SessionState.accessedNodeId}"/>
+                      </af:commandLink>
+                    </af:panelGroupLayout>
+                    <af:panelGroupLayout id="pgl12"
+                                         styleClass="grid-label-width"
+                                         halign="center" valign="top"
+                                         layout="vertical"
+                                         rendered="#{SessionState.childNodeListSize &lt; 2 and childColVarStatus.index eq (SessionState.childNodeListSize - 1)}"/>
+                    <af:panelGroupLayout id="pgl13"
+                                         styleClass="grid-label-width"
+                                         halign="center" valign="top"
+                                         layout="vertical"
+                                         rendered="#{SessionState.childNodeListSize &lt; 3 and childColVarStatus.index eq (SessionState.childNodeListSize - 1)}"/>
+                    <af:panelGroupLayout id="pgl10" halign="center"
+                                         valign="top" layout="vertical"
+                                         styleClass="grid-label-width"
+                                         rendered="#{SessionState.childNodeListSize &lt; 4 and childColVarStatus.index eq (SessionState.childNodeListSize - 1)}"/>
+                    <af:spacer width="25" height="25" id="s10"
+                               rendered="#{(childColVarStatus.index mod 4) ne 3}"/>
+                  </af:forEach>
+                </af:panelGroupLayout>
+              </af:forEach>
+              <af:spacer width="10" height="10" id="s8"/>
+            </af:panelGroupLayout>
+          </af:panelGroupLayout>
+        </af:forEach>
+      </af:panelGroupLayout>
+    </af:panelGroupLayout>
+  </af:panelGroupLayout>
+</jsp:root>

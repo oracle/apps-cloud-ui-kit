@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:acdc="/appsCloudUIKitDCs"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces">
+  <c:set var="democrmBundle"
+         value="#{adfBundle['oracle.apps.uikit.crm.DemoCRMBundle']}"/>
+  <acdc:InfoletDC hasBack="NO" hasExpanded="NO" hasFront="YES"
+                  title="#{democrmBundle.DEAL_REGISTRATION_BY_EXPIRY}"
+                  id="idc1" frontSize="INFOLET1X2">
+    <f:facet name="front">
+      <af:panelGroupLayout id="pgl1" layout="vertical">
+        <af:spacer height="5" id="s1"/>
+        <dvt:horizontalBarGraph id="chart1" shortDesc="Leads Count"
+                                inlineStyle="height:120px; width:350px"
+                                subType="BAR_HORIZ_STACK"
+                                animationOnDisplay="auto"
+                                markerTooltipTemplate="SERIES_LABEL: Y_VALUE"
+                                tabularData="#{backingBeanScope.CrmInfoletsBean.dealRegistrationData}">
+          <dvt:markerText markerTextPlace="MTP_INSIDE_MIN" rendered="true">
+            <dvt:graphFont id="gf4" color="#FFFFFF"/>
+            <dvt:y1Format>
+              <dvt:numberFormat decimalDigit="0" numberType="NUMTYPE_GENERAL"/>
+            </dvt:y1Format>
+          </dvt:markerText>
+          <dvt:seriesSet>
+            <dvt:series color="#68C182"/>
+            <dvt:series color="#FAD55C"/>
+            <dvt:series color="#ED6647"/>
+          </dvt:seriesSet>
+          <dvt:o1TickLabel id="otl1">
+          </dvt:o1TickLabel>
+          <dvt:legendArea automaticPlacement="AP_NEVER" rendered="false"/>
+          <dvt:y1Axis rendered="false"/>
+          <dvt:y1MajorTick id="y1MajorTick1" tickStyle="GS_NONE"/>
+        </dvt:horizontalBarGraph>
+      </af:panelGroupLayout>
+    </f:facet>
+  </acdc:InfoletDC>
+</jsp:root>

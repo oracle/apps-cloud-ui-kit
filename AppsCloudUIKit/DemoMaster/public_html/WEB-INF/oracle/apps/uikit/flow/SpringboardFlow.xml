@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="SpringboardFlow">
+    <default-activity id="__1">Springboard</default-activity>
+    <managed-bean id="__2">
+      <managed-bean-name id="__4">SpringboardBean</managed-bean-name>
+      <managed-bean-class id="__5">oracle.apps.uikit.bean.SpringboardBean</managed-bean-class>
+      <managed-bean-scope id="__3">backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="Springboard">
+      <page>/oracle/apps/uikit/page/Springboard.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

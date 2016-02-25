@@ -1,0 +1,202 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <af:pageTemplateDef var="attrs">
+    <af:xmlContent>
+      <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+        <display-name>MainPageTemplate</display-name>
+        <facet>
+          <facet-name>
+            pageContents
+          </facet-name>
+        </facet>
+        <facet>
+          <facet-name>
+            footerStart
+          </facet-name>
+        </facet>
+        <facet>
+          <facet-name>
+            footer
+          </facet-name>
+        </facet>
+        <facet>
+          <facet-name>
+            footerEnd
+          </facet-name>
+        </facet>
+        <facet>
+          <facet-name>
+            startPanel
+          </facet-name>
+        </facet>
+        <facet>
+          <facet-name>
+            endPanel
+          </facet-name>
+        </facet>
+        <facet>
+          <facet-name>
+            headerStart
+          </facet-name>
+        </facet>
+        <facet>
+          <facet-name>
+            header
+          </facet-name>
+        </facet>
+        <facet>
+          <facet-name>
+            headerEnd
+          </facet-name>
+        </facet>
+        <attribute>
+          <attribute-name>
+            Header-Height
+          </attribute-name>
+          <attribute-class>
+            java.lang.String
+          </attribute-class>
+          <default-value>
+            0px
+          </default-value>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            Header-Start-Width
+          </attribute-name>
+          <attribute-class>
+            java.lang.String
+          </attribute-class>
+          <default-value>
+            0px
+          </default-value>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            Header-End-Width
+          </attribute-name>
+          <attribute-class>
+            java.lang.String
+          </attribute-class>
+          <default-value>
+            0px
+          </default-value>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            Start-Side-Panel-Width
+          </attribute-name>
+          <attribute-class>
+            java.lang.String
+          </attribute-class>
+          <default-value>
+            0px
+          </default-value>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            End-Side-Panel-Width
+          </attribute-name>
+          <attribute-class>
+            java.lang.String
+          </attribute-class>
+          <default-value>
+            0px
+          </default-value>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            Footer-Height
+          </attribute-name>
+          <attribute-class>
+            java.lang.String
+          </attribute-class>
+          <default-value>
+            0px
+          </default-value>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            Footer-Start-Width
+          </attribute-name>
+          <attribute-class>
+            java.lang.String
+          </attribute-class>
+          <default-value>
+            0px
+          </default-value>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            Footer-End-Width
+          </attribute-name>
+          <attribute-class>
+            java.lang.String
+          </attribute-class>
+          <default-value>
+            0px
+          </default-value>
+        </attribute>
+      </component>
+    </af:xmlContent>
+    <af:panelStretchLayout id="pt_psl1"
+                           startWidth="#{attrs['Start-Side-Panel-Width']}"
+                           endWidth="#{attrs['End-Side-Panel-Width']}"
+                           topHeight="#{attrs['Header-Height']}"
+                           bottomHeight="#{attrs['Footer-Height']}"
+                           dimensionsFrom="children"
+                           styleClass="page-container AFStretchWidth">
+      <f:facet name="bottom">
+        <af:panelStretchLayout id="pt_psl2" topHeight="0px" bottomHeight="0px"
+                               startWidth="#{attrs['Footer-Start-Width']}"
+                               endWidth="#{attrs['Footer-End-Width']}"
+                               dimensionsFrom="children">
+          <f:facet name="center">
+            <af:facetRef facetName="footer"/>
+          </f:facet>
+          <f:facet name="start">
+            <af:facetRef facetName="footerStart"/>
+          </f:facet>
+          <f:facet name="end">
+            <af:facetRef facetName="footerEnd"/>
+          </f:facet>
+        </af:panelStretchLayout>
+      </f:facet>
+      <f:facet name="center">
+        <af:panelGroupLayout id="pt_pgl1" layout="vertical"
+                             styleClass="page-body page">
+          <af:facetRef facetName="pageContents"/>
+        </af:panelGroupLayout>
+      </f:facet>
+      <f:facet name="start">
+        <af:facetRef facetName="startPanel"/>
+      </f:facet>
+      <f:facet name="end">
+        <af:facetRef facetName="endPanel"/>
+      </f:facet>
+      <f:facet name="top">
+        <af:panelStretchLayout id="pt_psl3" dimensionsFrom="children"
+                               topHeight="0px" bottomHeight="0px"
+                               startWidth="#{attrs['Header-Start-Width']}"
+                               endWidth="#{attrs['Header-End-Width']}">
+          <f:facet name="center">
+            <af:facetRef facetName="header"/>
+          </f:facet>
+          <f:facet name="start">
+            <af:facetRef facetName="headerStart"/>
+          </f:facet>
+          <f:facet name="end">
+            <af:facetRef facetName="headerEnd"/>
+          </f:facet>
+        </af:panelStretchLayout>
+      </f:facet>
+    </af:panelStretchLayout>
+  </af:pageTemplateDef>
+</jsp:root>

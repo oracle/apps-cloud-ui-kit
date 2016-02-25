@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="MyTeamsGoalsFlow">
+    <default-activity id="__1">MyTeamsGoals</default-activity>
+    <managed-bean id="__4">
+      <managed-bean-name id="__3">HcmInfoletsBean</managed-bean-name>
+      <managed-bean-class id="__5">oracle.apps.uikit.hcm.infolets.bean.HcmInfoletsBean</managed-bean-class>
+      <managed-bean-scope id="__2">backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="MyTeamsGoals">
+      <page>/oracle/apps/uikit/hcm/infolets/page/MyTeamsGoals.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

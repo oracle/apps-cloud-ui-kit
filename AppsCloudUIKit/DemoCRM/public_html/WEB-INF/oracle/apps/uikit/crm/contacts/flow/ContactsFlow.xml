@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="ContactsFlow">
+    <default-activity id="__1">Contacts</default-activity>
+    <managed-bean id="__2">
+      <managed-bean-name id="__3">ContactsBean</managed-bean-name>
+      <managed-bean-class id="__5">oracle.apps.uikit.crm.contacts.bean.ContactsBean</managed-bean-class>
+      <managed-bean-scope id="__4">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="Contacts">
+      <page>/oracle/apps/uikit/crm/contacts/page/Contacts.jsff</page>
+    </view>
+    <view id="CreateContact">
+      <page>/oracle/apps/uikit/crm/contacts/page/CreateContact.jsff</page>
+    </view>
+    <view id="EditContact">
+      <page>/oracle/apps/uikit/crm/contacts/page/EditContact.jsff</page>
+    </view>
+    <control-flow-rule id="__6">
+      <from-activity-id id="__7">Contacts</from-activity-id>
+      <control-flow-case id="__8">
+        <from-outcome id="__10">create</from-outcome>
+        <to-activity-id id="__9">CreateContact</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__11">
+        <from-outcome id="__13">edit</from-outcome>
+        <to-activity-id id="__12">EditContact</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__14">
+      <from-activity-id id="__15">CreateContact</from-activity-id>
+      <control-flow-case id="__17">
+        <from-outcome id="__18">doneCreate</from-outcome>
+        <to-activity-id id="__16">Contacts</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__19">
+      <from-activity-id id="__20">EditContact</from-activity-id>
+      <control-flow-case id="__22">
+        <from-outcome id="__23">doneEdit</from-outcome>
+        <to-activity-id id="__21">Contacts</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

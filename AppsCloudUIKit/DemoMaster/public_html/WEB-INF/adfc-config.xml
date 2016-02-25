@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <view id="Welcome">
+    <page>/Welcome.jspx</page>
+  </view>
+  <view id="FilmStrip">
+    <page>/FilmStrip.jspx</page>
+  </view>
+  <router id="NavigationRouter">
+    <case>
+      <expression>#{sessionScope.navigateTo == 'home'}</expression>
+      <outcome id="__45">home</outcome>
+    </case>
+    <case>
+      <expression>#{sessionScope.navigateTo == 'filmStrip'}</expression>
+      <outcome id="__46">filmStrip</outcome>
+    </case>
+    <default-outcome>home</default-outcome>
+  </router>
+  <method-call id="RefreshHome">
+    <method>#{backingBeanScope.UtilsBean.refreshView}</method>
+    <outcome id="__39">
+      <fixed-outcome>done</fixed-outcome>
+    </outcome>
+  </method-call>
+  <method-call id="RefreshFilmStrip">
+    <method>#{backingBeanScope.UtilsBean.refreshView}</method>
+    <outcome id="__40">
+      <fixed-outcome>done</fixed-outcome>
+    </outcome>
+  </method-call>
+  <control-flow-rule id="__5">
+    <from-activity-id id="__6">Welcome</from-activity-id>
+    <control-flow-case id="__7">
+      <from-outcome id="__9">refresh</from-outcome>
+      <to-activity-id id="__8">RefreshHome</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__30">
+      <from-outcome id="__32">navigateTo</from-outcome>
+      <to-activity-id id="__31">NavigationRouter</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__10">
+    <from-activity-id id="__11">RefreshHome</from-activity-id>
+    <control-flow-case id="__12">
+      <from-outcome id="__14">done</from-outcome>
+      <to-activity-id id="__13">Welcome</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__15">
+    <from-activity-id id="__16">FilmStrip</from-activity-id>
+    <control-flow-case id="__17">
+      <from-outcome id="__19">refresh</from-outcome>
+      <to-activity-id id="__18">RefreshFilmStrip</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__36">
+      <from-outcome id="__38">navigateTo</from-outcome>
+      <to-activity-id id="__37">NavigationRouter</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__20">
+    <from-activity-id id="__21">RefreshFilmStrip</from-activity-id>
+    <control-flow-case id="__23">
+      <from-outcome id="__24">done</from-outcome>
+      <to-activity-id id="__22">FilmStrip</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__25">
+    <from-activity-id id="__26">NavigationRouter</from-activity-id>
+    <control-flow-case id="__28">
+      <from-outcome id="__29">home</from-outcome>
+      <to-activity-id id="__27">Welcome</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__33">
+      <from-outcome id="__35">filmStrip</from-outcome>
+      <to-activity-id id="__34">FilmStrip</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <managed-bean id="__43">
+    <managed-bean-name id="__42">SessionState</managed-bean-name>
+    <managed-bean-class id="__41">oracle.apps.uikit.memoryCache.SessionState</managed-bean-class>
+    <managed-bean-scope id="__44">session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__49">
+    <managed-bean-name id="__47">FilmStripBean</managed-bean-name>
+    <managed-bean-class id="__50">oracle.apps.uikit.bean.FilmStripBean</managed-bean-class>
+    <managed-bean-scope id="__48">backingBean</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__2">
+    <managed-bean-name id="__4">UtilsBean</managed-bean-name>
+    <managed-bean-class id="__3">oracle.apps.uikit.common.bean.UtilsBean</managed-bean-class>
+    <managed-bean-scope id="__1">backingBean</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__54">
+    <managed-bean-name id="__52">WelcomeBean</managed-bean-name>
+    <managed-bean-class id="__53">oracle.apps.uikit.bean.WelcomeBean</managed-bean-class>
+    <managed-bean-scope id="__51">backingBean</managed-bean-scope>
+  </managed-bean>
+</adfc-config>

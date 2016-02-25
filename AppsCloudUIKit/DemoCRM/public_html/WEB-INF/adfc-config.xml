@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <managed-bean id="__2">
+    <managed-bean-name id="__4">SessionState</managed-bean-name>
+    <managed-bean-class id="__3">oracle.apps.uikit.memoryCache.SessionState</managed-bean-class>
+    <managed-bean-scope id="__1">session</managed-bean-scope>
+  </managed-bean>
+</adfc-config>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<declarativeCompDefs xmlns="http://xmlns.oracle.com/adf/faces/rich/declarativecomp">
+  <declarativecomp-jsp-ui-def>/oracle/apps/uikit/common/declarativeComponents/InfoletDC.jspx</declarativecomp-jsp-ui-def>
+  <declarativecomp-jsp-ui-def>/oracle/apps/uikit/common/declarativeComponents/InfotilesDC.jspx</declarativecomp-jsp-ui-def>
+  <declarativecomp-jsp-ui-def>/oracle/apps/uikit/common/declarativeComponents/CardViewListViewDC.jspx</declarativecomp-jsp-ui-def>
+  <declarativecomp-jsp-ui-def>/oracle/apps/uikit/common/declarativeComponents/CardDC.jspx</declarativecomp-jsp-ui-def>
+  <declarativecomp-jsp-ui-def>/oracle/apps/uikit/common/declarativeComponents/PageHeaderDC.jspx</declarativecomp-jsp-ui-def>
+  <declarativecomp-taglib>
+    <taglib-name>appsCloudUIKitDCs</taglib-name>
+    <taglib-uri>/appsCloudUIKitDCs</taglib-uri>
+    <taglib-prefix>acdc</taglib-prefix>
+  </declarativecomp-taglib>
+</declarativeCompDefs>

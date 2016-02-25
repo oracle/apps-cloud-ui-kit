@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="OpportunitiesFlow">
+    <default-activity id="__1">Opportunities</default-activity>
+    <managed-bean id="__4">
+      <managed-bean-name id="__5">CrmInfoletsBean</managed-bean-name>
+      <managed-bean-class id="__3">oracle.apps.uikit.crm.infolets.bean.CrmInfoletsBean</managed-bean-class>
+      <managed-bean-scope id="__2">backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="Opportunities">
+      <page>/oracle/apps/uikit/crm/infolets/page/Opportunities.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

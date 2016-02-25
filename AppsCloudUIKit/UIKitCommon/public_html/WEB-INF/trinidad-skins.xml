@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<skins xmlns="http://myfaces.apache.org/trinidad/skin">
+   <skin-addition>
+      <skin-id>alta-v1.desktop</skin-id>
+      <style-sheet-name>skins/css/alta-additions.css</style-sheet-name>
+   </skin-addition>
+</skins>

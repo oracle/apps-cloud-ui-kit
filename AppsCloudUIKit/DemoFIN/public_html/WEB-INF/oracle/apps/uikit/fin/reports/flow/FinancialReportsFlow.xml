@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="FinancialReportsFlow">
+    <default-activity id="__1">FinancialReports</default-activity>
+    <managed-bean id="__13">
+      <managed-bean-name id="__15">FinancialReportsBean</managed-bean-name>
+      <managed-bean-class id="__14">oracle.apps.uikit.fin.reports.bean.FinancialReportsBean</managed-bean-class>
+      <managed-bean-scope id="__12">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="FinancialReports">
+      <page>/oracle/apps/uikit/fin/reports/page/FinancialReports.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

@@ -1,0 +1,101 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <View
+      id="View2">
+      <property
+         name="activityId">Opportunities</property>
+      <property
+         name="page">/oracle/apps/uikit/crm/opportunities/page/Opportunities.jsff</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>Opportunities&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">244.36719</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">377.16016</property>
+   </View>
+   <View
+      id="View3">
+      <property
+         name="activityId">CreateOpportunity</property>
+      <property
+         name="page">/oracle/apps/uikit/crm/opportunities/page/CreateOpportunity.jsff</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>CreateOpportunity&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">116.96875</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">601.0088</property>
+   </View>
+   <View
+      id="View4">
+      <property
+         name="activityId">EditOpportunity</property>
+      <property
+         name="page">/oracle/apps/uikit/crm/opportunities/page/EditOpportunity.jsff</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>EditOpportunity&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">351.10156</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">602.166</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase5"
+      from="View2"
+      to="View3">
+      <property
+         name="fromOutcome">create</property>
+      <property
+         name="sdm:polyPoints">R38,418.16016,233.80078,557.4206,113.40234,L46</property>
+   </ControlFlowCase>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase6"
+      from="View3"
+      to="View2">
+      <property
+         name="fromOutcome">doneCreate</property>
+      <property
+         name="sdm:polyPoints">L54,560.0088,120.40234,420.73038,240.80078,R46</property>
+   </ControlFlowCase>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase7"
+      from="View2"
+      to="View4">
+      <property
+         name="fromOutcome">edit</property>
+      <property
+         name="sdm:polyPoints">R54,420.36002,247.80078,561.166,347.53516,L46</property>
+   </ControlFlowCase>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase8"
+      from="View4"
+      to="View2">
+      <property
+         name="fromOutcome">doneEdit</property>
+      <property
+         name="sdm:polyPoints">L54,558.9521,354.53516,418.16016,254.80078,R62</property>
+   </ControlFlowCase>
+</SDM>

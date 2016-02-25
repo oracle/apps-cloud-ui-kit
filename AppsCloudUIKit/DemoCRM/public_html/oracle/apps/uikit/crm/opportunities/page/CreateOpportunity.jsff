@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:acdc="/appsCloudUIKitDCs"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="democrmBundle"
+         value="#{adfBundle['oracle.apps.uikit.crm.DemoCRMBundle']}"/>
+  <af:pageTemplate viewId="/oracle/apps/uikit/common/pageTemplates/MainPageTemplate.jspx"
+                   id="pt1">
+    <f:facet name="pageContents">
+      <af:panelGroupLayout id="pgl1" halign="center" valign="top"
+                           layout="vertical"
+                           binding="#{pageFlowScope.OpportunitiesBean.createPageContainer}">
+        <acdc:PageHeaderDC id="phdc1" cancelButtonVisible="true"
+                           cancelAction="#{pageFlowScope.OpportunitiesBean.customCreateReturnAction}"
+                           cancelActionListener="#{pageFlowScope.OpportunitiesBean.handleCreateCancel}"
+                           pageTitle="#{democrmBundle.CREATE_OPPORTUNITY}"
+                           saveAndCloseAction="#{pageFlowScope.OpportunitiesBean.customCreateReturnAction}"
+                           saveAndCloseActionListener="#{pageFlowScope.OpportunitiesBean.handleCreateSaveAndClose}"
+                           saveAndCloseButtonVisible="true"/>
+        <af:spacer width="10" height="10" id="s1"/>
+        <af:panelFormLayout id="pfl1" maxColumns="2" rows="4" labelWidth="110"
+                            labelAlignment="start">
+          <af:panelLabelAndMessage id="plam1" label="#{democrmBundle.NAME}"
+                                   showRequired="true" for="it1">
+            <af:inputText id="it1" columns="30"
+                          binding="#{pageFlowScope.OpportunitiesBean.createNameField}"/>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{democrmBundle.CUSTOMER}" id="plam2"
+                                   showRequired="true" for="soc1">
+            <af:selectOneChoice id="soc1"
+                                binding="#{pageFlowScope.OpportunitiesBean.createCustomerField}">
+              <f:selectItems value="#{pageFlowScope.OpportunitiesBean.accountsList}"
+                             id="si1"/>
+            </af:selectOneChoice>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{democrmBundle.WIN_PROBABILITY_}" id="plam3"
+                                   for="ins1">
+            <af:inputNumberSpinbox id="ins1" minimum="0"
+                                   maximum="100" stepSize="5" columns="3"
+                                   value="50"
+                                   binding="#{pageFlowScope.OpportunitiesBean.createWinProbabilityField}"/>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{democrmBundle.CLOSE_DATE}" id="plam4"
+                                   for="id1">
+            <af:inputDate id="id1" columns="15"
+                          binding="#{pageFlowScope.OpportunitiesBean.createCloseDateField}">
+              <af:convertDateTime pattern="dd-MMM-yyyy" type="date"/>
+            </af:inputDate>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{democrmBundle.CURRENCY}" id="plam5"
+                                   for="soc2">
+            <af:selectOneChoice value="USD" id="soc2"
+                                binding="#{pageFlowScope.OpportunitiesBean.createCurrencyField}">
+              <af:selectItem label="USD" value="USD" id="si2"/>
+            </af:selectOneChoice>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{democrmBundle.REVENUE}" id="plam6"
+                                   for="it2" showRequired="true">
+            <af:inputText id="it2" value="0" columns="15"
+                          binding="#{pageFlowScope.OpportunitiesBean.createRevenueField}">
+              <af:convertNumber minFractionDigits="0" maxFractionDigits="0"/>
+            </af:inputText>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{democrmBundle.SALES_STAGE}" id="plam7"
+                                   for="soc3" showRequired="true">
+            <af:selectOneChoice id="soc3"
+                                binding="#{pageFlowScope.OpportunitiesBean.createSalesStageField}">
+              <af:selectItem label="Agreement" value="Agreement" id="si6"/>
+              <af:selectItem label="Building Visions" value="Building Visions"
+                             id="si4"/>
+              <af:selectItem label="Discovery" value="Discovery" id="si7"/>
+              <af:selectItem label="Presentation" value="Presentation"
+                             id="si5"/>
+              <af:selectItem label="Qualification" value="Qualification"
+                             id="si3"/>
+            </af:selectOneChoice>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{democrmBundle.SALES_METHOD}" id="plam8"
+                                   for="soc4">
+            <af:selectOneChoice id="soc4" value="Standard Sales Process"
+                                binding="#{pageFlowScope.OpportunitiesBean.createSalesMethodField}">
+              <af:selectItem label="Standard Sales Process"
+                             value="Standard Sales Process" id="si8"/>
+            </af:selectOneChoice>
+          </af:panelLabelAndMessage>
+        </af:panelFormLayout>
+        <af:spacer width="20" height="20" id="s2"/>
+        <af:panelGroupLayout id="pgl2" layout="horizontal" valign="top"
+                             styleClass="AFStretchWidth">
+          <af:spacer width="20" height="20" id="s3"/>
+          <af:panelHeader text="#{democrmBundle.REVENUE_ITEMS}" id="ph1"
+                          size="1">
+            <f:facet name="toolbar">
+              <af:toolbar id="t1">
+                <af:commandToolbarButton id="ctb1"
+                                         text="#{democrmBundle.ADD_REVENUE_ITEM}"
+                                         disabled="true"/>
+              </af:toolbar>
+            </f:facet>
+            <af:table var="row" rowBandingInterval="0" id="t2" width="100%"
+                      columnStretching="column:c5"
+                      value="#{pageFlowScope.OpportunitiesBean.createRevenueItemList}"
+                      autoHeightRows="5">
+              <af:column headerText="#{democrmBundle.TYPE}"
+                         id="c3">
+                <af:selectOneChoice id="soc5" value="#{row.type}"
+                                    disabled="true"/>
+              </af:column>
+              <af:column headerText="#{democrmBundle.PRODUCT}" id="c5">
+                <af:selectOneChoice id="soc6" value="#{row.product}"
+                                    disabled="true"/>
+              </af:column>
+              <af:column id="c1" headerText="#{democrmBundle.UOM}">
+                <af:selectOneChoice id="soc7"
+                                    value="#{row.uom}" disabled="true"/>
+              </af:column>
+              <af:column id="c2" headerText="#{democrmBundle.QUANTITY}"
+                         align="end">
+                <af:inputText id="it3" value="#{row.quantity}" columns="10"
+                              disabled="true"/>
+              </af:column>
+              <af:column id="c4" headerText="#{democrmBundle.PRICE}"
+                         align="end">
+                <af:inputText id="it4" value="#{row.estimatedPrice}"
+                              columns="10" disabled="true"/>
+              </af:column>
+              <af:column id="c6" headerText="#{democrmBundle.REVENUE}"
+                         align="end">
+                <af:inputText id="it5" columns="15" value="#{row.revenue}"
+                              disabled="true"/>
+              </af:column>
+              <af:column id="c7" align="center" sortable="false"
+                         headerText="#{''}">
+                <af:commandImageLink id="cil1"
+                                     icon="/images/func_remove_16_ena.png"
+                                     disabledIcon="/images/func_remove_16_dis.png"
+                                     hoverIcon="/images/func_remove_16_hov.png"
+                                     depressedIcon="/images/func_remove_16_act.png"
+                                     disabled="true"/>
+              </af:column>
+            </af:table>
+          </af:panelHeader>
+        </af:panelGroupLayout>
+      </af:panelGroupLayout>
+    </f:facet>
+  </af:pageTemplate>
+</jsp:root>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<pageTemplateDefs xmlns="http://xmlns.oracle.com/adf/faces/rich/pagetemplate">
+  <pagetemplate-jsp-ui-def>/oracle/apps/uikit/common/pageTemplates/MainPageTemplate.jspx</pagetemplate-jsp-ui-def>
+  <pagetemplate-jsp-ui-def>/oracle/apps/uikit/common/pageTemplates/SimpleUIShell.jspx</pagetemplate-jsp-ui-def>
+</pageTemplateDefs>

@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:acdc="/appsCloudUIKitDCs"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="demohcmBundle"
+         value="#{adfBundle['oracle.apps.uikit.hcm.DemoHCMBundle']}"/>
+  <af:pageTemplate viewId="/oracle/apps/uikit/common/pageTemplates/MainPageTemplate.jspx"
+                   id="pt1">
+    <f:facet name="headerStart">
+      <af:panelGroupLayout id="pgl2" layout="vertical" valign="top">
+        <af:spacer height="15" id="s3"/>
+        <af:panelGroupLayout id="pgl4" layout="horizontal" valign="top">
+          <af:spacer width="25" id="s4"/>
+          <af:image id="i1"
+                    source="#{pageFlowScope.PerformanceBean.selectedPerson.photo}"
+                    shortDesc="#{pageFlowScope.PerformanceBean.selectedPerson.fullName}"
+                    styleClass="photo-round"
+                    inlineStyle="width:50px; height:50px;"/>
+        </af:panelGroupLayout>
+      </af:panelGroupLayout>
+    </f:facet>
+    <f:facet name="header">
+      <af:panelGroupLayout id="pgl1" layout="vertical">
+        <af:spacer height="10" id="s5"/>
+        <acdc:PageHeaderDC id="phdc1"
+                           pageTitle="#{pageFlowScope.PerformanceBean.selectedPerson.fullName}: #{pageFlowScope.PerformanceBean.selectedEvaluation.name} - #{pageFlowScope.PerformanceBean.selectedEvaluation.type}"
+                           cancelButtonVisible="true" saveButtonVisible="true"
+                           saveAndCloseButtonVisible="true" cancelAction="done"
+                           saveAndCloseAction="done"
+                           cancelActionListener="#{pageFlowScope.PerformanceBean.handleReturnFromDetail}"
+                           saveAndCloseActionListener="#{pageFlowScope.PerformanceBean.handleReturnFromDetail}">
+          <f:facet name="customToolbar">
+            <af:commandImageLink id="cil1"
+                                 partialSubmit="true"
+                                 icon="/images/func_print_16_ena.png"
+                                 disabledIcon="/images/func_print_16_dis.png"
+                                 hoverIcon="/images/func_print_16_hov.png"
+                                 depressedIcon="/images/func_print_16_act.png"/>
+          </f:facet>
+        </acdc:PageHeaderDC>
+        <af:panelGridLayout id="pgl12" dimensionsFrom="children">
+          <af:gridRow id="gr1">
+            <af:gridCell id="gc2" width="33%">
+              <af:inputText label="#{demohcmBundle.TASK}" id="it1"
+                            readOnly="true"
+                            value="#{pageFlowScope.PerformanceBean.selectedEvaluation.nextOpenTaskName}"/>
+            </af:gridCell>
+            <af:gridCell id="gc3" halign="center" width="33%">
+              <af:inputText label="#{demohcmBundle.ATTACHMENTS}" id="it2"
+                            value="#{'None'}" readOnly="true"/>
+            </af:gridCell>
+            <af:gridCell id="gc1" halign="end" width="34%">
+              <af:inputText label="#{demohcmBundle.REMAINING_DAYS}" id="it3"
+                            value="#{pageFlowScope.PerformanceBean.selectedEvaluation.remainingDays}"
+                            readOnly="true"/>
+            </af:gridCell>
+          </af:gridRow>
+        </af:panelGridLayout>
+      </af:panelGroupLayout>
+    </f:facet>
+    <f:facet name="headerEnd">
+      <af:spacer width="25" id="s6"/>
+    </f:facet>
+    <f:facet name="pageContents">
+      <af:panelGroupLayout id="pgl3" layout="vertical"
+                           binding="#{pageFlowScope.PerformanceBean.evaluationDetailContainer}">
+        <af:separator id="s1"/>
+        <af:spacer height="25" id="s2"/>
+        <acdc:InfotilesDC id="idc1" infotilesLayout="vertical" tileHeight="100"
+                          tileWidth="180"
+                          tileSelectionActionListener="#{pageFlowScope.PerformanceBean.handleTileSelection}"
+                          binding="#{pageFlowScope.PerformanceBean.infotilesDC}">
+          <f:facet name="tileDetail">
+            <af:deck id="d1" displayedChild="r1"
+                     binding="#{pageFlowScope.PerformanceBean.tileDetailDeck}">
+              <af:transition transition="fade" triggerType="forwardNavigate"/>
+              <af:transition transition="fade" triggerType="backNavigate"/>
+              <af:region value="#{bindings.CompetenciesFlow1.regionModel}"
+                         id="r1"/>
+              <af:region value="#{bindings.GoalsFlow1.regionModel}" id="r2"/>
+              <af:region value="#{bindings.QuestionnairesFlow1.regionModel}"
+                         id="r3"/>
+              <af:region value="#{bindings.OverallSummaryFlow1.regionModel}"
+                         id="r4"/>
+            </af:deck>
+          </f:facet>
+        </acdc:InfotilesDC>
+      </af:panelGroupLayout>
+    </f:facet>
+    <f:attribute name="Header-Height" value="70px"/>
+    <f:attribute name="Header-Start-Width" value="95px"/>
+    <f:attribute name="Header-End-Width" value="25px"/>
+  </af:pageTemplate>
+</jsp:root>

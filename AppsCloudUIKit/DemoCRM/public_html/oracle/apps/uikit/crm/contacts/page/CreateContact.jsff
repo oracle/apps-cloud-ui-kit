@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:acdc="/appsCloudUIKitDCs"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="democrmBundle"
+         value="#{adfBundle['oracle.apps.uikit.crm.DemoCRMBundle']}"/>
+  <af:pageTemplate viewId="/oracle/apps/uikit/common/pageTemplates/MainPageTemplate.jspx"
+                   id="pt1">
+    <f:facet name="pageContents">
+      <af:panelGroupLayout id="pgl1" layout="vertical" halign="center"
+                           valign="top"
+                           binding="#{pageFlowScope.ContactsBean.createPageContainer}">
+        <acdc:PageHeaderDC id="phdc1"
+                           pageTitle="#{democrmBundle.CREATE_CONTACT}"
+                           cancelButtonVisible="true"
+                           cancelActionListener="#{pageFlowScope.ContactsBean.handleCreateCancel}"
+                           cancelAction="#{pageFlowScope.ContactsBean.customCreateReturnAction}"
+                           saveAndCloseButtonVisible="true"
+                           saveAndCloseAction="#{pageFlowScope.ContactsBean.customCreateReturnAction}"
+                           saveAndCloseActionListener="#{pageFlowScope.ContactsBean.handleCreateSaveAndClose}"/>
+        <af:spacer width="10" height="10" id="s1"/>
+        <af:panelFormLayout id="pfl1" maxColumns="2" rows="5"
+                            labelAlignment="start" labelWidth="100">
+          <af:panelLabelAndMessage id="plam17">
+            <af:image source="/images/qual_person_48.png"
+                      shortDesc="#{democrmBundle.PROFILE_PHOTO}" id="i1"
+                      inlineStyle="border-color:Gray; border-style:solid; border-width:1.0px; padding:3px;"/>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage id="plam16">
+            <af:commandButton text="#{democrmBundle.CHOOSE_PHOTO}" id="cb2"
+                              partialSubmit="true" disabled="true"/>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage id="plam2"
+                                   for="soc1" label="#{democrmBundle.PREFIX}">
+            <af:selectOneChoice value="Dr." id="soc1" autoSubmit="true"
+                                simple="true"
+                                binding="#{pageFlowScope.ContactsBean.prefixField}">
+              <af:selectItem label="Dr." value="Dr." id="si5"/>
+              <af:selectItem label="Mr." value="Mr." id="si2"/>
+              <af:selectItem label="Mrs." value="Mrs." id="si3"/>
+              <af:selectItem label="Ms." value="Ms." id="si1"/>
+              <af:selectItem label="Undisclosed" value="Undisclosed" id="si4"/>
+            </af:selectOneChoice>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage id="plam3" for="it1"
+                                   label="#{democrmBundle.FIRST_NAME}"
+                                   showRequired="true">
+            <af:inputText id="it1" columns="40" simple="true"
+                          binding="#{pageFlowScope.ContactsBean.firstNameField}"/>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage id="plam4" for="it2"
+                                   label="#{democrmBundle.LAST_NAME}"
+                                   showRequired="true">
+            <af:inputText id="it2" columns="40" simple="true"
+                          binding="#{pageFlowScope.ContactsBean.lastNameField}"/>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage id="plam5" for="it3"
+                                   label="#{democrmBundle.EMAIL}"
+                                   showRequired="true">
+            <af:inputText id="it3" columns="40" simple="true"
+                          binding="#{pageFlowScope.ContactsBean.emailField}"/>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage id="plam6" for="it4"
+                                   label="#{democrmBundle.PHONE}"
+                                   showRequired="true">
+            <af:inputText id="it4" columns="40" simple="true"
+                          binding="#{pageFlowScope.ContactsBean.phoneField}"/>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage id="plam8" for="it6"
+                                   label="#{democrmBundle.JOB_TITLE}"
+                                   showRequired="true">
+            <af:inputText id="it6" columns="40" simple="true"
+                          binding="#{pageFlowScope.ContactsBean.jobTitleField}"/>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage id="plam7" for="it5"
+                                   label="#{democrmBundle.ACCOUNT}"
+                                   showRequired="true">
+            <af:inputText id="it5" columns="40" simple="true"
+                          binding="#{pageFlowScope.ContactsBean.accountField}"/>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage id="plam1"
+                                   labelStyle="vertical-align: top;" for="sor1"
+                                   label="#{democrmBundle.TYPE}">
+            <af:selectOneRadio value="Other" id="sor1" autoSubmit="true"
+                               simple="true"
+                               binding="#{pageFlowScope.ContactsBean.contactTypeField}"
+                               disabled="true">
+              <af:selectItem label="Customer" value="Customer" id="si6"/>
+              <af:selectItem label="Prospect" value="Prospect" id="si7"/>
+              <af:selectItem label="Other" value="Other" id="si8"/>
+            </af:selectOneRadio>
+          </af:panelLabelAndMessage>
+        </af:panelFormLayout>
+        <af:spacer width="10" height="10" id="s2"/>
+        <af:panelHeader text="#{democrmBundle.PRIMARY_ADDRESS}" id="ph1">
+          <af:panelFormLayout id="pfl2" maxColumns="2" rows="4"
+                              labelAlignment="start" labelWidth="100">
+            <af:panelLabelAndMessage label="#{democrmBundle.COUNTRY}"
+                                     id="plam10" for="soc2">
+              <af:selectOneChoice id="soc2" simple="true" disabled="true">
+                <af:selectItem label="China" value="China" id="si10"/>
+                <af:selectItem label="India" value="India" id="si12"/>
+                <af:selectItem label="United Kingdom" value="United Kingdom"
+                               id="si9"/>
+                <af:selectItem label="United States" value="United States"
+                               id="si11"/>
+              </af:selectOneChoice>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{democrmBundle.ADDRESS_LINE_1}"
+                                     id="plam11" for="it7">
+              <af:inputText id="it7" columns="40" simple="true"
+                            disabled="true"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{democrmBundle.ADDRESS_LINE_2}"
+                                     id="plam12" for="it8">
+              <af:inputText id="it8" columns="40" simple="true"
+                            disabled="true"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{democrmBundle.CITY}" id="plam13"
+                                     for="it9" showRequired="true">
+              <af:inputText id="it9" columns="40" simple="true"
+                            binding="#{pageFlowScope.ContactsBean.locationField}"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{democrmBundle.STATE_OR_COUNTY}"
+                                     id="plam14" for="it10">
+              <af:inputText id="it10" columns="40" simple="true"
+                            disabled="true"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{democrmBundle.POST_CODE}"
+                                     id="plam9" for="it11">
+              <af:inputText id="it11" columns="40" simple="true"
+                            disabled="true"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage id="plam15" for="cb1">
+              <af:commandButton text="#{democrmBundle.VERIFY_ADDRESS}" id="cb1"
+                                partialSubmit="true"
+                                disabled="true"/>
+            </af:panelLabelAndMessage>
+          </af:panelFormLayout>
+        </af:panelHeader>
+      </af:panelGroupLayout>
+    </f:facet>
+  </af:pageTemplate>
+</jsp:root>

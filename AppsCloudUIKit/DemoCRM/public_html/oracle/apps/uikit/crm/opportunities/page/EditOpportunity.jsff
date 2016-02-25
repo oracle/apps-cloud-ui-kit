@@ -1,0 +1,463 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:acdc="/appsCloudUIKitDCs"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="democrmBundle"
+         value="#{adfBundle['oracle.apps.uikit.crm.DemoCRMBundle']}"/>
+  <af:pageTemplate viewId="/oracle/apps/uikit/common/pageTemplates/MainPageTemplate.jspx"
+                   id="pt1">
+    <f:facet name="pageContents">
+      <af:panelGroupLayout id="pgl1" halign="center" valign="top"
+                           layout="vertical">
+        <af:panelGroupLayout id="pgl3" layout="vertical"
+                             partialTriggers="sdi1 sdi2 sdi3 sdi4 sdi5">
+          <acdc:PageHeaderDC id="phdc1"
+                             cancelAction="#{pageFlowScope.OpportunitiesBean.customEditReturnAction}"
+                             cancelActionListener="#{pageFlowScope.OpportunitiesBean.handleEditCancel}"
+                             cancelButtonVisible="true"
+                             pageTitle="#{democrmBundle.EDIT_OPPORTUNITY_}#{pageFlowScope.OpportunitiesBean.editedOpportunity.name}: #{viewScope.selectedTab == null ? democrmBundle.SUMMARY : viewScope.selectedTab}"
+                             saveButtonVisible="true"
+                             saveAndCloseButtonVisible="true"
+                             saveActionListener="#{pageFlowScope.OpportunitiesBean.handleEditSave}"
+                             saveAndCloseActionListener="#{pageFlowScope.OpportunitiesBean.handleEditSaveAndClose}"
+                             saveAndCloseAction="#{pageFlowScope.OpportunitiesBean.customEditReturnAction}"/>
+        </af:panelGroupLayout>
+        <af:panelTabbed position="start" id="pt2"
+                        dimensionsFrom="disclosedChild">
+          <af:showDetailItem id="sdi5" text="#{democrmBundle.SUMMARY}"
+                             disclosed="true" stretchChildren="first"
+                             icon="/images/fuse-detail-tab-summary.png"
+                             shortDesc="#{democrmBundle.SUMMARY}">
+            <af:setPropertyListener from="#{democrmBundle.SUMMARY}" to="#{viewScope.selectedTab}"
+                                    type="disclosure"/>
+            <af:panelGroupLayout id="pgl2" layout="vertical"
+                                 styleClass="padding10px" halign="center">
+              <af:panelFormLayout id="pfl1" maxColumns="2" rows="5"
+                                  labelWidth="110" labelAlignment="start">
+                <af:panelLabelAndMessage id="plam1"
+                                         label="#{democrmBundle.NAME}"
+                                         showRequired="true" for="it1">
+                  <af:inputText id="it1" columns="30"
+                                binding="#{pageFlowScope.OpportunitiesBean.editNameField}"
+                                value="#{pageFlowScope.OpportunitiesBean.editedOpportunity.name}"/>
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="#{democrmBundle.CUSTOMER}"
+                                         id="plam2" showRequired="true"
+                                         for="soc1">
+                  <af:selectOneChoice id="soc1"
+                                      binding="#{pageFlowScope.OpportunitiesBean.editCustomerField}"
+                                      value="#{pageFlowScope.OpportunitiesBean.editedOpportunity.account}">
+                    <f:selectItems value="#{pageFlowScope.OpportunitiesBean.accountsList}"
+                                   id="si1"/>
+                  </af:selectOneChoice>
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="#{democrmBundle.WIN_PROBABILITY_}"
+                                         id="plam3" for="ins1">
+                  <af:inputNumberSpinbox id="ins1" minimum="0" maximum="100"
+                                         stepSize="5" columns="3"
+                                         value="#{pageFlowScope.OpportunitiesBean.editedOpportunity.winPercent}"
+                                         binding="#{pageFlowScope.OpportunitiesBean.editWinProbabilityField}"/>
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="#{democrmBundle.CLOSE_DATE}"
+                                         id="plam4" for="id1">
+                  <af:inputDate id="id1" columns="15"
+                                binding="#{pageFlowScope.OpportunitiesBean.editCloseDateField}"
+                                value="#{pageFlowScope.OpportunitiesBean.editedOpportunity.closeDate}">
+                    <af:convertDateTime pattern="dd-MMM-yyyy" type="date"/>
+                  </af:inputDate>
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="#{democrmBundle.STATUS}" id="plam9">
+                  <af:selectOneChoice id="soc8"
+                                      binding="#{pageFlowScope.OpportunitiesBean.editStatusField}"
+                                      value="#{pageFlowScope.OpportunitiesBean.editedOpportunity.status}">
+                    <af:selectItem label="Open" value="Open" id="si10"/>
+                    <af:selectItem label="Closed" value="Closed" id="si9"/>
+                  </af:selectOneChoice>
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="#{democrmBundle.CURRENCY}"
+                                         id="plam5" for="soc2">
+                  <af:selectOneChoice value="USD" id="soc2"
+                                      binding="#{pageFlowScope.OpportunitiesBean.editCurrencyField}">
+                    <af:selectItem label="USD" value="USD" id="si2"/>
+                  </af:selectOneChoice>
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="#{democrmBundle.REVENUE}"
+                                         id="plam6" for="it2"
+                                         showRequired="true">
+                  <af:inputText id="it2"
+                                value="#{pageFlowScope.OpportunitiesBean.editedOpportunity.amount}" columns="15"
+                                binding="#{pageFlowScope.OpportunitiesBean.editRevenueField}">
+                    <af:convertNumber minFractionDigits="0"
+                                      maxFractionDigits="0"/>
+                  </af:inputText>
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="#{democrmBundle.SALES_STAGE}"
+                                         id="plam7" for="soc3"
+                                         showRequired="true">
+                  <af:selectOneChoice id="soc3"
+                                      binding="#{pageFlowScope.OpportunitiesBean.editSalesStageField}"
+                                      value="#{pageFlowScope.OpportunitiesBean.editedOpportunity.salesStage}">
+                    <af:selectItem label="Agreement" value="Agreement"
+                                   id="si6"/>
+                    <af:selectItem label="Building Visions"
+                                   value="Building Visions" id="si4"/>
+                    <af:selectItem label="Discovery" value="Discovery"
+                                   id="si7"/>
+                    <af:selectItem label="Presentation" value="Presentation"
+                                   id="si5"/>
+                    <af:selectItem label="Qualification" value="Qualification"
+                                   id="si3"/>
+                  </af:selectOneChoice>
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="#{democrmBundle.SALES_METHOD}"
+                                         id="plam8" for="soc4">
+                  <af:selectOneChoice id="soc4" value="Standard Sales Process"
+                                      binding="#{pageFlowScope.OpportunitiesBean.editSalesMethodField}">
+                    <af:selectItem label="Standard Sales Process"
+                                   value="Standard Sales Process" id="si8"/>
+                  </af:selectOneChoice>
+                </af:panelLabelAndMessage>
+              </af:panelFormLayout>
+              <af:spacer width="20" height="20" id="s2"/>
+              <af:panelGroupLayout id="pgl8" layout="horizontal"
+                                   valign="top" styleClass="AFStretchWidth">
+                <af:spacer width="10" height="10" id="s3"/>
+                <af:panelHeader text="#{democrmBundle.REVENUE_ITEMS}" id="ph1"
+                                size="1">
+                  <f:facet name="toolbar">
+                    <af:toolbar id="t1">
+                      <af:commandToolbarButton id="ctb1"
+                                               text="#{democrmBundle.ADD_REVENUE_ITEM}"
+                                               disabled="true"/>
+                    </af:toolbar>
+                  </f:facet>
+                  <af:table var="row" rowBandingInterval="0" id="t2"
+                            width="100%" columnStretching="column:c5"
+                            value="#{pageFlowScope.OpportunitiesBean.editRevenueItemList}"
+                            autoHeightRows="5">
+                    <af:column headerText="#{democrmBundle.TYPE}" id="c3">
+                      <af:selectOneChoice id="soc5" value="#{row.type}"
+                                          disabled="true"/>
+                    </af:column>
+                    <af:column headerText="#{democrmBundle.PRODUCT}" id="c5">
+                      <af:selectOneChoice id="soc6" value="#{row.product}"
+                                          disabled="true"/>
+                    </af:column>
+                    <af:column id="c1" headerText="#{democrmBundle.UOM}">
+                      <af:selectOneChoice id="soc7" value="#{row.uom}"
+                                          disabled="true"/>
+                    </af:column>
+                    <af:column id="c2" headerText="#{democrmBundle.QUANTITY}"
+                               align="end">
+                      <af:inputText id="it3" value="#{row.quantity}"
+                                    columns="10" disabled="true"/>
+                    </af:column>
+                    <af:column id="c4" headerText="#{democrmBundle.PRICE}"
+                               align="end">
+                      <af:inputText id="it4" value="#{row.estimatedPrice}"
+                                    columns="10" disabled="true"/>
+                    </af:column>
+                    <af:column id="c6" headerText="#{democrmBundle.REVENUE}"
+                               align="end">
+                      <af:inputText id="it5" columns="15" value="#{row.revenue}"
+                                    disabled="true"/>
+                    </af:column>
+                    <af:column id="c7" align="center" sortable="false"
+                               headerText="#{''}">
+                      <af:commandImageLink id="cil1"
+                                           icon="/images/func_remove_16_ena.png"
+                                           disabledIcon="/images/func_remove_16_dis.png"
+                                           hoverIcon="/images/func_remove_16_hov.png"
+                                           depressedIcon="/images/func_remove_16_act.png"
+                                           disabled="true"/>
+                    </af:column>
+                  </af:table>
+                </af:panelHeader>
+                <af:spacer width="10" height="10" id="s1"/>
+              </af:panelGroupLayout>
+              <af:spacer width="10" height="10" id="s4"/>
+            </af:panelGroupLayout>
+          </af:showDetailItem>
+          <af:showDetailItem text="#{democrmBundle.CONTACTS}" id="sdi1"
+                             stretchChildren="first"
+                             icon="/images/fuse-detail-tab-contacts.png"
+                             shortDesc="#{democrmBundle.CONTACTS}">
+            <af:setPropertyListener from="#{democrmBundle.CONTACTS}"
+                                    to="#{viewScope.selectedTab}"
+                                    type="disclosure"/>
+            <af:panelGroupLayout id="pgl4" styleClass="padding10px"
+                                 layout="vertical">
+              <af:spacer width="10" height="10" id="s16"/>
+              <af:panelGroupLayout id="pgl13" styleClass="AFStretchWidth"
+                                   valign="top" layout="horizontal">
+                <af:spacer width="10" height="10" id="s18"/>
+                <af:panelHeader text="#{''}" id="ph4">
+                  <f:facet name="context">
+                    <af:selectOneChoice label="#{democrmBundle.SHOW}"
+                                        id="selectOneChoice1" disabled="true"
+                                        value="ALL">
+                      <af:selectItem label="All Contacts"
+                                     value="ALL" id="selectItem2"/>
+                    </af:selectOneChoice>
+                  </f:facet>
+                  <f:facet name="toolbar">
+                    <af:toolbar id="toolbar3">
+                      <af:commandToolbarButton id="commandToolbarButton3"
+                                               text="#{democrmBundle.ADD_CONTACT}"
+                                               disabled="true"/>
+                    </af:toolbar>
+                  </f:facet>
+                  <af:table var="row" rowBandingInterval="0" id="t7"
+                            value="#{SessionState.contactsList}" width="100%"
+                            columnStretching="column:c26" autoHeightRows="20">
+                    <af:column id="c28" headerText="#{democrmBundle.PRIMARY}"
+                               align="center">
+                      <af:image source="/images/checkmark_ena.png" id="i3"
+                                rendered="#{row.id == 3}"/>
+                    </af:column>
+                    <af:column sortable="false"
+                               headerText="#{democrmBundle.NAME}" id="c26"
+                               width="200">
+                      <af:outputText value="#{row.fullName}" id="ot16"/>
+                    </af:column>
+                    <af:column sortable="false"
+                               headerText="#{democrmBundle.JOB_TITLE}" id="c25"
+                               width="150">
+                      <af:outputText value="#{row.job}" id="ot18"/>
+                    </af:column>
+                    <af:column sortable="false"
+                               headerText="#{democrmBundle.PHONE}" id="c23"
+                               width="150">
+                      <af:outputText value="#{row.phone}" id="ot17"/>
+                    </af:column>
+                    <af:column sortable="false"
+                               headerText="#{democrmBundle.EMAIL}" id="c24"
+                               width="200">
+                      <af:outputText value="#{row.email}" id="ot19"/>
+                    </af:column>
+                    <af:column sortable="false"
+                               headerText="#{democrmBundle.COMPANY}" id="c22"
+                               width="150">
+                      <af:outputText value="#{row.company}" id="ot15"/>
+                    </af:column>
+                  </af:table>
+                </af:panelHeader>
+                <af:spacer width="10" height="10" id="s19"/>
+              </af:panelGroupLayout>
+              <af:spacer width="10" height="10" id="s17"/>
+            </af:panelGroupLayout>
+          </af:showDetailItem>
+          <af:showDetailItem text="#{democrmBundle.TEAM_MEMBERS}" id="sdi2"
+                             stretchChildren="first"
+                             icon="/images/fuse-detail-tab-team.png"
+                             shortDesc="#{democrmBundle.TEAM_MEMBERS}">
+            <af:setPropertyListener from="#{democrmBundle.TEAM_MEMBERS}"
+                                    to="#{viewScope.selectedTab}"
+                                    type="disclosure"/>
+            <af:panelGroupLayout id="pgl5" styleClass="padding10px"
+                                 layout="vertical">
+              <af:spacer width="10" height="10" id="s14"/>
+              <af:panelGroupLayout id="pgl12" styleClass="AFStretchWidth"
+                                   layout="horizontal" valign="top">
+                <af:spacer width="10" height="10" id="s20"/>
+                <af:panelHeader text="#{''}" id="ph5">
+                  <f:facet name="toolbar">
+                    <af:toolbar id="toolbar2">
+                      <af:commandToolbarButton id="commandToolbarButton2"
+                                               text="#{democrmBundle.ADD_TEAM_MEMBER}"
+                                               disabled="true"/>
+                    </af:toolbar>
+                  </f:facet>
+                  <af:table var="row" rowBandingInterval="0" id="t6"
+                            width="100%" columnStretching="column:c18"
+                            value="#{SessionState.myTeamList}"
+                            autoHeightRows="10">
+                    <af:column sortable="false"
+                               headerText="#{democrmBundle.OWNER}" id="c20"
+                               align="center">
+                      <af:image source="/images/checkmark_ena.png" id="i1"
+                                rendered="#{row.id == 2}"/>
+                    </af:column>
+                    <af:column sortable="false"
+                               headerText="#{democrmBundle.NAME}" id="c18"
+                               width="200">
+                      <af:outputText value="#{row.fullName}" id="ot13"/>
+                    </af:column>
+                    <af:column sortable="false"
+                               headerText="#{democrmBundle.PHONE}" id="c17"
+                               width="150">
+                      <af:outputText value="#{row.phone}" id="ot1"/>
+                    </af:column>
+                    <af:column sortable="false"
+                               headerText="#{democrmBundle.EMAIL}" id="c19"
+                               width="200">
+                      <af:outputText value="#{row.email}" id="ot12"/>
+                    </af:column>
+                    <af:column sortable="false"
+                               headerText="#{democrmBundle.ACCESS}" id="c21"
+                               width="150">
+                      <af:selectOneChoice value="Full" id="soc11"
+                                          disabled="true">
+                        <af:selectItem label="Full" value="Full" id="si12"/>
+                      </af:selectOneChoice>
+                    </af:column>
+                    <af:column id="c27" headerText="#{democrmBundle.FUNCTION}"
+                               width="150">
+                      <af:selectOneChoice value="Domain Expert" id="soc12"
+                                          disabled="true">
+                        <af:selectItem label="Domain Expert"
+                                       value="Domain Expert" id="si13"/>
+                      </af:selectOneChoice>
+                    </af:column>
+                  </af:table>
+                </af:panelHeader>
+                <af:spacer width="10" height="10" id="s21"/>
+              </af:panelGroupLayout>
+              <af:spacer width="10" height="10" id="s15"/>
+            </af:panelGroupLayout>
+          </af:showDetailItem>
+          <af:showDetailItem text="#{democrmBundle.TASKS}" id="sdi3"
+                             stretchChildren="first"
+                             icon="/images/fuse-detail-tab-tasks.png"
+                             shortDesc="#{democrmBundle.TASKS}">
+            <af:setPropertyListener from="#{democrmBundle.TASKS}"
+                                    to="#{viewScope.selectedTab}"
+                                    type="disclosure"/>
+            <af:panelGroupLayout id="pgl6" styleClass="padding10px"
+                                 layout="vertical">
+              <af:spacer width="10" height="10" id="s10"/>
+              <af:panelGroupLayout id="pgl11" layout="horizontal"
+                                   styleClass="AFStretchWidth" valign="top">
+                <af:spacer width="10" height="10" id="s12"/>
+                <af:panelHeader text="#{''}" id="ph3">
+                  <f:facet name="context">
+                    <af:selectOneChoice label="#{democrmBundle.SHOW}"
+                                        id="soc10" disabled="true"
+                                        value="INCOMPLETE">
+                      <af:selectItem label="Incomplete Tasks"
+                                     value="INCOMPLETE" id="selectItem1"/>
+                    </af:selectOneChoice>
+                  </f:facet>
+                  <f:facet name="toolbar">
+                    <af:toolbar id="toolbar1">
+                      <af:commandToolbarButton id="commandToolbarButton1"
+                                               text="#{democrmBundle.CREATE_TASK}"
+                                               disabled="true"/>
+                    </af:toolbar>
+                  </f:facet>
+                  <af:table var="row" rowBandingInterval="0" id="t5"
+                            value="#{pageFlowScope.OpportunitiesBean.editTaskList}"
+                            columnStretching="column:c12" width="100%"
+                            autoHeightRows="5">
+                    <af:column sortable="false"
+                               headerText="#{democrmBundle.PRIORITY}" id="c16">
+                      <af:image source="#{row.priority == 'Highest' ? '/images/fuse-icon-priority-highest.png' : row.priority == 'High' ? '/images/fuse-icon-priority-high.png' : row.priority == 'Medium' ? '/images/fuse-icon-priority-medium.png' : row.priority == 'Low' ? '/images/fuse-icon-priority-low.png' : '/images/fuse-icon-priority-lowest.png'}"
+                                id="i2" shortDesc="#{row.priority}"/>
+                    </af:column>
+                    <af:column sortable="false"
+                               headerText="#{democrmBundle.SUBJECT}" id="c12"
+                               width="200">
+                      <af:outputText value="#{row.subject}" id="ot10"/>
+                    </af:column>
+                    <af:column sortable="false"
+                               headerText="#{democrmBundle.DUE_DATE}" id="c15"
+                               width="150">
+                      <af:outputText value="#{row.dueDate}" id="ot11">
+                        <af:convertDateTime pattern="dd-MMM-yyyy" type="date"/>
+                      </af:outputText>
+                    </af:column>
+                    <af:column sortable="false"
+                               headerText="#{democrmBundle.STATUS}" id="c14"
+                               width="150">
+                      <af:outputText value="#{row.status}" id="ot9"/>
+                    </af:column>
+                    <af:column sortable="false"
+                               headerText="#{democrmBundle.OWNER}" id="c13"
+                               width="150">
+                      <af:outputText value="#{row.owner}" id="ot3"/>
+                    </af:column>
+                  </af:table>
+                </af:panelHeader>
+                <af:spacer width="10" height="10" id="s13"/>
+              </af:panelGroupLayout>
+              <af:spacer width="10" height="10" id="s11"/>
+            </af:panelGroupLayout>
+          </af:showDetailItem>
+          <af:showDetailItem text="#{democrmBundle.APPOINTMENTS}" id="sdi4"
+                             stretchChildren="first"
+                             icon="/images/fuse-detail-tab-appointments.png"
+                             shortDesc="#{democrmBundle.APPOINTMENTS}">
+            <af:setPropertyListener from="#{democrmBundle.APPOINTMENTS}"
+                                    to="#{viewScope.selectedTab}"
+                                    type="disclosure"/>
+            <af:panelGroupLayout id="pgl7" styleClass="padding10px"
+                                 layout="vertical">
+              <af:spacer width="10" height="10" id="s8"/>
+              <af:panelGroupLayout id="pgl9" valign="top" layout="horizontal"
+                                   styleClass="AFStretchWidth">
+                <af:spacer width="10" height="10" id="s5"/>
+                <af:panelHeader text="#{''}" id="ph2">
+                  <f:facet name="context">
+                    <af:selectOneChoice label="#{democrmBundle.SHOW}" id="soc9" disabled="true"
+                                        value="7">
+                      <af:selectItem label="Show upcoming appointments (next 7 days)"
+                                     value="7" id="si11"/>
+                    </af:selectOneChoice>
+                  </f:facet>
+                  <f:facet name="toolbar">
+                    <af:toolbar id="t3">
+                      <af:commandToolbarButton
+                                               id="ctb2"
+                                               text="#{democrmBundle.CREATE_APPOINTMENT}"
+                                               disabled="true"/>
+                    </af:toolbar>
+                  </f:facet>
+                  <af:table var="row" rowBandingInterval="0" id="t4"
+                            value="#{pageFlowScope.OpportunitiesBean.editAppointmentList}"
+                            width="100%" columnStretching="column:c10"
+                            autoHeightRows="5">
+                    <af:column sortable="false"
+                               headerText="#{democrmBundle.SUBJECT}" id="c10"
+                               width="150">
+                      <af:outputText value="#{row.subject}" id="ot7"/>
+                    </af:column>
+                    <af:column sortable="false"
+                               headerText="#{democrmBundle.DATE_AND_TIME}" id="c11"
+                               width="150">
+                      <af:panelGroupLayout id="pgl10" layout="horizontal">
+                        <af:outputText value="#{row.date}"
+                                       id="ot6">
+                          <af:convertDateTime pattern="dd-MMM-yyyy"
+                                              type="date"/>
+                        </af:outputText>
+                        <af:spacer width="3" height="3" id="s9"/>
+                        <af:outputText value="#{row.time}" id="ot8"/>
+                      </af:panelGroupLayout>
+                    </af:column>
+                    <af:column sortable="false"
+                               headerText="#{democrmBundle.LOCATION}" id="c8"
+                               width="150">
+                      <af:outputText value="#{row.location}" id="ot4"/>
+                    </af:column>
+                    <af:column sortable="false"
+                               headerText="#{democrmBundle.PARTICIPANTS}" id="c9"
+                               width="200">
+                      <af:outputText value="#{row.participants}" id="ot5"/>
+                    </af:column>
+                  </af:table>
+                </af:panelHeader>
+                <af:spacer width="10" height="10" id="s6"/>
+              </af:panelGroupLayout>
+              <af:spacer width="10" height="10" id="s7"/>
+            </af:panelGroupLayout>
+          </af:showDetailItem>
+        </af:panelTabbed>
+      </af:panelGroupLayout>
+    </f:facet>
+  </af:pageTemplate>
+</jsp:root>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<Application xmlns="http://xmlns.oracle.com/adfm/application"
+             version="11.1.1.67.30" id="DataBindings" SeparateXMLFiles="false"
+             Package="oracle.apps.uikit.fin" ClientType="Generic">
+  <definitionFactories>
+    <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding"
+             className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+    <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
+  </definitionFactories>
+  <pageMap>
+    <page path="/oracle/apps/uikit/fin/reports/page/FinancialReports.jsff"
+          usageId="oracle_apps_uikit_fin_FinancialReportsPageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="oracle_apps_uikit_fin_FinancialReportsPageDef"
+          path="oracle.apps.uikit.fin.reports.page.FinancialReportsPageDef"/>
+  </pageDefinitionUsages>
+</Application>

@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:acdc="/appsCloudUIKitDCs"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="democrmBundle"
+         value="#{adfBundle['oracle.apps.uikit.crm.DemoCRMBundle']}"/>
+  <af:pageTemplate viewId="/oracle/apps/uikit/common/pageTemplates/MainPageTemplate.jspx"
+                   id="pt1">
+    <f:facet name="pageContents">
+      <af:panelGroupLayout id="pgl1" layout="vertical">
+        <acdc:PageHeaderDC id="phdc1"
+                           pageTitle="#{democrmBundle.MAP_MY_CONTACTS}"/>
+        <af:spacer height="20" id="s4"/>
+        <af:panelGroupLayout id="pgl2" layout="horizontal"
+                             styleClass="AFStretchWidth">
+          <af:spacer width="20" id="s1"/>
+          <af:panelGroupLayout id="pgl3" layout="vertical">
+            <af:panelSplitter id="ps1" splitterPosition="400"
+                              dimensionsFrom="children">
+              <f:facet name="first">
+                <af:panelGroupLayout id="pgl4" layout="vertical">
+                  <af:panelGroupLayout id="pgl5" layout="horizontal">
+                    <af:inputText label="#{democrmBundle.FIND}" id="it1"
+                                  columns="35"
+                                  placeholder="Name or Location contains ..."
+                                  usage="search"
+                                  binding="#{pageFlowScope.ContactsMapBean.mapSearchField}"/>
+                    <af:commandButton id="cb1"
+                                      icon="/images/func_search_16_ena.png"
+                                      partialSubmit="true"
+                                      actionListener="#{pageFlowScope.ContactsMapBean.handleMapSearch}"/>
+                  </af:panelGroupLayout>
+                  <af:spacer height="10" id="s3"/>
+                  <af:listView id="lv1"
+                               value="#{SessionState.mapContactsList}"
+                               partialTriggers="::cb1" var="row"
+                               emptyText="#{democrmBundle.NO_CONTACTS_FOUND}"
+                               fetchSize="11" rows="11"
+                               selectionListener="#{pageFlowScope.ContactsMapBean.handleContactRowSelection}"
+                               binding="#{pageFlowScope.ContactsMapBean.contactsListView}"
+                               selection="multiple">
+                    <af:listItem id="li1"
+                                 styleClass="#{row.selected == true ? 'listSelection' : ''}">
+                      <af:panelGridLayout id="pgl6"
+                                          shortDesc="#{row.id}+#{row.location}">
+                        <af:gridRow id="gr1">
+                          <af:gridCell id="gc1" width="50%" marginStart="10px">
+                            <af:panelGroupLayout id="pgl7" layout="vertical">
+                              <af:outputText value="#{row.fullName}" id="ot1"
+                                             styleClass="major-text nowrap"/>
+                              <af:outputText value="#{row.job}" id="ot4"
+                                             styleClass="nowrap"/>
+                            </af:panelGroupLayout>
+                          </af:gridCell>
+                          <af:gridCell id="gc2" width="50%" marginStart="10px"
+                                       marginEnd="10px">
+                            <af:panelGroupLayout id="pgl8" layout="vertical">
+                              <af:outputText value="#{row.location}" id="ot3"
+                                             styleClass="major-text nowrap trial-blue"/>
+                              <af:outputText value="#{row.phone}" id="ot5"
+                                             styleClass="nowrap"/>
+                            </af:panelGroupLayout>
+                          </af:gridCell>
+                        </af:gridRow>
+                        <af:clientListener method="geocodeAndMark"
+                                           type="click"/>
+                      </af:panelGridLayout>
+                    </af:listItem>
+                  </af:listView>
+                </af:panelGroupLayout>
+              </f:facet>
+              <f:facet name="second">
+                <af:panelGroupLayout id="pgl9" layout="horizontal">
+                  <af:spacer width="20" id="s5"/>
+                  <div id="mapdiv" style="height:600px;width:800px"/>
+                </af:panelGroupLayout>
+              </f:facet>
+            </af:panelSplitter>
+          </af:panelGroupLayout>
+          <af:spacer width="20" id="s2"/>
+        </af:panelGroupLayout>
+      </af:panelGroupLayout>
+    </f:facet>
+    <f:facet name="footer">
+      <af:resource type="javascript"
+                   source="https://maps.googleapis.com/maps/api/js"/>
+      <af:resource type="javascript">
+        var map;
+        var geocoder = new google.maps.Geocoder();
+        markers = [];
+
+        function doMap() {
+          var mapelem = document.getElementById('mapdiv');
+          var newLatLng = new google.maps.LatLng(37.75,  - 122.42);
+          var myOptions = {
+            center : newLatLng, zoom : 8
+          };
+          map = new google.maps.Map(mapelem, myOptions);
+        }
+      </af:resource>
+      <af:resource type="javascript">
+        function geocodeAndMark(evt) {
+          var comp = evt.getSource();
+          var combo = comp.getShortDesc();
+          var comboArr = combo.split("+");
+          var id = comboArr[0];
+          var addr = comboArr[1];
+          geocodeAddress(id, addr, geocoder, map);
+        }
+      </af:resource>
+      <af:resource type="javascript">
+        function geocodeAddress(id, address, geocoder, resultsMap) {
+          if (markers[id] == undefined) {
+            markers[id] = new google.maps.Marker(null, null);
+          }
+          if (markers[id].getMap() == null) {
+            geocoder.geocode( {
+              'address' : address
+            },
+            function (results, status) {
+              if (status === google.maps.GeocoderStatus.OK) {
+                resultsMap.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker( {
+                  map : resultsMap, position : results[0].geometry.location
+                });
+                markers[id] = marker;
+              }
+              else {
+                alert('Unable to find address. Geocoding returned ' + status);
+              }
+            });
+          }
+          else {
+            markers[id].setMap(null);
+          }
+        }
+      </af:resource>
+      <af:resource type="javascript">
+        if (window.addEventListener) {
+          /* Modern browsers */
+          window.addEventListener("load", onLoad, false)
+        }
+        else if (window.attachEvent) {
+          /* IE */
+          window.detachEvent("onload", onLoad)
+          window.attachEvent("onload", onLoad)
+        }
+        else {
+          window.onload = onLoad
+        }
+
+        function onLoad() {
+          doMap();
+        }
+      </af:resource>
+    </f:facet>
+  </af:pageTemplate>
+</jsp:root>
