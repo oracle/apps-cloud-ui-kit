@@ -1,4 +1,4 @@
-Instructions using RDK
+Instructions for using RDK
 =====
 Find below instructions for using the RDK with different versions of JDeveloper.
 
@@ -40,3 +40,6 @@ to:
 You can suppress the Universal Global Header (UGH) of the deployed RDK demo application by passing in URL parameter ‘headless=yes’ as shown below. This is particularly useful when exposing the application in another page.
 
         http://<host>:<port>/AppsCloudUIKit/faces/Welcome?headless=yes
+
+# Copyright
+Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
