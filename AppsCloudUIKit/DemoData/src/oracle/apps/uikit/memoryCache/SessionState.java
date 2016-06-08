@@ -10,6 +10,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
+
+import javax.servlet.http.HttpServletRequest;
+
 import oracle.adf.share.ADFContext;
 
 import oracle.apps.uikit.data.Evaluation;
@@ -48,6 +52,19 @@ public class SessionState {
 
     public SessionState(){
         super();
+        //Check for headless mode
+        HttpServletRequest request=(HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        String headless = request.getParameter("headless");
+        if (headless == null)
+            headless = "no";
+        else if (headless.length() == 0)
+            headless = "no";
+        else if (headless.toUpperCase().equals("YES"))
+            headless = "yes";
+        else
+            headless = "no";
+        ADFContext.getCurrent().getSessionScope().put("headless", headless);
+        //Set up the application
         ADFContext.getCurrent().getSessionScope().put("loggedInUserName", "Lisa Jones");
         ADFContext.getCurrent().getSessionScope().put("loggedInUserJob", "Group Manager");
         setWelcomePopupActive(true);
@@ -417,4 +434,5 @@ public class SessionState {
     //HCM Performance & My Team
     public void setMyTeamList(List<Person> l) { _myTeamList = l; }
     public List<Person> getMyTeamList() { return _myTeamList; }
+
 }//SessionState

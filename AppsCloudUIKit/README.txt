@@ -30,3 +30,12 @@ Change the library version reference from -
     <specification-version>2.1</specification-version>
     <exact-match>true</exact-match>
   </library-ref>
+
+
+
+RDK in Headless Mode
+====================
+
+You can suppress the Universal Global Header (UGH) of the deployed RDK demo application by passing in URL parameter ‘headless=yes’ as shown below. This is particularly useful when exposing the application in another page.
+
+http://<host>:<port>/AppsCloudUIKit/faces/Welcome?headless=yes

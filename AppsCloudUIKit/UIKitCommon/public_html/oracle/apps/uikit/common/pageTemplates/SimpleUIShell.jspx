@@ -48,7 +48,8 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
         <af:gridCell id="pt_gc2">
           <af:panelGroupLayout id="pt_pgl2" layout="vertical"
                                styleClass="application-container-width">
-            <af:panelGridLayout id="pt_pgl3" styleClass="AFBrandingBar">
+            <af:panelGridLayout id="pt_pgl3" styleClass="AFBrandingBar"
+                                rendered="#{!backingBeanScope.GlobalTemplatesBean.headless}">
               <af:gridRow marginTop="5px"
                           id="pt_gr2">
                 <af:gridCell width="20%"

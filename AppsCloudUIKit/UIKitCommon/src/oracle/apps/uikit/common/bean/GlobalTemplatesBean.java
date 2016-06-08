@@ -8,6 +8,8 @@ package oracle.apps.uikit.common.bean;
 import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+
+import oracle.adf.share.ADFContext;
 import oracle.adf.view.rich.component.rich.nav.RichCommandButton;
 
 public class GlobalTemplatesBean {
@@ -25,5 +27,13 @@ public class GlobalTemplatesBean {
             actionEvent.queue();
         }//check if navigation required
     }//handleGoHome
+    
+    public boolean isHeadless(){
+        String headless = (String)ADFContext.getCurrent().getSessionScope().get("headless");
+        if (headless.equals("no"))
+            return false;
+        else 
+            return true;
+    }//isHeadless
 
 }//GlobalTemplatesBean
