@@ -1,8 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <!--
-Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
 -->
-
 <SDM>
    <OverallProperties
       id="OverallProperties1"/>
@@ -36,19 +35,6 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
       <property
          name="x">483.5</property>
    </View>
-   <Router
-      id="Router4">
-      <property
-         name="activityId">NavigationRouter</property>
-      <property
-         name="description">&lt;html>&lt;p>&lt;b>NavigationRouter&lt;/b>&lt;/p>&lt;p>Activity Type:  Router&lt;/p></property>
-      <property
-         name="exceptionHandler">false</property>
-      <property
-         name="y">205.875</property>
-      <property
-         name="x">306.0</property>
-   </Router>
    <MethodCall
       id="MethodCall5">
       <property
@@ -118,41 +104,21 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
    <ControlFlowCase
       islink="true"
       id="ControlFlowCase11"
-      from="Router4"
+      from="View3"
       to="View2">
       <property
          name="fromOutcome">home</property>
       <property
-         name="sdm:polyPoints">R38,347.0,195.3086,438.22626,127.40234,L46</property>
-   </ControlFlowCase>
-   <ControlFlowCase
-      islink="true"
-      id="ControlFlowCase12"
-      from="View2"
-      to="Router4">
-      <property
-         name="fromOutcome">navigateTo</property>
-      <property
-         name="sdm:polyPoints">L54,440.5,134.40234,349.2965,202.3086,R46</property>
+         name="sdm:polyPoints">T44,480.0,238.90234,478.0,185.03192,B44</property>
    </ControlFlowCase>
    <ControlFlowCase
       islink="true"
       id="ControlFlowCase13"
-      from="Router4"
+      from="View2"
       to="View3">
       <property
          name="fromOutcome">filmStrip</property>
       <property
-         name="sdm:polyPoints">R54,349.5733,209.3086,442.5,289.40234,L46</property>
-   </ControlFlowCase>
-   <ControlFlowCase
-      islink="true"
-      id="ControlFlowCase14"
-      from="View3"
-      to="Router4">
-      <property
-         name="fromOutcome">navigateTo</property>
-      <property
-         name="sdm:polyPoints">L54,439.9532,296.40234,347.0,216.3086,R62</property>
+         name="sdm:polyPoints">B56,485.0,184.90234,487.0,238.7726,T56</property>
    </ControlFlowCase>
 </SDM>

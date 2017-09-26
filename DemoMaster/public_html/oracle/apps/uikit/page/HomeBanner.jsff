@@ -1,0 +1,319 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="demomasterBundle"
+         value="#{adfBundle['oracle.apps.uikit.DemoMasterBundle']}"/>
+  <af:resource type="javascript" source="js/homeBanner.js"/>
+  <af:panelGroupLayout id="pgl1" layout="vertical"
+                       styleClass="feeds-banner-image">
+    <af:deck id="psl11"
+             rendered="#{SessionState.homePageOption == 'social' || SessionState.homePageOption == 'announcements'}"
+             displayedChild="#{SessionState.bannerPanelView}"
+             styleClass="feeds-banner-overlay"
+             binding="#{pageFlowScope.HomeAnnouncementsBean.feedsDeck}">
+      <af:clientAttribute name="isOsnDeck" value="Y"/>
+      <af:transition transition="slideStart" triggerType="forwardNavigate"/>
+      <af:transition triggerType="backNavigate" transition="slideEnd"/>
+      <af:panelGroupLayout id="summary" valign="top" layout="vertical"
+                           styleClass="feeds-panel-banner">
+        <af:panelStretchLayout id="psl1" startWidth="150px"
+                               styleClass="AFStretchWidth"
+                               partialTriggers="cb1" dimensionsFrom="children">
+          <f:facet name="center">
+            <af:panelGroupLayout id="pgl3" layout="vertical"
+                                 partialTriggers="cb1">
+              <af:spacer height="64" id="s2"/>
+              <af:panelGroupLayout id="pgl4" layout="horizontal" valign="top">
+                <af:spacer width="22" id="s3"/>
+                <af:panelGroupLayout id="pgl5" layout="vertical"
+                                     inlineStyle="margin-top: 13px; width: 330px;"
+                                     partialTriggers="cb1">
+                  <af:outputText value="#{sessionScope.loggedInUserName}"
+                                 id="ot9"
+                                 styleClass="truncate-text homepage-banner-title homePage-banner-expand"/>
+                  <af:spacer height="14" id="s4"/>
+                  <af:panelLabelAndMessage id="plam1"
+                                           styleClass="osn-input-container">
+                    <af:inputText id="it5"
+                                  simple="true"
+                                  placeholder="#{demomasterBundle.SHARE_THOUGHTS_WITH_YOUR_COLLE}"
+                                  styleClass="osn-wall-pane-input"
+                                  clientComponent="true"
+                                  label="#{demomasterBundle.SOCIAL_POST}"
+                                  binding="#{pageFlowScope.HomeAnnouncementsBean.emptyTextBox}">
+                      <af:clientListener method="bannerHomePageFuse.callBBBShowWallPanel"
+                                         type="focus"/>
+                    </af:inputText>
+                    <af:inputText label="#{demomasterBundle.SOCIAL_POST}" id="it2"
+                                  rows="4" simple="true"
+                                  styleClass="osn-wall-pane-input"
+                                  clientComponent="true" visible="false"
+                                  binding="#{pageFlowScope.HomeAnnouncementsBean.wallMessage}">
+                      <af:clientListener method="bannerHomePageFuse.callBBBHideWallPanel"
+                                         type="blur"/>
+                      <af:clientListener method="bannerHomePageFuse.activateBBBButtons"
+                                         type="keyUp"/>
+                    </af:inputText>
+                    <af:inputText label="#{demomasterBundle.SOCIAL_POST}" id="it3"
+                                  rows="4" simple="true"
+                                  styleClass="osn-wall-pane-input"
+                                  clientComponent="true" visible="false"
+                                  binding="#{pageFlowScope.HomeAnnouncementsBean.successWallMsg}">
+                      <af:clientListener method="bannerHomePageFuse.callBBBHideWallPanel"
+                                         type="blur"/>
+                    </af:inputText>
+                    <af:panelGroupLayout id="pglSpacerBanner17" layout="vertical"
+                                         inlineStyle="margin-top: 17px;"
+                                         clientComponent="true"/>
+                    <f:facet name="end">
+                      <af:panelGroupLayout id="pgl8" layout="vertical"
+                                           halign="center" valign="top">
+                        <af:commandImageLink
+                                             id="cil1"
+                                             icon="/images/func_socialhome_16_ena.png"
+                                             shortDesc="#{demomasterBundle.SOCIAL_POST}"
+                                             disabledIcon="/images/func_socialhome_16_dis.png"
+                                             hoverIcon="/images/func_socialhome_16_hov.png"
+                                             depressedIcon="/images/func_socialhome_16_act.png"
+                                             styleClass="icon-notext"/>
+                      </af:panelGroupLayout>
+                    </f:facet>
+                  </af:panelLabelAndMessage>
+                  <af:panelGroupLayout id="pgl10" layout="horizontal"
+                                       styleClass="AFStretchWidth"
+                                       partialTriggers="cb1"
+                                       binding="#{pageFlowScope.HomeAnnouncementsBean.successMsgPanel}">
+                    <af:panelGroupLayout id="pgl39" layout="horizontal"
+                                         styleClass="AFStretchWidth"
+                                         inlineStyle="padding: 11px 6px 1px 6px;"
+                                         binding="#{pageFlowScope.HomeAnnouncementsBean.successMsgWrapper}"
+                                         clientComponent="true"
+                                         visible="false">
+                      <af:commandImageLink id="cil3"
+                                           icon="/images/qual_checkmark_16.png"
+                                           text="#{demomasterBundle.POSTED_TO_MY_WALL}"
+                                           styleClass="osn-posted-message"
+                                           partialTriggers="cb1"
+                                           binding="#{pageFlowScope.HomeAnnouncementsBean.successIcon}"
+                                           clientComponent="true"
+                                           visible="false"/>
+                    </af:panelGroupLayout>
+                  </af:panelGroupLayout>
+                  <af:panelGroupLayout id="pgl16" layout="horizontal"
+                                       styleClass="AFStretchWidth"
+                                       inlineStyle="padding: 0px 5px;margin-bottom: 10px;margin-top: 5px;"
+                                       binding="#{pageFlowScope.HomeAnnouncementsBean.buttonPanel}"
+                                       clientComponent="true" visible="false">
+                    <af:selectOneChoice label="#{demomasterBundle.TO}" id="soc1"
+                                        value="myWall" contentStyle="width:50%"
+                                        styleClass="AFStretchWidth feeds-osn-select"
+                                        disabled="true" autoSubmit="true"
+                                        immediate="true" clientComponent="true"
+                                        visible="false" unsecure="disabled"
+                                        binding="#{pageFlowScope.HomeAnnouncementsBean.convChoiceList}">
+                      <af:selectItem label="My Wall" value="myWall" id="si1"/>
+                    </af:selectOneChoice>
+                    <af:panelGroupLayout id="pgl13" layout="horizontal"
+                                         halign="end"
+                                         styleClass="AFStretchWidth"
+                                         inlineStyle="padding: 0px 4px;">
+                      <af:commandButton text="#{demomasterBundle.POST}" id="cb3"
+                                        styleClass="inverse" disabled="true"
+                                        immediate="true"
+                                        clientComponent="true" visible="false"
+                                        unsecure="disabled"/>
+                      <af:commandButton id="cb1"
+                                        text="#{demomasterBundle.POST}"
+                                        actionListener="#{pageFlowScope.HomeAnnouncementsBean.postOnWall}"
+                                        partialSubmit="true"
+                                        clientComponent="true" visible="false"
+                                        unsecure="disabled"
+                                        binding="#{pageFlowScope.HomeAnnouncementsBean.postButton}">
+                        <af:clientListener method="bannerHomePageFuse.focusWallPanel"
+                                           type="click"/>
+                      </af:commandButton>
+                    </af:panelGroupLayout>
+                  </af:panelGroupLayout>
+                  <af:panelGroupLayout id="pgl9" layout="horizontal">
+                    <af:panelGroupLayout id="pgl15" layout="vertical"
+                                         styleClass="homepage-banner-cell">
+                      <af:outputText value="1" id="ot3"
+                                     styleClass="feeds-number truncate-text"/>
+                      <af:outputText value="#{demomasterBundle.CONVERSATIONS}" id="ot2"
+                                     styleClass="feeds-medium-text truncate-text"/>
+                    </af:panelGroupLayout>
+                    <af:panelGroupLayout id="pgl14" layout="vertical"
+                                         styleClass="feeds-front-top-panel-cell-separator"/>
+                    <af:panelGroupLayout id="pgl11" layout="vertical"
+                                         styleClass="homepage-banner-cell">
+                      <af:outputText value="5" id="ot5"
+                                     styleClass="feeds-number truncate-text "/>
+                      <af:outputText value="#{demomasterBundle.FOLLOWING}" id="ot4"
+                                     styleClass="feeds-medium-text truncate-text"/>
+                    </af:panelGroupLayout>
+                    <af:panelGroupLayout id="pgl17" layout="vertical"
+                                         styleClass="feeds-front-top-panel-cell-separator"/>
+                    <af:panelGroupLayout id="pgl18" layout="vertical"
+                                         styleClass="homepage-banner-cell">
+                      <af:outputText value="3" id="ot7"
+                                     styleClass="feeds-number truncate-text "/>
+                      <af:outputText value="#{demomasterBundle.FOLLOWERS}" id="ot6"
+                                     styleClass="feeds-medium-text truncate-text"/>
+                    </af:panelGroupLayout>
+                  </af:panelGroupLayout>
+                </af:panelGroupLayout>
+                <af:panelGroupLayout id="pgl6" layout="vertical"
+                                     styleClass="feeds-banner-bottom-contents hidden-scrollbar">
+                  <af:panelGroupLayout id="pgl19">
+                    <af:commandLink id="cl2"
+                                    actionListener="#{pageFlowScope.HomeAnnouncementsBean.flipDeck}"
+                                    shortDesc="#{demomasterBundle.EMPLOYEE_NEWS}"
+                                    styleClass="no-underline"
+                                    partialSubmit="true">
+                      <af:panelGroupLayout id="pgl20" layout="vertical"
+                                           styleClass="feeds-bannerItem-container">
+                        <af:panelGroupLayout id="pgl21" layout="horizontal"
+                                             styleClass="feeds-bannerItem">
+                          <af:panelGroupLayout id="pgl23" halign="end"
+                                               layout="vertical">
+                            <af:outputText value="#{'3'}" id="ot8"
+                                           styleClass="feeds-number-card box-green feeds-bannerItem-number truncate-text"/>
+                          </af:panelGroupLayout>
+                          <af:panelGroupLayout id="pgl22" layout="vertical">
+                            <af:outputText id="ot1"
+                                           value="#{demomasterBundle.EMPLOYEE_NEWS}"
+                                           styleClass="feeds-label feeds-bannerItem-text truncate-text"/>
+                          </af:panelGroupLayout>
+                        </af:panelGroupLayout>
+                      </af:panelGroupLayout>
+                      <af:setActionListener from="#{'detail'}"
+                                            to="#{SessionState.bannerPanelView}"/>
+                    </af:commandLink>
+                    <af:commandLink id="cl1"
+                                    shortDesc="#{demomasterBundle.MY_FLAGS}"
+                                    styleClass="no-underline"
+                                    partialSubmit="true">
+                      <af:panelGroupLayout id="pgl24" layout="vertical"
+                                           styleClass="feeds-bannerItem-container">
+                        <af:panelGroupLayout id="pgl25" layout="horizontal"
+                                             styleClass="feeds-bannerItem">
+                          <af:panelGroupLayout id="pgl27" layout="vertical"
+                                               halign="end">
+                            <af:outputText value="#{'6'}" id="ot10"
+                                           styleClass="feeds-number-card box-orange feeds-bannerItem-number truncate-text"/>
+                          </af:panelGroupLayout>
+                          <af:panelGroupLayout id="pgl26" layout="vertical">
+                            <af:outputText value="#{demomasterBundle.MY_FLAGS}" id="ot11"
+                                           styleClass="feeds-label feeds-bannerItem-text truncate-text"/>
+                          </af:panelGroupLayout>
+                        </af:panelGroupLayout>
+                      </af:panelGroupLayout>
+                    </af:commandLink>
+                    <c:set var="index" value="#{'0'}"/>
+                    <af:commandLink id="cl4"
+                                    shortDesc="#{demomasterBundle.EXPENSE_REPORTS}"
+                                    styleClass="no-underline"
+                                    partialSubmit="true">
+                      <af:panelGroupLayout id="pgl28"
+                                           styleClass="feeds-bannerItem-container"
+                                           layout="vertical">
+                        <af:panelGroupLayout id="pgl29" layout="horizontal"
+                                             styleClass="feeds-bannerItem">
+                          <af:panelGroupLayout id="pgl31" layout="vertical"
+                                               halign="end">
+                            <af:outputText value="#{'8'}" id="ot12"
+                                           styleClass="feeds-number-card box-green feeds-bannerItem-number truncate-text"/>
+                          </af:panelGroupLayout>
+                          <af:panelGroupLayout id="pgl30" layout="vertical">
+                            <af:outputText value="#{demomasterBundle.EXPENSE_REPORTS}" id="ot13"
+                                           styleClass="feeds-label feeds-bannerItem-text truncate-text"/>
+                          </af:panelGroupLayout>
+                        </af:panelGroupLayout>
+                      </af:panelGroupLayout>
+                    </af:commandLink>
+                    <af:commandLink id="cl5"
+                                    shortDesc="#{demomasterBundle.PURCHASE_REQUISITIONS}"
+                                    styleClass="no-underline"
+                                    partialSubmit="true">
+                      <af:panelGroupLayout id="pgl32" layout="vertical"
+                                           styleClass="feeds-bannerItem-container">
+                        <af:panelGroupLayout id="pgl33" layout="horizontal"
+                                             styleClass="feeds-bannerItem">
+                          <af:panelGroupLayout id="pgl35" halign="end"
+                                               layout="vertical">
+                            <af:outputText value="#{'5'}" id="ot14"
+                                           styleClass="feeds-number-card box-green feeds-bannerItem-number truncate-text"/>
+                          </af:panelGroupLayout>
+                          <af:panelGroupLayout id="pgl34" layout="vertical">
+                            <af:outputText value="#{demomasterBundle.PURCHASE_REQUISITIONS}" id="ot15"
+                                           styleClass="feeds-label feeds-bannerItem-text truncate-text"/>
+                          </af:panelGroupLayout>
+                        </af:panelGroupLayout>
+                      </af:panelGroupLayout>
+                    </af:commandLink>
+                    <af:commandLink id="cl3"
+                                    shortDesc="#{demomasterBundle.MY_GOALS}"
+                                    styleClass="no-underline">
+                      <af:panelGroupLayout id="pgl36" layout="vertical"
+                                           styleClass="feeds-bannerItem-container">
+                        <af:panelGroupLayout id="pgl37" layout="horizontal"
+                                             styleClass="feeds-bannerItem">
+                          <af:panelGroupLayout id="pgl12" layout="vertical"
+                                               halign="end">
+                            <af:outputText value="#{'2'}" id="ot16"
+                                           styleClass="feeds-number-card box-orange feeds-bannerItem-number truncate-text"/>
+                          </af:panelGroupLayout>
+                          <af:panelGroupLayout id="pgl38"
+                                               layout="vertical">
+                            <af:outputText value="#{demomasterBundle.MY_GOALS}" id="ot17"
+                                           styleClass="feeds-label feeds-bannerItem-text truncate-text"/>
+                          </af:panelGroupLayout>
+                        </af:panelGroupLayout>
+                      </af:panelGroupLayout>
+                    </af:commandLink>
+                  </af:panelGroupLayout>
+                </af:panelGroupLayout>
+              </af:panelGroupLayout>
+            </af:panelGroupLayout>
+          </f:facet>
+          <f:facet name="start">
+            <af:panelGroupLayout id="pgl2" halign="end" layout="vertical">
+              <af:image source="images/personImage.jpg"
+                        id="i1" shortDesc="#{sessionScope.loggedInUserName}"
+                        styleClass="homePage-banner-avatarImage"
+                        clientComponent="true"/>
+              <af:spacer height="11" id="s1"/>
+            </af:panelGroupLayout>
+          </f:facet>
+        </af:panelStretchLayout>
+      </af:panelGroupLayout>
+      <af:panelGroupLayout id="detail" layout="vertical"
+                           styleClass="feeds-banner-image">
+        <af:panelGroupLayout id="pgl40" styleClass="feeds-banner-overlay-back"
+                             layout="vertical">
+          <af:panelGroupLayout id="pgl41" layout="vertical"
+                               styleClass="feeds-back-Panel-banner-container">
+            <af:region value="#{bindings.AnnouncementsFlow1.regionModel}"
+                       id="r1"/>
+            <af:commandImageLink id="cil2"
+                                 rendered="#{SessionState.homePageOption ne 'announcements'}"
+                                 icon="/images/func_circlearrowleft_24_ena.png"
+                                 actionListener="#{pageFlowScope.HomeAnnouncementsBean.flipDeck}"
+                                 hoverIcon="/images/func_circlearrowleft_24_hov.png"
+                                 depressedIcon="/images/func_circlearrowleft_24_act.png"
+                                 styleClass="feeds-banner-flip-image"
+                                 partialSubmit="true">
+              <af:setActionListener from="#{'summary'}"
+                                    to="#{SessionState.bannerPanelView}"/>
+            </af:commandImageLink>
+          </af:panelGroupLayout>
+        </af:panelGroupLayout>
+      </af:panelGroupLayout>
+    </af:deck>
+  </af:panelGroupLayout>
+</jsp:root>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!--
-Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
 -->
 <Application xmlns="http://xmlns.oracle.com/adfm/application"
              version="11.1.1.67.30" id="DataBindings" SeparateXMLFiles="false"

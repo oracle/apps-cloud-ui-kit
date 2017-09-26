@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg id="Layer_1" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 99.925 100.007" xml:space="preserve" height="100.01px" viewBox="0 0 99.925 100.007" width="99.925px" version="1.1" y="0px" x="0px" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"><metadata id="metadata3033"><rdf:RDF><cc:Work rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/><dc:title/></cc:Work></rdf:RDF></metadata>
-<g id="g3011">
+<svg id="Layer_1" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 99.925 100.007" xml:space="preserve" height="100.01px" viewBox="4 4.5 99.925 100.007" width="99.925px" version="1.1" y="0px" x="0px" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"><metadata id="metadata3033"><rdf:RDF><cc:Work rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/><dc:title/></cc:Work></rdf:RDF></metadata>
+<g id="g3011" transform="scale(1.09,1.11)">
 	<g id="g3013">
 		<path id="path3015" fill="#CCC" d="m12.346,18.949c0-3.541,3.6491-5.444,6.7741-5.443l66.551-0.66454c0-2.333,0.33227-1.6738,0.33227-3.2168,0-3.139-1.73-5.187-5.126-5.125l-71.751,0.0008c-3.203-0.001-5.125,1.495-5.125,5.125v71.75c0,2.772,1.281,5.125,5.125,5.125l3.22-0.11076z"/>
 		<path id="path3017" fill="#999" d="m13.232,19.171c-0.14769-3.5379,3.0953-5.7763,6.2203-5.7753l65.548,1.523v-4.419c0-3.062-1.688-5.06-5.001-5h-69.998c-3.123-0.001-5,1.459-5,5v70c0,2.705,1.252,5,5.002,5h5.998z"/>

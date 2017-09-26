@@ -1,6 +1,6 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <!--
-Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
 -->
 <SDM>
    <OverallProperties
@@ -20,8 +20,31 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
       <property
          name="y">235.36719</property>
       <property
-         name="pageFragment">true</property>
-      <property
          name="x">383.66895</property>
+      <property
+         name="pageFragment">true</property>
    </View>
+   <ParentAction
+      id="ParentAction3">
+      <property
+         name="activityId">goToFilmStrip</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>goToFilmStrip&lt;/b>&lt;/p>&lt;p>Activity Type:  Parent Action&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">235.33984</property>
+      <property
+         name="x">568.0</property>
+   </ParentAction>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase4"
+      from="View2"
+      to="ParentAction3">
+      <property
+         name="fromOutcome">filmStrip</property>
+      <property
+         name="sdm:polyPoints">R50,424.66895,235.30078,527.0,235.27344,L50</property>
+   </ControlFlowCase>
 </SDM>

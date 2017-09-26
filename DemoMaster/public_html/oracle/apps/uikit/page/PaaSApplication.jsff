@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <af:pageTemplate viewId="/oracle/apps/uikit/common/pageTemplates/MainPageTemplate.jspx"
+                   id="pt1">
+    <f:facet name="header">
+      <af:outputText value="http://#{SessionState.host}:#{SessionState.port}/GlobalExchangeRates/faces/Rates?theme=#{SessionState.skinFamily}" id="ot1"/>
+    </f:facet>
+    <f:facet name="pageContents">
+      <af:inlineFrame id="frameHere"
+                      source="http://#{SessionState.host}:#{SessionState.port}/GlobalExchangeRates/faces/Rates?theme=#{SessionState.skinFamily}"
+                      styleClass="AFStretchWidth noBorder"
+                      inlineStyle="height:700px; border-color:White;"
+                      shortDesc="PaaS Application"/>
+    </f:facet>
+  </af:pageTemplate>
+</jsp:root>

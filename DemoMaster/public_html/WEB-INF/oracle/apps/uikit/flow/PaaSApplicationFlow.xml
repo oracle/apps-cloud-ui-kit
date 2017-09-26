@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="PaaSApplicationFlow">
+    <default-activity id="__1">PaaSApplication</default-activity>
+    <view id="PaaSApplication">
+      <page>/oracle/apps/uikit/page/PaaSApplication.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

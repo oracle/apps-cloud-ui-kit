@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!--
-Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
 -->
 <adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
   <view id="Welcome">
@@ -9,17 +9,6 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
   <view id="FilmStrip">
     <page>/FilmStrip.jspx</page>
   </view>
-  <router id="NavigationRouter">
-    <case>
-      <expression>#{sessionScope.navigateTo == 'home'}</expression>
-      <outcome id="__45">home</outcome>
-    </case>
-    <case>
-      <expression>#{sessionScope.navigateTo == 'filmStrip'}</expression>
-      <outcome id="__46">filmStrip</outcome>
-    </case>
-    <default-outcome>home</default-outcome>
-  </router>
   <method-call id="RefreshHome">
     <method>#{backingBeanScope.UtilsBean.refreshView}</method>
     <outcome id="__39">
@@ -38,9 +27,9 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
       <from-outcome id="__9">refresh</from-outcome>
       <to-activity-id id="__8">RefreshHome</to-activity-id>
     </control-flow-case>
-    <control-flow-case id="__30">
-      <from-outcome id="__32">navigateTo</from-outcome>
-      <to-activity-id id="__31">NavigationRouter</to-activity-id>
+    <control-flow-case id="__33">
+      <from-outcome id="__34">filmStrip</from-outcome>
+      <to-activity-id id="__35">FilmStrip</to-activity-id>
     </control-flow-case>
   </control-flow-rule>
   <control-flow-rule id="__10">
@@ -56,9 +45,9 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
       <from-outcome id="__19">refresh</from-outcome>
       <to-activity-id id="__18">RefreshFilmStrip</to-activity-id>
     </control-flow-case>
-    <control-flow-case id="__36">
-      <from-outcome id="__38">navigateTo</from-outcome>
-      <to-activity-id id="__37">NavigationRouter</to-activity-id>
+    <control-flow-case id="__27">
+      <from-outcome id="__28">home</from-outcome>
+      <to-activity-id id="__29">Welcome</to-activity-id>
     </control-flow-case>
   </control-flow-rule>
   <control-flow-rule id="__20">
@@ -66,17 +55,6 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
     <control-flow-case id="__23">
       <from-outcome id="__24">done</from-outcome>
       <to-activity-id id="__22">FilmStrip</to-activity-id>
-    </control-flow-case>
-  </control-flow-rule>
-  <control-flow-rule id="__25">
-    <from-activity-id id="__26">NavigationRouter</from-activity-id>
-    <control-flow-case id="__28">
-      <from-outcome id="__29">home</from-outcome>
-      <to-activity-id id="__27">Welcome</to-activity-id>
-    </control-flow-case>
-    <control-flow-case id="__33">
-      <from-outcome id="__35">filmStrip</from-outcome>
-      <to-activity-id id="__34">FilmStrip</to-activity-id>
     </control-flow-case>
   </control-flow-rule>
   <managed-bean id="__43">

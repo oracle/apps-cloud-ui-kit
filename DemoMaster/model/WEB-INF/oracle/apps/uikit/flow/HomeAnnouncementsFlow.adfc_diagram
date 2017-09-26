@@ -1,0 +1,77 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!--
+Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
+-->
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <Router
+      id="Router2">
+      <property
+         name="activityId">HomePageViewCheck</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>HomePageViewCheck&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  Router&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">226.55078</property>
+      <property
+         name="x">227.0</property>
+   </Router>
+   <View
+      id="View3">
+      <property
+         name="activityId">HomeBanner</property>
+      <property
+         name="page">/oracle/apps/uikit/page/HomeBanner.jsff</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>HomeBanner&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">107.10156</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">425.04883</property>
+   </View>
+   <View
+      id="View4">
+      <property
+         name="activityId">HomeSidePanel</property>
+      <property
+         name="page">/oracle/apps/uikit/page/HomeSidePanel.jsff</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>HomeSidePanel&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">318.10156</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">422.5547</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase5"
+      from="Router2"
+      to="View3">
+      <property
+         name="fromOutcome">BANNER</property>
+      <property
+         name="sdm:polyPoints">R46,268.0,222.98438,384.04883,107.03516,L50</property>
+   </ControlFlowCase>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase6"
+      from="Router2"
+      to="View4">
+      <property
+         name="fromOutcome">GRID</property>
+      <property
+         name="sdm:polyPoints">R54,268.0,229.98438,381.5547,318.03516,L50</property>
+   </ControlFlowCase>
+</SDM>

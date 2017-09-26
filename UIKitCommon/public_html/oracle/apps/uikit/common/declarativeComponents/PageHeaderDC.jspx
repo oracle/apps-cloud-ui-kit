@@ -1,27 +1,90 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--
-Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
 -->
 <jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
           xmlns:f="http://java.sun.com/jsf/core"
-          xmlns:h="http://java.sun.com/jsf/html"
           xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
-          xmlns:c="http://java.sun.com/jsp/jstl/core">
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:trh="http://myfaces.apache.org/trinidad/html">
   <c:set var="uikitcommonBundle"
          value="#{adfBundle['oracle.apps.uikit.common.UIKitCommonBundle']}"/>
   <jsp:directive.page contentType="text/html;charset=UTF-8"/>
-  <af:componentDef var="attrs" componentVar="comp">
+  <af:componentDef var="attrs" componentVar="component">
     <af:xmlContent>
       <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
         <display-name>PageHeaderDC</display-name>
+        <component-class>oracle.apps.uikit.common.declarativeComponents.PageHeaderDC</component-class>
         <facet>
+          <description>
+            Facet for page content elements
+          </description>
+          <facet-name>
+            contents
+          </facet-name>
+        </facet>
+        <facet>
+          <description>
+            Facet for page end elements
+          </description>
+          <facet-name>
+            endSidePanel
+          </facet-name>
+        </facet>
+        <facet>
+          <description>
+            Facet for action buttons
+          </description>
+          <facet-name>
+            actionToolbar
+          </facet-name>
+        </facet>
+        <facet>
+          <description>
+            Facet for custom buttons
+          </description>
           <facet-name>
             customToolbar
           </facet-name>
         </facet>
         <facet>
+          <description>
+            Facet for secondary buttons
+          </description>
+          <facet-name>
+            secondaryToolbar
+          </facet-name>
+        </facet>
+        <facet>
+          <description>
+            Facet for popups
+          </description>
+          <facet-name>
+            popup
+          </facet-name>
+        </facet>
+        <facet>
+          <description>
+            Facet for context information next to the header
+          </description>
           <facet-name>
             pageContext
+          </facet-name>
+        </facet>
+        <facet>
+          <description>
+            Facet for horizontal train component above header
+          </description>
+          <facet-name>
+            train
+          </facet-name>
+        </facet>
+        <facet>
+          <description>
+            Facet for adding profile image
+          </description>
+          <facet-name>
+            profileImage
           </facet-name>
         </facet>
         <attribute>
@@ -40,7 +103,18 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
         </attribute>
         <attribute>
           <attribute-name>
-            saveButtonVisible
+            pageTitleWidth
+          </attribute-name>
+          <attribute-class>
+            java.lang.String
+          </attribute-class>
+          <default-value>
+            500px
+          </default-value>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            profileRendered
           </attribute-name>
           <attribute-class>
             java.lang.Boolean
@@ -48,9 +122,83 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
           <default-value>
             false
           </default-value>
-          <required>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            profileWidth
+          </attribute-name>
+          <attribute-class>
+            java.lang.String
+          </attribute-class>
+          <default-value>
+            53px
+          </default-value>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            profileHeight
+          </attribute-name>
+          <attribute-class>
+            java.lang.String
+          </attribute-class>
+          <default-value>
+            65px
+          </default-value>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            trainRendered
+          </attribute-name>
+          <attribute-class>
+            java.lang.Boolean
+          </attribute-class>
+          <default-value>
             false
-          </required>
+          </default-value>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            stickyHeaderEnabled
+          </attribute-name>
+          <attribute-class>
+            java.lang.Boolean
+          </attribute-class>
+          <default-value>
+            false
+          </default-value>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            kioskMode
+          </attribute-name>
+          <attribute-class>
+            java.lang.Boolean
+          </attribute-class>
+          <default-value>
+            false
+          </default-value>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            saveButtonVisible
+          </attribute-name>
+          <attribute-class>
+            java.lang.Boolean
+          </attribute-class>
+          <default-value>
+            true
+          </default-value>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            saveAndContinueButtonVisible
+          </attribute-name>
+          <attribute-class>
+            java.lang.Boolean
+          </attribute-class>
+          <default-value>
+            true
+          </default-value>
         </attribute>
         <attribute>
           <attribute-name>
@@ -60,11 +208,8 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
             java.lang.Boolean
           </attribute-class>
           <default-value>
-            false
+            true
           </default-value>
-          <required>
-            false
-          </required>
         </attribute>
         <attribute>
           <attribute-name>
@@ -74,11 +219,19 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
             java.lang.Boolean
           </attribute-class>
           <default-value>
-            false
+            true
           </default-value>
-          <required>
-            false
-          </required>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            submitButtonVisible
+          </attribute-name>
+          <attribute-class>
+            java.lang.Boolean
+          </attribute-class>
+          <default-value>
+            true
+          </default-value>
         </attribute>
         <attribute>
           <attribute-name>
@@ -88,8 +241,270 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
             java.lang.Boolean
           </attribute-class>
           <default-value>
+            true
+          </default-value>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            saveButtonRendered
+          </attribute-name>
+          <attribute-class>
+            java.lang.Boolean
+          </attribute-class>
+          <default-value>
             false
           </default-value>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            saveAndContinueButtonRendered
+          </attribute-name>
+          <attribute-class>
+            java.lang.Boolean
+          </attribute-class>
+          <default-value>
+            false
+          </default-value>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            saveAndCloseButtonRendered
+          </attribute-name>
+          <attribute-class>
+            java.lang.Boolean
+          </attribute-class>
+          <default-value>
+            false
+          </default-value>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            cancelButtonRendered
+          </attribute-name>
+          <attribute-class>
+            java.lang.Boolean
+          </attribute-class>
+          <default-value>
+            false
+          </default-value>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            submitButtonRendered
+          </attribute-name>
+          <attribute-class>
+            java.lang.Boolean
+          </attribute-class>
+          <default-value>
+            false
+          </default-value>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            doneButtonRendered
+          </attribute-name>
+          <attribute-class>
+            java.lang.Boolean
+          </attribute-class>
+          <default-value>
+            false
+          </default-value>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            saveButtonDisabled
+          </attribute-name>
+          <attribute-class>
+            java.lang.Boolean
+          </attribute-class>
+          <default-value>
+            false
+          </default-value>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            saveAndContinueButtonDisabled
+          </attribute-name>
+          <attribute-class>
+            java.lang.Boolean
+          </attribute-class>
+          <default-value>
+            false
+          </default-value>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            saveAndCloseButtonDisabled
+          </attribute-name>
+          <attribute-class>
+            java.lang.Boolean
+          </attribute-class>
+          <default-value>
+            false
+          </default-value>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            cancelButtonDisabled
+          </attribute-name>
+          <attribute-class>
+            java.lang.Boolean
+          </attribute-class>
+          <default-value>
+            false
+          </default-value>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            submitButtonDisabled
+          </attribute-name>
+          <attribute-class>
+            java.lang.Boolean
+          </attribute-class>
+          <default-value>
+            false
+          </default-value>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            doneButtonDisabled
+          </attribute-name>
+          <attribute-class>
+            java.lang.Boolean
+          </attribute-class>
+          <default-value>
+            false
+          </default-value>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            saveButtonPartialSubmit
+          </attribute-name>
+          <attribute-class>
+            java.lang.Boolean
+          </attribute-class>
+          <default-value>
+            true
+          </default-value>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            saveAndContinueButtonPartialSubmit
+          </attribute-name>
+          <attribute-class>
+            java.lang.Boolean
+          </attribute-class>
+          <default-value>
+            true
+          </default-value>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            saveAndCloseButtonPartialSubmit
+          </attribute-name>
+          <attribute-class>
+            java.lang.Boolean
+          </attribute-class>
+          <default-value>
+            true
+          </default-value>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            cancelButtonPartialSubmit
+          </attribute-name>
+          <attribute-class>
+            java.lang.Boolean
+          </attribute-class>
+          <default-value>
+            true
+          </default-value>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            submitButtonPartialSubmit
+          </attribute-name>
+          <attribute-class>
+            java.lang.Boolean
+          </attribute-class>
+          <default-value>
+            true
+          </default-value>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            doneButtonPartialSubmit
+          </attribute-name>
+          <attribute-class>
+            java.lang.Boolean
+          </attribute-class>
+          <default-value>
+            true
+          </default-value>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            saveButtonShortDesc
+          </attribute-name>
+          <attribute-class>
+            java.lang.String
+          </attribute-class>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            saveAndContinueButtonShortDesc
+          </attribute-name>
+          <attribute-class>
+            java.lang.String
+          </attribute-class>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            saveAndCloseButtonShortDesc
+          </attribute-name>
+          <attribute-class>
+            java.lang.String
+          </attribute-class>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            cancelButtonShortDesc
+          </attribute-name>
+          <attribute-class>
+            java.lang.String
+          </attribute-class>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            submitButtonShortDesc
+          </attribute-name>
+          <attribute-class>
+            java.lang.String
+          </attribute-class>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            doneButtonShortDesc
+          </attribute-name>
+          <attribute-class>
+            java.lang.String
+          </attribute-class>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            subHeader
+          </attribute-name>
+          <attribute-class>
+            java.lang.String
+          </attribute-class>
+        </attribute>
+        <attribute>
+          <attribute-name>
+            pageStamp
+          </attribute-name>
+          <attribute-class>
+            java.lang.String
+          </attribute-class>
         </attribute>
         <component-extension>
           <component-tag-namespace>oracle.apps.uikit.common.declarativeComponents</component-tag-namespace>
@@ -97,6 +512,17 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
           <method-attribute>
             <attribute-name>
               saveAction
+            </attribute-name>
+            <method-signature>
+              java.lang.String method()
+            </method-signature>
+            <required>
+              false
+            </required>
+          </method-attribute>
+          <method-attribute>
+            <attribute-name>
+              saveAndContinueAction
             </attribute-name>
             <method-signature>
               java.lang.String method()
@@ -129,6 +555,14 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
           </method-attribute>
           <method-attribute>
             <attribute-name>
+              submitAction
+            </attribute-name>
+            <method-signature>
+              java.lang.String method()
+            </method-signature>
+          </method-attribute>
+          <method-attribute>
+            <attribute-name>
               doneAction
             </attribute-name>
             <method-signature>
@@ -141,6 +575,17 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
           <method-attribute>
             <attribute-name>
               saveActionListener
+            </attribute-name>
+            <method-signature>
+              void method(javax.faces.event.ActionEvent)
+            </method-signature>
+            <required>
+              false
+            </required>
+          </method-attribute>
+          <method-attribute>
+            <attribute-name>
+              saveAndContinueActionListener
             </attribute-name>
             <method-signature>
               void method(javax.faces.event.ActionEvent)
@@ -173,6 +618,14 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
           </method-attribute>
           <method-attribute>
             <attribute-name>
+              submitActionListener
+            </attribute-name>
+            <method-signature>
+              void method(javax.faces.event.ActionEvent)
+            </method-signature>
+          </method-attribute>
+          <method-attribute>
+            <attribute-name>
               doneActionListener
             </attribute-name>
             <method-signature>
@@ -182,36 +635,206 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
         </component-extension>
       </component>
     </af:xmlContent>
-    <af:panelHeader text="#{attrs.pageTitle}" id="dc_ph1"
-                    styleClass="themeButtonBar">
-      <f:facet name="context">
-        <af:facetRef facetName="pageContext"/>
-      </f:facet>
-      <f:facet name="toolbar">
-        <af:toolbar id="dc_t1">
-          <af:facetRef facetName="customToolbar"/>
-          <af:commandButton text="#{uikitcommonBundle.SAVE}" id="dc_cb2"
-                            partialSubmit="true"
-                            rendered="#{attrs.saveButtonVisible}"
-                            action="#{comp.handleSaveAction}"
-                            actionListener="#{comp.handleSaveActionListener}"/>
-          <af:commandButton text="#{uikitcommonBundle.SAVE_AND_CLOSE}" id="dc_cb3"
-                            partialSubmit="true"
-                            rendered="#{attrs.saveAndCloseButtonVisible}"
-                            action="#{comp.handleSaveAndCloseAction}"
-                            actionListener="#{comp.handleSaveAndCloseActionListener}"/>
-          <af:commandButton text="#{uikitcommonBundle.CANCEL}" id="dc_cb4"
-                            partialSubmit="true"
-                            rendered="#{attrs.cancelButtonVisible}"
-                            action="#{comp.handleCancelAction}"
-                            actionListener="#{comp.handleCancelActionListener}"/>
-          <af:commandButton text="#{uikitcommonBundle.DONE}" id="dc_cb1"
-                            partialSubmit="true"
-                            rendered="#{attrs.doneButtonVisible}"
-                            action="#{comp.handleDoneAction}"
-                            actionListener="#{comp.handleDoneActionListener}"/>
-        </af:toolbar>
-      </f:facet>
-    </af:panelHeader>
+    <c:if test="${attrs.stickyHeaderEnabled}">
+      <af:resource type="javascript" source="/js/pageHeader.js"></af:resource>
+    </c:if>
+    <af:panelGroupLayout id="SPpgl1" layout="vertical"
+                         styleClass="AFStretchWidth">
+      <af:panelStretchLayout id="SPps2" endWidth="45px"
+                             dimensionsFrom="children"
+                             styleClass="AFStretchWidth">
+        <f:facet name="center">
+          <af:panelGroupLayout id="SPpgl3" layout="vertical"
+                               styleClass="AFStretchWidth page-padding">
+            <af:panelStretchLayout id="SPpsl"
+                                   topHeight="#{attrs.trainRendered ? 'auto' : '4px'}"
+                                   dimensionsFrom="children">
+              <f:facet name="center">
+                <af:panelGroupLayout id="SPpgl9" layout="vertical"
+                                     binding="#{component.parentContainer}"
+                                     clientComponent="true">
+                  <af:panelStretchLayout id="SPpsl2"
+                                         startWidth="#{attrs.profileRendered ? attrs.profileWidth : '0px'}"
+                                         styleClass="AFStretchWidth"
+                                         binding="#{component.facetContainer}"
+                                         dimensionsFrom="children">
+                    <f:facet name="center">
+                      <af:panelGroupLayout id="SPpgl4" layout="vertical">
+                        <af:panelStretchLayout id="SPpsl3"
+                                               startWidth="#{attrs.pageTitleWidth}"
+                                               endWidth="auto"
+                                               bottomHeight="#{! ((empty attrs.subHeader) and (empty attrs.pageStamp)) ? '20px' : '0px'}"
+                                               styleClass="AFStretchWidth"
+                                               inlineStyle="#{attrs.kioskMode ? 'padding: 0px 15px;' : ''}"
+                                               dimensionsFrom="children">
+                          <f:facet name="bottom">
+                            <af:panelGroupLayout id="SPpgl10"
+                                                 layout="vertical">
+                              <trh:tableLayout id="SPtl1" width="100%"
+                                               rendered="#{! ((empty attrs.subHeader) and (empty attrs.pageStamp))}">
+                                <trh:rowLayout id="SPrl1">
+                                  <trh:cellFormat id="SPcf1" width="50%">
+                                    <af:outputText value="#{attrs.subHeader}"
+                                                   id="SPot1"
+                                                   rendered="#{! (empty attrs.subHeader)}"
+                                                   styleClass="kioskPanelSubHeader"/>
+                                  </trh:cellFormat>
+                                  <trh:cellFormat id="SPcf2" width="50%"
+                                                  halign="end">
+                                    <af:outputText value="#{attrs.pageStamp}"
+                                                   id="SPot2"
+                                                   rendered="#{! (empty attrs.pageStamp)}"
+                                                   styleClass="kioskPanelPageStamp"/>
+                                  </trh:cellFormat>
+                                </trh:rowLayout>
+                              </trh:tableLayout>
+                            </af:panelGroupLayout>
+                          </f:facet>
+                          <f:facet name="center">
+                            <af:toolbar id="SPtb2"
+                                        styleClass="themeButtonBar kioskThemeButtonBar"
+                                        inlineStyle="#{attrs.kioskMode ? (((empty attrs.subHeader) and (empty attrs.pageStamp)) ? (attrs.profileRendered ? 'margin-top: 24px;' : 'margin-top: 15px;') : 'margin-top: 12px;') : ''}"
+                                        stretchId="SPs1">
+                              <af:spacer width="10" id="SPs1"
+                                         clientComponent="true"/>
+                              <af:facetRef facetName="customToolbar"/>
+                            </af:toolbar>
+                          </f:facet>
+                          <f:facet name="start">
+                            <af:panelHeader text="#{component.pageStickyTitle}" id="SPph"
+                                            size="0"
+                                            styleClass="#{attrs.pageTitleWidth eq 'auto' ? 'themeButtonBar spTitleWidth': 'themeButtonBar'}"
+                                            inlineStyle="#{attrs.pageTitleWidth eq 'auto' ? '' : 'width:attrs.pageTitleWidth'}">
+                              <f:facet name="context">
+                                <af:facetRef facetName="pageContext"/>
+                              </f:facet>
+                            </af:panelHeader>
+                          </f:facet>
+                          <f:facet name="end">
+                            <af:toolbar id="SPtb1" styleClass="themeButtonBar"
+                                        inlineStyle="#{attrs.kioskMode ? (((empty attrs.subHeader) and (empty attrs.pageStamp)) ? (attrs.profileRendered ? 'margin-top: 24px;' : 'margin-top: 15px;') : 'margin-top: 12px;') : ''}">
+                              <af:facetRef facetName="actionToolbar"/>
+                              <af:group id="SPdc_g1">
+                                <af:commandToolbarButton id="SPctb1"
+                                                         visible="#{empty attrs.saveButtonVisible ? true : attrs.saveButtonVisible}"
+                                                         action="#{component.handleSaveAction}"
+                                                         actionListener="#{component.handleSaveActionListener}"
+                                                         rendered="#{attrs.saveButtonRendered}"
+                                                         text="#{uikitcommonBundle.SAVE}"
+                                                         shortDesc="#{attrs.saveButtonShortDesc}"
+                                                         partialSubmit="#{attrs.saveButtonPartialSubmit}"
+                                                         disabled="#{attrs.saveButtonDisabled}"/>
+                                <af:commandToolbarButton text="#{uikitcommonBundle.SAVE_AND_CONTINUE}"
+                                                         id="SPctb2"
+                                                         visible="#{empty attrs.saveAndContinueButtonVisible ? true : attrs.saveAndContinueButtonVisible}"
+                                                         action="#{component.handleSaveAndContinueAction}"
+                                                         actionListener="#{component.handleSaveAndContinueActionListener}"
+                                                         rendered="#{attrs.saveAndContinueButtonRendered}"
+                                                         shortDesc="#{attrs.saveAndContinueButtonShortDesc}"
+                                                         partialSubmit="#{attrs.saveAndContinueButtonPartialSubmit}"
+                                                         disabled="#{attrs.saveAndContinueButtonDisabled}"/>
+                                <af:commandToolbarButton id="SPctb3"
+                                                         text="#{uikitcommonBundle.SAVE_AND_CLOSE}"
+                                                         visible="#{empty attrs.saveAndCloseButtonVisible ? true : attrs.saveAndCloseButtonVisible}"
+                                                         action="#{component.handleSaveAndCloseAction}"
+                                                         actionListener="#{component.handleSaveAndCloseActionListener}"
+                                                         rendered="#{attrs.saveAndCloseButtonRendered}"
+                                                         shortDesc="#{attrs.saveAndCloseButtonShortDesc}"
+                                                         partialSubmit="#{attrs.saveAndCloseButtonPartialSubmit}"
+                                                         disabled="#{attrs.saveAndCloseButtonDisabled}"/>
+                                <af:commandToolbarButton text="#{uikitcommonBundle.SUBMIT}"
+                                                         id="SPctb4"
+                                                         rendered="#{attrs.submitButtonRendered}"
+                                                         actionListener="#{component.handleSubmitActionListener}"
+                                                         action="#{component.handleSubmitAction}"
+                                                         shortDesc="#{attrs.submitButtonShortDesc}"
+                                                         partialSubmit="#{attrs.submitButtonPartialSubmit}"
+                                                         disabled="#{attrs.submitButtonDisabled}"
+                                                         visible="#{empty attrs.submitButtonVisible ? true : attrs.submitButtonVisible}"/>
+                                <af:commandToolbarButton text="#{uikitcommonBundle.CANCEL}"
+                                                         id="SPctb5"
+                                                         rendered="#{attrs.cancelButtonRendered}"
+                                                         action="#{component.handleCancelAction}"
+                                                         actionListener="#{component.handleCancelActionListener}"
+                                                         shortDesc="#{attrs.cancelButtonShortDesc}"
+                                                         partialSubmit="#{attrs.cancelButtonPartialSubmit}"
+                                                         disabled="#{attrs.cancelButtonDisabled}"
+                                                         visible="#{empty attrs.cancelButtonVisible ? true : attrs.cancelButtonVisible}">
+                                  <af:resetActionListener/>
+                                </af:commandToolbarButton>
+                                <af:commandToolbarButton
+                                                         id="SPctb6"
+                                                         rendered="#{attrs.doneButtonRendered}"
+                                                         text="#{uikitcommonBundle.DONE}"
+                                                         action="#{component.handleDoneAction}"
+                                                         actionListener="#{component.handleDoneActionListener}"
+                                                         shortDesc="#{attrs.doneButtonShortDesc}"
+                                                         partialSubmit="#{attrs.doneButtonPartialSubmit}"
+                                                         disabled="#{attrs.doneButtonDisabled}"
+                                                         visible="#{empty attrs.doneButtonVisible ? true : attrs.doneButtonVisible}"/>
+                              </af:group>
+                            </af:toolbar>
+                          </f:facet>
+                        </af:panelStretchLayout>
+                        <af:panelGroupLayout id="SPpgl15" layout="vertical">
+                          <af:facetRef facetName="secondaryToolbar"/>
+                        </af:panelGroupLayout>
+                        <af:facetRef facetName="popup"/>
+                      </af:panelGroupLayout>
+                    </f:facet>
+                    <f:facet name="start">
+                      <af:panelGroupLayout id="SPpgl20" valign="top"
+                                           layout="horizontal">
+                        <af:panelGroupLayout id="SPpgl21" halign="center"
+                                             layout="vertical"
+                                             rendered="#{empty attrs.doneButtonRendered ? false : (attrs.doneButtonRendered and attrs.kioskMode ? true : false)}"
+                                             styleClass="#{(empty attrs.subHeader and empty attrs.pageStamp and (! attrs.profileRendered)) ? ' panelBack-noSubHeader' : ''} panelBack">
+                          <af:commandImageLink
+                                               id="SPdonei"
+                                               icon="images/func_caretleft_24_ena.png"
+                                               action="#{component.handleDoneAction}"
+                                               actionListener="#{component.handleDoneActionListener}"
+                                               shortDesc="#{attrs.doneButtonShortDesc}"
+                                               partialSubmit="#{attrs.doneButtonPartialSubmit}"
+                                               disabled="#{attrs.doneButtonDisabled}"
+                                               visible="#{attrs.doneButtonVisible}"
+                                               rendered="#{attrs.doneButtonRendered}"/>
+                        </af:panelGroupLayout>
+                        <af:panelGroupLayout id="SPpgl6"
+                                             rendered="#{attrs.profileRendered}"
+                                             layout="vertical"
+                                             inlineStyle="height:#{attrs.kioskMode ? 'auto' : attrs.profileHeight};">
+                          <af:panelGroupLayout id="SPpgl22" layout="vertical"
+                                               styleClass="kioskProfile-padding">
+                            <af:facetRef facetName="profileImage"/>
+                          </af:panelGroupLayout>
+                        </af:panelGroupLayout>
+                      </af:panelGroupLayout>
+                    </f:facet>
+                  </af:panelStretchLayout>
+                </af:panelGroupLayout>
+              </f:facet>
+              <f:facet name="top">
+                <af:panelGroupLayout id="SPpgl7" halign="center"
+                                     layout="vertical">
+                  <af:spacer height="4" id="SPs12"/>
+                  <af:panelGroupLayout id="SPpgl8"
+                                       rendered="#{attrs.trainRendered}">
+                    <af:facetRef facetName="train"/>
+                  </af:panelGroupLayout>
+                </af:panelGroupLayout>
+              </f:facet>
+            </af:panelStretchLayout>
+            <af:panelGroupLayout id="SPpgl2" layout="vertical"
+                                 styleClass="AFStretchWidth">
+              <af:facetRef facetName="contents"/>
+            </af:panelGroupLayout>
+          </af:panelGroupLayout>
+        </f:facet>
+        <f:facet name="end">
+          <af:facetRef facetName="endSidePanel"/>
+        </f:facet>
+      </af:panelStretchLayout>
+    </af:panelGroupLayout>
   </af:componentDef>
 </jsp:root>

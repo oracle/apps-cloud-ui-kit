@@ -1,6 +1,6 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <!--
-Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
 -->
 <jpr:project xmlns:jpr="http://xmlns.oracle.com/ide/project">
    <value n="ADFComponentWizard.LAST_TAG_NS_PREF" v="oracle.apps.uikit.common.declarativeComponents"/>
@@ -233,6 +233,10 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
             <value n="id" v="ADF Common Web Runtime"/>
             <value n="isJDK" v="false"/>
          </hash>
+         <hash>
+            <value n="id" v="Trinidad Runtime 11"/>
+            <value n="isJDK" v="false"/>
+         </hash>
       </list>
       <list n="libraryReferences">
          <hash>
@@ -321,6 +325,10 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
          </hash>
          <hash>
             <value n="id" v="ADF Common Web Runtime"/>
+            <value n="isJDK" v="false"/>
+         </hash>
+         <hash>
+            <value n="id" v="Trinidad Runtime 11"/>
             <value n="isJDK" v="false"/>
          </hash>
       </list>
@@ -450,6 +458,28 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
             <value n="name" v="JSTL Script Free"/>
             <value n="tldURL" v="@oracle.home@../modules/glassfish.jstl_1.2.0.1.jar!/META-INF/scriptfree.tld"/>
             <value n="URI" v="http://jakarta.apache.org/taglibs/standard/scriptfree"/>
+            <value n="version" v="1.2"/>
+         </hash>
+         <hash>
+            <hash n="baseLibrary">
+               <value n="name" v="Trinidad Components"/>
+               <value n="version" v="1.2"/>
+            </hash>
+            <value n="jspVersion" v="1.2"/>
+            <value n="name" v="Trinidad Components"/>
+            <value n="tldURL" v="@oracle.home@../oracle_common/modules/oracle.adf.view_11.1.1/trinidad-impl.jar!/META-INF/tr.tld"/>
+            <value n="URI" v="http://myfaces.apache.org/trinidad"/>
+            <value n="version" v="1.2"/>
+         </hash>
+         <hash>
+            <hash n="baseLibrary">
+               <value n="name" v="Trinidad HTML Components"/>
+               <value n="version" v="1.2"/>
+            </hash>
+            <value n="jspVersion" v="1.2"/>
+            <value n="name" v="Trinidad HTML Components"/>
+            <value n="tldURL" v="@oracle.home@../oracle_common/modules/oracle.adf.view_11.1.1/trinidad-impl.jar!/META-INF/trh.tld"/>
+            <value n="URI" v="http://myfaces.apache.org/trinidad/html"/>
             <value n="version" v="1.2"/>
          </hash>
       </list>

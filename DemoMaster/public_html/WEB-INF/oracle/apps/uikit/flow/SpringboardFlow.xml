@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!--
-Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
 -->
 <adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
   <task-flow-definition id="SpringboardFlow">
@@ -13,6 +13,16 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
     <view id="Springboard">
       <page>/oracle/apps/uikit/page/Springboard.jsff</page>
     </view>
+    <parent-action id="goToFilmStrip">
+      <parent-outcome>filmStrip</parent-outcome>
+    </parent-action>
+    <control-flow-rule id="__6">
+      <from-activity-id id="__7">Springboard</from-activity-id>
+      <control-flow-case id="__9">
+        <from-outcome id="__10">filmStrip</from-outcome>
+        <to-activity-id id="__8">goToFilmStrip</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
     <use-page-fragments/>
   </task-flow-definition>
 </adfc-config>

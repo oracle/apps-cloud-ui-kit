@@ -237,42 +237,6 @@
             <value n="id" v="ADF Library"/>
             <value n="isJDK" v="false"/>
          </hash>
-         <hash>
-            <value n="id" v="Commons-codec-1.9.jar"/>
-            <value n="isJDK" v="false"/>
-         </hash>
-         <hash>
-            <value n="id" v="Commons-logging-1.2.jar"/>
-            <value n="isJDK" v="false"/>
-         </hash>
-         <hash>
-            <value n="id" v="Fluent-hc-4.5.jar"/>
-            <value n="isJDK" v="false"/>
-         </hash>
-         <hash>
-            <value n="id" v="Httpclient-4.5.jar"/>
-            <value n="isJDK" v="false"/>
-         </hash>
-         <hash>
-            <value n="id" v="Httpclient-cache-4.5.jar"/>
-            <value n="isJDK" v="false"/>
-         </hash>
-         <hash>
-            <value n="id" v="Httpclient-win-4.5.jar"/>
-            <value n="isJDK" v="false"/>
-         </hash>
-         <hash>
-            <value n="id" v="Httpcore-4.4.1.jar"/>
-            <value n="isJDK" v="false"/>
-         </hash>
-         <hash>
-            <value n="id" v="Httpmime-4.5.jar"/>
-            <value n="isJDK" v="false"/>
-         </hash>
-         <hash>
-            <value n="id" v="Json-simple-1.1.1.jar"/>
-            <value n="isJDK" v="false"/>
-         </hash>
       </list>
       <hash n="internalDefinitions">
          <list n="libraryDefinitions">
@@ -291,87 +255,6 @@
                </list>
                <value n="description" v="Library2"/>
                <value n="id" v="Library2"/>
-            </hash>
-            <hash>
-               <list n="classPath">
-                  <url path="../libs/commons-codec-1.9.jar" jar-entry=""/>
-               </list>
-               <value n="deployedByDefault" v="true"/>
-               <value n="description" v="Commons-codec-1.9.jar"/>
-               <value n="id" v="Commons-codec-1.9.jar"/>
-               <value n="locked" v="true"/>
-            </hash>
-            <hash>
-               <list n="classPath">
-                  <url path="../libs/commons-logging-1.2.jar" jar-entry=""/>
-               </list>
-               <value n="deployedByDefault" v="true"/>
-               <value n="description" v="Commons-logging-1.2.jar"/>
-               <value n="id" v="Commons-logging-1.2.jar"/>
-               <value n="locked" v="true"/>
-            </hash>
-            <hash>
-               <list n="classPath">
-                  <url path="../libs/fluent-hc-4.5.jar" jar-entry=""/>
-               </list>
-               <value n="deployedByDefault" v="true"/>
-               <value n="description" v="Fluent-hc-4.5.jar"/>
-               <value n="id" v="Fluent-hc-4.5.jar"/>
-               <value n="locked" v="true"/>
-            </hash>
-            <hash>
-               <list n="classPath">
-                  <url path="../libs/httpclient-4.5.jar" jar-entry=""/>
-               </list>
-               <value n="deployedByDefault" v="true"/>
-               <value n="description" v="Httpclient-4.5.jar"/>
-               <value n="id" v="Httpclient-4.5.jar"/>
-               <value n="locked" v="true"/>
-            </hash>
-            <hash>
-               <list n="classPath">
-                  <url path="../libs/httpclient-cache-4.5.jar" jar-entry=""/>
-               </list>
-               <value n="deployedByDefault" v="true"/>
-               <value n="description" v="Httpclient-cache-4.5.jar"/>
-               <value n="id" v="Httpclient-cache-4.5.jar"/>
-               <value n="locked" v="true"/>
-            </hash>
-            <hash>
-               <list n="classPath">
-                  <url path="../libs/httpclient-win-4.5.jar" jar-entry=""/>
-               </list>
-               <value n="deployedByDefault" v="true"/>
-               <value n="description" v="Httpclient-win-4.5.jar"/>
-               <value n="id" v="Httpclient-win-4.5.jar"/>
-               <value n="locked" v="true"/>
-            </hash>
-            <hash>
-               <list n="classPath">
-                  <url path="../libs/httpcore-4.4.1.jar" jar-entry=""/>
-               </list>
-               <value n="deployedByDefault" v="true"/>
-               <value n="description" v="Httpcore-4.4.1.jar"/>
-               <value n="id" v="Httpcore-4.4.1.jar"/>
-               <value n="locked" v="true"/>
-            </hash>
-            <hash>
-               <list n="classPath">
-                  <url path="../libs/httpmime-4.5.jar" jar-entry=""/>
-               </list>
-               <value n="deployedByDefault" v="true"/>
-               <value n="description" v="Httpmime-4.5.jar"/>
-               <value n="id" v="Httpmime-4.5.jar"/>
-               <value n="locked" v="true"/>
-            </hash>
-            <hash>
-               <list n="classPath">
-                  <url path="../libs/json-simple-1.1.1.jar" jar-entry=""/>
-               </list>
-               <value n="deployedByDefault" v="true"/>
-               <value n="description" v="Json-simple-1.1.1.jar"/>
-               <value n="id" v="Json-simple-1.1.1.jar"/>
-               <value n="locked" v="true"/>
             </hash>
          </list>
       </hash>
@@ -466,42 +349,6 @@
          </hash>
          <hash>
             <value n="id" v="ADF Library"/>
-            <value n="isJDK" v="false"/>
-         </hash>
-         <hash>
-            <value n="id" v="Commons-codec-1.9.jar"/>
-            <value n="isJDK" v="false"/>
-         </hash>
-         <hash>
-            <value n="id" v="Commons-logging-1.2.jar"/>
-            <value n="isJDK" v="false"/>
-         </hash>
-         <hash>
-            <value n="id" v="Fluent-hc-4.5.jar"/>
-            <value n="isJDK" v="false"/>
-         </hash>
-         <hash>
-            <value n="id" v="Httpclient-4.5.jar"/>
-            <value n="isJDK" v="false"/>
-         </hash>
-         <hash>
-            <value n="id" v="Httpclient-cache-4.5.jar"/>
-            <value n="isJDK" v="false"/>
-         </hash>
-         <hash>
-            <value n="id" v="Httpclient-win-4.5.jar"/>
-            <value n="isJDK" v="false"/>
-         </hash>
-         <hash>
-            <value n="id" v="Httpcore-4.4.1.jar"/>
-            <value n="isJDK" v="false"/>
-         </hash>
-         <hash>
-            <value n="id" v="Httpmime-4.5.jar"/>
-            <value n="isJDK" v="false"/>
-         </hash>
-         <hash>
-            <value n="id" v="Json-simple-1.1.1.jar"/>
             <value n="isJDK" v="false"/>
          </hash>
       </list>

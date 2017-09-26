@@ -2,10 +2,10 @@
                           UTILITY ROUTINES
 ********************************************************************************
 Find UI Component by Component Id
-Partial Page Refresh UIComponent (2 versions)
+Partial Page Refresh UIComponent
 Show message of type - FATAL, ERROR, WARN, INFO
 Set Locale to English
-Evaluate EL expression (2 versions)
+Evaluate EL expression
 Get Web Application Context Root
 Get Exception
 Refresh View
@@ -13,7 +13,7 @@ Redirect to Self
 Redirect to URL
 Get Application Scope
 Get Session Scope
-Get Page Flow Scope (2 versions)
+Get Page Flow Scope
 Get View Scope
 Get Request Scope
 Get User Name
@@ -24,14 +24,13 @@ Is User Valid (authenticated)
 Get Initialization Parameters
 Get Request Parameters
 Get Session Parameters
+Get Host and Port
 *******************************************************************************/
 package oracle.apps.uikit.common.bean;
-
 /*
- * Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
  *
 **/
-
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -46,23 +45,15 @@ import javax.faces.application.FacesMessage;
 import javax.faces.application.ViewHandler;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIViewRoot;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import oracle.adf.controller.ControllerContext;
 import oracle.adf.share.ADFContext;
-import oracle.adf.share.security.SecurityContext;
 import oracle.adf.view.rich.context.AdfFacesContext;
 import org.apache.myfaces.trinidad.context.RequestContext;
 
 public class UtilsBean {
-    private FacesContext _facesCtx = FacesContext.getCurrentInstance();
-    private ADFContext _adfCtx = ADFContext.getCurrent();
-    private AdfFacesContext _adfFacesCtx = AdfFacesContext.getCurrentInstance();
-    private ControllerContext _conCtx = ControllerContext.getInstance();
-    private RequestContext _reqCtx = RequestContext.getCurrentInstance();
-    private SecurityContext _secCtx = _adfCtx.getSecurityContext();
-    private ExternalContext _extCtx = _facesCtx.getExternalContext();
 
     //Format Example - "d MMM yyyy", "d MMM yyyy hh:mm aaa"
     public String getFormattedDate(Date date, String format){
@@ -116,48 +107,56 @@ public class UtilsBean {
 
     //Find a UI Component using componentId
     public UIComponent findUIComponent(String id){
-        return _facesCtx.getViewRoot().findComponent(id);
+        return FacesContext.getCurrentInstance().getViewRoot().findComponent(id);
     }//findUIComponent
 
     //Partial Page Refresh
     public void refresh(UIComponent c){
-        _adfFacesCtx.addPartialTarget(c);
+        AdfFacesContext.getCurrentInstance().addPartialTarget(c);
     }//refresh
 
     //Partial Page Refresh
     public void refresh2(UIComponent c){
-        _reqCtx.addPartialTarget(c);
+        RequestContext.getCurrentInstance().addPartialTarget(c);
     }//refresh2
 
     //Refresh View
     public void refreshView(){
-        String viewId = _facesCtx.getViewRoot().getViewId();
-        ViewHandler vh = _facesCtx.getApplication().getViewHandler();
-        UIViewRoot uivr = vh.createView(_facesCtx, viewId);
-        _facesCtx.setViewRoot(uivr);
+        String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();
+        ViewHandler vh = FacesContext.getCurrentInstance().getApplication().getViewHandler();
+        UIViewRoot uivr = vh.createView(FacesContext.getCurrentInstance(), viewId);
+        FacesContext.getCurrentInstance().setViewRoot(uivr);
     }//refreshView
 
     //Change locale to English
     public void changeLocaleToEnglish(){
-        _facesCtx.getViewRoot().setLocale(Locale.ENGLISH);
+        FacesContext.getCurrentInstance().getViewRoot().setLocale(Locale.ENGLISH);
     }//changeLocaleToEnglish
 
     //Evaluate EL expression like "#{xxx}"
     public Object evaluateEL(String elString){
-        Application app = _facesCtx.getApplication();
+        Application app = FacesContext.getCurrentInstance().getApplication();
         ExpressionFactory elFactory = app.getExpressionFactory();
-        ELContext elContext = _facesCtx.getELContext();
+        ELContext elContext = FacesContext.getCurrentInstance().getELContext();
         ValueExpression valExp = elFactory.createValueExpression(elContext, elString, Object.class);
         return valExp.getValue(elContext);
     }//evaluateEL
 
     //Evaluate EL expression like "#{xxx}"
     public Object evaluateEL2(String elString){
-        ELContext elContext = _adfCtx.getELContext();
-        ExpressionFactory elFactory = _adfCtx.getExpressionFactory();
+        ELContext elContext = ADFContext.getCurrent().getELContext();
+        ExpressionFactory elFactory = ADFContext.getCurrent().getExpressionFactory();
         ValueExpression valExp = elFactory.createValueExpression(elContext, elString, Object.class);
         return valExp.getValue(elContext);
     }//evaluateEL2
+    
+    //Set EL value
+    public void setEL(String elString, Object val){
+        ELContext elContext = FacesContext.getCurrentInstance().getELContext();
+        ExpressionFactory elFactory = ADFContext.getCurrent().getExpressionFactory();
+        ValueExpression valExp = elFactory.createValueExpression(elContext, elString, Object.class);
+        valExp.setValue(elContext, val);
+    }//setEL
 
     //Show message of type - FATAL, ERROR, WARN, INFO
     public void showMessage(String msgType, String msg){
@@ -166,52 +165,52 @@ public class UtilsBean {
         else if (msgType.equals("ERROR")) fm.setSeverity(FacesMessage.SEVERITY_ERROR);
         else if (msgType.equals("WARN")) fm.setSeverity(FacesMessage.SEVERITY_WARN);
         else fm.setSeverity(FacesMessage.SEVERITY_INFO);
-        _facesCtx.addMessage(null, fm);
+        FacesContext.getCurrentInstance().addMessage(null, fm);
     }//showMessage
 
     //Web App context root
     public String getWebAppContextRoot(){
-        return _extCtx.getRequestContextPath();
+        return FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath();
     }//getWebAppContextRoot
 
     //Get Application Scope
     public Map<String, Object> getApplicationScope(){
-        return _adfCtx.getApplicationScope();
+        return ADFContext.getCurrent().getApplicationScope();
     }//getApplicationScope
 
     //Get Session Scope
     public Map<String, Object> getSessionScope(){
-        return _adfCtx.getSessionScope();
+        return ADFContext.getCurrent().getSessionScope();
     }//getSessionScope
 
     //Get PageFlowScope
     public Map<String,Object> getPageFlowScope(){
-        return _adfFacesCtx.getPageFlowScope();
+        return AdfFacesContext.getCurrentInstance().getPageFlowScope();
     }//getPageFlowScope
 
     //Get Alternative PageFlowScope
     public Map<String,Object> getPageFlowScope2(){
-        return _adfCtx.getPageFlowScope();
+        return ADFContext.getCurrent().getPageFlowScope();
     }//getPageFlowScope2
 
     //Get ViewScope
     public Map<String,Object> getViewScope(){
-        return _adfFacesCtx.getViewScope();
+        return AdfFacesContext.getCurrentInstance().getViewScope();
     }//getViewScope
 
     //Get Request Scope
     public Map<String, String> getRequestScope(){
-        return _adfCtx.getRequestScope();
+        return ADFContext.getCurrent().getRequestScope();
     }//getRequestScope
 
     //Get logged in user name
     public String getUserName(){
-        return _secCtx.getUserName();
+        return ADFContext.getCurrent().getSecurityContext().getUserName();
     }//getUserName
 
     //Get logged in user roles
     public String[] getUserRoles(){
-        return _secCtx.getUserRoles();
+        return ADFContext.getCurrent().getSecurityContext().getUserRoles();
     }//getUserRoles
 
     //Print logged in user roles using SOP
@@ -222,53 +221,67 @@ public class UtilsBean {
 
     //Check if user has a role
     public boolean doesUserHaveRole(String role){
-        return _secCtx.isUserInRole(role);
+        return ADFContext.getCurrent().getSecurityContext().isUserInRole(role);
     }//doesUserHaveRole
 
     //Check for authenticated user
     public boolean isUserValid(){
-        return _secCtx.isAuthenticated();
+        return ADFContext.getCurrent().getSecurityContext().isAuthenticated();
     }//isUserValid
 
     //Grab exception data
     public Exception getException(){
-        return _conCtx.getCurrentViewPort().getExceptionData();
+        return ControllerContext.getInstance().getCurrentViewPort().getExceptionData();
     }//getException
 
     //Redirect to self
     public void redirectToSelf(){
-        String viewId = _facesCtx.getViewRoot().getViewId();
-        String activityURL = _conCtx.getGlobalViewActivityURL(viewId);
+        String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();
+        String activityURL = ControllerContext.getInstance().getGlobalViewActivityURL(viewId);
         try {
-            _extCtx.redirect(activityURL);
-            _facesCtx.responseComplete();
+            FacesContext.getCurrentInstance().getExternalContext().redirect(activityURL);
+            FacesContext.getCurrentInstance().responseComplete();
         } catch (IOException e) {
             e.printStackTrace();
-            _facesCtx.renderResponse();
+            FacesContext.getCurrentInstance().renderResponse();
         }//try-catch
     }//redirectToSelf
 
     //Redirect to URL
     public void redirectToUrl(String url){
-        HttpServletResponse response = (HttpServletResponse)_extCtx.getResponse();
-        if (url == null) url = _extCtx.getRequestContextPath()+"/adfAuthentication?logout=true&end_url=/faces/start.jspx";
+        HttpServletResponse response = (HttpServletResponse)FacesContext.getCurrentInstance().getExternalContext().getResponse();
+        if (url == null) url = FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/adfAuthentication?logout=true&end_url=/faces/start.jspx";
         try{ response.sendRedirect(url); }
         catch (Exception e) { e.printStackTrace(); }
     }//redirectToUrl
 
     //Get initialization parameters
     public Map<String, Object> getInitParameters(){
-        return _extCtx.getInitParameterMap();
+        return FacesContext.getCurrentInstance().getExternalContext().getInitParameterMap();
     }//getInitParameters
 
     //Get Request Parameters
     public Map<String, String> getRequestParameters(){
-        return _extCtx.getRequestParameterMap();
+        return FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
     }//getRequestParameters
 
     //Get Session Parameters
     public Map<String, Object> getSessionParameters(){
-        return _extCtx.getSessionMap();
+        return FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
     }//getSessionParameters
+    
+    //Get Host
+    public String getHost(){
+        FacesContext fctx = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest)fctx.getExternalContext().getRequest();
+        return request.getServerName();
+    }//getHost
+    
+    //Get Port
+    public String getPort(){
+        FacesContext fctx = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest)fctx.getExternalContext().getRequest();
+        return Integer.toString(request.getServerPort());
+    }//getPort
 
 }//UtilsBean

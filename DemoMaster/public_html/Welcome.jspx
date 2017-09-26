@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--
-Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
 -->
 <jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
           xmlns:f="http://java.sun.com/jsf/core"
@@ -13,27 +13,37 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
   <f:view>
     <af:document id="d1" title="#{demomasterBundle.APPS_CLOUD_UI_KIT_WELCOME}">
       <af:form id="f1" usesUpload="true">
+        <af:resource type="javascript" source="js/jquery-3.1.1.js"/>
+        <af:resource type="javascript" source="js/svgIcons.js"/>
+        <af:resource type="javascript" source="js/homeGrid.js"/>
+        <af:resource type="javascript" source="js/homeBanner.js"/>
         <af:pageTemplate viewId="/oracle/apps/uikit/common/pageTemplates/SimpleUIShell.jspx"
                          id="pt1">
-          <f:facet name="pageContents">
+          <f:facet name="bannerContents">
             <af:panelGroupLayout id="pgl1" layout="vertical" valign="top">
+              <af:commandButton id="cbHidden" clientComponent="true"
+                                visible="false">
+                <af:serverListener type="iconClicked"
+                                   method="#{backingBeanScope.WelcomeBean.handleGridItemNodeClick}"/>
+              </af:commandButton>
               <af:spacer width="10" height="10" id="s1"/>
               <af:panelStretchLayout id="psl1" dimensionsFrom="children"
                                      styleClass="application-container-size"
                                      startWidth="50%" endWidth="50%"
                                      bottomHeight="0px" topHeight="auto">
                 <f:facet name="top">
-                  <af:panelGridLayout id="pgl2">
+                  <af:panelGridLayout id="pgl2"
+                                      styleClass="application-container-width"
+                                      inlineStyle="margin-left:auto; margin-right:auto;">
                     <af:gridRow id="gr1">
-                      <af:gridCell id="gc1" halign="center"
-                                   valign="stretch" width="100%">
+                      <af:gridCell id="gc1" halign="center" valign="stretch"
+                                   width="100%">
                         <af:panelGroupLayout id="pgl3" layout="horizontal"
                                              partialTriggers="cil1 cil2">
                           <f:facet name="separator">
                             <af:spacer width="3" id="s3"/>
                           </f:facet>
-                          <af:commandImageLink
-                                               id="cil1" partialSubmit="true"
+                          <af:commandImageLink id="cil1" partialSubmit="true"
                                                shortDesc="#{demomasterBundle.WELCOME_SPRINGBOARD}"
                                                icon="/images/func_pagination_28_ena.png"
                                                disabledIcon="/images/func_pagination_28_act.png"
@@ -46,8 +56,7 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
                                                     to="#{SessionState.welcomeMode}"
                                                     type="action"/>
                           </af:commandImageLink>
-                          <af:commandImageLink
-                                               id="cil2" partialSubmit="true"
+                          <af:commandImageLink id="cil2" partialSubmit="true"
                                                shortDesc="#{demomasterBundle.INFOLETS}"
                                                icon="/images/func_pagination_28_ena.png"
                                                disabledIcon="/images/func_pagination_28_act.png"
@@ -82,7 +91,8 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
                           </af:commandImageLink>
                           <af:popup id="infoletLibraryPopup"
                                     contentDelivery="lazyUncached">
-                            <af:panelHeader text="#{demomasterBundle.AVAILABLE_INFOLETS}" id="ph1">
+                            <af:panelHeader text="#{demomasterBundle.AVAILABLE_INFOLETS}"
+                                            id="ph1">
                               <af:outputText id="ot1"
                                              value="#{demomasterBundle.ALL_INFOLETS_DISPLAYED}"/>
                             </af:panelHeader>
@@ -105,26 +115,38 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
                       <af:region value="#{bindings.SpringboardFlow1.regionModel}"
                                  id="r4"/>
                     </af:panelGroupLayout>
-                    <af:panelGroupLayout id="infolets" layout="vertical">
-                      <af:panelGroupLayout id="pgl5">
-                        <af:forEach var="row" varStatus="rowStatus"
-                                    items="#{bindings.InfoletsMultiTaskFlow1.taskFlowBindingList}">
-                          <af:panelGroupLayout id="pgl6" layout="horizontal"
-                                               styleClass="infolet-container">
-                            <af:region value="#{row.regionModel}" id="r1"/>
+                    <af:panelGridLayout id="infolets"
+                                        styleClass="application-container-width"
+                                        inlineStyle="margin-left:auto; margin-right:auto;"
+                                        rendered="true">
+                      <af:gridRow id="gr4">
+                        <af:gridCell width="100%" id="gc6"
+                                     halign="center" valign="stretch">
+                          <af:panelGroupLayout id="pgl_infolets"
+                                               layout="vertical">
+                            <af:panelGroupLayout id="pgl5">
+                              <af:forEach var="row" varStatus="rowStatus"
+                                          items="#{bindings.InfoletsMultiTaskFlow1.taskFlowBindingList}">
+                                <af:panelGroupLayout id="pgl6"
+                                                     layout="horizontal"
+                                                     styleClass="infolet-container">
+                                  <af:region value="#{row.regionModel}"
+                                             id="r1"/>
+                                </af:panelGroupLayout>
+                              </af:forEach>
+                            </af:panelGroupLayout>
                           </af:panelGroupLayout>
-                        </af:forEach>
-                      </af:panelGroupLayout>
-                    </af:panelGroupLayout>
+                        </af:gridCell>
+                      </af:gridRow>
+                    </af:panelGridLayout>
                   </af:deck>
                 </f:facet>
               </af:panelStretchLayout>
               <af:spacer width="10" height="10" id="s2"/>
               <af:popup id="welcomePopup"
                         popupFetchListener="#{backingBeanScope.WelcomeBean.welcomePopupFetchListener}">
-                <af:dialog id="d2"
-                           type="ok"
-                           contentWidth="500" styleClass="welcome-dialog"
+                <af:dialog id="d2" type="ok" contentWidth="500"
+                           styleClass="welcome-dialog"
                            title="#{demomasterBundle.WELCOME_TO_THE_ORACLE_APPLICAT}">
                   <af:panelGroupLayout id="pgl7" layout="vertical">
                     <af:commandLink id="stealFocus" partialSubmit="true"/>
@@ -136,13 +158,6 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
                 </af:dialog>
               </af:popup>
             </af:panelGroupLayout>
-          </f:facet>
-          <f:facet name="globalNavigator">
-            <af:region value="#{bindings.NavigatorFlow1.regionModel}" id="r3"/>
-          </f:facet>
-          <f:facet name="experimental">
-            <af:region value="#{bindings.ExperimentalFlow1.regionModel}"
-                       id="r2"/>
           </f:facet>
         </af:pageTemplate>
       </af:form>

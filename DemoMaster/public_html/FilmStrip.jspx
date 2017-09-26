@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--
-Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
 -->
 <jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
           xmlns:f="http://java.sun.com/jsf/core"
@@ -14,58 +14,47 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
     <af:document id="d1"
                  title="#{demomasterBundle.APPS_CLOUD_UI_KIT_FILMSTRIP}">
       <af:form id="f1">
+        <af:resource type="javascript" source="js/jquery-3.1.1.js"/>
+        <af:resource type="javascript" source="js/svgIcons.js"/>
+        <af:resource type="javascript" source="js/filmStrip.js"/>
         <af:pageTemplate viewId="/oracle/apps/uikit/common/pageTemplates/SimpleUIShell.jspx"
                          id="pt1">
           <f:facet name="pageContents">
-            <af:switcher id="s1" facetName="#{SessionState.filmStripMode}">
-              <f:facet name="strip">
-                <af:panelSpringboard id="ps1"
-                                     styleClass="#{SessionState.filmStripShowStrip} springboard-strip-mode-size"
-                                     binding="#{backingBeanScope.FilmStripBean.filmStripSpringboard}">
-                  <af:forEach var="node"
-                              varStatus="nodeStatus"
-                              items="#{SessionState.filmStripNodeList}">
-                    <af:showDetailItem id="sdi1"
-                                       text="#{node.name}"
-                                       stretchChildren="first"
-                                       icon="#{node.icon}"
-                                       disclosed="#{SessionState.accessedNodeId == node.id}">
-                      <af:panelGroupLayout id="pgl1" layout="vertical"
-                                           halign="center">
-                        <af:commandImageLink
-                                             id="cil1" partialSubmit="true"
-                                             icon="/images/func_striphandle_ena.png"
-                                             hoverIcon="/images/func_striphandle_hov.png"
-                                             styleClass="filmstrip-expand-collapse"
-                                             actionListener="#{backingBeanScope.FilmStripBean.toggleFilmStrip}"
-                                             shortDesc="#{demomasterBundle.SHOW_AND_HIDE_THE_FILM_STRIP}"
-                                             rendered="#{SessionState.filmStripShowHandle}"/>
-                        <af:region value="#{bindings.mtf1.taskFlowBindingList[nodeStatus.index].regionModel}"/>
-                      </af:panelGroupLayout>
-                      <af:setPropertyListener type="disclosure"
-                                              from="#{node.id}"
-                                              to="#{SessionState.accessedNodeId}"/>
-                    </af:showDetailItem>
-                  </af:forEach>
-                </af:panelSpringboard>
-              </f:facet>
-              <f:facet name="single">
-                <af:panelGroupLayout id="pgl2" layout="vertical">
-                  <af:spacer height="12" id="s2"/>
-                  <af:region value="#{bindings.dynamicRegion1.regionModel}"
-                             id="r1"/>
+            <af:panelGroupLayout id="pgl2" layout="vertical">
+              <af:commandButton id="amHidden" clientComponent="true"
+                                visible="false" shortDesc="Hidden">
+                <af:serverListener type="iconClicked"
+                                   method="#{backingBeanScope.FilmStripBean.handleFilmStripCardClick}"/>
+              </af:commandButton>
+              <af:panelGroupLayout id="pgl2Film" halign="center"
+                                   layout="vertical"
+                                   rendered="#{!sessionScope.hideStrip}">
+                <af:outputText id="ot2"
+                               value="#{backingBeanScope.FilmStripBean.filmStripLayout[sessionScope.selectedItemId]}"/>
+                <af:conveyorBelt id="cb2" clientComponent="true">
+                  <div class="strip-container AFStretchWidth" id="app-strip"/>
+                </af:conveyorBelt>
+              </af:panelGroupLayout>
+              <af:spacer height="30" id="s1"
+                         rendered="#{sessionScope.hideStrip}"/>
+              <af:panelGroupLayout id="pgl1" layout="vertical">
+                <af:panelGroupLayout id="pgl3"
+                                     rendered="#{!sessionScope.hideStripToggle}"
+                                     halign="center" layout="vertical"
+                                     inlineStyle="height:0px;">
+                  <af:commandImageLink
+                                       id="pt_cilflip"
+                                       icon="/images/func_striphandle_ena.png"
+                                       styleClass="filmstrip-expand-collapse"
+                                       hoverIcon="/images/func_striphandle_hov.png"
+                                       actionListener="#{backingBeanScope.FilmStripBean.toggleStripRender}"/>
                 </af:panelGroupLayout>
-              </f:facet>
-            </af:switcher>
+              </af:panelGroupLayout>
+              <af:region value="#{bindings.dynamicRegion1.regionModel}"
+                         id="r1"/>
+            </af:panelGroupLayout>
           </f:facet>
-          <f:facet name="globalNavigator">
-            <af:region value="#{bindings.NavigatorFlow1.regionModel}" id="r2"/>
-          </f:facet>
-          <f:facet name="experimental">
-            <af:region value="#{bindings.ExperimentalFlow1.regionModel}"
-                       id="r3"/>
-          </f:facet>
-        </af:pageTemplate>
+        </af:pageTemplate>        
       </af:form>
     </af:document>
   </f:view>

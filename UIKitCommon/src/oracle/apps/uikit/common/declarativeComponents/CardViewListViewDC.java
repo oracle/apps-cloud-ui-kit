@@ -1,18 +1,19 @@
 package oracle.apps.uikit.common.declarativeComponents;
-
 /*
- * Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
  *
 **/
-
 import oracle.adf.view.rich.component.rich.fragment.RichDeclarativeComponent;
 import javax.faces.event.ActionEvent;
 
 public class CardViewListViewDC extends RichDeclarativeComponent {
     private static String CARD_VIEW = "cardView";
     private static String LIST_VIEW = "listView";
-
     private String _viewMode;
+
+    public CardViewListViewDC(){
+        super();
+    }//constructor
 
     public void setViewMode(String s) { _viewMode = s; }
 
@@ -39,12 +40,4 @@ public class CardViewListViewDC extends RichDeclarativeComponent {
             setViewMode(LIST_VIEW);
     }//showListView
 
-/*
-    public void toggleViewMode(ActionEvent actionEvent){
-        if (getViewMode().equals(CARD_VIEW))
-            setViewMode(LIST_VIEW);
-        else
-            setViewMode(CARD_VIEW);
-    }//toggleViewMode
-*/
 }//CardViewListViewDC

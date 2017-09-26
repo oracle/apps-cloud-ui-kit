@@ -1,16 +1,18 @@
 package oracle.apps.uikit.common.bean;
-
 /*
- * Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
  *
 **/
-
 import oracle.adf.controller.TaskFlowId;
 import oracle.adf.controller.binding.TaskFlowBindingAttributes;
 
 public class InfoTile extends TaskFlowBindingAttributes {
     private String _tfName;
     private String _tfId;
+
+    public InfoTile(){
+        super();
+    }//constructor
 
     public InfoTile(String tfName, String tfId){
         _tfName = tfName;

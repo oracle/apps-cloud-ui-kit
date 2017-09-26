@@ -1,10 +1,8 @@
 package oracle.apps.uikit.crm.contacts.bean;
-
 /*
- * Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
  *
 **/
-
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.component.UIViewRoot;
@@ -337,13 +335,12 @@ public class ContactsBean {
     }//_buildFilteredContactsList
 
     private void _switchInlineMode(String mode){
-        SessionState sessionState = (SessionState)_utils.getSessionScope().get("SessionState");
         if (mode.equals("ON")){
-            sessionState.setFilmStripShowHandle(false);
-            sessionState.setFilmStripShowStrip("noShow");
+            _utils.setEL("#{sessionScope.hideStrip}", true);
+            _utils.setEL("#{sessionScope.hideStripToggle}", true);
         } else {
-            sessionState.setFilmStripShowHandle(true);
-            sessionState.setFilmStripShowStrip("");
+            _utils.setEL("#{sessionScope.hideStrip}", false);
+            _utils.setEL("#{sessionScope.hideStripToggle}", false);
         }//mode check
         //Initiate Refresh
         FacesContext fctx = FacesContext.getCurrentInstance();

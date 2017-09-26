@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core" xmlns:acdc="/appsCloudUIKitDCs"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="demomasterBundle"
+         value="#{adfBundle['oracle.apps.uikit.DemoMasterBundle']}"/>
+  <af:resource type="javascript" source="js/themes.js"></af:resource>
+  <af:panelStretchLayout id="content_area" endWidth="0px"
+                         styleClass="fuse-container" dimensionsFrom="auto">
+    <f:facet name="center">
+      <af:panelTabbed position="start" id="pt2" dimensionsFrom="auto">
+        <af:showDetailItem id="tab1" icon="/images/func_layout_32_ena.png"
+                           shortDesc="Layout">
+          <af:panelGroupLayout id="pgl1" layout="vertical"
+                               styleClass="page-container">
+            <acdc:PageHeaderDC id="phdc1" stickyHeaderEnabled="true"
+                               pageTitle="#{demomasterBundle.HOME_LAYOUT}">
+              <f:facet name="contents">
+                <af:panelGroupLayout id="pgl3"
+                                     layout="vertical"
+                                     styleClass="page-container"
+                                     partialTriggers="cb1">
+                  <af:spacer height="20" id="s1"/>
+                  <af:panelGroupLayout id="pgl4" layout="horizontal"
+                                       valign="top"
+                                       styleClass="AFStretchWidth">
+                    <af:panelFormLayout id="pfl1" maxColumns="1" rows="8"
+                                        labelWidth="250px"
+                                        styleClass="AFStretchWidth">
+                      <af:panelLabelAndMessage label="#{demomasterBundle.PAGE_LAYOUT}" id="plam2"
+                                               for="soc1">
+                        <af:selectOneChoice id="soc1"
+                                            value="#{pageFlowScope.AppearanceBean.homePageView}"
+                                            simple="true" autoSubmit="true">
+                          <af:selectItem label="Panel" id="si1"
+                                         value="GRID"/>
+                          <af:selectItem label="Banner" id="si2"
+                                         value="BANNER"/>
+                        </af:selectOneChoice>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{demomasterBundle.PAGE_OPTIONS}" id="plam1"
+                                               for="soc2">
+                        <af:selectOneChoice id="soc2"
+                                            value="#{pageFlowScope.AppearanceBean.homePageOption}"
+                                            simple="true" autoSubmit="true">
+                          <af:selectItem label="Social" id="si3"
+                                         value="social"/>
+                          <af:selectItem label="Announcements" id="si4"
+                                         value="announcements"/>
+                          <af:selectItem label="Cover Image" id="si5"
+                                         value="coverImage"/>
+                          <af:selectItem label="None" id="si6" value="none"/>
+                        </af:selectOneChoice>
+                      </af:panelLabelAndMessage>
+                    </af:panelFormLayout>
+                    <af:panelGroupLayout id="pgl5" layout="vertical"
+                                         partialTriggers="soc1 soc2">
+                      <af:outputLabel value="#{demomasterBundle.PREVIEW}" id="ol1"/>
+                      <af:spacer height="10" id="s2"/>
+                      <af:image id="i1"
+                                source="#{pageFlowScope.AppearanceBean.homeLayoutPreviewImage}"
+                                shortDesc="#{demomasterBundle.HOME_LAYOUT_PREVIEW_IMAGE}"/>
+                    </af:panelGroupLayout>
+                  </af:panelGroupLayout>
+                </af:panelGroupLayout>
+              </f:facet>
+              <f:facet name="customToolbar">
+                <af:commandButton text="#{demomasterBundle.APPLY}" id="cb1"
+                                  actionListener="#{pageFlowScope.AppearanceBean.applyHomeLayout}"/>
+              </f:facet>
+            </acdc:PageHeaderDC>
+          </af:panelGroupLayout>
+        </af:showDetailItem>
+        <af:showDetailItem id="sdi1"
+                           icon="/images/func_palettebrush_32_ena.png"
+                           shortDesc="Themes">
+          <af:panelGroupLayout id="pgl2" layout="vertical"
+                               styleClass="page-container">
+            <acdc:PageHeaderDC id="phdc2"
+                               pageTitle="#{demomasterBundle.THEMES}"
+                               stickyHeaderEnabled="true"
+                               subHeader="The default theme is 'Sky Blue'. For all other themes, you will need to adjust colour settings in CSS.">
+              <f:facet name="contents">
+                <af:panelGroupLayout id="pgl7" layout="vertical"
+                                     halign="center"
+                                     styleClass="page-container"
+                                     partialTriggers="cb2">
+                  <af:spacer height="35" id="s4"/>
+                  <af:panelGroupLayout id="pgl9" layout="horizontal">
+                    <af:spacer width="75" id="s7"/>
+                    <af:panelGroupLayout id="pgl8" layout="vertical">
+                      <af:outputLabel value="#{demomasterBundle.PREVIEW}"
+                                      id="ol2"/>
+                      <af:spacer height="10" id="s5"/>
+                      <af:image source="#{SessionState.homePageView == 'BANNER' ? pageFlowScope.AppearanceBean.chosenTheme.bannerImage : pageFlowScope.AppearanceBean.chosenTheme.gridImage}"
+                                id="i2" partialTriggers="iter1:cmitem"
+                                shortDesc="#{demomasterBundle.THEME_PREVIEW_IMAGE}"
+                                inlineStyle="width:60.0%; height:auto;"/>
+                    </af:panelGroupLayout>
+                  </af:panelGroupLayout>
+                </af:panelGroupLayout>
+              </f:facet>
+              <f:facet name="customToolbar">
+                <af:commandButton text="#{demomasterBundle.APPLY}" id="cb2"
+                                  actionListener="#{pageFlowScope.AppearanceBean.applyTheme}"/>
+              </f:facet>
+              <f:facet name="pageContext">
+                <af:panelGroupLayout id="pgl6" layout="horizontal">
+                  <af:spacer width="5" id="s3"/>
+                  <af:commandToolbarButton text="#{pageFlowScope.AppearanceBean.chosenTheme.label}"
+                                           id="ctb1" type="check"
+                                           partialTriggers="iter1:cmitem">
+                    <f:facet name="popup">
+                      <af:menu id="m1">
+                        <af:group id="themes-group">
+                          <af:iterator id="iter1"
+                                       value="#{pageFlowScope.AppearanceBean.themesList}"
+                                       var="row">
+                            <af:commandMenuItem text="#{row.label}"
+                                                id="cmitem">
+                              <af:setPropertyListener from="#{row.value}"
+                                                      to="#{pageFlowScope.AppearanceBean.chosenTheme.value}"
+                                                      type="action"/>
+                              <af:setPropertyListener from="#{row.label}"
+                                                      to="#{pageFlowScope.AppearanceBean.chosenTheme.label}"
+                                                      type="action"/>
+                              <af:setPropertyListener from="#{row.bannerImage}"
+                                                      to="#{pageFlowScope.AppearanceBean.chosenTheme.bannerImage}"
+                                                      type="action"/>
+                              <af:setPropertyListener from="#{row.gridImage}"
+                                                      to="#{pageFlowScope.AppearanceBean.chosenTheme.gridImage}"
+                                                      type="action"/>
+                            </af:commandMenuItem>
+                          </af:iterator>
+                        </af:group>
+                      </af:menu>
+                    </f:facet>
+                  </af:commandToolbarButton>
+                </af:panelGroupLayout>
+              </f:facet>
+            </acdc:PageHeaderDC>
+          </af:panelGroupLayout>
+        </af:showDetailItem>
+      </af:panelTabbed>
+    </f:facet>
+  </af:panelStretchLayout>
+</jsp:root>

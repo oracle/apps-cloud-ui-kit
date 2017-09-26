@@ -1,10 +1,8 @@
 package oracle.apps.uikit.fin.reports.bean;
-
 /*
- * Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
  *
 **/
-
 import java.util.List;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.ValueChangeEvent;

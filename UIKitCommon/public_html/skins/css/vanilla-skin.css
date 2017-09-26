@@ -1,0 +1,1170 @@
+.AFBrandingBarLogo {
+    background-image: url('/images/logo-oracle-dark.png');
+    height: 25px;
+    width: 119px;
+    background-size: 100% 100%;
+}
+
+.FuseBorderRadius:alias {
+    border-radius: 3px;
+}
+
+.AFGlobalBackgroundColor:alias {
+    color: #f2f4f5;
+}
+
+.AFBrandingLinkColor:alias {
+    color: #454545;
+}
+
+.AFBrandingTextColor:alias {
+    color: #454545;
+}
+
+.FuseSpringBoardLinkColor:alias {
+    color: rgba(69, 69, 69, 0.75);
+}
+
+.fndGlobalSearchContainerBG:alias {
+    color: rgba(69, 69, 69, 0.15);
+}
+
+.fndGlobalSearchPlaceholderText:alias {
+    color: rgba(69, 69, 69, 0.8);
+}
+
+.AFLinkColor:alias {
+    color: #145c9e;
+}
+
+.FuseButtonForeground:alias {
+    text-shadow: none;
+}
+
+.FuseButtonForeground:alias, .FuseButtonForegroundHover:alias {
+    color: #000000;
+}
+
+.FuseButtonBackgroundActive:alias {
+    background-color: #000000;
+}
+
+.FuseDroplistImageEna:alias {
+    background-image: url('/images/themes/vanilla/func_dropdown_14_ena_vanilla.png');
+}
+
+.FuseDroplistImageHover:alias {
+    background-image: url('/images/themes/vanilla/func_dropdown_14_hov_vanilla.png');
+}
+
+.FuseDroplistImageDepressed:alias {
+    background-image: url('/images/themes/vanilla/func_dropdown_14_onb_vanilla.png');
+}
+
+.FusePunchoutImageEna:alias {
+    background-image: url('/images/themes/vanilla/func_punchout_16_ena_vanilla.png');
+}
+
+.FusePunchoutImageHover:alias {
+    background-image: url('/images/themes/vanilla/func_punchout_16_hov_vanilla.png');
+}
+
+.FusePunchoutImageDepressed:alias {
+    background-image: url('/images/themes/vanilla/func_punchout_16_onb_vanilla.png');
+}
+
+.FuseButtonBorder:alias {
+    border-color: #c4ced7;
+}
+
+.FuseButtonGradientStartColor:alias, .FuseButtonForegroundDepressed:alias {
+    color: #f1f3f4;
+}
+
+.FuseButtonBackgroundHover:alias {
+    background-color: rgba(241, 243, 244, 0.9);
+}
+
+.FuseButtonGradientEndColor:alias {
+    color: #e4e8ea;
+}
+
+.FuseButtonForegroundDepressed:alias {
+    color: #eaedef;
+}
+
+.FuseButtonBackgroundHover:alias {
+    background-color: rgb(234, 237, 239);
+}
+
+.FuseButtonBorderHover:alias {
+    border-color: rgb(234, 237, 239);
+}
+
+.AFHeaderTextColor:alias {
+    color: #252525;
+}
+
+.FuseGlobalToolbarOverflowRight:alias {
+    background-image: url('/images/themes/vanilla/ugh_overflowright_ena_vanilla.png');
+}
+
+.FuseGlobalToolbarOverflowLeft:alias {
+    background-image: url('/images/themes/vanilla/ugh_overflowleft_ena_vanilla.png');
+}
+
+.UIShellIconNavigatorEna:alias {
+    content: url('/images/themes/vanilla/ugh_navigator_ena_vanilla.png');
+}
+
+.UIShellIconNavigatorDwn:alias {
+    content: url('/images/themes/vanilla/ugh_navigator_dwn_vanilla.png');
+}
+
+.UIShellIconNavigatorOvr:alias {
+    content: url('/images/themes/vanilla/ugh_navigator_ovr_vanilla.png');
+}
+
+.UIShellIconNavigatorDis:alias {
+    content: url('/images/themes/vanilla/ugh_navigator_dis_vanilla.png');
+}
+
+.UIShellIconHomeEna:alias {
+    content: url('/images/themes/vanilla/ugh_home_ena_vanilla.png');
+}
+
+.UIShellIconHomeDwn:alias {
+    content: url('/images/themes/vanilla/ugh_home_dwn_vanilla.png');
+}
+
+.UIShellIconHomeOvr:alias {
+    content: url('/images/themes/vanilla/ugh_home_ovr_vanilla.png');
+}
+
+.UIShellIconHomeDis:alias {
+    content: url('/images/themes/vanilla/ugh_home_ovr_vanilla.png');
+}
+
+.UIShellIconAccessibilityEna:alias {
+    content: url('/images/themes/vanilla/ugh_accessibility_ena_vanilla.png');
+}
+
+.UIShellIconAccessibilityDwn:alias {
+    content: url('/images/themes/vanilla/ugh_accessibility_dwn_vanilla.png');
+}
+
+.UIShellIconAccessibilityOvr:alias {
+    content: url('/images/themes/vanilla/ugh_accessibility_ovr_vanilla.png');
+}
+
+.UIShellIconAccessibilityDis:alias {
+    content: url('/images/themes/vanilla/ugh_accessibility_dis_vanilla.png');
+}
+
+.UIShellIconNotificationsEna:alias {
+    content: url('/images/themes/vanilla/ugh_notifications_ena_vanilla.png');
+}
+
+.UIShellIconNotificationsDwn:alias {
+    content: url('/images/themes/vanilla/ugh_notifications_dwn_vanilla.png');
+}
+
+.UIShellIconNotificationsOvr:alias {
+    content: url('/images/themes/vanilla/ugh_notifications_ovr_vanilla.png');
+}
+
+.UIShellIconNotificationsDis:alias {
+    content: url('/images/themes/vanilla/ugh_notifications_dis_vanilla.png');
+}
+
+.UIShellIconFavoritesEna:alias {
+    content: url('/images/themes/vanilla/ugh_favorites_ena_vanilla.png');
+}
+
+.UIShellIconFavoritesDwn:alias {
+    content: url('/images/themes/vanilla/ugh_favorites_dwn_vanilla.png');
+}
+
+.UIShellIconFavoritesOvr:alias {
+    content: url('/images/themes/vanilla/ugh_favorites_ovr_vanilla.png');
+}
+
+.UIShellIconFavoritesDis:alias {
+    content: url('/images/themes/vanilla/ugh_favorites_dis_vanilla.png');
+}
+
+.UIShellIconWatchlistEna:alias {
+    content: url('/images/themes/vanilla/ugh_watchlist_ena_vanilla.png');
+}
+
+.UIShellIconWatchlistDwn:alias {
+    content: url('/images/themes/vanilla/ugh_watchlist_dwn_vanilla.png');
+}
+
+.UIShellIconWatchlistOvr:alias {
+    content: url('/images/themes/vanilla/ugh_watchlist_ovr_vanilla.png');
+}
+
+.UIShellIconWatchlistDis:alias {
+    content: url('/images/themes/vanilla/ugh_watchlist_dis_vanilla.png');
+}
+
+.UIShellIconSearchEna:alias {
+    content: url('/images/themes/vanilla/ugh_search_ena_vanilla.png');
+}
+
+.UIShellIconSearchDwn:alias {
+    content: url('/images/themes/vanilla/ugh_search_dwn_vanilla.png');
+}
+
+.UIShellIconSearchOvr:alias {
+    content: url('/images/themes/vanilla/ugh_search_ovr_vanilla.png');
+}
+
+.UIShellIconSearchDis:alias {
+    content: url('/images/themes/vanilla/ugh_search_dis_vanilla.png');
+}
+
+.UIShellIconDivider:alias {
+    content: url('/images/themes/vanilla/ugh_divider_vanilla.png');
+}
+
+.UIShellIconInfoEna:alias {
+    content: url('/images/themes/vanilla/ugh_info_ena_vanilla.png');
+}
+
+.UIShellIconInfoDwn:alias {
+    content: url('/images/themes/vanilla/ugh_info_dwn_vanilla.png');
+}
+
+.UIShellIconInfoOvr:alias {
+    content: url('/images/themes/vanilla/ugh_info_ovr_vanilla.png');
+}
+
+.UIShellIconInfoDis:alias {
+    content: url('/images/themes/vanilla/ugh_info_dis_vanilla.png');
+}
+
+.UIShellIconMenuArrowEna:alias {
+    content: url('/images/themes/vanilla/ugh_menuarrow_ena_vanilla.png');
+}
+
+.UIShellIconMenuArrowDwn:alias {
+    content: url('/images/themes/vanilla/ugh_menuarrow_dwn_vanilla.png');
+}
+
+.UIShellIconMenuArrowOvr:alias {
+    content: url('/images/themes/vanilla/ugh_menuarrow_ovr_vanilla.png');
+}
+
+.UIShellIconMenuArrowDis:alias {
+    content: url('/images/themes/vanilla/ugh_menuarrow_dis_vanilla.png');
+}
+
+.UIShellIconHelpEna:alias {
+    content: url('/images/themes/vanilla/ugh_help_ena_vanilla.png');
+}
+
+.UIShellIconHelpDwn:alias {
+    content: url('/images/themes/vanilla/ugh_help_dwn_vanilla.png');
+}
+
+.UIShellIconHelpOvr:alias {
+    content: url('/images/themes/vanilla/ugh_help_ovr_vanilla.png');
+}
+
+.UIShellIconHelpDis:alias {
+    content: url('/images/themes/vanilla/ugh_help_dis_vanilla.png');
+}
+
+.UIShellIconImpersonationEna:alias {
+    content: url('/images/themes/vanilla/ugh_impersonation_ena_vanilla.png');
+}
+
+.UIShellIconImpersonationDwn:alias {
+    content: url('/images/themes/vanilla/ugh_impersonation_dwn_vanilla.png');
+}
+
+.UIShellIconImpersonationOvr:alias {
+    content: url('/images/themes/vanilla/ugh_impersonation_ovr_vanilla.png');
+}
+
+.UIShellIconImpersonationDis:alias {
+    content: url('/images/themes/vanilla/ugh_impersonation_dis_vanilla.png');
+}
+
+.UIShellIconTrialEna:alias {
+    content: url('/images/themes/vanilla/ugh_trial_ena_vanilla.png');
+}
+
+.UIShellIconTrialDwn:alias {
+    content: url('/images/themes/vanilla/ugh_trial_dwn_vanilla.png');
+}
+
+.UIShellIconTrialOvr:alias {
+    content: url('/images/themes/vanilla/ugh_trial_ovr_vanilla.png');
+}
+
+.UIShellIconTrialDis:alias {
+    content: url('/images/themes/vanilla/ugh_trial_dis_vanilla.png');
+}
+
+af|panelSpringboard::start-conveyor-belt-indicator {
+    background-image: url('/images/themes/vanilla/func_striparrowleft_24_ena_vanilla.png');
+}
+
+af|panelSpringboard::start-conveyor-belt-indicator:hover {
+    background-image: url('/images/themes/vanilla/func_striparrowleft_24_hov_vanilla.png');
+}
+
+af|panelSpringboard::end-conveyor-belt-indicator {
+    background-image: url('/images/themes/vanilla/func_striparrowright_24_ena_vanilla.png');
+}
+
+af|panelSpringboard::end-conveyor-belt-indicator:hover {
+    background-image: url('/images/themes/vanilla/func_striparrowright_24_hov_vanilla.png');
+}
+
+.UIShellIconCartEna:alias {
+    content: url('/images/themes/vanilla/ugh_cart_ena_vanilla.png');
+}
+
+.UIShellIconCartEnaIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconCartEna:alias", "content");
+}
+
+.UIShellIconCartDwn:alias {
+    content: url('/images/themes/vanilla/ugh_cart_dwn_vanilla.png');
+}
+
+.UIShellIconCartDwnIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconCartDwn:alias", "content");
+}
+
+.UIShellIconCartOvr:alias {
+    content: url('/images/themes/vanilla/ugh_cart_ovr_vanilla.png');
+}
+
+.UIShellIconCartOvrIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconCartOvr:alias", "content");
+}
+
+.UIShellIconCartDis:alias {
+    content: url('/images/themes/vanilla/ugh_cart_ovr_vanilla.png');
+}
+
+.UIShellIconCartDisIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconCartDis:alias", "content");
+}
+
+.UIShellIconWishlistEna:alias {
+    content: url('/images/themes/vanilla/ugh_wishlist_ena_vanilla.png');
+}
+
+.UIShellIconWishlistEnaIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconWishlistEna:alias", "content");
+}
+
+.UIShellIconWishlistDwn:alias {
+    content: url('/images/themes/vanilla/ugh_wishlist_dwn_vanilla.png');
+}
+
+.UIShellIconWishlistDwnIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconWishlistDwn:alias", "content");
+}
+
+.UIShellIconWishlistOvr:alias {
+    content: url('/images/themes/vanilla/ugh_wishlist_ovr_vanilla.png');
+}
+
+.UIShellIconWishlistOvrIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconWishlistOvr:alias", "content");
+}
+
+.UIShellIconWishlistDis:alias {
+    content: url('/images/themes/vanilla/ugh_wishlist_ovr_vanilla.png');
+}
+
+.UIShellIconWishlistDisIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconWishlistDis:alias", "content");
+}
+
+.UIShellIconSearch2Ena:alias {
+    content: url('/images/themes/vanilla/ugh_search2_ena_vanilla.png');
+}
+
+.UIShellIconSearch2EnaIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconSearch2Ena:alias", "content");
+}
+
+.UIShellIconSearch2Dwn:alias {
+    content: url('/images/themes/vanilla/ugh_search2_dwn_vanilla.png');
+}
+
+.UIShellIconSearch2DwnIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconSearch2Dwn:alias", "content");
+}
+
+.UIShellIconSearch2Ovr:alias {
+    content: url('/images/themes/vanilla/ugh_search2_ovr_vanilla.png');
+}
+
+.UIShellIconSearch2OvrIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconSearch2Ovr:alias", "content");
+}
+
+.UIShellIconSearch2Dis:alias {
+    content: url('/images/themes/vanilla/ugh_search2_ovr_vanilla.png');
+}
+
+.UIShellIconSearch2DisIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconSearch2Dis:alias", "content");
+}
+
+.UIShellIconDeepLinkEna:alias {
+    content: url('/images/themes/vanilla/ugh_return_ena_vanilla.png');
+}
+
+.UIShellIconDeepLinkEnaIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconDeepLinkEna:alias", "content");
+}
+
+.UIShellIconDeepLinkDwn:alias {
+    content: url('/images/themes/vanilla/ugh_return_dwn_vanilla.png');
+}
+
+.UIShellIconDeepLinkDwnIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconDeepLinkDwn:alias", "content");
+}
+
+.UIShellIconDeepLinkOvr:alias {
+    content: url('/images/themes/vanilla/ugh_return_ovr_vanilla.png');
+}
+
+.UIShellIconDeepLinkOvrIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconDeepLinkOvr:alias", "content");
+}
+
+.UIShellIconDeepLinkDis:alias {
+    content: url('/images/themes/vanilla/ugh_return_dis_vanilla.png');
+}
+
+.UIShellIconDeepLinkDisIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconDeepLinkDis:alias", "content");
+}
+
+.UIShellIconSocialEna:alias {
+    content: url('/images/themes/vanilla/ugh_social_ena_vanilla.png');
+}
+
+.UIShellIconSocialEnaIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconSocialEna:alias", "content");
+}
+
+.UIShellIconSocialDwn:alias {
+    content: url('/images/themes/vanilla/ugh_social_dwn_vanilla.png');
+}
+
+.UIShellIconSocialDwnIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconSocialDwn:alias", "content");
+}
+
+.UIShellIconSocialOvr:alias {
+    content: url('/images/themes/vanilla/ugh_social_ovr_vanilla.png');
+}
+
+.UIShellIconSocialOvrIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconSocialOvr:alias", "content");
+}
+
+.UIShellIconSocialDis:alias {
+    content: url('/images/themes/vanilla/ugh_social_dis_vanilla.png');
+}
+
+.UIShellIconSocialDisIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconSocialDis:alias", "content");
+}
+
+.UIShellIconGearEna:alias {
+    content: url('/images/themes/vanilla/func_gear_29_ena_vanilla.png');
+}
+
+.UIShellIconGearEnaIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconGearEna:alias", "content");
+}
+
+.UIShellIconGearDwn:alias {
+    content: url('/images/themes/vanilla/func_gear_29_act_vanilla.png');
+}
+
+.UIShellIconGearDwnIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconGearDwn:alias", "content");
+}
+
+.UIShellIconGearOvr:alias {
+    content: url('/images/themes/vanilla/func_gear_29_hov_vanilla.png');
+}
+
+.UIShellIconGearOvrIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconGearOvr:alias", "content");
+}
+
+.UIShellIconGearDis:alias {
+    content: url('/images/themes/vanilla/func_gear_29_dis_vanilla.png');
+}
+
+.UIShellIconGearDisIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconGearDis:alias", "content");
+}
+
+.UIShellIconPageScrollLeftEna:alias {
+    content: url('/images/themes/vanilla/func_scrollleft_29_ena_vanilla.png');
+}
+
+.UIShellIconPageScrollLeftEnaIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconPageScrollLeftEna:alias", "content");
+}
+
+.UIShellIconPageScrollLeftDwn:alias {
+    content: url('/images/themes/vanilla/func_scrollleft_29_act_vanilla.png');
+}
+
+.UIShellIconPageScrollLeftDwnIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconPageScrollLeftDwn:alias", "content");
+}
+
+.UIShellIconPageScrollLeftOvr:alias {
+    content: url('/images/themes/vanilla/func_scrollleft_29_hov_vanilla.png');
+}
+
+.UIShellIconPageScrollLeftOvrIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconPageScrollLeftOvr:alias", "content");
+}
+
+.UIShellIconPageScrollLeftRtlEna:alias {
+    content: url('/images/themes/vanilla/func_scrollleft_29_rtl_ena_vanilla.png');
+}
+
+.UIShellIconPageScrollLeftRtlEnaIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconPageScrollLeftRtlEna:alias", "content");
+}
+
+.UIShellIconPageScrollLeftRtlDwn:alias {
+    content: url('/images/themes/vanilla/func_scrollleft_29_rtl_act_vanilla.png');
+}
+
+.UIShellIconPageScrollLeftRtlDwnIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconPageScrollLeftRtlDwn:alias", "content");
+}
+
+.UIShellIconPageScrollLeftRtlOvr:alias {
+    content: url('/images/themes/vanilla/func_scrollleft_29_rtl_hov_vanilla.png');
+}
+
+.UIShellIconPageScrollLeftRtlOvrIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconPageScrollLeftRtlOvr:alias", "content");
+}
+
+.UIShellIconPageScrollRightEna:alias {
+    content: url('/images/themes/vanilla/func_scrollright_29_ena_vanilla.png');
+}
+
+.UIShellIconPageScrollRightEnaIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconPageScrollRightEna:alias", "content");
+}
+
+.UIShellIconPageScrollRightDwn:alias {
+    content: url('/images/themes/vanilla/func_scrollright_29_act_vanilla.png');
+}
+
+.UIShellIconPageScrollRightDwnIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconPageScrollRightDwn:alias", "content");
+}
+
+.UIShellIconPageScrollRightOvr:alias {
+    content: url('/images/themes/vanilla/func_scrollright_29_hov_vanilla.png');
+}
+
+.UIShellIconPageScrollRightOvrIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconPageScrollRightOvr:alias", "content");
+}
+
+.UIShellIconPageScrollRightRtlEna:alias {
+    content: url('/images/themes/vanilla/func_scrollright_29_rtl_ena_vanilla.png');
+}
+
+.UIShellIconPageScrollRightRtlEnaIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconPageScrollRightRtlEna:alias", "content");
+}
+
+.UIShellIconPageScrollRightRtlDwn:alias {
+    content: url('/images/themes/vanilla/func_scrollright_29_rtl_act_vanilla.png');
+}
+
+.UIShellIconPageScrollRightRtlDwnIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconPageScrollRightRtlDwn:alias", "content");
+}
+
+.UIShellIconPageScrollRightRtlOvr:alias {
+    content: url('/images/themes/vanilla/func_scrollright_29_rtl_hov_vanilla.png');
+}
+
+.UIShellIconPageScrollRightRtlOvrIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconPageScrollRightRtlOvr:alias", "content");
+}
+
+.UIShellIconHeadPhoneEna:alias {
+    content: url('/images/themes/vanilla/ugh_headphones_16_ena_vanilla.png');
+}
+
+.UIShellIconHeadPhoneEnaIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconHeadPhoneEna:alias", "content");
+}
+
+.UIShellIconHeadPhoneDwn:alias {
+    content: url('/images/themes/vanilla/ugh_headphones_16_act_vanilla.png');
+}
+
+.UIShellIconHeadPhoneDwnIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconHeadPhoneDwn:alias", "content");
+}
+
+.UIShellIconHeadPhoneOvr:alias {
+    content: url('/images/themes/vanilla/ugh_headphones_16_hov_vanilla.png');
+}
+
+.UIShellIconHeadPhoneOvrIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconHeadPhoneOvr:alias", "content");
+}
+
+.UIShellIconHeadPhoneDis:alias {
+    content: url('/images/themes/vanilla/ugh_headphones_16_dis_vanilla.png');
+}
+
+.UIShellIconHeadPhoneDisIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconHeadPhoneDis:alias", "content");
+}
+
+.UIShellIconWebVideoEna:alias {
+    content: url('/images/themes/vanilla/ugh_webvideo_16_ena_vanilla.png');
+}
+
+.UIShellIconWebVideoEnaIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconWebVideoEna:alias", "content");
+}
+
+.UIShellIconWebVideoDwn:alias {
+    content: url('/images/themes/vanilla/ugh_webvideo_16_act_vanilla.png');
+}
+
+.UIShellIconWebVideoDwnIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconWebVideoDwn:alias", "content");
+}
+
+.UIShellIconWebVideoOvr:alias {
+    content: url('/images/themes/vanilla/ugh_webvideo_16_hov_vanilla.png');
+}
+
+.UIShellIconWebVideoOvrIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconWebVideoOvr:alias", "content");
+}
+
+.UIShellIconWebVideoDis:alias {
+    content: url('/images/themes/vanilla/ugh_webvideo_16_dis_vanilla.png');
+}
+
+.UIShellIconWebVideoDisIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconWebVideoDis:alias", "content");
+}
+
+.UIShellIconChatEna:alias {
+    content: url('/images/themes/vanilla/ugh_chat_16_ena_vanilla.png');
+}
+
+.UIShellIconChatEnaIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconChatEna:alias", "content");
+}
+
+.UIShellIconChatDwn:alias {
+    content: url('/images/themes/vanilla/ugh_chat_16_act_vanilla.png');
+}
+
+.UIShellIconChatDwnIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconChatDwn:alias", "content");
+}
+
+.UIShellIconChatOvr:alias {
+    content: url('/images/themes/vanilla/ugh_chat_16_hov_vanilla.png');
+}
+
+.UIShellIconChatOvrIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconChatOvr:alias", "content");
+}
+
+.UIShellIconChatDis:alias {
+    content: url('/images/themes/vanilla/ugh_chat_16_dis_vanilla.png');
+}
+
+.UIShellIconChatDisIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconChatDis:alias", "content");
+}
+
+.UIShellIconChecklistEna:alias {
+    content: url('/images/themes/vanilla/ugh_checklist_16_ena_vanilla.png');
+}
+
+.UIShellIconChecklistEnaIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconChecklistEna:alias", "content");
+}
+
+.UIShellIconChecklistDwn:alias {
+    content: url('/images/themes/vanilla/ugh_checklist_16_act_vanilla.png');
+}
+
+.UIShellIconChecklistDwnIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconChecklistDwn:alias", "content");
+}
+
+.UIShellIconChecklistOvr:alias {
+    content: url('/images/themes/vanilla/ugh_checklist_16_hov_vanilla.png');
+}
+
+.UIShellIconChecklistOvrIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconChecklistOvr:alias", "content");
+}
+
+.UIShellIconChecklistDis:alias {
+    content: url('/images/themes/vanilla/ugh_checklist_16_dis_vanilla.png');
+}
+
+.UIShellIconChecklistDisIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconChecklistDis:alias", "content");
+}
+
+.UIShellIconRepository2Ena:alias {
+    content: url('/images/themes/vanilla/ugh_repository_16_ena_vanilla.png');
+}
+
+.UIShellIconRepository2EnaIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconRepository2Ena:alias", "content");
+}
+
+.UIShellIconRepository2Dwn:alias {
+    content: url('/images/themes/vanilla/ugh_repository_16_act_vanilla.png');
+}
+
+.UIShellIconRepository2DwnIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconRepository2Dwn:alias", "content");
+}
+
+.UIShellIconRepository2Ovr:alias {
+    content: url('/images/themes/vanilla/ugh_repository_16_hov_vanilla.png');
+}
+
+.UIShellIconRepository2OvrIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconRepository2Ovr:alias", "content");
+}
+
+.UIShellIconRepository2Dis:alias {
+    content: url('/images/themes/vanilla/ugh_repository_16_dis_vanilla.png');
+}
+
+.UIShellIconRepository2DisIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconRepository2Dis:alias", "content");
+}
+
+.UIShellIconMigrateEna:alias {
+    content: url('/images/themes/vanilla/ugh_migrate_16_ena_vanilla.png');
+}
+
+.UIShellIconMigrateEnaIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconMigrateEna:alias", "content");
+}
+
+.UIShellIconMigrateDwn:alias {
+    content: url('/images/themes/vanilla/ugh_migrate_16_act_vanilla.png');
+}
+
+.UIShellIconMigrateDwnIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconMigrateDwn:alias", "content");
+}
+
+.UIShellIconMigrateOvr:alias {
+    content: url('/images/themes/vanilla/ugh_migrate_16_hov_vanilla.png');
+}
+
+.UIShellIconMigrateOvrIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconMigrateOvr:alias", "content");
+}
+
+.UIShellIconMigrateDis:alias {
+    content: url('/images/themes/vanilla/ugh_migrate_16_dis_vanilla.png');
+}
+
+.UIShellIconMigrateDisIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconMigrateDis:alias", "content");
+}
+
+.UIShellIconMigrateRtlEna:alias {
+    content: url('/images/themes/vanilla/ugh_migrate_16_rtl_ena_vanilla.png');
+}
+
+.UIShellIconMigrateRtlEnaIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconMigrateRtlEna:alias", "content");
+}
+
+.UIShellIconMigrateRtlDwn:alias {
+    content: url('/images/themes/vanilla/ugh_migrate_16_rtl_act_vanilla.png');
+}
+
+.UIShellIconMigrateRtlDwnIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconMigrateRtlDwn:alias", "content");
+}
+
+.UIShellIconMigrateRtlOvr:alias {
+    content: url('/images/themes/vanilla/ugh_migrate_16_rtl_hov_vanilla.png');
+}
+
+.UIShellIconMigrateRtlOvrIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconMigrateRtlOvr:alias", "content");
+}
+
+.UIShellIconMigrateRtlDis:alias {
+    content: url('/images/themes/vanilla/ugh_migrate_16_rtl_dis_vanilla.png');
+}
+
+.UIShellIconMigrateRtlDisIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconMigrateRtlDis:alias", "content");
+}
+
+.UIShellIconRefreshEna:alias {
+    content: url('/images/themes/vanilla/ugh_refresh_16_ena_vanilla.png');
+}
+
+.UIShellIconRefreshEnaIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconRefreshEna:alias", "content");
+}
+
+.UIShellIconRefreshDwn:alias {
+    content: url('/images/themes/vanilla/ugh_refresh_16_act_vanilla.png');
+}
+
+.UIShellIconRefreshDwnIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconRefreshDwn:alias", "content");
+}
+
+.UIShellIconRefreshOvr:alias {
+    content: url('/images/themes/vanilla/ugh_refresh_16_hov_vanilla.png');
+}
+
+.UIShellIconRefreshOvrIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconRefreshOvr:alias", "content");
+}
+
+.UIShellIconRefreshDis:alias {
+    content: url('/images/themes/vanilla/ugh_refresh_16_dis_vanilla.png');
+}
+
+.UIShellIconRefreshDisIcon {
+    -tr-icon: -tr-property-ref(".UIShellIconRefreshDis:alias", "content");
+}
+
+.version-vannilajeethalta {
+    color: #071917;
+}
+
+.AFBrandingBackgroundColor:alias {
+    color: Transparent;
+}
+
+.AFDecorativeColor:alias {
+    color: Transparent;
+}
+
+.FuseDashboardPanelBGColor:alias {
+    background-color: rgba(242, 244, 245, 0.75);
+}
+
+.FuseContextInfoBGDark:alias {
+    background-color: hsl(200, 20%, 45%);
+}
+
+af|document {
+    background-image: none;
+}
+
+.FuseBannerImage:alias {
+    background-image: none;
+}
+
+.FuseGridImage:alias {
+    background-image: none;
+}
+
+.FuseSelectionColor:alias {
+    color: #145c9e;
+}
+
+.FuseHomePanel:alias {
+    color: #000000;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.feeds-panel {
+    color: #000000;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.FuseVerticalTabsBGColor:alias {
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.FusePanelSeparator:alias {
+    color: #b5b5b5;
+}
+
+.FuseVerticalTabsIconOpacityUnselected:alias {
+    opacity: 0.8;
+}
+
+.FuseOSNInputText:alias {
+    color: #000000;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: 1px solid #D1D1D1;
+}
+
+af|panelTabbed.fuse-page-tabs::tab:hover {
+    background-color: rgba(20, 92, 158, 0.8);
+}
+
+.svg-icon01, .svg-icon02, .svg-icon03, .svg-icon04, .svg-icon05, .svg-icon06, .svg-icon07, .svg-icon08, .svg-icon09, .svg-icon10, .svg-icon11, .svg-icon12, .svg-icon13, .svg-icon14, .svg-icon15, .svg-icon16, .svg-icon17, .svg-icon18 {
+    fill: #ffffff;
+}
+
+.SVGNavIconSize:alias {
+    size: 72px;
+}
+
+.svg-nav {
+    top: 12px;
+}
+
+.FuseNavLabel:alias {
+    top: 88px;
+}
+
+.SVGNavIconBorderRadius:alias {
+    border-radius: 50%;
+}
+
+.svg-bkgd01 {
+    background-color: #309fdb;
+}
+
+.svg-bkgd02 {
+    background-color: #f8bb48;
+}
+
+.svg-bkgd03 {
+    background-color: #e85c63;
+}
+
+.svg-bkgd04 {
+    background-color: #67b460;
+}
+
+.svg-bkgd05 {
+    background-color: #13b6cf;
+}
+
+.svg-bkgd06 {
+    background-color: #e85d88;
+}
+
+.svg-bkgd07 {
+    background-color: #aa529b;
+}
+
+.svg-bkgd08 {
+    background-color: #5277b8;
+}
+
+.svg-bkgd09 {
+    background-color: #2db3ac;
+}
+
+.svg-bkgd10 {
+    background-color: #ed813e;
+}
+
+.svg-bkgd11 {
+    background-color: #e95a38;
+}
+
+.svg-bkgd12 {
+    background-color: #c8d657;
+}
+
+.p_AFHoverTarget>.svg-bkgd01 {
+    box-shadow: 0px 0px 0px 10pxrgba(48, 159, 219, 0.25)!important;
+}
+
+.p_AFHoverTarget>.svg-bkgd02 {
+    box-shadow: 0px 0px 0px 10pxrgba(248, 187, 72, 0.25)!important;
+}
+
+.p_AFHoverTarget>.svg-bkgd03 {
+    box-shadow: 0px 0px 0px 10pxrgba(232, 92, 99, 0.25)!important;
+}
+
+.p_AFHoverTarget>.svg-bkgd04 {
+    box-shadow: 0px 0px 0px 10pxrgba(103, 180, 96, 0.25)!important;
+}
+
+.p_AFHoverTarget>.svg-bkgd05 {
+    box-shadow: 0px 0px 0px 10pxrgba(19, 182, 207, 0.25)!important;
+}
+
+.p_AFHoverTarget>.svg-bkgd06 {
+    box-shadow: 0px 0px 0px 10pxrgba(232, 93, 136, 0.25)!important;
+}
+
+.p_AFHoverTarget>.svg-bkgd07 {
+    box-shadow: 0px 0px 0px 10pxrgba(170, 82, 155, 0.25)!important;
+}
+
+.p_AFHoverTarget>.svg-bkgd08 {
+    box-shadow: 0px 0px 0px 10pxrgba(82, 119, 184, 0.25)!important;
+}
+
+.p_AFHoverTarget>.svg-bkgd09 {
+    box-shadow: 0px 0px 0px 10pxrgba(45, 179, 172, 0.25)!important;
+}
+
+.p_AFHoverTarget>.svg-bkgd10 {
+    box-shadow: 0px 0px 0px 10pxrgba(237, 129, 62, 0.25)!important;
+}
+
+.p_AFHoverTarget>.svg-bkgd11 {
+    box-shadow: 0px 0px 0px 10pxrgba(233, 90, 56, 0.25)!important;
+}
+
+.p_AFHoverTarget>.svg-bkgd12 {
+    box-shadow: 0px 0px 0px 10pxrgba(200, 214, 87, 0.25)!important;
+}
+
+.svg-cluster-show.svg-cluster, .svg-shortcut-show.svg-shortcut {
+    fill: rgba(255, 255, 255, 0.6);
+}
+
+.svg-cluster-visible, .svg-shortcut-visible {
+    fill: rgba(255, 255, 255, 0.6);
+}
+
+.fndGlobalToolboxBG:alias {
+    background-color: rgba(69, 69, 69, .15);
+}
+
+.fndGlobalToolboxBGSelected:alias {
+    background-color: rgba(69, 69, 69, .9);
+}
+
+.fndGlobalToolboxBGHover:alias {
+    background-color: rgba(69, 69, 69, .3);
+}
+
+.fndGlobalToolboxBGDisabled:alias {
+    background-color: rgba(69, 69, 69, .1);
+}
+
+.UIShellIconPaginationEna:alias {
+    content: url('/images/themes/vanilla/func_pagination_28_ena_vanilla.png');
+}
+
+.UIShellIconPaginationDwn:alias {
+    content: url('/images/themes/vanilla/func_pagination_28_act_vanilla.png');
+}
+
+.UIShellIconPaginationOvr:alias {
+    content: url('/images/themes/vanilla/func_pagination_28_hov_vanilla.png');
+}
+
+.UIShellIconPaginationDis:alias {
+    content: url('/images/themes/vanilla/func_pagination_28_dis_vanilla.png');
+}
+
+.UIShellIconRepositoryEna:alias {
+    content: url('/images/themes/vanilla/func_repository_29_ena_vanilla.png');
+}
+
+.UIShellIconRepositoryDwn:alias {
+    content: url('/images/themes/vanilla/func_repository_29_act_vanilla.png');
+}
+
+.UIShellIconRepositoryOvr:alias {
+    content: url('/images/themes/vanilla/func_repository_29_hov_vanilla.png');
+}
+
+.UIShellIconRepositoryDis:alias {
+    content: url('/images/themes/vanilla/func_repository_29_dis_vanilla.png');
+}
+
+.FuseThemeBGDark:alias {
+    background-color: #f4f4f4;
+}
+
+.FuseThemeBGLight:alias {
+    background-color: #ffffff;
+}
+
+.FuseThemeBorder:alias {
+    color: #d1d1d1;
+}
+
+.FuseThemeSeparator:alias {
+    color: #d6dfe6;
+}
+
+.FuseThemeTextLink:alias {
+    color: #104087;
+}
+
+.FuseThemeTextNormal1:alias {
+    color: #333333;
+}
+
+.FuseThemeTextNormal2:alias {
+    color: #505050;
+}
+
+.FuseThemeTextNormal3:alias {
+    color: #707070;
+}
+
+.FuseThemeTextPurple:alias {
+    color: #725da3;
+}
+
+.FuseThemeTextGreen:alias {
+    color: #327d3b;
+}
+
+.FuseThemeTextLightBlue:alias {
+    color: #2870b5;
+}
+
+.FuseThemeTextRed:alias {
+    color: #cf1515;
+}
+
+.FuseThemeTextOrange:alias {
+    color: #bc4e00;
+}
+
+.FuseThemeTextYellow:alias {
+    color: #ffbe00;
+}
+
+.FuseThemeSelection:alias {
+    background-color: #0572ce;
+}

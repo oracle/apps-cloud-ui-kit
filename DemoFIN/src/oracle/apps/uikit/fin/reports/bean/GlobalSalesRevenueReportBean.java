@@ -1,10 +1,8 @@
 package oracle.apps.uikit.fin.reports.bean;
-
 /*
- * Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
  *
 **/
-
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;

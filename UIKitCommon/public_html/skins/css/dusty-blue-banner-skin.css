@@ -1,0 +1,1036 @@
+.AFBrandingBarLogo {
+  background-image: url('/images/logo-oracle-dark.png');
+  height : 25px;
+  width  : 119px;
+  background-size: 100% 100% ;
+}
+.FuseBorderRadius:alias {
+  border-radius: 5px;
+}
+.AFGlobalBackgroundColor:alias {
+  color:#a3c4d1;
+}
+.AFBrandingLinkColor:alias {
+  color: #2d424f;
+}
+.AFBrandingTextColor:alias {
+  color: #2d424f;
+}
+.FuseSpringBoardLinkColor:alias {
+  color: rgba(45,66,79,0.75);
+}
+.fndGlobalSearchContainerBG:alias {
+  color: rgba(45,66,79,0.15);
+}.fndGlobalSearchPlaceholderText:alias {
+  color: rgba(45,66,79,0.8);
+}.AFLinkColor:alias {
+  color: #2873a0;
+}
+.FuseButtonForeground:alias {
+  text-shadow: none;
+}
+.FuseButtonForeground:alias, .FuseButtonForegroundHover:alias  {
+  color: #000000;
+}
+.FuseButtonBackgroundActive:alias {
+  background-color: #000000;
+}
+.FuseDroplistImageEna:alias {
+  background-image: url('/images/themes/dustyblue/func_dropdown_14_ena_dustyblue.png');
+}
+
+.FuseDroplistImageHover:alias {
+  background-image: url('/images/themes/dustyblue/func_dropdown_14_hov_dustyblue.png');
+}
+
+.FuseDroplistImageDepressed:alias {
+  background-image: url('/images/themes/dustyblue/func_dropdown_14_onb_dustyblue.png');
+}
+.FusePunchoutImageEna:alias {
+  background-image: url('/images/themes/dustyblue/func_punchout_16_ena_dustyblue.png');
+}
+
+.FusePunchoutImageHover:alias {
+  background-image: url('/images/themes/dustyblue/func_punchout_16_hov_dustyblue.png');
+}
+
+.FusePunchoutImageDepressed:alias {
+  background-image: url('/images/themes/dustyblue/func_punchout_16_onb_dustyblue.png');
+}
+
+.FuseButtonBorder:alias {
+  border-color: #82c6e1;
+}
+.FuseButtonBackground:alias {
+  background-color: #82c6e1;
+}
+.FuseButtonForegroundDepressed:alias {
+  color: #82c6e1;
+}
+.FuseButtonBackgroundHover:alias {
+  background-color:rgba(130, 198, 225, 0.9);
+}
+.FuseButtonBackground:alias {
+  background-image: none;
+}
+@agent ie  {
+  .FuseButtonBackground:alias {
+    filter: none;
+  }
+}
+@agent gecko, webkit, ie and (version:10) and (version:11) {
+  .FuseButtonBackground:alias {
+    background-image: none;
+  }
+}
+.AFHeaderTextColor:alias {
+  color:#465156;
+}
+.FuseGlobalToolbarOverflowRight:alias {
+  background-image: url('/images/themes/dustyblue/ugh_overflowright_ena_dustyblue.png');
+}
+
+.FuseGlobalToolbarOverflowLeft:alias {
+  background-image: url('/images/themes/dustyblue/ugh_overflowleft_ena_dustyblue.png');
+}.UIShellIconNavigatorEna:alias {
+  content: url('/images/themes/dustyblue/ugh_navigator_ena_dustyblue.png');
+}
+
+.UIShellIconNavigatorDwn:alias {
+  content: url('/images/themes/dustyblue/ugh_navigator_dwn_dustyblue.png');
+}
+
+.UIShellIconNavigatorOvr:alias {
+  content: url('/images/themes/dustyblue/ugh_navigator_ovr_dustyblue.png');
+}
+
+.UIShellIconNavigatorDis:alias {
+  content: url('/images/themes/dustyblue/ugh_navigator_dis_dustyblue.png');
+}
+
+
+.UIShellIconHomeEna:alias {
+  content: url('/images/themes/dustyblue/ugh_home_ena_dustyblue.png');
+}
+
+.UIShellIconHomeDwn:alias {
+  content: url('/images/themes/dustyblue/ugh_home_dwn_dustyblue.png');
+}
+.UIShellIconHomeOvr:alias {
+  content: url('/images/themes/dustyblue/ugh_home_ovr_dustyblue.png');
+}
+.UIShellIconHomeDis:alias {
+  content: url('/images/themes/dustyblue/ugh_home_ovr_dustyblue.png');
+}
+
+
+.UIShellIconAccessibilityEna:alias {
+  content: url('/images/themes/dustyblue/ugh_accessibility_ena_dustyblue.png');
+}
+
+.UIShellIconAccessibilityDwn:alias {
+  content: url('/images/themes/dustyblue/ugh_accessibility_dwn_dustyblue.png');
+}
+
+.UIShellIconAccessibilityOvr:alias {
+  content: url('/images/themes/dustyblue/ugh_accessibility_ovr_dustyblue.png');
+}
+
+.UIShellIconAccessibilityDis:alias {
+  content: url('/images/themes/dustyblue/ugh_accessibility_dis_dustyblue.png');
+}
+
+
+.UIShellIconNotificationsEna:alias {
+  content: url('/images/themes/dustyblue/ugh_notifications_ena_dustyblue.png');
+}
+
+.UIShellIconNotificationsDwn:alias {
+  content: url('/images/themes/dustyblue/ugh_notifications_dwn_dustyblue.png');
+}
+.UIShellIconNotificationsOvr:alias {
+  content: url('/images/themes/dustyblue/ugh_notifications_ovr_dustyblue.png');
+}
+
+.UIShellIconNotificationsDis:alias {
+  content: url('/images/themes/dustyblue/ugh_notifications_dis_dustyblue.png');
+}
+
+
+.UIShellIconFavoritesEna:alias {
+  content: url('/images/themes/dustyblue/ugh_favorites_ena_dustyblue.png');
+}
+
+.UIShellIconFavoritesDwn:alias {
+  content: url('/images/themes/dustyblue/ugh_favorites_dwn_dustyblue.png');
+}
+
+.UIShellIconFavoritesOvr:alias {
+  content: url('/images/themes/dustyblue/ugh_favorites_ovr_dustyblue.png');
+}
+
+.UIShellIconFavoritesDis:alias {
+  content: url('/images/themes/dustyblue/ugh_favorites_dis_dustyblue.png');
+}
+
+
+.UIShellIconWatchlistEna:alias {
+  content: url('/images/themes/dustyblue/ugh_watchlist_ena_dustyblue.png');
+}
+
+.UIShellIconWatchlistDwn:alias {
+  content: url('/images/themes/dustyblue/ugh_watchlist_dwn_dustyblue.png');
+}
+
+.UIShellIconWatchlistOvr:alias {
+  content: url('/images/themes/dustyblue/ugh_watchlist_ovr_dustyblue.png');
+}
+
+.UIShellIconWatchlistDis:alias {
+  content: url('/images/themes/dustyblue/ugh_watchlist_dis_dustyblue.png');
+}
+
+
+.UIShellIconSearchEna:alias {
+  content: url('/images/themes/dustyblue/ugh_search_ena_dustyblue.png');
+}
+.UIShellIconSearchDwn:alias {
+  content: url('/images/themes/dustyblue/ugh_search_dwn_dustyblue.png');
+}
+.UIShellIconSearchOvr:alias {
+  content: url('/images/themes/dustyblue/ugh_search_ovr_dustyblue.png');
+}
+.UIShellIconSearchDis:alias {
+  content: url('/images/themes/dustyblue/ugh_search_dis_dustyblue.png');
+}
+
+
+.UIShellIconDivider:alias {
+  content: url('/images/themes/dustyblue/ugh_divider_dustyblue.png');
+}
+
+
+.UIShellIconInfoEna:alias {
+  content: url('/images/themes/dustyblue/ugh_info_ena_dustyblue.png');
+}
+.UIShellIconInfoDwn:alias {
+  content: url('/images/themes/dustyblue/ugh_info_dwn_dustyblue.png');
+}
+.UIShellIconInfoOvr:alias {
+  content: url('/images/themes/dustyblue/ugh_info_ovr_dustyblue.png');
+}
+.UIShellIconInfoDis:alias {
+  content: url('/images/themes/dustyblue/ugh_info_dis_dustyblue.png');
+}
+
+
+.UIShellIconMenuArrowEna:alias {
+  content: url('/images/themes/dustyblue/ugh_menuarrow_ena_dustyblue.png');
+}
+.UIShellIconMenuArrowDwn:alias {
+  content: url('/images/themes/dustyblue/ugh_menuarrow_dwn_dustyblue.png');
+}
+.UIShellIconMenuArrowOvr:alias {
+  content: url('/images/themes/dustyblue/ugh_menuarrow_ovr_dustyblue.png');
+}
+.UIShellIconMenuArrowDis:alias {
+  content: url('/images/themes/dustyblue/ugh_menuarrow_dis_dustyblue.png');
+}
+
+
+.UIShellIconHelpEna:alias {
+  content: url('/images/themes/dustyblue/ugh_help_ena_dustyblue.png');
+}
+.UIShellIconHelpDwn:alias {
+  content: url('/images/themes/dustyblue/ugh_help_dwn_dustyblue.png');
+}
+.UIShellIconHelpOvr:alias {
+  content: url('/images/themes/dustyblue/ugh_help_ovr_dustyblue.png');
+}
+.UIShellIconHelpDis:alias {
+  content: url('/images/themes/dustyblue/ugh_help_dis_dustyblue.png');
+}
+
+
+.UIShellIconImpersonationEna:alias {
+  content: url('/images/themes/dustyblue/ugh_impersonation_ena_dustyblue.png');
+}
+.UIShellIconImpersonationDwn:alias {
+  content: url('/images/themes/dustyblue/ugh_impersonation_dwn_dustyblue.png');
+}
+.UIShellIconImpersonationOvr:alias {
+  content: url('/images/themes/dustyblue/ugh_impersonation_ovr_dustyblue.png');
+}
+.UIShellIconImpersonationDis:alias {
+  content: url('/images/themes/dustyblue/ugh_impersonation_dis_dustyblue.png');
+}
+
+
+.UIShellIconTrialEna:alias {
+  content: url('/images/themes/dustyblue/ugh_trial_ena_dustyblue.png');
+}
+.UIShellIconTrialDwn:alias {
+  content: url('/images/themes/dustyblue/ugh_trial_dwn_dustyblue.png');
+}
+.UIShellIconTrialOvr:alias {
+  content: url('/images/themes/dustyblue/ugh_trial_ovr_dustyblue.png');
+}
+.UIShellIconTrialDis:alias {
+  content: url('/images/themes/dustyblue/ugh_trial_dis_dustyblue.png');
+}
+
+
+af|panelSpringboard::start-conveyor-belt-indicator {
+  background-image: url('/images/themes/dustyblue/func_striparrowleft_24_ena_dustyblue.png');
+}
+
+af|panelSpringboard::start-conveyor-belt-indicator:hover {
+  background-image: url('/images/themes/dustyblue/func_striparrowleft_24_hov_dustyblue.png');
+}
+
+af|panelSpringboard::end-conveyor-belt-indicator {
+  background-image: url('/images/themes/dustyblue/func_striparrowright_24_ena_dustyblue.png');
+}
+
+af|panelSpringboard::end-conveyor-belt-indicator:hover {
+  background-image: url('/images/themes/dustyblue/func_striparrowright_24_hov_dustyblue.png');
+}
+.UIShellIconCartEna:alias
+{
+    content: url('/images/themes/dustyblue/ugh_cart_ena_dustyblue.png');
+}
+.UIShellIconCartEnaIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconCartEna:alias","content");
+}
+.UIShellIconCartDwn:alias
+{
+    content: url('/images/themes/dustyblue/ugh_cart_dwn_dustyblue.png');
+}
+.UIShellIconCartDwnIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconCartDwn:alias","content");
+}
+.UIShellIconCartOvr:alias
+{
+    content: url('/images/themes/dustyblue/ugh_cart_ovr_dustyblue.png');
+}
+.UIShellIconCartOvrIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconCartOvr:alias","content");
+}
+.UIShellIconCartDis:alias
+{
+    content: url('/images/themes/dustyblue/ugh_cart_ovr_dustyblue.png');
+}
+.UIShellIconCartDisIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconCartDis:alias","content");
+}
+
+
+.UIShellIconWishlistEna:alias
+{
+    content: url('/images/themes/dustyblue/ugh_wishlist_ena_dustyblue.png');
+}
+.UIShellIconWishlistEnaIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconWishlistEna:alias","content");
+}
+.UIShellIconWishlistDwn:alias
+{
+    content: url('/images/themes/dustyblue/ugh_wishlist_dwn_dustyblue.png');
+}
+.UIShellIconWishlistDwnIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconWishlistDwn:alias","content");
+}
+.UIShellIconWishlistOvr:alias
+{
+    content: url('/images/themes/dustyblue/ugh_wishlist_ovr_dustyblue.png');
+}
+.UIShellIconWishlistOvrIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconWishlistOvr:alias","content");
+}
+.UIShellIconWishlistDis:alias
+{
+    content: url('/images/themes/dustyblue/ugh_wishlist_ovr_dustyblue.png');
+}
+.UIShellIconWishlistDisIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconWishlistDis:alias","content");
+}
+
+.UIShellIconSearch2Ena:alias
+{
+    content: url('/images/themes/dustyblue/ugh_search2_ena_dustyblue.png');
+}
+.UIShellIconSearch2EnaIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconSearch2Ena:alias","content");
+}
+.UIShellIconSearch2Dwn:alias
+{
+    content: url('/images/themes/dustyblue/ugh_search2_dwn_dustyblue.png');
+}
+.UIShellIconSearch2DwnIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconSearch2Dwn:alias","content");
+}
+.UIShellIconSearch2Ovr:alias
+{
+    content: url('/images/themes/dustyblue/ugh_search2_ovr_dustyblue.png');
+}
+.UIShellIconSearch2OvrIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconSearch2Ovr:alias","content");
+}
+.UIShellIconSearch2Dis:alias
+{
+    content: url('/images/themes/dustyblue/ugh_search2_ovr_dustyblue.png');
+}
+.UIShellIconSearch2DisIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconSearch2Dis:alias","content");
+}.UIShellIconDeepLinkEna:alias
+{
+    content: url('/images/themes/dustyblue/ugh_return_ena_dustyblue.png');
+}
+.UIShellIconDeepLinkEnaIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconDeepLinkEna:alias","content");
+}
+.UIShellIconDeepLinkDwn:alias
+{
+    content: url('/images/themes/dustyblue/ugh_return_dwn_dustyblue.png');
+}
+.UIShellIconDeepLinkDwnIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconDeepLinkDwn:alias","content");
+}
+.UIShellIconDeepLinkOvr:alias
+{
+    content: url('/images/themes/dustyblue/ugh_return_ovr_dustyblue.png');
+}
+.UIShellIconDeepLinkOvrIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconDeepLinkOvr:alias","content");
+}
+.UIShellIconDeepLinkDis:alias
+{
+    content: url('/images/themes/dustyblue/ugh_return_dis_dustyblue.png');
+}
+.UIShellIconDeepLinkDisIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconDeepLinkDis:alias","content");
+}
+.UIShellIconSocialEna:alias
+{
+    content: url('/images/themes/dustyblue/ugh_social_ena_dustyblue.png');
+}
+.UIShellIconSocialEnaIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconSocialEna:alias","content");
+}
+.UIShellIconSocialDwn:alias
+{
+    content: url('/images/themes/dustyblue/ugh_social_dwn_dustyblue.png');
+}
+.UIShellIconSocialDwnIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconSocialDwn:alias","content");
+}
+.UIShellIconSocialOvr:alias
+{
+    content: url('/images/themes/dustyblue/ugh_social_ovr_dustyblue.png');
+}
+.UIShellIconSocialOvrIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconSocialOvr:alias","content");
+}
+.UIShellIconSocialDis:alias
+{
+    content: url('/images/themes/dustyblue/ugh_social_dis_dustyblue.png');
+}
+.UIShellIconSocialDisIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconSocialDis:alias","content");
+}
+.UIShellIconGearEna:alias
+{
+    content: url('/images/themes/dustyblue/func_gear_29_ena_dustyblue.png');
+}
+.UIShellIconGearEnaIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconGearEna:alias","content");
+}
+.UIShellIconGearDwn:alias
+{
+    content: url('/images/themes/dustyblue/func_gear_29_act_dustyblue.png');
+}
+.UIShellIconGearDwnIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconGearDwn:alias","content");
+}
+.UIShellIconGearOvr:alias
+{
+    content: url('/images/themes/dustyblue/func_gear_29_hov_dustyblue.png');
+}
+.UIShellIconGearOvrIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconGearOvr:alias","content");
+}
+.UIShellIconGearDis:alias
+{
+    content: url('/images/themes/dustyblue/func_gear_29_dis_dustyblue.png');
+}
+.UIShellIconGearDisIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconGearDis:alias","content");
+}
+
+.UIShellIconPageScrollLeftEna:alias
+{
+    content: url('/images/themes/dustyblue/func_scrollleft_29_ena_dustyblue.png');
+}
+.UIShellIconPageScrollLeftEnaIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconPageScrollLeftEna:alias","content");
+}
+.UIShellIconPageScrollLeftDwn:alias
+{
+    content: url('/images/themes/dustyblue/func_scrollleft_29_act_dustyblue.png');
+}
+.UIShellIconPageScrollLeftDwnIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconPageScrollLeftDwn:alias","content");
+}
+.UIShellIconPageScrollLeftOvr:alias
+{
+    content: url('/images/themes/dustyblue/func_scrollleft_29_hov_dustyblue.png');
+}
+.UIShellIconPageScrollLeftOvrIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconPageScrollLeftOvr:alias","content");
+}
+.UIShellIconPageScrollLeftRtlEna:alias
+{
+    content: url('/images/themes/dustyblue/func_scrollleft_29_rtl_ena_dustyblue.png');
+}
+.UIShellIconPageScrollLeftRtlEnaIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconPageScrollLeftRtlEna:alias","content");
+}
+.UIShellIconPageScrollLeftRtlDwn:alias
+{
+    content: url('/images/themes/dustyblue/func_scrollleft_29_rtl_act_dustyblue.png');
+}
+.UIShellIconPageScrollLeftRtlDwnIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconPageScrollLeftRtlDwn:alias","content");
+}
+.UIShellIconPageScrollLeftRtlOvr:alias
+{
+    content: url('/images/themes/dustyblue/func_scrollleft_29_rtl_hov_dustyblue.png');
+}
+.UIShellIconPageScrollLeftRtlOvrIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconPageScrollLeftRtlOvr:alias","content");
+}
+.UIShellIconPageScrollRightEna:alias
+{
+    content: url('/images/themes/dustyblue/func_scrollright_29_ena_dustyblue.png');
+}
+.UIShellIconPageScrollRightEnaIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconPageScrollRightEna:alias","content");
+}
+.UIShellIconPageScrollRightDwn:alias
+{
+    content: url('/images/themes/dustyblue/func_scrollright_29_act_dustyblue.png');
+}
+.UIShellIconPageScrollRightDwnIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconPageScrollRightDwn:alias","content");
+}
+.UIShellIconPageScrollRightOvr:alias
+{
+    content: url('/images/themes/dustyblue/func_scrollright_29_hov_dustyblue.png');
+}
+.UIShellIconPageScrollRightOvrIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconPageScrollRightOvr:alias","content");
+}
+.UIShellIconPageScrollRightRtlEna:alias
+{
+    content: url('/images/themes/dustyblue/func_scrollright_29_rtl_ena_dustyblue.png');
+}
+.UIShellIconPageScrollRightRtlEnaIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconPageScrollRightRtlEna:alias","content");
+}
+.UIShellIconPageScrollRightRtlDwn:alias
+{
+    content: url('/images/themes/dustyblue/func_scrollright_29_rtl_act_dustyblue.png');
+}
+.UIShellIconPageScrollRightRtlDwnIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconPageScrollRightRtlDwn:alias","content");
+}
+.UIShellIconPageScrollRightRtlOvr:alias
+{
+    content: url('/images/themes/dustyblue/func_scrollright_29_rtl_hov_dustyblue.png');
+}
+.UIShellIconPageScrollRightRtlOvrIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconPageScrollRightRtlOvr:alias","content");
+}
+.UIShellIconHeadPhoneEna:alias
+{
+    content: url('/images/themes/dustyblue/ugh_headphones_16_ena_dustyblue.png');
+}
+.UIShellIconHeadPhoneEnaIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconHeadPhoneEna:alias","content");
+}
+.UIShellIconHeadPhoneDwn:alias
+{
+    content: url('/images/themes/dustyblue/ugh_headphones_16_act_dustyblue.png');
+}
+.UIShellIconHeadPhoneDwnIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconHeadPhoneDwn:alias","content");
+}
+.UIShellIconHeadPhoneOvr:alias
+{
+    content: url('/images/themes/dustyblue/ugh_headphones_16_hov_dustyblue.png');
+}
+.UIShellIconHeadPhoneOvrIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconHeadPhoneOvr:alias","content");
+}
+.UIShellIconHeadPhoneDis:alias
+{
+    content: url('/images/themes/dustyblue/ugh_headphones_16_dis_dustyblue.png');
+}
+.UIShellIconHeadPhoneDisIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconHeadPhoneDis:alias","content");
+}
+.UIShellIconWebVideoEna:alias
+{
+    content: url('/images/themes/dustyblue/ugh_webvideo_16_ena_dustyblue.png');
+}
+.UIShellIconWebVideoEnaIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconWebVideoEna:alias","content");
+}
+.UIShellIconWebVideoDwn:alias
+{
+    content: url('/images/themes/dustyblue/ugh_webvideo_16_act_dustyblue.png');
+}
+.UIShellIconWebVideoDwnIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconWebVideoDwn:alias","content");
+}
+.UIShellIconWebVideoOvr:alias
+{
+    content: url('/images/themes/dustyblue/ugh_webvideo_16_hov_dustyblue.png');
+}
+.UIShellIconWebVideoOvrIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconWebVideoOvr:alias","content");
+}
+.UIShellIconWebVideoDis:alias
+{
+    content: url('/images/themes/dustyblue/ugh_webvideo_16_dis_dustyblue.png');
+}
+.UIShellIconWebVideoDisIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconWebVideoDis:alias","content");
+}
+.UIShellIconChatEna:alias
+{
+    content: url('/images/themes/dustyblue/ugh_chat_16_ena_dustyblue.png');
+}
+.UIShellIconChatEnaIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconChatEna:alias","content");
+}
+.UIShellIconChatDwn:alias
+{
+    content: url('/images/themes/dustyblue/ugh_chat_16_act_dustyblue.png');
+}
+.UIShellIconChatDwnIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconChatDwn:alias","content");
+}
+.UIShellIconChatOvr:alias
+{
+    content: url('/images/themes/dustyblue/ugh_chat_16_hov_dustyblue.png');
+}
+.UIShellIconChatOvrIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconChatOvr:alias","content");
+}
+.UIShellIconChatDis:alias
+{
+    content: url('/images/themes/dustyblue/ugh_chat_16_dis_dustyblue.png');
+}
+.UIShellIconChatDisIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconChatDis:alias","content");
+}
+.UIShellIconChecklistEna:alias
+{
+    content: url('/images/themes/dustyblue/ugh_checklist_16_ena_dustyblue.png');
+}
+.UIShellIconChecklistEnaIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconChecklistEna:alias","content");
+}
+.UIShellIconChecklistDwn:alias
+{
+    content: url('/images/themes/dustyblue/ugh_checklist_16_act_dustyblue.png');
+}
+.UIShellIconChecklistDwnIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconChecklistDwn:alias","content");
+}
+.UIShellIconChecklistOvr:alias
+{
+    content: url('/images/themes/dustyblue/ugh_checklist_16_hov_dustyblue.png');
+}
+.UIShellIconChecklistOvrIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconChecklistOvr:alias","content");
+}
+.UIShellIconChecklistDis:alias
+{
+    content: url('/images/themes/dustyblue/ugh_checklist_16_dis_dustyblue.png');
+}
+.UIShellIconChecklistDisIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconChecklistDis:alias","content");
+}
+.UIShellIconRepository2Ena:alias
+{
+    content: url('/images/themes/dustyblue/ugh_repository_16_ena_dustyblue.png');
+}
+.UIShellIconRepository2EnaIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconRepository2Ena:alias","content");
+}
+.UIShellIconRepository2Dwn:alias
+{
+    content: url('/images/themes/dustyblue/ugh_repository_16_act_dustyblue.png');
+}
+.UIShellIconRepository2DwnIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconRepository2Dwn:alias","content");
+}
+.UIShellIconRepository2Ovr:alias
+{
+    content: url('/images/themes/dustyblue/ugh_repository_16_hov_dustyblue.png');
+}
+.UIShellIconRepository2OvrIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconRepository2Ovr:alias","content");
+}
+.UIShellIconRepository2Dis:alias
+{
+    content: url('/images/themes/dustyblue/ugh_repository_16_dis_dustyblue.png');
+}
+.UIShellIconRepository2DisIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconRepository2Dis:alias","content");
+}
+.UIShellIconMigrateEna:alias
+{
+    content: url('/images/themes/dustyblue/ugh_migrate_16_ena_dustyblue.png');
+}
+.UIShellIconMigrateEnaIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconMigrateEna:alias","content");
+}
+.UIShellIconMigrateDwn:alias
+{
+    content: url('/images/themes/dustyblue/ugh_migrate_16_act_dustyblue.png');
+}
+.UIShellIconMigrateDwnIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconMigrateDwn:alias","content");
+}
+.UIShellIconMigrateOvr:alias
+{
+    content: url('/images/themes/dustyblue/ugh_migrate_16_hov_dustyblue.png');
+}
+.UIShellIconMigrateOvrIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconMigrateOvr:alias","content");
+}
+.UIShellIconMigrateDis:alias
+{
+    content: url('/images/themes/dustyblue/ugh_migrate_16_dis_dustyblue.png');
+}
+.UIShellIconMigrateDisIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconMigrateDis:alias","content");
+}
+.UIShellIconMigrateRtlEna:alias
+{
+    content: url('/images/themes/dustyblue/ugh_migrate_16_rtl_ena_dustyblue.png');
+}
+.UIShellIconMigrateRtlEnaIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconMigrateRtlEna:alias","content");
+}
+.UIShellIconMigrateRtlDwn:alias
+{
+    content: url('/images/themes/dustyblue/ugh_migrate_16_rtl_act_dustyblue.png');
+}
+.UIShellIconMigrateRtlDwnIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconMigrateRtlDwn:alias","content");
+}
+.UIShellIconMigrateRtlOvr:alias
+{
+    content: url('/images/themes/dustyblue/ugh_migrate_16_rtl_hov_dustyblue.png');
+}
+.UIShellIconMigrateRtlOvrIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconMigrateRtlOvr:alias","content");
+}
+.UIShellIconMigrateRtlDis:alias
+{
+    content: url('/images/themes/dustyblue/ugh_migrate_16_rtl_dis_dustyblue.png');
+}
+.UIShellIconMigrateRtlDisIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconMigrateRtlDis:alias","content");
+}
+.UIShellIconRefreshEna:alias
+{
+    content: url('/images/themes/dustyblue/ugh_refresh_16_ena_dustyblue.png');
+}
+.UIShellIconRefreshEnaIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconRefreshEna:alias","content");
+}
+.UIShellIconRefreshDwn:alias
+{
+    content: url('/images/themes/dustyblue/ugh_refresh_16_act_dustyblue.png');
+}
+.UIShellIconRefreshDwnIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconRefreshDwn:alias","content");
+}
+.UIShellIconRefreshOvr:alias
+{
+    content: url('/images/themes/dustyblue/ugh_refresh_16_hov_dustyblue.png');
+}
+.UIShellIconRefreshOvrIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconRefreshOvr:alias","content");
+}
+.UIShellIconRefreshDis:alias
+{
+    content: url('/images/themes/dustyblue/ugh_refresh_16_dis_dustyblue.png');
+}
+.UIShellIconRefreshDisIcon
+{
+   -tr-icon: -tr-property-ref(".UIShellIconRefreshDis:alias","content");
+}
+
+.version-dustybluebannerjeethalta {
+  color: #071917; 
+} 
+.AFBrandingBackgroundColor:alias {
+  color: Transparent;
+}
+.AFDecorativeColor:alias {
+  color:Transparent;
+}
+.FuseDashboardPanelBGColor:alias {
+   background-color: rgba(163,196,209,0.75);
+}
+.FuseContextInfoBGDark:alias {
+    background-color: hsl( 197, 20%, 45%);
+}
+af|document {
+  background-image: none;
+}
+.FuseBannerImage:alias {
+background-image: url('/images/bkgd_bannerwindy.jpg') ;
+}
+.FuseGridImage:alias {
+background-image: url('/images/bkgd_bannerwindy.jpg') ;
+}
+.FuseSelectionColor:alias { color: #e38d42; }.FuseHomePanel:alias {
+color: #000000;
+background-color: rgba(255,255,255,0.5);
+}
+
+.feeds-panel {
+color: #000000;
+background-color: rgba(255,255,255,0.5);
+}
+
+.FuseVerticalTabsBGColor:alias {
+
+background-color: rgba(255, 255, 255, 0.6);
+
+}
+.FusePanelSeparator:alias {
+color: #b5b5b5;
+}
+.FuseVerticalTabsIconOpacityUnselected:alias {
+opacity: 0.8;
+}
+.FuseOSNInputText:alias {
+    color: #000000;
+    background-color: rgba(255,255,255, 0.3);
+    border: 1px solid #D1D1D1; }
+
+ af|panelTabbed.fuse-page-tabs::tab:hover {
+    background-color: rgba( 227,141,66, 0.8 );
+}.svg-icon01,
+.svg-icon02,
+.svg-icon03,
+.svg-icon04,
+.svg-icon05,
+.svg-icon06,
+.svg-icon07,
+.svg-icon08,
+.svg-icon09,
+.svg-icon10,
+.svg-icon11,
+.svg-icon12,
+.svg-icon13,
+.svg-icon14,
+.svg-icon15,
+.svg-icon16,
+.svg-icon17,
+.svg-icon18 {
+    fill: #fcf9e2;
+}.SVGNavIconSize:alias {size : 96px;}.svg-nav{
+	 top: 0px;
+}
+
+.FuseNavLabel:alias {
+	 top: 100px;
+}.SVGNavIconBorderRadius:alias
+ {
+ border-radius : 50% ;
+}.svg-bkgd01,
+.svg-bkgd02,
+.svg-bkgd03,
+.svg-bkgd04,
+.svg-bkgd05,
+.svg-bkgd06,
+.svg-bkgd07,
+.svg-bkgd08,
+.svg-bkgd09,
+.svg-bkgd10,
+.svg-bkgd11,
+.svg-bkgd12 {
+    background-color: #618093;
+}
+
+.p_AFHoverTarget > .svg-bkgd01,
+.p_AFHoverTarget > .svg-bkgd02,
+.p_AFHoverTarget > .svg-bkgd03,
+.p_AFHoverTarget > .svg-bkgd04,
+.p_AFHoverTarget > .svg-bkgd05,
+.p_AFHoverTarget > .svg-bkgd06,
+.p_AFHoverTarget > .svg-bkgd07,
+.p_AFHoverTarget > .svg-bkgd08,
+.p_AFHoverTarget > .svg-bkgd09,
+.p_AFHoverTarget > .svg-bkgd10,
+.p_AFHoverTarget > .svg-bkgd11,
+.p_AFHoverTarget > .svg-bkgd12 {
+    box-shadow: 0px 0px 0px 10px rgba(97,128,147, 0.25) !important; 
+}
+.svg-bkgd01:hover,
+.svg-bkgd02:hover,
+.svg-bkgd03:hover,
+.svg-bkgd04:hover,
+.svg-bkgd05:hover,
+.svg-bkgd06:hover,
+.svg-bkgd07:hover,
+.svg-bkgd08:hover,
+.svg-bkgd09:hover,
+.svg-bkgd10:hover,
+.svg-bkgd11:hover,
+.svg-bkgd12:hover 
+{
+    box-shadow: 0px 0px 0px 10px rgba(97,128,147, 0.25) !important;
+}.svg-cluster-show .svg-cluster,
+.svg-shortcut-show .svg-shortcut {
+   fill: rgba(252,249,226, 0.6);
+}
+
+.svg-cluster-visible,
+.svg-shortcut-visible {
+   fill: rgba(252,249,226, 0.6);
+}.fndGlobalToolboxBG:alias {
+       background-color: rgba( 45,66,79, .15);
+}
+ 
+.fndGlobalToolboxBGSelected:alias {
+        background-color:rgba( 45,66,79, .9);
+}
+ 
+.fndGlobalToolboxBGHover:alias {
+        background-color:rgba( 45,66,79, .3);
+}
+ 
+.fndGlobalToolboxBGDisabled:alias {
+        background-color:rgba( 45,66,79, .1);
+}.UIShellIconPaginationEna:alias {
+  content: url('/images/themes/dustyblue/func_pagination_28_ena_dustyblue.png');
+}
+
+.UIShellIconPaginationDwn:alias {
+  content: url('/images/themes/dustyblue/func_pagination_28_act_dustyblue.png');
+}
+
+.UIShellIconPaginationOvr:alias {
+  content: url('/images/themes/dustyblue/func_pagination_28_hov_dustyblue.png');
+}
+
+.UIShellIconPaginationDis:alias {
+  content: url('/images/themes/dustyblue/func_pagination_28_dis_dustyblue.png');
+}
+
+
+.UIShellIconRepositoryEna:alias {
+  content: url('/images/themes/dustyblue/func_repository_29_ena_dustyblue.png');
+}
+
+.UIShellIconRepositoryDwn:alias {
+  content: url('/images/themes/dustyblue/func_repository_29_act_dustyblue.png');
+}
+
+.UIShellIconRepositoryOvr:alias {
+  content: url('/images/themes/dustyblue/func_repository_29_hov_dustyblue.png');
+}
+
+.UIShellIconRepositoryDis:alias {
+  content: url('/images/themes/dustyblue/func_repository_29_dis_dustyblue.png');
+}.FuseThemeBGDark:alias { background-color: #333333; }
+.FuseThemeBGLight:alias { background-color: #4d4d4d; }
+.FuseThemeBorder:alias { color: transparent; }
+.FuseThemeSeparator:alias { color: #636363; }
+.FuseThemeTextLink:alias { color: #96c0ff; }
+.FuseThemeTextNormal1:alias { color: #ffffff; }
+.FuseThemeTextNormal2:alias { color: #dedede; }
+.FuseThemeTextNormal3:alias { color: #bdbdbd; }
+.FuseThemeTextPurple:alias { color: #c9b2ff; }
+.FuseThemeTextGreen:alias { color: #98d999; }
+.FuseThemeTextLightBlue:alias { color: #badeff; }
+.FuseThemeTextRed:alias { color: #ffa6a6; }
+.FuseThemeTextOrange:alias { color: #fccb6b; }
+.FuseThemeTextYellow:alias { color: #ffbe00; }
+.FuseThemeSelection:alias { background-color: #f4921f; } 

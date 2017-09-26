@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="uikitcommonBundle"
+         value="#{adfBundle['oracle.apps.uikit.common.UIKitCommonBundle']}"/>
+  <af:panelGroupLayout id="nsdgl3" layout="vertical"
+                       styleClass="NavigatorPopupHeight NavigatorPopupWidth"
+                       inlineStyle="margin-right:17px;">
+    <af:panelHeader text="#{uikitcommonBundle.NAVIGATOR}" id="ph51">
+      <af:spacer height="5" id="ssfd1"/>
+      <af:panelFormLayout id="pfl1" maxColumns="4" rows="4">
+        <af:iterator id="i1" var="node" value="#{SessionState.navNodeList}">
+          <af:panelGroupLayout id="pgl2" rendered="#{!node.groupNode}"
+                               valign="top" layout="horizontal">
+            <af:image source="#{node.icon}" shortDesc="Icon" id="i2"/>
+            <af:spacer width="8" id="s1"/>
+            <af:commandLink text="#{node.name}" id="cl1"
+                            actionListener="#{backingBeanScope.GlobalTemplatesBean.handleNavigationClick}"
+                            styleClass="bold nowrap" partialSubmit="true">
+              <af:setActionListener from="#{node.id}"
+                                    to="#{sessionScope.selectedItemId}"/>
+              <af:setActionListener from="#{node.id}"
+                                    to="#{sessionScope.selectedGroupId}"/>
+            </af:commandLink>
+          </af:panelGroupLayout>
+          <af:panelGroupLayout id="pgl1" rendered="#{node.groupNode}"
+                               valign="top" layout="horizontal">
+            <af:outputText value="#{node.name}" id="ot1" styleClass="bold"/>
+          </af:panelGroupLayout>
+          <af:iterator id="i3" rendered="#{node.groupNode}"
+                       value="#{node.children}" var="childNode">
+            <af:panelGroupLayout id="pgl3" valign="top" layout="horizontal">
+              <af:spacer width="20" id="s2"/>
+              <af:image source="#{childNode.icon}" shortDesc="Icon"
+                        id="i4"/>
+              <af:spacer width="8" id="s3"/>
+              <af:commandLink text="#{childNode.name}" id="cl2"
+                              actionListener="#{backingBeanScope.GlobalTemplatesBean.handleNavigationClick}"
+                              styleClass="NavigatorItem nowrap"
+                              partialSubmit="true">
+                <af:setActionListener from="#{childNode.id}"
+                                      to="#{sessionScope.selectedItemId}"/>
+                <af:setActionListener from="#{node.id}"
+                                      to="#{sessionScope.selectedGroupId}"/>
+              </af:commandLink>
+            </af:panelGroupLayout>
+          </af:iterator>
+        </af:iterator>
+      </af:panelFormLayout>
+    </af:panelHeader>
+  </af:panelGroupLayout>
+</jsp:root>

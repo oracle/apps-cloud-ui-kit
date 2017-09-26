@@ -15,9 +15,21 @@ Oracle Applications Cloud.
 
 [Learn more about Oracle Applications Cloud UX RDK](http://www.oracle.com/webfolder/ux/applications/successStories/oracleApplicationsCloudRDK.html)
 
+What's New In This Release
+=====
+* Default theme set to Application Cloud R13 Blue
+* Ability to switch between several themes using the Appearance feature
+* Use of SVG Icons in theme-able areas to simplify working with themes
+* Ability to switch Homepage layout between Banner View and Panel Grid View using the Appearance feature
+* Ability to set Homepage content options using the Appearance feature
+* Sample PaaS application for Global Currency Exchange Rates included with integration into the RDK
+
 Instructions for using RDK
 =====
 Find below instructions for using the RDK with different versions of JDeveloper.
+
+## Using the RDK with JDeveloper 11g Release 1 (11.1.1.9.x)
+Opening the JWS and deploy the application to your WebLogic Server. Alternatively right-click Welcome.jspx and choose 'Run' from the context menu.
 
 ## Using the RDK with JDeveloper 12c
 After opening the JWS and letting JDeveloper migrate the application, you will need to manually redeploy the ADF Libraries using the existing deployment profiles, for the following projects in order.
@@ -59,4 +71,4 @@ You can suppress the Universal Global Header (UGH) of the deployed RDK demo appl
         http://<host>:<port>/AppsCloudUIKit/faces/Welcome?headless=yes
 
 # Copyright
-Copyright (c) 2015-2016 Oracle and/or its affiliates. All rights reserved.
+Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.

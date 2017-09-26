@@ -1,42 +1,49 @@
 package oracle.apps.uikit.memoryCache;
-
 /*
- * Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
  *
 **/
-
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
-
+import java.util.Map;
 import javax.faces.context.FacesContext;
-
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import oracle.adf.share.ADFContext;
-
 import oracle.apps.uikit.data.Evaluation;
 import oracle.apps.uikit.data.EvaluationTask;
 import oracle.apps.uikit.data.FinancialReport;
 import oracle.apps.uikit.data.Infolet;
-import oracle.apps.uikit.data.Node;
+import oracle.apps.uikit.data.ItemNode;
 import oracle.apps.uikit.data.Opportunity;
 import oracle.apps.uikit.data.Person;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 public class SessionState {
+    //Shell
     private boolean _welcomePopupActive;
     private String _welcomeMode; //'springboard', 'infolets'
-    private boolean _showChildren; //grid cluster children
-    private List<Node> _nodeList;
-    private List<Node> _childNodeList;
-    private String _filmStripShowStrip; //'', 'noShow'
-    private boolean _filmStripShowHandle;
-    private String _filmStripMode; //'strip', 'single'
-    private int _accessedNodeId;
-    private List<Node> _filmStripNodeList;
     private List<Infolet> _infoletsList;
     private int _actionedInfoletId = -1;
+    private String _skinFamily;
+    private String _skinFamilyLabel;
+    private String _homePageView; //'BANNER', 'GRID'
+    private String _homePageOption; //'social', 'announcements', 'coverImage', 'none'
+    private String _bannerPanelView; //'summary', 'detail'
+    //Application Nodes
+    private Map<String, ItemNode> _clusterMap = new HashMap<String, ItemNode>(); //for quick access to ItemNode from Id
+    private Map<String, ItemNode> _gridNodeMap = new LinkedHashMap<String, ItemNode>(); //for display in welcome page springboard
+    private List<ItemNode> _navNodeList = new ArrayList<ItemNode>(); //for display in navigator
     //CRM Contacts
     private List<Person> _contactsList;
     private List<Person> _filteredContactsList;
@@ -64,17 +71,29 @@ public class SessionState {
         else
             headless = "no";
         ADFContext.getCurrent().getSessionScope().put("headless", headless);
-        //Set up the application
+        //Set up the application user
         ADFContext.getCurrent().getSessionScope().put("loggedInUserName", "Lisa Jones");
         ADFContext.getCurrent().getSessionScope().put("loggedInUserJob", "Group Manager");
+        //Activate RDK welcome banner
         setWelcomePopupActive(true);
-        setWelcomeMode("springboard"); //Show icon grid by default
-        setShowChildren(false); //Do not open any functional groups by default
-        if (_nodeList == null)
-            _buildNodeList();
-        setFilmStripShowStrip(""); //Show film strip by default
-        setFilmStripShowHandle(true);
-        setFilmStripMode("strip"); //Default mode is strip
+        //Show icon grid rather than infolets at the start
+        setWelcomeMode("springboard");
+        //Set default theme
+        _skinFamily = "SkyBlueTheme";
+        _skinFamilyLabel = "Sky Blue";
+        //Set default home page view
+        _homePageView = "BANNER";
+        //Set default home page option
+        _homePageOption = "social";
+        //Set banner/panel default view
+        if (_homePageOption.equals("social"))
+            _bannerPanelView = "summary";
+        else
+            _bannerPanelView = "detail";
+        //Set up application nodes
+        if (_gridNodeMap.size() == 0)
+            _parseRootMenu();
+        //Infolets
         if (_infoletsList == null)
             _buildInfoletsList();
         //CRM Contacts
@@ -99,57 +118,190 @@ public class SessionState {
             _buildMyTeamList();
     }//constructor
 
-    private void _buildNodeList(){
-        int idx = 1;
-        _nodeList = new ArrayList<Node>();
-        Node newNode;
-        List<Node> children;
+    //Get Host
+    public String getHost(){
+        FacesContext fctx = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest)fctx.getExternalContext().getRequest();
+        return request.getServerName();
+    }//getHost
+    
+    //Get Port
+    public String getPort(){
+        FacesContext fctx = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest)fctx.getExternalContext().getRequest();
+        return Integer.toString(request.getServerPort());
+    }//getPort
+
+    //Called from SpringboardBean.java to build and display grid nodes
+    public String fetchGridNodes(String groupId){
+        Map<String, ItemNode> gridNodeMap = new HashMap<String, ItemNode>();
+        //Extract specific group if groupId specified
+        if (groupId == null){
+            gridNodeMap = _gridNodeMap;
+        } else {
+            //Extract specific group
+            Iterator i = getGridNodeMap().entrySet().iterator();
+            while (i.hasNext()){
+                Map.Entry pair = (Map.Entry)i.next();
+                if (groupId.equalsIgnoreCase(pair.getKey().toString())){
+                    ItemNode requiredNode = (ItemNode)pair.getValue();
+                    gridNodeMap.put(groupId, requiredNode);
+                    break;
+                }//check for required group node
+            }//loop through nodes
+        }//check if specific group required
         //
-        //Node Structure
-        //unique id, name, base icon, task flow id, task flow name
+        StringBuilder jsonArrayStrBld = new StringBuilder();
+        jsonArrayStrBld.append("[");
+        String jsonArrayStr = "[]";
+        String topLevelObj = null;
+        String childObj = null;
         //
-        //Build the Sales group and children
-        newNode = new Node(idx++, "Sales", "cluster", "", "");
-        children = new ArrayList<Node>();
-        children.add(new Node(idx++, "Dashboard", "dashboard", "WEB-INF/oracle/apps/uikit/flow/NotImplementedFlow.xml", "NotImplementedFlow"));
-        children.add(new Node(idx++, "Leads", "contactbowl", "WEB-INF/oracle/apps/uikit/flow/NotImplementedFlow.xml", "NotImplementedFlow"));
-        children.add(new Node(idx++, "Campaigns", "envelopechart", "WEB-INF/oracle/apps/uikit/flow/NotImplementedFlow.xml", "NotImplementedFlow"));
-        children.add(new Node(idx++, "Opportunities", "briefcasecash", "WEB-INF/oracle/apps/uikit/crm/opportunities/flow/OpportunitiesFlow.xml", "OpportunitiesFlow"));
-        children.add(new Node(idx++, "Forecasts", "crystalball", "WEB-INF/oracle/apps/uikit/flow/NotImplementedFlow.xml", "NotImplementedFlow"));
-        children.add(new Node(idx++, "Accounts", "buildings", "WEB-INF/oracle/apps/uikit/flow/NotImplementedFlow.xml", "NotImplementedFlow"));
-        children.add(new Node(idx++, "Contacts", "contacts", "WEB-INF/oracle/apps/uikit/crm/contacts/flow/ContactsFlow.xml", "ContactsFlow"));
-        children.add(new Node(idx++, "Activities", "calendarclipboard", "WEB-INF/oracle/apps/uikit/flow/NotImplementedFlow.xml", "NotImplementedFlow"));
-        children.add(new Node(idx++, "Light Box", "lightbulbbox", "WEB-INF/oracle/apps/uikit/flow/NotImplementedFlow.xml", "NotImplementedFlow"));
-        children.add(new Node(idx++, "Service Feedback", "envelope", "WEB-INF/oracle/apps/uikit/flow/NotImplementedFlow.xml", "NotImplementedFlow"));
-        newNode.setChildren(children);
-        _nodeList.add(newNode);
-        //Build the My Team group and children
-        newNode = new Node(idx++, "My Team", "cluster", "", "");
-        children = new ArrayList<Node>();
-        children.add(new Node(idx++, "Dashboard", "dashboard", "WEB-INF/oracle/apps/uikit/flow/NotImplementedFlow.xml", "NotImplementedFlow"));
-        children.add(new Node(idx++, "New Person", "personnew", "WEB-INF/oracle/apps/uikit/flow/NotImplementedFlow.xml", "NotImplementedFlow"));
-        children.add(new Node(idx++, "My Team", "group", "WEB-INF/oracle/apps/uikit/hcm/myTeam/flow/MyTeamFlow.xml", "MyTeamFlow"));
-        children.add(new Node(idx++, "Manage Users", "personselect", "WEB-INF/oracle/apps/uikit/flow/NotImplementedFlow.xml", "NotImplementedFlow"));
-        children.add(new Node(idx++, "Team Talent", "persongrid", "WEB-INF/oracle/apps/uikit/flow/NotImplementedFlow.xml", "NotImplementedFlow"));
-        children.add(new Node(idx++, "Team Goals", "persontarget", "WEB-INF/oracle/apps/uikit/flow/NotImplementedFlow.xml", "NotImplementedFlow"));
-        children.add(new Node(idx++, "Team Performance", "persongraph", "WEB-INF/oracle/apps/uikit/hcm/performance/flow/PerformanceFlow.xml", "PerformanceFlow"));
-        newNode.setChildren(children);
-        _nodeList.add(newNode);
-        //Build the Finance group and children
-        newNode = new Node(idx++, "General Accounting", "cluster", "", "");
-        children = new ArrayList<Node>();
-        children.add(new Node(idx++, "Journals", "ledger", "WEB-INF/oracle/apps/uikit/flow/NotImplementedFlow.xml", "NotImplementedFlow"));
-        children.add(new Node(idx++, "Period Close", "ledgerclock", "WEB-INF/oracle/apps/uikit/flow/NotImplementedFlow.xml", "NotImplementedFlow"));
-        children.add(new Node(idx++, "Financial Reports", "report", "WEB-INF/oracle/apps/uikit/fin/reports/flow/FinancialReportsFlow.xml", "FinancialReportsFlow"));
-        newNode.setChildren(children);
-        _nodeList.add(newNode);
-        //Add Show My Contacts node
-        _nodeList.add(new Node(idx++, "Map My Contacts", "signpost", "WEB-INF/oracle/apps/uikit/crm/contacts/flow/ContactsMapFlow.xml", "ContactsMapFlow"));
-        //Add Directory node
-        _nodeList.add(new Node(idx++, "Directory", "directory", "WEB-INF/oracle/apps/uikit/flow/NotImplementedFlow.xml", "NotImplementedFlow"));
-        //Add Cloud Plug node
-        _nodeList.add(new Node(idx++, "PaaS Cloud", "cloudplug", "WEB-INF/oracle/apps/uikit/flow/NotImplementedFlow.xml", "NotImplementedFlow"));
-    }//_buildNodeList
+        try{
+            for (Map.Entry<String, ItemNode> entry : gridNodeMap.entrySet()) {
+                ItemNode node = entry.getValue();
+                topLevelObj = _createJsonString(node, true, node.getId());
+                if (node.isGroupNode()){
+                    childObj = null;
+                    for (ItemNode itemNode : (node).getChildren()) {
+                        childObj = _createJsonString(itemNode, false, node.getId());
+                        if (childObj != null && !childObj.isEmpty())
+                            jsonArrayStrBld.append(childObj.toString() + "},");
+                    }//loop
+                }//if
+                //
+                if (topLevelObj != null && !topLevelObj.isEmpty())
+                    jsonArrayStrBld.append(topLevelObj.toString() + "},");
+            }//for loop 
+            //
+            jsonArrayStrBld.append("]");
+            jsonArrayStr = jsonArrayStrBld.toString();
+            //Strip out last comma
+            if (jsonArrayStr.length() > 2)
+                jsonArrayStr = jsonArrayStr.replace(",]", "]");
+            //
+        } catch (Exception e){
+            e.printStackTrace();
+        }//try-catch
+        //
+        return jsonArrayStr;
+    }//fetchGridNodes
+
+    private String _createJsonString(ItemNode node, boolean isTopLevel, String groupId){
+        String jsonStr = null;
+        try {
+            StringBuilder jsonStrBld = new StringBuilder();
+            jsonStrBld.append("{\"id\"" + ":\"" + node.getId() + "\"" + ",");
+            jsonStrBld.append("\"label\"" + ":\"" + node.getName() + "\"" + ",");
+            //
+            String cardIcon = "";
+            if (node.isGroupNode())
+                cardIcon = node.getIcon();
+            else
+                cardIcon = node.getCardIcon();
+            if (cardIcon != null && cardIcon.contains("images/"))
+                cardIcon = cardIcon.substring((cardIcon.lastIndexOf("_") + 1), (cardIcon.lastIndexOf(".")));
+            if (cardIcon.endsWith(".png"))
+                cardIcon = cardIcon.substring(0, cardIcon.indexOf(".png"));
+            jsonStrBld.append("\"icon\"" + ":\"" + cardIcon + "\"" + ",");
+            //
+            jsonStrBld.append("\"visible\"" + ":" + (node.isGroupNode() ? true : node.isRender()) + ",");
+            jsonStrBld.append("\"type\"" + ":\"" + (node.isGroupNode() ? "cluster" : (isTopLevel) ? "toplevel" : "subcluster") + "\"" + ",");
+            jsonStrBld.append("\"group\"" + ":\"" + groupId + "\"");
+            //
+            if (node != null){
+                String destinationUrl = node.getDestinationUrl();
+                jsonStrBld.append(",\"isDestUrlExist\"" + ":\"" + ((destinationUrl == null || destinationUrl.isEmpty()) ? "false" : "true") + "\"");
+                //
+                if (node.getDestinationUrl() != null)
+                    jsonStrBld.append(",\"destinationUrl\"" + ":\"" + node.getDestinationUrl() + "\"");
+                //
+                jsonStrBld.append(",\"targetFrame\"" + ":\"" + node.getTargetFrame() + "\"");
+            }//null check
+            //
+            jsonStr = jsonStrBld.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }//try-catch
+        //
+        return jsonStr;
+    }//_createJsonString
+
+    private void _parseRootMenu(){
+        _gridNodeMap = new LinkedHashMap<String, ItemNode>();
+        Map<String, ItemNode> navNodeMap = new LinkedHashMap<String, ItemNode>(); //feeds into _navNodeList
+        _clusterMap = new HashMap<String, ItemNode>();
+        try {
+            //Read the root menu file
+            ServletContext servletCtx = (ServletContext)FacesContext.getCurrentInstance().getExternalContext().getContext();
+            InputStream inputStream = servletCtx.getResourceAsStream("/oracle/apps/uikit/menu/root.xml");
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(inputStream);
+            doc.getDocumentElement().normalize();
+            NodeList allGroupNodeList = doc.getElementsByTagName("groupNode"); // all nodes with <groupNode> tag
+            NodeList allItemNodeList = doc.getElementsByTagName("itemNode"); // all nodes with <itemNode> tag
+            //
+            for (int i = 0; i < allGroupNodeList.getLength(); i++){
+                org.w3c.dom.Node pNode = allGroupNodeList.item(i);
+                if (pNode.getNodeType() == org.w3c.dom.Node.ELEMENT_NODE) {
+                    Element pElement = (Element)pNode;
+                    ItemNode parentNode = new ItemNode(pElement.getAttribute("id"), pElement.getAttribute("label"), 
+                                                       pElement.getAttribute("icon"), "", true);
+                    //
+                    //Get all children for pElement
+                    NodeList childNodeList = pElement.getElementsByTagName("itemNode");
+                    ArrayList<ItemNode> navChildren = new ArrayList<ItemNode>();
+                    ArrayList<ItemNode> gridChildren = new ArrayList<ItemNode>();
+                    //
+                    for (int j = 0; j < childNodeList.getLength(); j++){
+                        org.w3c.dom.Node cNode = childNodeList.item(j);
+                        Element cElement  = (Element)cNode;
+                        ItemNode childNode = new ItemNode(cElement.getAttribute("id"), cElement.getAttribute("label"), 
+                                                          cElement.getAttribute("icon"), cElement.getAttribute("cardIcon"), 
+                                                          true, "", "", "", cElement.getAttribute("securedResourceName"), 
+                                                          "", "", "_blank", "");
+                        //
+                        navChildren.add(childNode);
+                        if ("true".equalsIgnoreCase(cElement.getAttribute("showOnHomeGrid")))
+                            gridChildren.add(childNode);
+                        _clusterMap.put(cElement.getAttribute("id"), childNode);
+                    }//loop through childNodeList
+                    //
+                    parentNode.setChildren(gridChildren);
+                    _gridNodeMap.put(pElement.getAttribute("id"), parentNode);
+                    //
+                    parentNode.setChildren(navChildren);
+                    navNodeMap.put(pElement.getAttribute("id"), parentNode);
+                }//check dom node type
+            }//loop thru allGroupNodeList
+            //
+            //Process top level item nodes with no children
+            for (int k = 0; k < allItemNodeList.getLength(); k++){
+                org.w3c.dom.Node iNode = allItemNodeList.item(k);
+                Element iElement = (Element)iNode;
+                //Check parent
+                if (iElement.getParentNode() != null &&
+                    !("groupNode".equalsIgnoreCase(iElement.getParentNode().getNodeName()))) { 
+                    //Parent node will be <menu> tag
+
+                    ItemNode childNode = new ItemNode(iElement.getAttribute("id"), iElement.getAttribute("label"), 
+                                                      iElement.getAttribute("icon"), iElement.getAttribute("cardIcon"), 
+                                                      true, "", "", "", iElement.getAttribute("securedResourceName"), 
+                                                      "", "", "_blank", "");
+                    //
+                    navNodeMap.put(iElement.getAttribute("id"), childNode);
+                    if ("true".equalsIgnoreCase(iElement.getAttribute("showOnHomeGrid")))
+                        _gridNodeMap.put(iElement.getAttribute("id"), childNode);
+                    _clusterMap.put(iElement.getAttribute("id"), childNode);
+                }//check parent tag
+            }//loop through allItemNodeList
+            //
+            _navNodeList = new ArrayList<ItemNode>(navNodeMap.values());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }//try-catch
+    }//_parseRootMenu
 
     private void _buildInfoletsList(){
         int idx = 1;
@@ -172,27 +324,27 @@ public class SessionState {
         int idx = 1;
         _contactsList = new ArrayList<Person>();
         //id, photo, photoLarge, firstName, lastName, prefix, company, job, email, phone, location
-        _contactsList.add(new Person(idx++, "", "", "Alfred", "Lee", "Dr.", "Usable Apps", "Senior Director", "ALee@UsableApps.rdk", "+1 650-123-1234", "Redwood City, United States"));
-        _contactsList.add(new Person(idx++, "", "", "Bill", "Kermit", "Mr.", "Usable Apps", "Systems Consultant", "BKermit@UsableApps.rdk", "+91 11-123-1234", "Mumbai, India"));
-        _contactsList.add(new Person(idx++, "", "", "Avril", "Jones", "Ms.", "Usable Apps", "Sales Representative", "AJones@UsableApps.rdk", "+44 118-123-1234", "Reading, United Kingdom"));
-        _contactsList.add(new Person(idx++, "", "", "Bob", "Smith", "Dr.", "Usable Apps", "Strategy Director", "BSmith@UsableApps.rdk", "+86 10-123-1234", "Beijing, China"));
-        _contactsList.add(new Person(idx++, "", "", "Cole", "Mitchell", "Mr.", "Usable Apps", "Senior Director", "CMitchell@UsableApps.rdk", "+52 33-123-1234", "Mexico City, Mexico"));
-        _contactsList.add(new Person(idx++, "", "", "Catherine", "Wisdom", "Ms.", "Usable Apps", "Systems Consultant", "CWisdom@UsableApps.rdk", "+1 650-234-1234", "Foster City, United States"));
-        _contactsList.add(new Person(idx++, "", "", "David", "Dealey", "Dr.", "Usable Apps", "Sales Representative", "DDealey@UsableApps.rdk", "+91 11-234-1234", "Pune, India"));
-        _contactsList.add(new Person(idx++, "", "", "Derek", "Peterson", "Mr.", "Usable Apps", "Strategy Director", "DPeterson@UsableApps.rdk", "+44 118-234-1234", "London, United Kingdom"));
-        _contactsList.add(new Person(idx++, "", "", "Dona", "Whiley", "Ms.", "Usable Apps", "Senior Director", "DWhiley@UsableApps.rdk", "+86 10-234-1234", "Chengde, China"));
-        _contactsList.add(new Person(idx++, "", "", "Dominic", "Bennet", "Dr.", "Usable Apps", "Systems Consultant", "DBennet@UsableApps.rdk", "+52 33-234-1234", "Guadalajara, Mexico"));
-        _contactsList.add(new Person(idx++, "", "", "Jamie", "Dawson", "Mr.", "Usable Apps", "Sales Representative", "JDawson@UsableApps.rdk", "+1 650-345-1234", "Palo Alto, United States"));
-        _contactsList.add(new Person(idx++, "", "", "Jane", "Jefferson", "Ms.", "Usable Apps", "Strategy Director", "JJefferson@UsableApps.rdk", "+91 11-345-1234", "Bangalore, India"));
-        _contactsList.add(new Person(idx++, "", "", "John", "Smith", "Dr.", "Usable Apps", "Senior Director", "JSmith@UsableApps.rdk", "+44 118-345-1234", "Oxford, United Kingdom"));
-        _contactsList.add(new Person(idx++, "", "", "Julian", "Henderson", "Mr.", "Usable Apps", "Systems Consultant", "JHenderson@UsableApps.rdk", "+86 10-345-1234", "Shangai, China"));
-        _contactsList.add(new Person(idx++, "", "", "Jennifer", "Tan", "Ms.", "Usable Apps", "Sales Representative", "JTan@UsableApps.rdk", "+52 33-345-1234", "Campeche, Mexico"));
-        _contactsList.add(new Person(idx++, "", "", "Karl", "Jones", "Dr.", "Usable Apps", "Strategy Director", "KJones@UsableApps.rdk", "+1 650-456-1234", "Menlo Park, United States"));
-        _contactsList.add(new Person(idx++, "", "", "Mike", "Bell", "Mr.", "Usable Apps", "Senior Director", "MBell@UsableApps.rdk", "+91 11-456-1234", "Hyderabad, India"));
-        _contactsList.add(new Person(idx++, "", "", "Maggie", "Edwards", "Ms.", "Usable Apps", "Systems Consultant", "MEdwards@UsableApps.rdk", "+44 118-456-1234", "Birmingham, United Kingdom"));
-        _contactsList.add(new Person(idx++, "", "", "Roderic", "Du-Pont", "Dr.", "Usable Apps", "Sales Representative", "RDuPont@UsableApps.rdk", "+86 10-456-1234", "Dalian, China"));
-        _contactsList.add(new Person(idx++, "", "", "Victor", "Venables", "Mr.", "Usable Apps", "Strategy Director", "VVenables@UsableApps.rdk", "+52 33-456-1234", "Monterrey, Mexico"));
-        _contactsList.add(new Person(idx++, "", "", "Samantha", "Saunders", "Ms.", "Usable Apps", "Senior Director", "SSaunders@UsableApps.rdk", "+1 650-567-1234", "Sunnyvale, United States"));
+        _contactsList.add(new Person(idx++, "", "", "Alfred", "Lee", "Dr.", "Usable Apps", "Senior Director", "ALee@oaux.rdk", "+1 650-123-1234", "Redwood City, United States"));
+        _contactsList.add(new Person(idx++, "", "", "Bill", "Kermit", "Mr.", "Usable Apps", "Systems Consultant", "BKermit@oaux.rdk", "+91 11-123-1234", "Mumbai, India"));
+        _contactsList.add(new Person(idx++, "", "", "Avril", "Jones", "Ms.", "Usable Apps", "Sales Representative", "AJones@oaux.rdk", "+44 118-123-1234", "Reading, United Kingdom"));
+        _contactsList.add(new Person(idx++, "", "", "Bob", "Smith", "Dr.", "Usable Apps", "Strategy Director", "BSmith@oaux.rdk", "+86 10-123-1234", "Beijing, China"));
+        _contactsList.add(new Person(idx++, "", "", "Cole", "Mitchell", "Mr.", "Usable Apps", "Senior Director", "CMitchell@oaux.rdk", "+52 33-123-1234", "Mexico City, Mexico"));
+        _contactsList.add(new Person(idx++, "", "", "Catherine", "Wisdom", "Ms.", "Usable Apps", "Systems Consultant", "CWisdom@oaux.rdk", "+1 650-234-1234", "Foster City, United States"));
+        _contactsList.add(new Person(idx++, "", "", "David", "Dealey", "Dr.", "Usable Apps", "Sales Representative", "DDealey@oaux.rdk", "+91 11-234-1234", "Pune, India"));
+        _contactsList.add(new Person(idx++, "", "", "Derek", "Peterson", "Mr.", "Usable Apps", "Strategy Director", "DPeterson@oaux.rdk", "+44 118-234-1234", "London, United Kingdom"));
+        _contactsList.add(new Person(idx++, "", "", "Dona", "Whiley", "Ms.", "Usable Apps", "Senior Director", "DWhiley@oaux.rdk", "+86 10-234-1234", "Chengde, China"));
+        _contactsList.add(new Person(idx++, "", "", "Dominic", "Bennet", "Dr.", "Usable Apps", "Systems Consultant", "DBennet@oaux.rdk", "+52 33-234-1234", "Guadalajara, Mexico"));
+        _contactsList.add(new Person(idx++, "", "", "Jamie", "Dawson", "Mr.", "Usable Apps", "Sales Representative", "JDawson@oaux.rdk", "+1 650-345-1234", "Palo Alto, United States"));
+        _contactsList.add(new Person(idx++, "", "", "Jane", "Jefferson", "Ms.", "Usable Apps", "Strategy Director", "JJefferson@oaux.rdk", "+91 11-345-1234", "Bangalore, India"));
+        _contactsList.add(new Person(idx++, "", "", "John", "Smith", "Dr.", "Usable Apps", "Senior Director", "JSmith@oaux.rdk", "+44 118-345-1234", "Oxford, United Kingdom"));
+        _contactsList.add(new Person(idx++, "", "", "Julian", "Henderson", "Mr.", "Usable Apps", "Systems Consultant", "JHenderson@oaux.rdk", "+86 10-345-1234", "Shangai, China"));
+        _contactsList.add(new Person(idx++, "", "", "Jennifer", "Tan", "Ms.", "Usable Apps", "Sales Representative", "JTan@oaux.rdk", "+52 33-345-1234", "Campeche, Mexico"));
+        _contactsList.add(new Person(idx++, "", "", "Karl", "Jones", "Dr.", "Usable Apps", "Strategy Director", "KJones@oaux.rdk", "+1 650-456-1234", "Menlo Park, United States"));
+        _contactsList.add(new Person(idx++, "", "", "Mike", "Bell", "Mr.", "Usable Apps", "Senior Director", "MBell@oaux.rdk", "+91 11-456-1234", "Hyderabad, India"));
+        _contactsList.add(new Person(idx++, "", "", "Maggie", "Edwards", "Ms.", "Usable Apps", "Systems Consultant", "MEdwards@oaux.rdk", "+44 118-456-1234", "Birmingham, United Kingdom"));
+        _contactsList.add(new Person(idx++, "", "", "Roderic", "Du-Pont", "Dr.", "Usable Apps", "Sales Representative", "RDuPont@oaux.rdk", "+86 10-456-1234", "Dalian, China"));
+        _contactsList.add(new Person(idx++, "", "", "Victor", "Venables", "Mr.", "Usable Apps", "Strategy Director", "VVenables@oaux.rdk", "+52 33-456-1234", "Monterrey, Mexico"));
+        _contactsList.add(new Person(idx++, "", "", "Samantha", "Saunders", "Ms.", "Usable Apps", "Senior Director", "SSaunders@oaux.rdk", "+1 650-567-1234", "Sunnyvale, United States"));
     }//_buildContactsList
 
     private void _buildFinancialReportsList(){
@@ -393,27 +545,27 @@ public class SessionState {
     public boolean isWelcomePopupActive() { return _welcomePopupActive; }
     public void setWelcomeMode(String s) { _welcomeMode = s; }
     public String getWelcomeMode() { return _welcomeMode; }
-    public void setShowChildren(boolean b) { _showChildren = b; }
-    public boolean isShowChildren() { return _showChildren; }
-    public void setNodeList(List<Node> l) { _nodeList = l; }
-    public List<Node> getNodeList() { return _nodeList; }
-    public void setChildNodeList(List<Node> l) { _childNodeList = l; }
-    public List<Node> getChildNodeList() { return _childNodeList; }
-    public int getChildNodeListSize() { return _childNodeList.size(); }
-    public void setFilmStripShowStrip(String s) { _filmStripShowStrip = s; }
-    public String getFilmStripShowStrip() { return _filmStripShowStrip; }
-    public void setFilmStripShowHandle(boolean b) { _filmStripShowHandle = b; }
-    public boolean isFilmStripShowHandle() { return _filmStripShowHandle; }
-    public void setFilmStripMode(String s) { _filmStripMode = s; }
-    public String getFilmStripMode() { return _filmStripMode; }
-    public void setAccessedNodeId(int i) { _accessedNodeId = i; }
-    public int getAccessedNodeId() { return _accessedNodeId; }
-    public void setFilmStripNodeList(List<Node> l) { _filmStripNodeList = l; }
-    public List<Node> getFilmStripNodeList() { return _filmStripNodeList; }
     public void setInfoletsList(List<Infolet> l) { _infoletsList = l; }
     public List<Infolet> getInfoletsList() { return _infoletsList; }
     public void setActionedInfoletId(int i) { _actionedInfoletId = i; }
     public int getActionedInfoletId() { return _actionedInfoletId; }
+    public void setSkinFamily(String s) { _skinFamily = s; }
+    public String getSkinFamily() { return _skinFamily; }
+    public void setSkinFamilyLabel(String s) { _skinFamilyLabel = s; }
+    public String getSkinFamilyLabel() { return _skinFamilyLabel; }
+    public void setHomePageView(String s) { _homePageView = s; }
+    public String getHomePageView() { return _homePageView; }
+    public void setHomePageOption(String s) { _homePageOption = s; }
+    public String getHomePageOption() { return _homePageOption; }
+    public void setBannerPanelView(String s) { _bannerPanelView = s; }
+    public String getBannerPanelView() { return _bannerPanelView; }
+    //Application Nodes
+    public void setClusterMap(Map<String, ItemNode> m) { _clusterMap = m; }
+    public Map<String, ItemNode> getClusterMap() { return _clusterMap; }
+    public void setGridNodeMap(Map<String, ItemNode> m) { _gridNodeMap = m; }
+    public Map<String, ItemNode> getGridNodeMap() { return _gridNodeMap; }
+    public void setNavNodeList(List<ItemNode> l) { _navNodeList = l; }
+    public List<ItemNode> getNavNodeList() { return _navNodeList; }
     //CRM Contacts
     public void setContactsList(List<Person> l) { _contactsList = l; }
     public List<Person> getContactsList() { return _contactsList; }

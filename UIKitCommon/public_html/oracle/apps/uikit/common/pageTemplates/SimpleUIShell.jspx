@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--
-Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
 -->
 <jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
           xmlns:f="http://java.sun.com/jsf/core"
@@ -14,11 +14,6 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
     <af:xmlContent>
       <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
         <display-name>SimpleUIShell</display-name>
-        <facet>
-          <facet-name>
-            globalNavigator
-          </facet-name>
-        </facet>
         <facet>
           <facet-name>
             globalHeaderMiddle
@@ -36,236 +31,264 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
         </facet>
         <facet>
           <facet-name>
-            experimental
+            bannerContents
           </facet-name>
         </facet>
       </component>
     </af:xmlContent>
-    <af:panelGridLayout id="pt_pgl1" dimensionsFrom="children">
-      <af:gridRow id="pt_gr1">
-        <af:gridCell
-                     id="pt_gc1" width="50%"/>
-        <af:gridCell id="pt_gc2">
-          <af:panelGroupLayout id="pt_pgl2" layout="vertical"
-                               styleClass="application-container-width">
-            <af:panelGridLayout id="pt_pgl3" styleClass="AFBrandingBar"
-                                rendered="#{!backingBeanScope.GlobalTemplatesBean.headless}">
-              <af:gridRow marginTop="5px"
-                          id="pt_gr2">
-                <af:gridCell width="20%"
-                             id="pt_gc4" halign="stretch">
-                  <af:panelGroupLayout id="pt_pgl4" layout="horizontal">
-                    <af:panelGroupLayout id="pt_pgl13" layout="horizontal">
-                      <af:commandLink id="pt_stealFocus"/>
-                      <af:commandImageLink id="pt_cil1" partialSubmit="true"
-                                           shortDesc="#{uikitcommonBundle.NAVIGATOR}"
-                                           icon="/images/ugh_navigator_ena.png"
-                                           disabledIcon="/images/ugh_navigator_dis.png"
-                                           hoverIcon="/images/ugh_navigator_ovr.png"
-                                           depressedIcon="/images/ugh_navigator_dwn.png">
-                        <af:showPopupBehavior alignId="pt_cil1"
-                                              align="beforeStart"
-                                              triggerType="action"
-                                              popupId="pt_p2"/>
-                      </af:commandImageLink>
-                      <af:popup id="pt_p2" contentDelivery="lazyUncached">
-                        <af:facetRef facetName="globalNavigator"/>
-                      </af:popup>
-                    </af:panelGroupLayout>
-                    <af:spacer width="3" id="pt_s1"/>
-                    <af:commandImageLink
-                                         id="pt_cil2"
-                                         styleClass="AFBrandingBarLogo"
-                                         disabled="true"/>
+    <af:resource type="javascript" source="/js/globalSearch.js"/>
+    <af:panelGroupLayout id="pt_pgl14" layout="vertical">
+      <af:panelGroupLayout id="pt_pgl16" layout="vertical" halign="center"
+                           styleClass="AFBrandingBar">
+        <af:panelGroupLayout id="pt_pgl19"
+                             styleClass="application-container-width align-left"
+                             layout="vertical">
+          <af:panelGridLayout id="pt_pgl3"
+                              rendered="#{!backingBeanScope.GlobalTemplatesBean.headless}">
+            <af:gridRow id="pt_gr2" marginTop="5px">
+              <af:gridCell width="20%" id="pt_gc4" halign="stretch"
+                           valign="middle">
+                <af:panelGroupLayout id="pt_pgl4" layout="horizontal"
+                                     styleClass="AFBrandingBarItem">
+                  <af:panelGroupLayout id="pt_pgl13" layout="horizontal"
+                                       styleClass="AFBrandingBarItem">
+                    <af:commandLink id="pt_stealFocus"/>
+                    <af:commandImageLink id="pt_cil1" partialSubmit="true"
+                                         shortDesc="#{uikitcommonBundle.NAVIGATOR}"
+                                         icon="/images/ugh_navigator_ena.png"
+                                         disabledIcon="/images/ugh_navigator_dis.png"
+                                         hoverIcon="/images/ugh_navigator_ovr.png"
+                                         depressedIcon="/images/ugh_navigator_dwn.png"
+                                         styleClass="TabletNavigatorIcon NavButton">
+                      <af:showPopupBehavior alignId="pt_cil1"
+                                            align="beforeStart"
+                                            triggerType="action"
+                                            popupId="pt_p2"/>
+                    </af:commandImageLink>
+                    <af:popup id="pt_p2" contentDelivery="lazyUncached">
+                      <jsp:include page="/oracle/apps/uikit/common/page/Navigator.jsff"/>
+                    </af:popup>
                   </af:panelGroupLayout>
-                </af:gridCell>
-                <af:gridCell id="pt_gc5" halign="stretch" width="80%">
-                  <af:panelGroupLayout id="pt_pgl5" layout="horizontal"
-                                       halign="end">
-                    <f:facet name="separator">
-                      <af:spacer width="10" height="10" id="pt_s2"/>
-                    </f:facet>
-                    <af:toolbar id="pt_t1" flex="1" stretchId="pt_ugh_spacer"
-                                styleClass="FndBrandingToolbar">
-                      <af:spacer id="pt_ugh_spacer" clientComponent="true"/>
-                      <af:facetRef facetName="globalHeaderMiddle"/>
-                      <af:commandButton
-                                        id="pt_navigationTrigger"
-                                        action="navigateTo"
-                                        partialSubmit="true" visible="false"/>
-                      <af:commandButton
-                                        id="pt_refreshTrigger" visible="false"
-                                        partialSubmit="true" action="refresh"/>
-                      <af:commandImageLink id="pt_cil3"
-                                           icon="/images/ugh_home_ena.png"
-                                           disabledIcon="/images/ugh_home_dis.png"
-                                           hoverIcon="/images/ugh_home_ovr.png"
-                                           depressedIcon="/images/ugh_home_dwn.png"
-                                           shortDesc="#{uikitcommonBundle.HOME}"
-                                           actionListener="#{backingBeanScope.GlobalTemplatesBean.handleGoHome}"
-                                           disabled="#{sessionScope.disableGoHome == null ? true : sessionScope.disableGoHome == 'Y' ? true : false}">
-                        <af:setActionListener from="#{'Y'}"
-                                              to="#{sessionScope.disableGoHome}"/>
-                        <af:setActionListener from="#{'home'}"
-                                              to="#{sessionScope.navigateTo}"/>
-                      </af:commandImageLink>
-                      <af:commandImageLink id="pt_cil10"
-                                           icon="/images/ugh_search_ena.png"
-                                           disabledIcon="/images/ugh_search_dis.png"
-                                           hoverIcon="/images/ugh_search_ovr.png"
-                                           depressedIcon="/images/ugh_search_dwn.png"
-                                           shortDesc="#{uikitcommonBundle.SEARCH}"/>
-                      <af:commandImageLink
-                                           id="pt_cil5"
-                                           shortDesc="#{uikitcommonBundle.FAVORITES}"
-                                           icon="/images/ugh_favorites_ena.png"
-                                           disabledIcon="/images/ugh_favorites_dis.png"
-                                           hoverIcon="/images/ugh_favorites_ovr.png"
-                                           depressedIcon="/images/ugh_favorites_dwn.png"/>
-                      <af:commandImageLink
-                                           id="pt_cil6"
-                                           shortDesc="#{uikitcommonBundle.WATCHLIST}"
-                                           icon="/images/ugh_watchlist_ena.png"
-                                           disabledIcon="/images/ugh_watchlist_dis.png"
-                                           hoverIcon="/images/ugh_watchlist_ovr.png"
-                                           depressedIcon="/images/ugh_watchlist_dwn.png"/>
-                      <af:commandImageLink
-                                           id="pt_cil7"
-                                           shortDesc="#{uikitcommonBundle.NOTIFICATIONS}"
-                                           icon="/images/ugh_notifications_ena.png"
-                                           disabledIcon="/images/ugh_notifications_dis.png"
-                                           hoverIcon="/images/ugh_notifications_ovr.png"
-                                           depressedIcon="/images/ugh_notifications_dwn.png"/>
-                      <af:commandImageLink
-                                           id="pt_cil8"
-                                           shortDesc="#{uikitcommonBundle.ACCESSIBILITY}"
-                                           icon="/images/ugh_accessibility_ena.png"
-                                           disabledIcon="/images/ugh_accessibility_dis.png"
-                                           hoverIcon="/images/ugh_accessibility_ovr.png"
-                                           depressedIcon="/images/ugh_accessibility_dwn.png"/>
-                      <af:commandImageLink
-                                           id="pt_cil4"
-                                           shortDesc="#{uikitcommonBundle.SHOW_HELP}"
-                                           icon="/images/ugh_help_ena.png"
-                                           disabledIcon="/images/ugh_help_dis.png"
-                                           hoverIcon="/images/ugh_help_ovr.png"
-                                           depressedIcon="/images/ugh_help_dwn.png"/>
-                      <af:panelGroupLayout id="pt_pgl14" layout="horizontal">
-                        <af:commandImageLink id="pt_cil11"
-                                             shortDesc="#{uikitcommonBundle.SWITCH_SPRINGBOARD_ICON_STYLE}"
-                                             icon="/images/ugh_trial_ena.png"
-                                             disabledIcon="/images/ugh_trial_dis.png"
-                                             hoverIcon="/images/ugh_trial_ovr.png"
-                                             depressedIcon="/images/ugh_trial_dwn.png">
-                          <af:showPopupBehavior popupId="pt_p3"
-                                                triggerType="action"
-                                                align="afterEnd"
-                                                alignId="pt_cil11"/>
+                  <af:spacer width="3" id="pt_s1"/>
+                  <af:commandImageLink id="pt_cil2"
+                                       styleClass="AFBrandingBarLogo"
+                                       disabled="true"/>
+                </af:panelGroupLayout>
+              </af:gridCell>
+              <af:gridCell id="pt_gc5" halign="stretch" width="80%"
+                           valign="middle">
+                <af:panelGroupLayout id="pt_pgl5" layout="horizontal"
+                                     halign="end"
+                                     styleClass="AFBrandingBarItem">
+                  <f:facet name="separator">
+                    <af:spacer width="10" height="10" id="pt_s2"/>
+                  </f:facet>
+                  <af:toolbar id="pt_t1" flex="1" stretchId="pt_ugh_spacer"
+                              styleClass="FndBrandingToolbar">
+                    <af:spacer id="pt_ugh_spacer" clientComponent="true"/>
+                    <af:facetRef facetName="globalHeaderMiddle"/>
+                    <af:commandButton id="pt_navigationTrigger"
+                                      action="home" partialSubmit="true"
+                                      visible="false"/>
+                    <af:commandButton id="pt_refreshTrigger" visible="false"
+                                      partialSubmit="true" action="refresh"/>
+                    <af:commandImageLink id="pt_cil3"
+                                         icon="/images/ugh_home_ena.png"
+                                         disabledIcon="/images/ugh_home_dis.png"
+                                         hoverIcon="/images/ugh_home_ovr.png"
+                                         depressedIcon="/images/ugh_home_dwn.png"
+                                         shortDesc="#{uikitcommonBundle.HOME}"
+                                         actionListener="#{backingBeanScope.GlobalTemplatesBean.handleGoHome}"
+                                         disabled="#{sessionScope.disableGoHome == null ? true : sessionScope.disableGoHome == 'Y' ? true : false}">
+                      <af:setActionListener from="#{'Y'}"
+                                            to="#{sessionScope.disableGoHome}"/>
+                    </af:commandImageLink>
+                    <af:panelGroupLayout id="pt_pgl20" layout="horizontal"
+                                         styleClass="UIShellSearch">
+                      <af:panelGroupLayout id="_GSFPpgl" layout="horizontal"
+                                           styleClass="fndGlobalSearchContainer"
+                                           inlineStyle="white-space:nowrap;"
+                                           clientComponent="true">
+                        <af:inputText id="_GSFsf"
+                                      label="#{uikitcommonBundle.SEARCH}"
+                                      value="#{pageFlowScope.globalSearchString}"
+                                      placeholder="#{uikitcommonBundle.SEARCH}"
+                                      styleClass="fndGlobalSearchField"
+                                      usage="search" maximumLength="20"
+                                      immediate="true" clientComponent="true"
+                                      simple="true">
+                          <af:clientListener method="GlobalSearch.searchFieldClick"
+                                             type="click"/>
+                          <af:clientListener method="GlobalSearch.searchFieldFocus"
+                                             type="focus"/>
+                          <af:clientListener method="GlobalSearch.searchFieldLostFocus"
+                                             type="blur"/>
+                        </af:inputText>
+                        <af:commandImageLink id="_GSFsb"
+                                             icon="/images/ugh_search_ena.png"
+                                             shortDesc="#{uikitcommonBundle.SEARCH}"
+                                             partialSubmit="true">
+                          <af:clientAttribute name="iconBlur"
+                                              value="/images/ugh_search_ena.png"/>
+                          <af:clientAttribute name="iconFocus"
+                                              value="/images/func_globalsearch_29_ena.png"/>
+                          <af:clientListener method="GlobalSearch.searchFieldFocus"
+                                             type="focus"/>
+                          <af:clientListener method="GlobalSearch.searchFieldLostFocus"
+                                             type="blur"/>
+                          <af:clientListener method="GlobalSearch.sendClientSize"
+                                             type="action"/>
                         </af:commandImageLink>
-                        <af:popup id="pt_p3" contentDelivery="lazyUncached">
-                          <af:facetRef facetName="experimental"/>
-                        </af:popup>
                       </af:panelGroupLayout>
-                      <af:facetRef facetName="globalHeaderEnd"/>
-                    </af:toolbar>
-                    <af:panelGroupLayout id="pt_pgl6" layout="horizontal">
-                      <af:commandImageLink
-                                           id="pt_cil9"
-                                           styleClass="bold AFBrandingLinkColor"
-                                           text="#{sessionScope.loggedInUserName}"
-                                           shortDesc="#{uikitcommonBundle.LISA_JONES}"
-                                           icon="/images/ugh_menuarrow_ena.png"
-                                           disabledIcon="/images/ugh_menuarrow_dis.png"
-                                           hoverIcon="/images/ugh_menuarrow_ovr.png"
-                                           depressedIcon="/images/ugh_menuarrow_dwn.png"
-                                           iconPosition="trailing">
-                        <af:showPopupBehavior popupId="pt_p1"
-                                              alignId="pt_cil9"
-                                              triggerType="action"
-                                              align="afterEnd"/>
-                      </af:commandImageLink>
-                      <af:popup id="pt_p1" contentDelivery="lazyUncached">
-                        <af:panelHeader text="#{uikitcommonBundle.SETTINGS_AND_ACTIONS}" id="pt_ph1"
-                                        type="flow" headerLevel="1">
-                          <f:facet name="toolbar">
-                            <af:toolbar id="pt_t2">
-                              <af:spacer width="20" id="pt_s3"/>
-                              <af:commandLink id="pt_cl1"
-                                              text="#{uikitcommonBundle.LOGOUT}"/>
-                            </af:toolbar>
-                          </f:facet>
-                          <af:spacer width="150" id="pt_s4" height="5"/>
-                          <af:panelGroupLayout id="pt_pgl7" layout="vertical">
-                            <f:facet name="separator">
-                              <af:panelGroupLayout id="pt_pgl8"
-                                                   layout="vertical">
-                                <af:spacer height="5" id="pt_s5"/>
-                                <af:separator id="pt_s6"/>
-                                <af:spacer height="5" id="pt_s7"/>
-                              </af:panelGroupLayout>
-                            </f:facet>
-                            <af:panelGroupLayout id="pt_pgl10"
-                                                 styleClass="MySettingsBorder"
-                                                 layout="vertical">
-                              <f:facet name="separator">
-                                <af:spacer height="5" id="pt_s8"/>
-                              </f:facet>
-                              <af:outputText value="#{uikitcommonBundle.PERSONALIZATION}" id="pt_ot1"
-                                             styleClass="bold"/>
-                              <af:commandLink text="#{uikitcommonBundle.SET_PREFERENCES}" id="pt_cl3"/>
-                              <af:commandLink text="#{uikitcommonBundle.EDIT_CURRENT_PAGE}" id="pt_cl4"/>
-                              <af:commandLink text="#{uikitcommonBundle.RESET_PAGE_CONTENT}" id="pt_cl2"/>
-                            </af:panelGroupLayout>
-                            <af:panelGroupLayout id="pt_pgl11"
-                                                 layout="vertical">
-                              <f:facet name="separator">
-                                <af:spacer height="5" id="pt_s9"/>
-                              </f:facet>
-                              <af:outputText value="#{uikitcommonBundle.ADMINISTRATION}" id="pt_ot2"
-                                             styleClass="bold"/>
-                              <af:commandLink text="#{uikitcommonBundle.ADMIN_PERSONALIZATION}" id="pt_cl6"/>
-                              <af:commandLink text="#{uikitcommonBundle.ADMIN_CUSTOMIZATION}" id="pt_cl7"/>
-                              <af:commandLink text="#{uikitcommonBundle.CUSTOMIZATION_MANAGER}" id="pt_cl8"/>
-                              <af:commandLink text="#{uikitcommonBundle.MANAGE_SANDBOXES}" id="pt_cl9"/>
-                              <af:commandLink text="#{uikitcommonBundle.SETUP_AND_MAINTENANCE}" id="pt_cl5"/>
-                            </af:panelGroupLayout>
-                            <af:panelGroupLayout id="pt_pgl12"
-                                                 layout="vertical">
-                              <f:facet name="separator">
-                                <af:spacer height="5" id="pt_s10"/>
-                              </f:facet>
-                              <af:outputText value="#{uikitcommonBundle.HELP_DIAGNOSTICS__SUPPORTABILI}" id="pt_ot3"
-                                             styleClass="bold"/>
-                              <af:commandLink text="#{uikitcommonBundle.APPLICATIONS_HELP}"
-                                              id="pt_cl11"/>
-                              <af:commandLink text="#{uikitcommonBundle.DIAGNOSTICS_RUN}"
-                                              id="pt_cl13"/>
-                              <af:commandLink text="#{uikitcommonBundle.SUPPORTABILITY_CHECK}"
-                                              id="pt_cl14"/>
-                              <af:commandLink text="#{uikitcommonBundle.TROUBLESHOOTING_OPTIONS}"
-                                              id="pt_cl12"/>
-                            </af:panelGroupLayout>
-                            <af:panelGroupLayout id="pt_pgl9"
-                                                 layout="vertical">
-                              <f:facet name="separator">
-                                <af:spacer height="5" id="pt_s11"/>
-                              </f:facet>
-                              <af:commandLink text="#{uikitcommonBundle.ABOUT_PAGE}"
-                                              id="pt_cl10"/>
-                            </af:panelGroupLayout>
-                          </af:panelGroupLayout>
-                        </af:panelHeader>
-                      </af:popup>
                     </af:panelGroupLayout>
-                  </af:panelGroupLayout>
-                </af:gridCell>
-              </af:gridRow>
-            </af:panelGridLayout>
-            <af:facetRef facetName="pageContents"/>
-          </af:panelGroupLayout>
-        </af:gridCell>
-        <af:gridCell id="pt_gc3" width="50%"/>
-      </af:gridRow>
-    </af:panelGridLayout>
+                    <af:commandImageLink id="pt_cil5"
+                                         shortDesc="#{uikitcommonBundle.FAVORITES}"
+                                         icon="/images/ugh_favorites_ena.png"
+                                         disabledIcon="/images/ugh_favorites_dis.png"
+                                         hoverIcon="/images/ugh_favorites_ovr.png"
+                                         depressedIcon="/images/ugh_favorites_dwn.png"/>
+                    <af:commandImageLink id="pt_cil6"
+                                         shortDesc="#{uikitcommonBundle.WATCHLIST}"
+                                         icon="/images/ugh_watchlist_ena.png"
+                                         disabledIcon="/images/ugh_watchlist_dis.png"
+                                         hoverIcon="/images/ugh_watchlist_ovr.png"
+                                         depressedIcon="/images/ugh_watchlist_dwn.png"/>
+                    <af:commandImageLink id="pt_cil7"
+                                         shortDesc="#{uikitcommonBundle.NOTIFICATIONS}"
+                                         icon="/images/ugh_notifications_ena.png"
+                                         disabledIcon="/images/ugh_notifications_dis.png"
+                                         hoverIcon="/images/ugh_notifications_ovr.png"
+                                         depressedIcon="/images/ugh_notifications_dwn.png"/>
+                    <af:commandImageLink id="pt_cil8"
+                                         shortDesc="#{uikitcommonBundle.ACCESSIBILITY}"
+                                         icon="/images/ugh_accessibility_ena.png"
+                                         disabledIcon="/images/ugh_accessibility_dis.png"
+                                         hoverIcon="/images/ugh_accessibility_ovr.png"
+                                         depressedIcon="/images/ugh_accessibility_dwn.png"/>
+                    <af:commandImageLink id="pt_cil4"
+                                         shortDesc="#{uikitcommonBundle.SHOW_HELP}"
+                                         icon="/images/ugh_help_ena.png"
+                                         disabledIcon="/images/ugh_help_dis.png"
+                                         hoverIcon="/images/ugh_help_ovr.png"
+                                         depressedIcon="/images/ugh_help_dwn.png"/>
+                    <af:facetRef facetName="globalHeaderEnd"/>
+                  </af:toolbar>
+                  <af:panelBox id="pt_pb1" type="stretch" showHeader="never"
+                               showDisclosure="false"
+                               styleClass="enduser-avatar avatar round">
+                    <af:commandImageLink id="pt_cil9"
+                                         styleClass="avatar-photo32"
+                                         shortDesc="#{uikitcommonBundle.LISA_JONES}"
+                                         icon="/images/personImage.jpg">
+                      <af:showPopupBehavior popupId="pt_p1" alignId="pt_cil9"
+                                            triggerType="action"
+                                            align="afterEnd"/>
+                    </af:commandImageLink>
+                  </af:panelBox>
+                  <af:popup id="pt_p1" contentDelivery="lazyUncached"
+                            childCreation="deferred">
+                    <af:panelHeader text="#{uikitcommonBundle.SETTINGS_AND_ACTIONS}"
+                                    id="pt_ph1" type="flow" headerLevel="1">
+                      <f:facet name="toolbar">
+                        <af:commandLink id="pt_cl1"
+                                        text="#{uikitcommonBundle.LOGOUT}"
+                                        styleClass="fndSignOutLink"
+                                        partialSubmit="true"/>
+                      </f:facet>
+                      <af:spacer id="pt_s4" height="5"/>
+                      <af:panelGroupLayout id="pt_pgl7" layout="vertical">
+                        <f:facet name="separator">
+                          <af:panelGroupLayout id="pt_pgl8" layout="vertical">
+                            <af:spacer height="5" id="pt_s5"/>
+                            <af:separator id="pt_s6"/>
+                            <af:spacer height="5" id="pt_s7"/>
+                          </af:panelGroupLayout>
+                        </f:facet>
+                        <af:panelGroupLayout id="pt_pgl10"
+                                             styleClass="MySettingsBorder"
+                                             layout="vertical">
+                          <f:facet name="separator">
+                            <af:spacer height="5" id="pt_s8"/>
+                          </f:facet>
+                          <af:outputText value="#{uikitcommonBundle.PERSONALIZATION}"
+                                         id="pt_ot1" styleClass="bold"/>
+                          <af:commandLink text="#{uikitcommonBundle.SET_PREFERENCES}"
+                                          id="pt_cl3"/>
+                        </af:panelGroupLayout>
+                        <af:panelGroupLayout id="pt_pgl11" layout="vertical">
+                          <f:facet name="separator">
+                            <af:spacer height="5" id="pt_s9"/>
+                          </f:facet>
+                          <af:outputText value="#{uikitcommonBundle.ADMINISTRATION}"
+                                         id="pt_ot2" styleClass="bold"/>
+                          <af:commandLink
+                                          id="pt_cl6"
+                                          text="#{uikitcommonBundle.CUSTOMIZE_PAGES}"
+                                          partialSubmit="true"/>
+                          <af:commandLink
+                                          id="pt_cl7"
+                                          text="#{uikitcommonBundle.CUSTOMIZE_GLOBAL_PAGE_TEMPLATE}"
+                                          partialSubmit="true"/>
+                          <af:commandLink
+                                          id="pt_cl8" partialSubmit="true"
+                                          text="#{uikitcommonBundle.MANAGE_CUSTOMIZATIONS}"/>
+                          <af:commandLink text="#{uikitcommonBundle.MANAGE_SANDBOXES}"
+                                          id="pt_cl9" partialSubmit="true"/>
+                          <af:commandLink text="#{uikitcommonBundle.SETUP_AND_MAINTENANCE}"
+                                          id="pt_cl5" partialSubmit="true"/>
+                        </af:panelGroupLayout>
+                        <af:panelGroupLayout id="pt_pgl2" layout="vertical">
+                          <f:facet name="separator">
+                            <af:spacer height="5" id="pt_s13"/>
+                          </f:facet>
+                          <af:outputText id="pt_ot3"
+                                         value="#{uikitcommonBundle.TROUBLESHOOTING}"
+                                         styleClass="bold"/>
+                          <af:commandLink id="pt_cl13"
+                                          text="#{uikitcommonBundle.RECORD_ISSUE}"
+                                          partialSubmit="true"/>
+                        </af:panelGroupLayout>
+                        <af:panelGroupLayout id="pt_pgl1" layout="vertical">
+                          <f:facet name="separator">
+                            <af:spacer height="5" id="pt_s12"/>
+                          </f:facet>
+                          <af:commandLink id="pt_cl12"
+                                          text="#{uikitcommonBundle.PRINT_ME}"
+                                          partialSubmit="true"/>
+                        </af:panelGroupLayout>
+                        <af:panelGroupLayout id="pt_pgl12" layout="vertical">
+                          <f:facet name="separator">
+                            <af:spacer height="5" id="pt_s10"/>
+                          </f:facet>
+                          <af:commandLink text="#{uikitcommonBundle.APPLICATIONS_HELP}"
+                                          id="pt_cl11" partialSubmit="true"/>
+                        </af:panelGroupLayout>
+                        <af:panelGroupLayout id="pt_pgl9" layout="vertical">
+                          <f:facet name="separator">
+                            <af:spacer height="5" id="pt_s11"/>
+                          </f:facet>
+                          <af:commandLink text="#{uikitcommonBundle.ABOUT_PAGE}"
+                                          id="pt_cl10" partialSubmit="true"/>
+                        </af:panelGroupLayout>
+                      </af:panelGroupLayout>
+                    </af:panelHeader>
+                  </af:popup>
+                </af:panelGroupLayout>
+              </af:gridCell>
+            </af:gridRow>
+          </af:panelGridLayout>
+        </af:panelGroupLayout>
+      </af:panelGroupLayout>
+      <af:panelGroupLayout id="pt_pgl17" layout="vertical">
+        <af:facetRef facetName="bannerContents"/>
+      </af:panelGroupLayout>
+      <af:panelGroupLayout id="pt_pgl15" halign="center" layout="vertical">
+        <af:panelGroupLayout id="pt_pgl18" layout="vertical"
+                             styleClass="application-container-width align-left">
+          <af:skipLinkTarget/>
+          <af:facetRef facetName="pageContents"/>
+        </af:panelGroupLayout>
+      </af:panelGroupLayout>
+    </af:panelGroupLayout>
   </af:pageTemplateDef>
 </jsp:root>

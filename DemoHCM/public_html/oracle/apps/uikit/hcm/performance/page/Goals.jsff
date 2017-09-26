@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--
-Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
 -->
 <jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
           xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
@@ -10,214 +10,227 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
           xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces">
   <c:set var="demohcmBundle"
          value="#{adfBundle['oracle.apps.uikit.hcm.DemoHCMBundle']}"/>
-  <af:panelGroupLayout id="pgl1" layout="vertical">
-    <acdc:PageHeaderDC id="phdc1" pageTitle="#{demohcmBundle.GOALS}"/>
-    <af:panelGroupLayout id="pgl2" layout="horizontal"
-                         inlineStyle="border-color:#CCCCCC; border-style:solid; border-width:2.0px;"
-                         styleClass="AFStretchWidth">
-      <af:panelGridLayout id="pgl12">
-        <af:gridRow id="gr1" marginTop="5px" marginBottom="5px">
-          <af:gridCell id="gc1" marginStart="5px" width="30%" halign="stretch">
-            <af:panelGroupLayout id="pgl6" layout="horizontal" valign="top">
-              <af:commandImageLink id="cil1" partialSubmit="true"
-                                   icon="/images/func_information_16_ena.png"
-                                   disabledIcon="/images/func_information_16_dis.png"
-                                   hoverIcon="/images/func_information_16_hov.png"
-                                   depressedIcon="/images/func_information_16_act.png"/>
-              <af:outputText value="#{demohcmBundle.SECTION_RATING_AND_COMMENTS}"
-                             id="ot1" styleClass="AppsLargeFontSize bold"
-                             inlineStyle="color:#0572CE;"/>
-            </af:panelGroupLayout>
-          </af:gridCell>
-          <af:gridCell id="gc2" marginStart="5px" width="30%" halign="stretch">
-            <af:panelFormLayout id="pfl1" rows="3" styleClass="tight-fit"
-                                labelAlignment="start">
-              <af:panelLabelAndMessage label="#{demohcmBundle.EMPLOYEE}"
-                                       id="plam3" labelStyle="color:gray;">
-                <af:panelGroupLayout id="pgl9" layout="horizontal">
-                  <dvt:ratingGauge id="rg1" value="4" maximum="5" minimum="1"
-                                   inlineStyle="height:18px;"/>
-                  <af:commandImageLink id="cil3"
-                                       icon="/images/func_eraser_16_ena.png"
-                                       disabledIcon="/images/func_eraser_16_dis.png"
-                                       hoverIcon="/images/func_eraser_16_hov.png"
-                                       depressedIcon="/images/func_eraser_16_act.png"
-                                       partialSubmit="true" disabled="true"/>
-                  <af:spacer width="5" id="s3"/>
-                  <af:commandImageLink id="cil4" partialSubmit="true"
-                                       icon="/images/func_message_16_ena.png"
-                                       disabledIcon="/images/func_message_16_dis.png"
-                                       hoverIcon="/images/func_message_16_hov.png"
-                                       depressedIcon="/images/func_message_16_act.png"/>
+  <acdc:PageHeaderDC id="phdc1" pageTitle="#{demohcmBundle.GOALS}">
+    <f:facet name="contents">
+      <af:panelGroupLayout id="pgl1" layout="vertical">
+        <af:panelGroupLayout id="pgl2" layout="horizontal"
+                             inlineStyle="border-color:#CCCCCC; border-style:solid; border-width:2.0px;"
+                             styleClass="AFStretchWidth">
+          <af:panelGridLayout id="pgl12">
+            <af:gridRow id="gr1" marginTop="5px" marginBottom="5px">
+              <af:gridCell id="gc1" marginStart="5px" width="30%"
+                           halign="stretch">
+                <af:panelGroupLayout id="pgl6" layout="horizontal" valign="top">
+                  <af:commandImageLink id="cil1" partialSubmit="true"
+                                       icon="/images/func_information_16_ena.png"
+                                       disabledIcon="/images/func_information_16_dis.png"
+                                       hoverIcon="/images/func_information_16_hov.png"
+                                       depressedIcon="/images/func_information_16_act.png"/>
+                  <af:outputText value="#{demohcmBundle.SECTION_RATING_AND_COMMENTS}"
+                                 id="ot1" styleClass="AppsLargeFontSize bold"
+                                 inlineStyle="color:#0572CE;"/>
                 </af:panelGroupLayout>
-              </af:panelLabelAndMessage>
-              <af:panelLabelAndMessage label="#{demohcmBundle.MANAGER}"
-                                       id="plam4" labelStyle="color:gray;">
-                <af:panelGroupLayout id="pgl10" layout="horizontal">
-                  <dvt:ratingGauge id="rg2" value="3" maximum="5" minimum="1"
-                                   inlineStyle="height:18px;"
-                                   readOnly="false" changed="true"/>
-                  <af:commandImageLink id="commandImageLink1"
-                                       icon="/images/func_eraser_16_ena.png"
-                                       disabledIcon="/images/func_eraser_16_dis.png"
-                                       hoverIcon="/images/func_eraser_16_hov.png"
-                                       depressedIcon="/images/func_eraser_16_act.png"
-                                       partialSubmit="true"/>
-                  <af:spacer width="5" id="s4"/>
-                  <af:commandImageLink id="commandImageLink2"
-                                       partialSubmit="true"
-                                       icon="/images/func_messagenew_16_ena.png"
-                                       disabledIcon="/images/func_messagenew_16_dis.png"
-                                       hoverIcon="/images/func_messagenew_16_hov.png"
-                                       depressedIcon="/images/func_messagenew_16_act.png"/>
+              </af:gridCell>
+              <af:gridCell id="gc2" marginStart="5px" width="30%"
+                           halign="stretch">
+                <af:panelFormLayout id="pfl1" rows="3" styleClass="tight-fit"
+                                    labelAlignment="start">
+                  <af:panelLabelAndMessage label="#{demohcmBundle.EMPLOYEE}"
+                                           id="plam3" labelStyle="color:gray;">
+                    <af:panelGroupLayout id="pgl9" layout="horizontal">
+                      <dvt:ratingGauge id="rg1" value="4" maximum="5"
+                                       minimum="1" inlineStyle="height:18px;"/>
+                      <af:commandImageLink id="cil3"
+                                           icon="/images/func_eraser_16_ena.png"
+                                           disabledIcon="/images/func_eraser_16_dis.png"
+                                           hoverIcon="/images/func_eraser_16_hov.png"
+                                           depressedIcon="/images/func_eraser_16_act.png"
+                                           partialSubmit="true"
+                                           disabled="true"/>
+                      <af:spacer width="5" id="s3"/>
+                      <af:commandImageLink id="cil4" partialSubmit="true"
+                                           icon="/images/func_message_16_ena.png"
+                                           disabledIcon="/images/func_message_16_dis.png"
+                                           hoverIcon="/images/func_message_16_hov.png"
+                                           depressedIcon="/images/func_message_16_act.png"/>
+                    </af:panelGroupLayout>
+                  </af:panelLabelAndMessage>
+                  <af:panelLabelAndMessage label="#{demohcmBundle.MANAGER}"
+                                           id="plam4" labelStyle="color:gray;">
+                    <af:panelGroupLayout id="pgl10" layout="horizontal">
+                      <dvt:ratingGauge id="rg2" value="3" maximum="5"
+                                       minimum="1" inlineStyle="height:18px;"
+                                       readOnly="false" changed="true"/>
+                      <af:commandImageLink id="commandImageLink1"
+                                           icon="/images/func_eraser_16_ena.png"
+                                           disabledIcon="/images/func_eraser_16_dis.png"
+                                           hoverIcon="/images/func_eraser_16_hov.png"
+                                           depressedIcon="/images/func_eraser_16_act.png"
+                                           partialSubmit="true"/>
+                      <af:spacer width="5" id="s4"/>
+                      <af:commandImageLink id="commandImageLink2"
+                                           partialSubmit="true"
+                                           icon="/images/func_messagenew_16_ena.png"
+                                           disabledIcon="/images/func_messagenew_16_dis.png"
+                                           hoverIcon="/images/func_messagenew_16_hov.png"
+                                           depressedIcon="/images/func_messagenew_16_act.png"/>
+                    </af:panelGroupLayout>
+                  </af:panelLabelAndMessage>
+                  <af:panelLabelAndMessage label="#{demohcmBundle.PARTICIPANT}"
+                                           id="plam1" labelStyle="color:gray;">
+                    <af:panelGroupLayout id="pgl11" layout="horizontal">
+                      <dvt:ratingGauge id="rg3" value="3" maximum="5"
+                                       minimum="1" inlineStyle="height:18px;"/>
+                      <af:outputText value="(3)" id="ot3"/>
+                    </af:panelGroupLayout>
+                  </af:panelLabelAndMessage>
+                </af:panelFormLayout>
+              </af:gridCell>
+              <af:gridCell id="gc4" marginStart="5px" marginEnd="5px"
+                           width="40%" halign="stretch" valign="middle">
+                <af:panelGroupLayout id="pgl8" layout="horizontal">
+                  <af:inputText id="it1" value="100" columns="5"
+                                label="Total Weight" readOnly="true"/>
+                  <af:outputText value="%" id="ot2"/>
                 </af:panelGroupLayout>
-              </af:panelLabelAndMessage>
-              <af:panelLabelAndMessage label="#{demohcmBundle.PARTICIPANT}"
-                                       id="plam1" labelStyle="color:gray;">
-                <af:panelGroupLayout id="pgl11" layout="horizontal">
-                  <dvt:ratingGauge id="rg3" value="3" maximum="5" minimum="1"
-                                   inlineStyle="height:18px;"/>
-                  <af:outputText value="(3)" id="ot3"/>
-                </af:panelGroupLayout>
-              </af:panelLabelAndMessage>
-            </af:panelFormLayout>
-          </af:gridCell>
-          <af:gridCell id="gc4" marginStart="5px" marginEnd="5px" width="40%"
-                       halign="stretch" valign="middle">
-            <af:panelGroupLayout id="pgl8" layout="horizontal">
-              <af:inputText id="it1" value="100" columns="5"
-                            label="Total Weight" readOnly="true"/>
-              <af:outputText value="%" id="ot2"/>
-            </af:panelGroupLayout>
-          </af:gridCell>
-        </af:gridRow>
-      </af:panelGridLayout>
-    </af:panelGroupLayout>
-    <af:spacer height="20" id="s7" width="20"/>
-    <af:panelGroupLayout id="pgl3" layout="horizontal"
-                         styleClass="AFStretchWdith">
-      <f:facet name="separator">
-        <af:spacer width="10" height="10" id="s2"/>
-      </f:facet>
-      <af:selectOneChoice label="Sort By" value="Name" id="soc1">
-        <af:selectItem label="Name" value="Name" id="si2"/>
-        <af:selectItem label="Weight" value="Weight" id="si1"/>
-      </af:selectOneChoice>
-      <af:commandButton text="Show All Comments" id="cb2" partialSubmit="true"/>
-      <af:commandButton text="Add" id="cb1" partialSubmit="true"/>
-    </af:panelGroupLayout>
-    <af:spacer width="5" height="5" id="s1"/>
-    <af:listView id="lv1"
-                 value="#{pageFlowScope.PerformanceBean.goalsList}"
-                 var="row">
-      <af:listItem id="li1" inlineStyle="padding:0.0px;">
-        <af:panelGridLayout id="panelGridLayout1">
-          <af:gridRow id="gridRow1" marginTop="5px" marginBottom="5px">
-            <af:gridCell id="gridCell1" marginStart="5px" width="30%"
-                         halign="stretch">
-              <af:panelGroupLayout id="panelGroupLayout1" layout="horizontal"
-                                   valign="top">
-                <af:commandImageLink id="commandImageLink3" partialSubmit="true"
-                                     icon="/images/func_information_16_ena.png"
-                                     disabledIcon="/images/func_information_16_dis.png"
-                                     hoverIcon="/images/func_information_16_hov.png"
-                                     depressedIcon="/images/func_information_16_act.png"/>
-                <af:outputText value="#{row}" id="outputText1"
-                               styleClass="AppsLargeFontSize bold"
-                               inlineStyle="color:#0572CE;"/>
-              </af:panelGroupLayout>
-            </af:gridCell>
-            <af:gridCell id="gridCell2" marginStart="5px" width="30%"
-                         halign="stretch">
-              <af:panelFormLayout id="panelFormLayout1" rows="4"
-                                  styleClass="tight-fit" labelAlignment="start">
-                <af:panelLabelAndMessage label="#{demohcmBundle.TARGET}"
-                                         id="panelLabelAndMessage4"
-                                         labelStyle="color:gray;">
-                  <af:panelGroupLayout id="panelGroupLayout7"
-                                       layout="horizontal">
-                    <dvt:ratingGauge id="ratingGauge4" value="4" maximum="5"
-                                     minimum="1" inlineStyle="height:18px;"/>
-                  </af:panelGroupLayout>
-                </af:panelLabelAndMessage>
-                <af:panelLabelAndMessage label="#{demohcmBundle.EMPLOYEE}"
-                                         id="panelLabelAndMessage1"
-                                         labelStyle="color:gray;">
-                  <af:panelGroupLayout id="panelGroupLayout3"
-                                       layout="horizontal">
-                    <dvt:ratingGauge id="ratingGauge1" value="4" maximum="5"
-                                     minimum="1" inlineStyle="height:18px;"/>
-                    <af:commandImageLink id="commandImageLink4"
-                                         icon="/images/func_eraser_16_ena.png"
-                                         disabledIcon="/images/func_eraser_16_dis.png"
-                                         hoverIcon="/images/func_eraser_16_hov.png"
-                                         depressedIcon="/images/func_eraser_16_act.png"
-                                         partialSubmit="true" disabled="true"/>
-                    <af:spacer width="5" id="s5"/>
-                    <af:commandImageLink id="commandImageLink5"
+              </af:gridCell>
+            </af:gridRow>
+          </af:panelGridLayout>
+        </af:panelGroupLayout>
+        <af:spacer height="20" id="s7" width="20"/>
+        <af:panelGroupLayout id="pgl3" layout="horizontal"
+                             styleClass="AFStretchWdith">
+          <f:facet name="separator">
+            <af:spacer width="10" height="10" id="s2"/>
+          </f:facet>
+          <af:selectOneChoice label="Sort By" value="Name" id="soc1">
+            <af:selectItem label="Name" value="Name" id="si2"/>
+            <af:selectItem label="Weight" value="Weight" id="si1"/>
+          </af:selectOneChoice>
+          <af:commandButton text="Show All Comments" id="cb2"
+                            partialSubmit="true"/>
+          <af:commandButton text="Add" id="cb1" partialSubmit="true"/>
+        </af:panelGroupLayout>
+        <af:spacer width="5" height="5" id="s1"/>
+        <af:listView id="lv1" value="#{pageFlowScope.PerformanceBean.goalsList}"
+                     var="row">
+          <af:listItem id="li1" inlineStyle="padding:0.0px;">
+            <af:panelGridLayout id="panelGridLayout1">
+              <af:gridRow id="gridRow1" marginTop="5px" marginBottom="5px">
+                <af:gridCell id="gridCell1" marginStart="5px" width="30%"
+                             halign="stretch">
+                  <af:panelGroupLayout id="panelGroupLayout1"
+                                       layout="horizontal" valign="top">
+                    <af:commandImageLink id="commandImageLink3"
                                          partialSubmit="true"
-                                         icon="/images/func_message_16_ena.png"
-                                         disabledIcon="/images/func_message_16_dis.png"
-                                         hoverIcon="/images/func_message_16_hov.png"
-                                         depressedIcon="/images/func_message_16_act.png"/>
+                                         icon="/images/func_information_16_ena.png"
+                                         disabledIcon="/images/func_information_16_dis.png"
+                                         hoverIcon="/images/func_information_16_hov.png"
+                                         depressedIcon="/images/func_information_16_act.png"/>
+                    <af:outputText value="#{row}" id="outputText1"
+                                   styleClass="AppsLargeFontSize bold"
+                                   inlineStyle="color:#0572CE;"/>
                   </af:panelGroupLayout>
-                </af:panelLabelAndMessage>
-                <af:panelLabelAndMessage label="#{demohcmBundle.MANAGER}"
-                                         id="panelLabelAndMessage2"
-                                         labelStyle="color:gray;">
-                  <af:panelGroupLayout id="panelGroupLayout4"
+                </af:gridCell>
+                <af:gridCell id="gridCell2" marginStart="5px" width="30%"
+                             halign="stretch">
+                  <af:panelFormLayout id="panelFormLayout1" rows="4"
+                                      styleClass="tight-fit"
+                                      labelAlignment="start">
+                    <af:panelLabelAndMessage label="#{demohcmBundle.TARGET}"
+                                             id="panelLabelAndMessage4"
+                                             labelStyle="color:gray;">
+                      <af:panelGroupLayout id="panelGroupLayout7"
+                                           layout="horizontal">
+                        <dvt:ratingGauge id="ratingGauge4" value="4" maximum="5"
+                                         minimum="1"
+                                         inlineStyle="height:18px;"/>
+                      </af:panelGroupLayout>
+                    </af:panelLabelAndMessage>
+                    <af:panelLabelAndMessage label="#{demohcmBundle.EMPLOYEE}"
+                                             id="panelLabelAndMessage1"
+                                             labelStyle="color:gray;">
+                      <af:panelGroupLayout id="panelGroupLayout3"
+                                           layout="horizontal">
+                        <dvt:ratingGauge id="ratingGauge1" value="4" maximum="5"
+                                         minimum="1"
+                                         inlineStyle="height:18px;"/>
+                        <af:commandImageLink id="commandImageLink4"
+                                             icon="/images/func_eraser_16_ena.png"
+                                             disabledIcon="/images/func_eraser_16_dis.png"
+                                             hoverIcon="/images/func_eraser_16_hov.png"
+                                             depressedIcon="/images/func_eraser_16_act.png"
+                                             partialSubmit="true"
+                                             disabled="true"/>
+                        <af:spacer width="5" id="s5"/>
+                        <af:commandImageLink id="commandImageLink5"
+                                             partialSubmit="true"
+                                             icon="/images/func_message_16_ena.png"
+                                             disabledIcon="/images/func_message_16_dis.png"
+                                             hoverIcon="/images/func_message_16_hov.png"
+                                             depressedIcon="/images/func_message_16_act.png"/>
+                      </af:panelGroupLayout>
+                    </af:panelLabelAndMessage>
+                    <af:panelLabelAndMessage label="#{demohcmBundle.MANAGER}"
+                                             id="panelLabelAndMessage2"
+                                             labelStyle="color:gray;">
+                      <af:panelGroupLayout id="panelGroupLayout4"
+                                           layout="horizontal">
+                        <dvt:ratingGauge id="ratingGauge2" value="3" maximum="5"
+                                         minimum="1" inlineStyle="height:18px;"
+                                         readOnly="false" changed="true"/>
+                        <af:commandImageLink id="commandImageLink6"
+                                             icon="/images/func_eraser_16_ena.png"
+                                             disabledIcon="/images/func_eraser_16_dis.png"
+                                             hoverIcon="/images/func_eraser_16_hov.png"
+                                             depressedIcon="/images/func_eraser_16_act.png"
+                                             partialSubmit="true"/>
+                        <af:spacer width="5" id="s6"/>
+                        <af:commandImageLink id="commandImageLink7"
+                                             partialSubmit="true"
+                                             icon="/images/func_messagenew_16_ena.png"
+                                             disabledIcon="/images/func_messagenew_16_dis.png"
+                                             hoverIcon="/images/func_messagenew_16_hov.png"
+                                             depressedIcon="/images/func_messagenew_16_act.png"/>
+                      </af:panelGroupLayout>
+                    </af:panelLabelAndMessage>
+                    <af:panelLabelAndMessage label="#{demohcmBundle.PARTICIPANT}"
+                                             id="panelLabelAndMessage3"
+                                             labelStyle="color:gray;">
+                      <af:panelGroupLayout id="panelGroupLayout5"
+                                           layout="horizontal">
+                        <dvt:ratingGauge id="ratingGauge3" value="3" maximum="5"
+                                         minimum="1"
+                                         inlineStyle="height:18px;"/>
+                        <af:outputText value="(3)" id="outputText2"/>
+                      </af:panelGroupLayout>
+                    </af:panelLabelAndMessage>
+                  </af:panelFormLayout>
+                </af:gridCell>
+                <af:gridCell id="gridCell3" marginStart="5px" width="30%"
+                             halign="stretch" valign="middle">
+                  <af:panelGroupLayout id="panelGroupLayout6"
                                        layout="horizontal">
-                    <dvt:ratingGauge id="ratingGauge2" value="3" maximum="5"
-                                     minimum="1" inlineStyle="height:18px;"
-                                     readOnly="false" changed="true"/>
-                    <af:commandImageLink id="commandImageLink6"
-                                         icon="/images/func_eraser_16_ena.png"
-                                         disabledIcon="/images/func_eraser_16_dis.png"
-                                         hoverIcon="/images/func_eraser_16_hov.png"
-                                         depressedIcon="/images/func_eraser_16_act.png"
-                                         partialSubmit="true"/>
-                    <af:spacer width="5" id="s6"/>
-                    <af:commandImageLink id="commandImageLink7"
-                                         partialSubmit="true"
-                                         icon="/images/func_messagenew_16_ena.png"
-                                         disabledIcon="/images/func_messagenew_16_dis.png"
-                                         hoverIcon="/images/func_messagenew_16_hov.png"
-                                         depressedIcon="/images/func_messagenew_16_act.png"/>
+                    <af:inputText id="inputText1" value="25" columns="5"
+                                  label="Weight"/>
+                    <af:outputText value="%" id="outputText3"/>
                   </af:panelGroupLayout>
-                </af:panelLabelAndMessage>
-                <af:panelLabelAndMessage label="#{demohcmBundle.PARTICIPANT}"
-                                         id="panelLabelAndMessage3"
-                                         labelStyle="color:gray;">
-                  <af:panelGroupLayout id="panelGroupLayout5"
-                                       layout="horizontal">
-                    <dvt:ratingGauge id="ratingGauge3" value="3" maximum="5"
-                                     minimum="1" inlineStyle="height:18px;"/>
-                    <af:outputText value="(3)" id="outputText2"/>
+                </af:gridCell>
+                <af:gridCell id="gc3" marginStart="5px" marginEnd="5px"
+                             width="10%" halign="stretch" valign="middle">
+                  <af:panelGroupLayout id="pgl4" layout="horizontal">
+                    <af:commandImageLink id="cil2" partialSubmit="true"
+                                         icon="/images/close_ena.png"
+                                         disabledIcon="/images/close_dis.png"
+                                         hoverIcon="/images/close_ovr.png"
+                                         depressedIcon="/images/close_dwn.png"/>
                   </af:panelGroupLayout>
-                </af:panelLabelAndMessage>
-              </af:panelFormLayout>
-            </af:gridCell>
-            <af:gridCell id="gridCell3" marginStart="5px" width="30%"
-                         halign="stretch" valign="middle">
-              <af:panelGroupLayout id="panelGroupLayout6" layout="horizontal">
-                <af:inputText id="inputText1" value="25" columns="5"
-                              label="Weight"/>
-                <af:outputText value="%" id="outputText3"/>
-              </af:panelGroupLayout>
-            </af:gridCell>
-            <af:gridCell id="gc3" marginStart="5px" marginEnd="5px" width="10%"
-                         halign="stretch" valign="middle">
-              <af:panelGroupLayout id="pgl4" layout="horizontal">
-                <af:commandImageLink id="cil2" partialSubmit="true"
-                                     icon="/images/close_ena.png"
-                                     disabledIcon="/images/close_dis.png"
-                                     hoverIcon="/images/close_ovr.png"
-                                     depressedIcon="/images/close_dwn.png"/>
-              </af:panelGroupLayout>
-            </af:gridCell>
-          </af:gridRow>
-        </af:panelGridLayout>
-      </af:listItem>
-    </af:listView>
-  </af:panelGroupLayout>
+                </af:gridCell>
+              </af:gridRow>
+            </af:panelGridLayout>
+          </af:listItem>
+        </af:listView>
+      </af:panelGroupLayout>
+    </f:facet>
+  </acdc:PageHeaderDC>
 </jsp:root>

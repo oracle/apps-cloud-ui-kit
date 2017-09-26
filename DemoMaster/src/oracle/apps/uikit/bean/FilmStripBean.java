@@ -1,65 +1,84 @@
 package oracle.apps.uikit.bean;
-
 /*
- * Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
  *
 **/
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-import oracle.adf.controller.binding.TaskFlowBindingAttributes;
 import oracle.adf.controller.TaskFlowId;
-import oracle.adf.view.rich.component.rich.layout.RichPanelSpringboard;
+import oracle.adf.share.ADFContext;
+import oracle.adf.view.rich.render.ClientEvent;
 import oracle.apps.uikit.common.bean.UtilsBean;
-import oracle.apps.uikit.data.Node;
+import oracle.apps.uikit.data.ItemNode;
 import oracle.apps.uikit.memoryCache.SessionState;
+import org.apache.myfaces.trinidad.render.ExtendedRenderKitService;
+import org.apache.myfaces.trinidad.util.Service;
 
 public class FilmStripBean {
     private UtilsBean _utils = new UtilsBean();
-    private List<TaskFlowBindingAttributes> taskFlowBindingsList = new ArrayList<TaskFlowBindingAttributes>();
-    private RichPanelSpringboard _filmStripSpringboard;
 
-    public void setFilmStripSpringboard(RichPanelSpringboard s) { _filmStripSpringboard = s; }
-    public RichPanelSpringboard getFilmStripSpringboard() { return _filmStripSpringboard; }
-
-    public void buildTaskFlowBindingsList(){
-        int idx = 0;
-        TaskFlowBindingAttributes tfba = new TaskFlowBindingAttributes();
-        SessionState sessionState = (SessionState)_utils.getSessionScope().get("SessionState");
-        for (Node node : sessionState.getFilmStripNodeList()){
-            tfba = new TaskFlowBindingAttributes();
-            tfba.setId("region" + idx++);
-            tfba.setTaskFlowId(new TaskFlowId(node.getTaskFlowId(), node.getTaskFlowName()));
-            taskFlowBindingsList.add(tfba);
-        }//loop through nodes list
-    }//buildTaskFlowBindingsList
-
-    public List<TaskFlowBindingAttributes> getTaskFlowBindingsList(){
-        if (taskFlowBindingsList.size() == 0)
-            buildTaskFlowBindingsList();
-        return taskFlowBindingsList;
-    }//getTaskFlowBindingsList
-
-    public TaskFlowId getDynamicTaskFlowId() {
+    public void handleFilmStripCardClick(ClientEvent clientEvent) {
+        _utils.setEL("#{sessionScope.selectedItemId}", clientEvent.getParameters().get("itemNodeId"));
+    }//handleFilmStripCardClick
+    
+    public TaskFlowId getDynamicTaskFlowId(){
         TaskFlowId taskFlowId = new TaskFlowId("/WEB-INF/oracle/apps/uikit/flow/NotImplementedFlow.xml", "NotImplementedFlow");
+        String itemId = "";
+        String groupId = "";
+        if (ADFContext.getCurrent().getSessionScope().get("selectedGroupId") != null)
+            groupId = (String)ADFContext.getCurrent().getSessionScope().get("selectedGroupId");
+        if (ADFContext.getCurrent().getSessionScope().get("selectedItemId") != null)
+            itemId = (String)ADFContext.getCurrent().getSessionScope().get("selectedItemId");
+        //
         SessionState sessionState = (SessionState)_utils.getSessionScope().get("SessionState");
-        for (Node node : sessionState.getNodeList()){
-            if (node.getId() == sessionState.getAccessedNodeId()){
-                taskFlowId = new TaskFlowId(node.getTaskFlowId(), node.getTaskFlowName());
-                break;
-            }//check accessed node
-        }//loop through nodes
+        ItemNode node = sessionState.getClusterMap().get(itemId);
+        if (node != null){
+            String destUrl = node.getDestinationUrl();
+            String result = destUrl.substring(0, destUrl.lastIndexOf("."));
+            String localTFId = result.substring(destUrl.lastIndexOf("/") + 1);
+            taskFlowId = new TaskFlowId(destUrl, localTFId);
+//        } else {
+//System.out.println(">>>>> THIS IS REQUIRED");            
+//            taskFlowId = new TaskFlowId("/WEB-INF/oracle/apps/uikit/flow/PaaSApplicationFlow.xml", "PaaSApplicationFlow");
+        }//null check
+        //
         return taskFlowId;
     }//getDynamicTaskFlowId
+    
+    public Map getFilmStripLayout(){
+        return new HashMap<String, String>(){
+            public String get(Object key){
+                try {
+                    String groupId = null;
+                    String itemId = "";
+                    if (ADFContext.getCurrent().getSessionScope().get("selectedGroupId") != null)
+                        groupId = (String)ADFContext.getCurrent().getSessionScope().get("selectedGroupId");
+                    if (ADFContext.getCurrent().getSessionScope().get("selectedItemId") != null)
+                        itemId = (String)ADFContext.getCurrent().getSessionScope().get("selectedItemId");
+                    //
+                    SessionState sessionState = (SessionState)_utils.getSessionScope().get("SessionState");
+                    String rootMenuData = sessionState.fetchGridNodes(groupId);
+                    FacesContext fctx = FacesContext.getCurrentInstance();
+                    ExtendedRenderKitService erks = Service.getRenderKitService(fctx, ExtendedRenderKitService.class);
+                    String js = "filmStripLayoutManager.handleFilmDocumentLoad('" + rootMenuData + "','" + itemId + "');";
+                    erks.addScript(fctx, js);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }//try-catch
+                return null;
+            }//get
+        };
+    }//getFilmStripLayout
 
-    public void toggleFilmStrip(ActionEvent actionEvent) {
-        SessionState sessionState = (SessionState)_utils.getSessionScope().get("SessionState");
-        if (sessionState.getFilmStripShowStrip().length() == 0)
-            sessionState.setFilmStripShowStrip("noShow");
+    public void toggleStripRender(ActionEvent actionEvent) {
+        boolean hideStrip = (Boolean)_utils.evaluateEL("#{sessionScope.hideStrip}");
+        if (hideStrip)
+            _utils.setEL("#{sessionScope.hideStrip}", false);
         else
-            sessionState.setFilmStripShowStrip("");
-        _utils.refresh(getFilmStripSpringboard());
-    }//toggleFilmStrip
-
+            _utils.setEL("#{sessionScope.hideStrip}", true);
+        _utils.refreshView();
+    }//toggleStripRender
+    
 }//FilmStripBean

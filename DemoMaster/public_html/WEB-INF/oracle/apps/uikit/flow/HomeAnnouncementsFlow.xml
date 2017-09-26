@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="HomeAnnouncementsFlow">
+    <default-activity id="__5">HomePageViewCheck</default-activity>
+    <managed-bean id="__4">
+      <managed-bean-name id="__3">HomeAnnouncementsBean</managed-bean-name>
+      <managed-bean-class id="__2">oracle.apps.uikit.bean.HomeAnnouncementsBean</managed-bean-class>
+      <managed-bean-scope id="__1">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <router id="HomePageViewCheck">
+      <case>
+        <expression>#{SessionState.homePageView == 'GRID'}</expression>
+        <outcome id="__6">GRID</outcome>
+      </case>
+      <case>
+        <expression>#{SessionState.homePageView == 'BANNER'}</expression>
+        <outcome id="__7">BANNER</outcome>
+      </case>
+      <default-outcome>BANNER</default-outcome>
+    </router>
+    <view id="HomeBanner">
+      <page>/oracle/apps/uikit/page/HomeBanner.jsff</page>
+    </view>
+    <view id="HomeSidePanel">
+      <page>/oracle/apps/uikit/page/HomeSidePanel.jsff</page>
+    </view>
+    <control-flow-rule id="__8">
+      <from-activity-id id="__9">HomePageViewCheck</from-activity-id>
+      <control-flow-case id="__10">
+        <from-outcome id="__11">BANNER</from-outcome>
+        <to-activity-id id="__12">HomeBanner</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__14">
+        <from-outcome id="__15">GRID</from-outcome>
+        <to-activity-id id="__13">HomeSidePanel</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--
-Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
+Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
 -->
 <jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
           xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
@@ -28,12 +28,13 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
       <af:panelGroupLayout id="pgl1" layout="vertical">
         <af:spacer height="10" id="s5"/>
         <acdc:PageHeaderDC id="phdc1"
-                           pageTitle="#{pageFlowScope.PerformanceBean.selectedPerson.fullName}: #{pageFlowScope.PerformanceBean.selectedEvaluation.name} - #{pageFlowScope.PerformanceBean.selectedEvaluation.type}"
-                           cancelButtonVisible="true" saveButtonVisible="true"
-                           saveAndCloseButtonVisible="true" cancelAction="done"
+                           pageTitle="#{pageFlowScope.PerformanceBean.selectedPerson.fullName}: #{pageFlowScope.PerformanceBean.selectedEvaluation.name} - #{pageFlowScope.PerformanceBean.selectedEvaluation.type}" cancelAction="done"
                            saveAndCloseAction="done"
                            cancelActionListener="#{pageFlowScope.PerformanceBean.handleReturnFromDetail}"
-                           saveAndCloseActionListener="#{pageFlowScope.PerformanceBean.handleReturnFromDetail}">
+                           saveAndCloseActionListener="#{pageFlowScope.PerformanceBean.handleReturnFromDetail}"
+                           cancelButtonRendered="true"
+                           saveAndCloseButtonRendered="true"
+                           saveButtonRendered="true">
           <f:facet name="customToolbar">
             <af:commandImageLink id="cil1"
                                  partialSubmit="true"
@@ -42,25 +43,27 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
                                  hoverIcon="/images/func_print_16_hov.png"
                                  depressedIcon="/images/func_print_16_act.png"/>
           </f:facet>
+          <f:facet name="contents">
+            <af:panelGridLayout id="pgl12" dimensionsFrom="children">
+              <af:gridRow id="gr1">
+                <af:gridCell id="gc2" width="33%">
+                  <af:inputText label="#{demohcmBundle.TASK}" id="it1"
+                                readOnly="true"
+                                value="#{pageFlowScope.PerformanceBean.selectedEvaluation.nextOpenTaskName}"/>
+                </af:gridCell>
+                <af:gridCell id="gc3" halign="center" width="33%">
+                  <af:inputText label="#{demohcmBundle.ATTACHMENTS}" id="it2"
+                                value="#{'None'}" readOnly="true"/>
+                </af:gridCell>
+                <af:gridCell id="gc1" halign="end" width="34%">
+                  <af:inputText label="#{demohcmBundle.REMAINING_DAYS}" id="it3"
+                                value="#{pageFlowScope.PerformanceBean.selectedEvaluation.remainingDays}"
+                                readOnly="true"/>
+                </af:gridCell>
+              </af:gridRow>
+            </af:panelGridLayout>
+          </f:facet>
         </acdc:PageHeaderDC>
-        <af:panelGridLayout id="pgl12" dimensionsFrom="children">
-          <af:gridRow id="gr1">
-            <af:gridCell id="gc2" width="33%">
-              <af:inputText label="#{demohcmBundle.TASK}" id="it1"
-                            readOnly="true"
-                            value="#{pageFlowScope.PerformanceBean.selectedEvaluation.nextOpenTaskName}"/>
-            </af:gridCell>
-            <af:gridCell id="gc3" halign="center" width="33%">
-              <af:inputText label="#{demohcmBundle.ATTACHMENTS}" id="it2"
-                            value="#{'None'}" readOnly="true"/>
-            </af:gridCell>
-            <af:gridCell id="gc1" halign="end" width="34%">
-              <af:inputText label="#{demohcmBundle.REMAINING_DAYS}" id="it3"
-                            value="#{pageFlowScope.PerformanceBean.selectedEvaluation.remainingDays}"
-                            readOnly="true"/>
-            </af:gridCell>
-          </af:gridRow>
-        </af:panelGridLayout>
       </af:panelGroupLayout>
     </f:facet>
     <f:facet name="headerEnd">
@@ -68,7 +71,8 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
     </f:facet>
     <f:facet name="pageContents">
       <af:panelGroupLayout id="pgl3" layout="vertical"
-                           binding="#{pageFlowScope.PerformanceBean.evaluationDetailContainer}">
+                           binding="#{pageFlowScope.PerformanceBean.evaluationDetailContainer}"
+                           inlineStyle="padding: 0.0px 10.0px 0.0px 10.0px;">
         <af:separator id="s1"/>
         <af:spacer height="25" id="s2"/>
         <acdc:InfotilesDC id="idc1" infotilesLayout="vertical" tileHeight="100"
@@ -92,7 +96,7 @@ Copyright (c) 2016, 2013, Oracle and/or its affiliates. All rights reserved.
         </acdc:InfotilesDC>
       </af:panelGroupLayout>
     </f:facet>
-    <f:attribute name="Header-Height" value="70px"/>
+    <f:attribute name="Header-Height" value="80px"/>
     <f:attribute name="Header-Start-Width" value="95px"/>
     <f:attribute name="Header-End-Width" value="25px"/>
   </af:pageTemplate>
