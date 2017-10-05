@@ -10,7 +10,7 @@ Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
   <c:set var="uikitcommonBundle"
          value="#{adfBundle['oracle.apps.uikit.common.UIKitCommonBundle']}"/>
   <jsp:directive.page contentType="text/html;charset=UTF-8"/>
-  <af:componentDef var="attrs" componentVar="component">
+  <af:componentDef var="attrs" componentVar="comp">
     <af:xmlContent>
       <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
         <display-name>PageHeaderDC</display-name>
@@ -651,12 +651,12 @@ Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
                                    dimensionsFrom="children">
               <f:facet name="center">
                 <af:panelGroupLayout id="SPpgl9" layout="vertical"
-                                     binding="#{component.parentContainer}"
+                                     binding="#{comp.parentContainer}"
                                      clientComponent="true">
                   <af:panelStretchLayout id="SPpsl2"
                                          startWidth="#{attrs.profileRendered ? attrs.profileWidth : '0px'}"
                                          styleClass="AFStretchWidth"
-                                         binding="#{component.facetContainer}"
+                                         binding="#{comp.facetContainer}"
                                          dimensionsFrom="children">
                     <f:facet name="center">
                       <af:panelGroupLayout id="SPpgl4" layout="vertical">
@@ -701,7 +701,7 @@ Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
                             </af:toolbar>
                           </f:facet>
                           <f:facet name="start">
-                            <af:panelHeader text="#{component.pageStickyTitle}" id="SPph"
+                            <af:panelHeader text="#{comp.pageStickyTitle}" id="SPph"
                                             size="0"
                                             styleClass="#{attrs.pageTitleWidth eq 'auto' ? 'themeButtonBar spTitleWidth': 'themeButtonBar'}"
                                             inlineStyle="#{attrs.pageTitleWidth eq 'auto' ? '' : 'width:attrs.pageTitleWidth'}">
@@ -717,8 +717,8 @@ Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
                               <af:group id="SPdc_g1">
                                 <af:commandToolbarButton id="SPctb1"
                                                          visible="#{empty attrs.saveButtonVisible ? true : attrs.saveButtonVisible}"
-                                                         action="#{component.handleSaveAction}"
-                                                         actionListener="#{component.handleSaveActionListener}"
+                                                         action="#{comp.handleSaveAction}"
+                                                         actionListener="#{comp.handleSaveActionListener}"
                                                          rendered="#{attrs.saveButtonRendered}"
                                                          text="#{uikitcommonBundle.SAVE}"
                                                          shortDesc="#{attrs.saveButtonShortDesc}"
@@ -727,8 +727,8 @@ Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
                                 <af:commandToolbarButton text="#{uikitcommonBundle.SAVE_AND_CONTINUE}"
                                                          id="SPctb2"
                                                          visible="#{empty attrs.saveAndContinueButtonVisible ? true : attrs.saveAndContinueButtonVisible}"
-                                                         action="#{component.handleSaveAndContinueAction}"
-                                                         actionListener="#{component.handleSaveAndContinueActionListener}"
+                                                         action="#{comp.handleSaveAndContinueAction}"
+                                                         actionListener="#{comp.handleSaveAndContinueActionListener}"
                                                          rendered="#{attrs.saveAndContinueButtonRendered}"
                                                          shortDesc="#{attrs.saveAndContinueButtonShortDesc}"
                                                          partialSubmit="#{attrs.saveAndContinueButtonPartialSubmit}"
@@ -736,8 +736,8 @@ Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
                                 <af:commandToolbarButton id="SPctb3"
                                                          text="#{uikitcommonBundle.SAVE_AND_CLOSE}"
                                                          visible="#{empty attrs.saveAndCloseButtonVisible ? true : attrs.saveAndCloseButtonVisible}"
-                                                         action="#{component.handleSaveAndCloseAction}"
-                                                         actionListener="#{component.handleSaveAndCloseActionListener}"
+                                                         action="#{comp.handleSaveAndCloseAction}"
+                                                         actionListener="#{comp.handleSaveAndCloseActionListener}"
                                                          rendered="#{attrs.saveAndCloseButtonRendered}"
                                                          shortDesc="#{attrs.saveAndCloseButtonShortDesc}"
                                                          partialSubmit="#{attrs.saveAndCloseButtonPartialSubmit}"
@@ -745,8 +745,8 @@ Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
                                 <af:commandToolbarButton text="#{uikitcommonBundle.SUBMIT}"
                                                          id="SPctb4"
                                                          rendered="#{attrs.submitButtonRendered}"
-                                                         actionListener="#{component.handleSubmitActionListener}"
-                                                         action="#{component.handleSubmitAction}"
+                                                         actionListener="#{comp.handleSubmitActionListener}"
+                                                         action="#{comp.handleSubmitAction}"
                                                          shortDesc="#{attrs.submitButtonShortDesc}"
                                                          partialSubmit="#{attrs.submitButtonPartialSubmit}"
                                                          disabled="#{attrs.submitButtonDisabled}"
@@ -754,8 +754,8 @@ Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
                                 <af:commandToolbarButton text="#{uikitcommonBundle.CANCEL}"
                                                          id="SPctb5"
                                                          rendered="#{attrs.cancelButtonRendered}"
-                                                         action="#{component.handleCancelAction}"
-                                                         actionListener="#{component.handleCancelActionListener}"
+                                                         action="#{comp.handleCancelAction}"
+                                                         actionListener="#{comp.handleCancelActionListener}"
                                                          shortDesc="#{attrs.cancelButtonShortDesc}"
                                                          partialSubmit="#{attrs.cancelButtonPartialSubmit}"
                                                          disabled="#{attrs.cancelButtonDisabled}"
@@ -766,8 +766,8 @@ Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
                                                          id="SPctb6"
                                                          rendered="#{attrs.doneButtonRendered}"
                                                          text="#{uikitcommonBundle.DONE}"
-                                                         action="#{component.handleDoneAction}"
-                                                         actionListener="#{component.handleDoneActionListener}"
+                                                         action="#{comp.handleDoneAction}"
+                                                         actionListener="#{comp.handleDoneActionListener}"
                                                          shortDesc="#{attrs.doneButtonShortDesc}"
                                                          partialSubmit="#{attrs.doneButtonPartialSubmit}"
                                                          disabled="#{attrs.doneButtonDisabled}"
@@ -792,8 +792,8 @@ Copyright (c) 2017, Oracle and/or its affiliates. All rights reserved.
                           <af:commandImageLink
                                                id="SPdonei"
                                                icon="images/func_caretleft_24_ena.png"
-                                               action="#{component.handleDoneAction}"
-                                               actionListener="#{component.handleDoneActionListener}"
+                                               action="#{comp.handleDoneAction}"
+                                               actionListener="#{comp.handleDoneActionListener}"
                                                shortDesc="#{attrs.doneButtonShortDesc}"
                                                partialSubmit="#{attrs.doneButtonPartialSubmit}"
                                                disabled="#{attrs.doneButtonDisabled}"
